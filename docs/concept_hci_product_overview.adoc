@@ -1,0 +1,90 @@
+---
+sidebar: sidebar 
+permalink: docs/concept_hci_product_overview.html 
+summary:  
+keywords: netapp, hci, on premise, cloud, 
+---
+= Información general del producto NetApp HCI
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+:keywords: hci, cloud, onprem, documentation, help
+
+
+[role="lead"]
+NetApp HCI es un diseño de infraestructura de cloud híbrido de clase empresarial que combina el almacenamiento, la computación, la conexión a redes y el hipervisor, y añade funcionalidades que abarcan los clouds privados y públicos.
+
+La infraestructura de cloud híbrido desagregada de NetApp permite un escalado independiente de la computación y el almacenamiento, adaptándose a las cargas de trabajo con un rendimiento garantizado.
+
+* Satisface la demanda del multicloud híbrido
+* Escala los recursos de computación y de almacenamiento de forma independiente
+* Simplifica la orquestación de servicios de datos entre multiclouds híbridos
+
+
+
+
+== Componentes de NetApp HCI
+
+A continuación se ofrece una descripción general de los distintos componentes del entorno de NetApp HCI:
+
+image::hci_prodoverview.png[La imagen muestra los distintos componentes del entorno NetApp HCI,such as the NetApp Deployment Engine,the storage and compute nodes]
+
+* NetApp HCI proporciona recursos de almacenamiento e informáticos. Utilice el asistente *Motor de puesta en marcha de NetApp* para implementar NetApp HCI. Después de realizar la implementación correctamente, los nodos de computación se muestran como hosts ESXi y se pueden gestionar en VMware vSphere Web Client.
+* *Los servicios de gestión* o microservicios incluyen el recopilador Active IQ, QoSSIOC para el complemento vCenter y el servicio mNode; se actualizan con frecuencia como paquetes de servicio. A partir de la versión Element 11.3, *servicios de administración* se alojan en el nodo de gestión, lo que permite actualizaciones más rápidas de determinados servicios de software fuera de las versiones principales. El *nodo de gestión* (mNode) es una máquina virtual que se ejecuta en paralelo con uno o varios clústeres de almacenamiento basados en software Element. Se utiliza para actualizar y proporcionar servicios del sistema como supervisión y telemetría, gestionar activos y configuraciones del clúster, ejecutar pruebas y utilidades del sistema y habilitar el acceso al soporte de NetApp para la solución de problemas.
++
+
+TIP: Más información acerca de link:https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Software/Management_services_for_Element_Software_and_NetApp_HCI/Management_Services_Release_Notes["lanzamientos de servicios de gestión"^].
+
+* *El control del cloud híbrido de NetApp* le permite gestionar NetApp HCI. Puede actualizar los servicios de gestión, ampliar el sistema, recopilar registros y supervisar la instalación mediante SolidFire Active IQ de NetApp. Para iniciar sesión en NetApp Hybrid Cloud Control, vaya a la dirección IP del nodo de gestión.
+* El complemento *NetApp Element para vCenter Server* es una herramienta web integrada con la interfaz de usuario (UI) de vSphere. El complemento es una extensión e interfaz escalable y fácil de usar para VMware vSphere que permite gestionar y supervisar clústeres de almacenamiento que ejecutan *software NetApp Element*. El plugin ofrece una alternativa a la interfaz de usuario de Element. Puede usar la interfaz de usuario del plugin para detectar y configurar clústeres, así como para gestionar, supervisar y asignar almacenamiento de la capacidad del clúster con el fin de configurar almacenes de datos y almacenes de datos virtuales (para volúmenes virtuales). Se muestra un clúster en la red como grupo local único que se representa ante los hosts y administradores mediante direcciones IP virtuales. Adicionalmente, la actividad del clúster se puede supervisar con informes en tiempo real, incluida la mensajería sobre alertas y errores de todo evento que pueda producirse durante la ejecución de varias operaciones.
++
+
+TIP: Más información acerca de https://docs.netapp.com/us-en/vcp/concept_vcp_product_overview.html["Plugin de NetApp Element para vCenter Server"^].
+
+* De forma predeterminada, NetApp HCI envía estadísticas de rendimiento y alerta al servicio *SolidFire Active IQ* de NetApp. Como parte del contrato de soporte normal, el soporte de NetApp supervisa estos datos y alerta al usuario sobre los cuellos de botella de rendimiento o los problemas potenciales del sistema. Si todavía no tiene una cuenta de soporte de NetApp, debe crear una (aunque tenga una cuenta de SolidFire Active IQ existente) para poder aprovechar este servicio.
++
+
+TIP: Más información acerca de link:https://docs.netapp.com/us-en/solidfire-active-iq/index.html["SolidFire Active IQ de NetApp"^].
+
+
+
+
+
+== Direcciones URL de NetApp HCI
+
+Estas son las direcciones URL comunes que utiliza con NetApp HCI:
+
+[cols="2*"]
+|===
+| URL | Descripción 
+
+
+| `https://[IPv4 address of Bond1G interface on a storage node]` | Acceda al asistente del motor de implementación de NetApp para instalar y configurar NetApp HCI. link:concept_nde_access_overview.html["Leer más."] 
+
+
+| `https://<ManagementNodeIP>` | Acceda a Control del cloud híbrido de NetApp para actualizar, ampliar y supervisar su instalación de NetApp HCI, así como actualizar los servicios de gestión. link:task_nde_access_hcc.html["Leer más."] 
+
+
+| `https://[IP address]:442` | Desde la interfaz de usuario por nodo, acceda a la configuración de red y clúster y utilice pruebas y utilidades del sistema. link:task_mnode_access_ui.html#access-the-management-node-per-node-ui["Leer más."] 
+
+
+| `https://[management node IP address]:9443` | Registre el paquete del plugin de vCenter en vSphere Web Client. 
+
+
+| `https://activeiq.solidfire.com` | Supervise los datos y reciba alertas sobre los cuellos de botella de rendimiento o los problemas potenciales del sistema. 
+
+
+| `https://<ManagementNodeIP>/mnode` | Actualice manualmente los servicios de gestión mediante la interfaz de usuario de API DE REST desde el nodo de gestión. 
+
+
+| `https://[storage cluster MVIP address]` | Acceda a la interfaz de usuario del software NetApp Element. 
+|===
+[discrete]
+== Obtenga más información
+
+* https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
+* https://www.netapp.com/us/documentation/hci.aspx["Recursos de NetApp HCI"^]
+

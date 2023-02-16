@@ -1,0 +1,118 @@
+---
+sidebar: sidebar 
+permalink: docs/task_hcc_expand_compute.html 
+summary: Después de terminar la implementación de NetApp HCI, puede ampliar y configurar recursos de almacenamiento NetApp HCI mediante el control de cloud híbrido de NetApp. 
+keywords: netapp, hci, on premise, expand, compute, cluster 
+---
+= Amplíe los recursos de computación de NetApp HCI
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Después de terminar la implementación de NetApp HCI, puede ampliar y configurar recursos de computación de NetApp HCI mediante el control de cloud híbrido de NetApp.
+
+.Antes de empezar
+* Compruebe que la instancia de vSphere de NetApp HCI utilice licencia vSphere Enterprise Plus si se va a ampliar una implementación con switches virtuales distribuidos.
+* Compruebe que ninguna de las instancias de vCenter o vSphere que se utilizan con NetApp HCI tenga licencias caducadas.
+* Asegúrese de tener direcciones IPv4 gratuitas y sin usar en el mismo segmento de red que los nodos existentes (cada nodo nuevo debe instalarse en la misma red que los nodos existentes de su tipo).
+* Compruebe que dispone de las credenciales de cuenta de administrador de vCenter preparadas.
+* Asegúrese de haber realizado las siguientes acciones con cada nodo nuevo:
++
+** Instaló el nodo nuevo en el chasis NetApp HCI siguiendo el link:task_hci_installhw.html["instrucciones de instalación"].
+** Cableó y encendió el nodo nuevo
+
+
+* Asegúrese de que cada nodo nuevo utilice la misma topología y el mismo cableado de red que los clústeres de computación o almacenamiento existentes.
+
+
+.Pasos
+. Abra la dirección IP del nodo de gestión en un navegador web. Por ejemplo:
++
+[listing]
+----
+https://<ManagementNodeIP>
+----
+. Inicie sesión en NetApp Hybrid Cloud Control proporcionando las credenciales de administrador del clúster de almacenamiento de NetApp HCI.
+. Haga clic en *expandir* en la esquina superior derecha de la interfaz.
++
+El explorador abre el motor de implementación de NetApp.
+
+. Inicie sesión en el motor de implementación de NetApp. Para ello, proporcione las credenciales de administrador del clúster de almacenamiento de NetApp HCI.
+. En la página *Bienvenido*, haga clic en *Sí* y haga clic en *continuar*.
+. En la página *Licencia de usuario final*, lea el Contrato de licencia de usuario final de VMware y haga clic en *Acepto* para aceptar los términos y haga clic en *continuar*.
+. En la página *vCenter*, complete los siguientes pasos:
++
+.. Introduzca un FQDN o una dirección IP y credenciales de administrador para la instancia de vCenter asociada con la instalación de NetApp HCI.
+.. Haga clic en *continuar*.
+.. Seleccione un centro de datos de vSphere en el que desea añadir los nodos de computación o haga clic en *Create New Datacenter* para añadir los nodos de computación a un centro de datos nuevo.
++
+
+NOTE: Si hace clic en Create New Datacenter, el campo Cluster se completa automáticamente.
+
+.. Si seleccionó un centro de datos existente, seleccione un clúster de vSphere con el que se deben asociar los nodos de computación nuevos.
++
+
+NOTE: Si NetApp HCI no reconoce la configuración de red del clúster seleccionado para la ampliación, asegúrese de que la asignación vmkernel y vmnic para las redes de gestión, almacenamiento y vMotion estén establecidas con los valores predeterminados de puesta en marcha. Consulte link:task_nde_supported_net_changes.html["cambios de red admitidos"] si quiere más información.
+
+.. Haga clic en *continuar*.
+
+
+. En la página *ESXi Credentials*, introduzca la contraseña raíz de ESXi para los nodos de computación que va a añadir.
++
+Debe usar la misma contraseña que se creó durante la implementación inicial de NetApp HCI.
+
+. Haga clic en *continuar*.
+. Si creó un nuevo clúster de centro de datos de vSphere, en la página *Network Topology*, seleccione una topología de red para que coincida con los nodos de computación nuevos que va a añadir.
++
+
+NOTE: Solo debe seleccionar la opción de dos cables si los nodos de computación utilizan la topología de dos cables y la implementación de NetApp HCI existente se configura con identificadores de VLAN.
+
+. En la página *Inventario disponible*, seleccione los nodos que desea agregar a la instalación existente de NetApp HCI.
++
+
+IMPORTANT: En algunos nodos de computación, es posible que deba habilitar EV en el nivel más alto compatible con la versión de vCenter antes de poder añadirlos a la instalación. Debe utilizar el cliente de vSphere a fin de habilitar EVC para estos nodos de computación. Después de habilitar dicha función, actualice la página Inventory e intente añadir nuevamente los nodos de computación.
+
+. Haga clic en *continuar*.
+. *Opcional*: Si creó un nuevo clúster de centro de datos de vSphere, en la página *Configuración de red*, importe la información de la red desde una implementación de NetApp HCI existente seleccionando la casilla de verificación *Copiar configuración desde un clúster existente*.
++
+Esto rellena la información de la pasarela y de la subred predeterminadas para cada red.
+
+. En la página *Configuración de red*, se ha detectado parte de la información de red desde la implementación inicial. Cada nodo de computación nuevo se enumera por número de serie, y es necesario asignarle información de red nueva. Para cada nodo de computación nuevo, complete los siguientes pasos:
++
+.. *Nombre de host*: Si NetApp HCI detectó un prefijo de nomenclatura, cópielo desde el campo *prefijo de nomenclatura detectado* e insértelo como prefijo para el nuevo nombre de host.
+.. *Dirección IP de administración*: Introduzca una dirección IP de administración para el nuevo nodo informático que se encuentra en la subred de la red de administración.
+.. *IP Address* de vMotion: Introduzca una dirección IP de vMotion para el nuevo nodo de computación que se encuentra en la subred de la red de vMotion.
+.. *ISCSI A - IP Address*: Introduzca una dirección IP para el primer puerto iSCSI del nodo de computación que está en la subred de la red iSCSI.
+.. *ISCSI B - Dirección IP*: Introduzca una dirección IP para el segundo puerto iSCSI del nodo de computación que está en la subred de la red iSCSI
+.. Haga clic en *continuar*.
+
+
+. En la página *Review* de la sección Network Settings (Configuración de red), los nodos nuevos se muestran en el texto en negrita. Para hacer cambios en cualquier sección, haga lo siguiente:
++
+.. Haga clic en *Editar* para esa sección.
+.. Después de terminar, haga clic en *continuar* en cualquiera de las páginas siguientes para volver a la página *revisar*.
+
+
+. *Opcional*: Si no desea enviar estadísticas del clúster ni información de soporte a los servidores SolidFire Active IQ alojados de NetApp, desactive la casilla de comprobación final.
++
+Esta acción deshabilita la supervisión de diagnóstico y estado en tiempo real para NetApp HCI. Al deshabilitar esta función, se elimina la habilidad de NetApp para admitir y supervisar NetApp HCI de forma anticipada a fin de detectar y resolver problemas antes de que la producción se vea afectada.
+
+. Haga clic en *Agregar nodos*.
++
+Puede supervisar el progreso mientras NetApp HCI añade y configura los recursos.
+
+. *Opcional*: Verifique que los nodos de computación nuevos estén visibles en VMware vSphere Web Client.
+
+
+[discrete]
+== Obtenga más información
+
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Página de recursos de NetApp HCI"^]
+* https://library.netapp.com/ecm/ecm_download_file/ECMLP2856176["Instrucciones de instalación y configuración para nodos de almacenamiento y de computación de NetApp HCI"^]
+* https://kb.vmware.com/s/article/1003212["VMware Knowledge base: Soporte de procesador de Enhanced vMotion Compatibility (EVC)"^]
+

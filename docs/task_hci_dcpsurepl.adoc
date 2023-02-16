@@ -1,0 +1,95 @@
+---
+sidebar: sidebar 
+permalink: docs/task_hci_dcpsurepl.html 
+summary: Los nodos H615C y H610S admiten dos unidades de fuente de alimentación de –48 V a –60 V CC. Estas unidades están disponibles como complementos opcionales cuando se solicitan los nodos H615C o H610S. Puede utilizar el mismo conjunto de instrucciones para extraer las unidades de alimentación de CA del chasis y sustituirlas por unidades de alimentación de CC, o bien sustituir una unidad de alimentación de CC defectuosa por una nueva fuente de alimentación de CC. 
+keywords: netapp, hci, psu, replace power supply, H610S, H615C, DC 
+---
+= Sustituya las unidades de alimentación CC en los nodos H615C y H610S
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Los nodos H615C y H610S admiten dos unidades de fuente de alimentación de –48 V a –60 V CC. Estas unidades están disponibles como complementos opcionales cuando se solicitan los nodos H615C o H610S. Puede utilizar estas instrucciones para extraer las unidades de alimentación de CA del chasis y sustituirlas por unidades de alimentación de CC, o bien sustituir una unidad de alimentación de CC defectuosa por una nueva fuente de alimentación de CC.
+
+.Lo que necesitará
+* Si va a sustituir una unidad de fuente de alimentación de CC defectuosa, ha adquirido una unidad de alimentación de CC de repuesto.
+* Si va a intercambiar las unidades de suministro de alimentación de CA en el chasis por unidades de CC, ha tenido en cuenta el tiempo de inactividad para el procedimiento.
+* Usted tiene una muñequera de descarga electrostática (ESD), o usted ha tomado otras precauciones antiestáticas.
+* Se aseguró de que se cumplan los requisitos del suministro de alimentación:
++
+** Tensión de alimentación: –(48-60) V CC
+** Consumo de corriente: 37A (máximo)
+** Requisitos del disyuntor: Disyuntor 40A
+
+
+* Se ha asegurado de que los materiales de su entorno cumplen las especificaciones RoHS.
+* Debe asegurarse de que se cumplan los requisitos de cable:
++
+** Un cable negro máximo (trenzado) de 2 m UL 10 AWG [–(48-60) V CC]
+** Un cable rojo UL 10 AWG, máximo de 2 m (trenzado) [retorno de CC V]
+** Un cable UL 10 AWG, máximo de 2 m verde/amarillo, verde con banda amarilla, cable trenzado (tierra de seguridad)
+
+
+
+
+.Acerca de esta tarea
+El procedimiento se aplica a los siguientes modelos de nodo:
+
+* Una unidad de rack (1U) chasis de computación H615C
+* Chasis de almacenamiento H610S de 1U
++
+
+NOTE: En el caso H615C y H610S, los términos "nodo" y "chasis" se utilizan indistintamente porque los componentes de nodo y chasis no son separados, a diferencia del caso del chasis de 2U de cuatro nodos.
+
+
+
+
+CAUTION: No puede mezclar unidades de fuente de alimentación de CA y CC en su instalación.
+
+.Pasos
+. Apague las unidades de alimentación y desenchufe los cables de alimentación. Si va a sustituir una unidad de fuente de alimentación de CC defectuosa, apague la fuente de alimentación y retire todos los cables insertados en el conector azul.
+. Levante el asa de la leva y presione el pestillo azul para sacar la unidad de alimentación.
++
+image::psu-remove.gif[La muestra el asa de leva que se está levantando y la unidad de alimentación que se está deslizando fuera del chasis.]
+
++
+
+NOTE: La ilustración es un ejemplo. La ubicación de la fuente de alimentación en el chasis y el color del botón de liberación varían según el tipo de chasis que tenga.
+
++
+
+IMPORTANT: Asegúrese de utilizar ambas manos para soportar el peso de la unidad de alimentación.
+
+. Con ambas manos, alinee los bordes de la unidad de alimentación con la abertura del chasis, empuje suavemente la unidad hacia el chasis con el asa de leva hasta que encaje en su sitio y vuelva a colocar el mango de leva en la posición vertical.
++
+image::psu-install.gif[La muestra la unidad de fuente de alimentación que se está instalando en el chasis.]
+
+. Conecte el cable de las unidades de alimentación de CC. Asegúrese de que la fuente de alimentación está apagada mientras realiza el cableado de la unidad de alimentación de CC y de la fuente de alimentación.
++
+.. Inserte los cables negro, rojo y verde/amarillo en los conectores azules.
+.. Inserte el conector azul en las unidades de fuente de alimentación de CC y en la fuente de alimentación.
++
+image::dc-psu.png[La muestra el cableado de la unidad de fuente de alimentación de CC.]
+
+
+
+. Encienda las unidades de fuente de alimentación de CC.
++
+
+TIP: Los LED de la fuente de alimentación se encienden cuando la unidad de fuente de alimentación de CC se conecta. Las luces LED verdes indican que las unidades de la fuente de alimentación funcionan correctamente.
+
+. Devuelva la unidad defectuosa a NetApp siguiendo las instrucciones de la caja que le ha enviado.
+
+
+
+
+== Obtenga más información
+
+* https://www.netapp.com/us/documentation/hci.aspx["Recursos de NetApp HCI"^]
+* http://docs.netapp.com/sfe-122/index.jsp["Centro de documentación de SolidFire y el software Element"^]
+

@@ -1,0 +1,178 @@
+---
+sidebar: sidebar 
+permalink: docs/rn_compute_firmware_2.27.html 
+summary: Obtenga enlaces a las notas de la versión para los paquetes de firmware que puede descargar y aplicar a nodos NetApp HCI. 
+keywords: netapp, hci, compute firmware 
+---
+= Notas de la versión de Compute firmware Bundle 2.27
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+:keywords: hci, release notes, vcp, element, management services, firmware
+
+
+[role="lead"]
+El paquete de firmware de computación descargable contiene las mejoras más recientes de la BIOS y las funciones de BMC, correcciones de errores y compatibilidad de hardware para todos los nodos de computación de NetApp HCI compatibles.
+
+
+
+== Novedades
+
+La versión 2.27 contiene correcciones de errores generales.
+
+
+
+=== Componentes de firmware actualizados
+
+Este paquete de firmware contiene las siguientes versiones de firmware para componentes de hardware, con las versiones actualizadas en negrita:
+
+|===
+| Componente | H300E, H500E, H700E | H410C | H610C | H615C 
+
+
+| BIOS | NA2.1 | NA3.7 | *3B03* | *3B08.CO* 
+
+
+| BMC | 6.84.00 | *6.71.18* | *4.00.07* | *4.68.07* 
+
+
+| NIC / Mellanox | *14.25.1020* | *14.25.1020* | *14.25.1020* | *14.24.1000* 
+|===
+
+
+=== Cambios en los componentes de firmware
+
+A continuación, se muestran los detalles de las mejoras y cambios incluidos en cada componente de firmware nuevo:
+
+|===
+| Componente de nodo y firmware | Mejoras y cambios 
+
+
+| H300E, H500E, H700E BMC 6.84.00 | Compatibilidad con TLS 1.0 y 1.1 deshabilitada (esta versión de BMC también se proporcionó en el paquete de firmware de computación 12.2.109). 
+
+
+| BIOS 3B03 DE H610C  a| 
+* Tratamiento mejorado de los fallos de memoria
+* Se han agregado las actualizaciones más recientes del firmware NVM de Intel
+* Se ha actualizado la versión RC a 602.D02 (IPU 2020.1)
+* Se ha actualizado la versión del microcódigo a MCU x6906
+* Se ha actualizado la versión DE SPS ME a 04.01.04.381.0
+* Se han eliminado las opciones de configuración del BIOS *Restaurar en pérdida de alimentación de CA* y *Restaurar corriente en pérdida de energía de CA*
+
+
+
+
+| H615C BIOS 3B08.CO  a| 
+* Tratamiento mejorado de los fallos de memoria
+* Se han agregado las actualizaciones más recientes del firmware NVM de Intel
+* Se ha actualizado la versión de microcódigo a MCU x2F01
+* Se ha actualizado la versión RC a 602.D02 (IPU 2020.1)
+* Se ha actualizado la versión DE SPS ME a 04.01.04.381.0
+* Se han eliminado las opciones de configuración del BIOS *Restaurar en pérdida de alimentación de CA* y *Restaurar corriente en pérdida de energía de CA*
+* Se ha cambiado el valor predeterminado de la opción *intento de inicio rápido en frío* a. `disable`
+* Se ha cambiado el valor predeterminado de la opción *permitir correctables* a. `enable`
+
+
+
+
+| BMC H410C 6.71.18 | Agregue informes BMC para eventos SEL de memoria de ePPR 
+
+
+| BMC H610C 4.00.07 | Añada compatibilidad con syslog remota 
+
+
+| BMC H615C 4.68.07 | Añada compatibilidad con syslog remota 
+|===
+
+
+=== Compatibilidad del controlador de firmware de Mellanox NIC
+
+Las versiones 14.25.1020 y 14.24.1000 del firmware de Mellanox actualizadas solo son compatibles con las siguientes versiones del controlador ESXi de VMware:
+
+* *ESXi 7.0*: H300E/H500E/H700E/H410C: Versión 4.19.16.1
+* *ESXi 7.0*: H610C/H615C: Versión 4.17.15.16
+* *ESXi 6.7*: Versión 4.17.15.16
+* *ESXi 6.5*: Versión 4.16.13.5
+
+
+
+NOTE: Antes de actualizar a la versión 2.27, asegúrese de comprobar la versión actual del controlador ESXi. Si el conductor no está actualizado, actualice primero el controlador. A continuación, actualice el firmware de computación a la versión 2.27 para los nodos de computación. Visite link:task_hcc_upgrade_compute_node_drivers.html["Actualice las controladoras del nodo de computación"] Para obtener instrucciones sobre la actualización de los controladores del nodo de computación, que incluyen el controlador ESXi.
+
+Aunque el motor de puesta en marcha de NetApp 1.8P1 no pone en marcha ESXi versión 7.0, ESXi 7.0 es compatible como opción de actualización manual o de instalación automática. Cuando instala o actualiza manualmente los sistemas operativos del host, NetApp no puede controlar los controladores y el firmware de estos sistemas operativos.
+
+
+
+== Descargue el paquete de firmware de computación 2.27
+
+Para descargar el paquete de firmware de computación, vaya a la https://mysupport.netapp.com/site/products/all/details/netapp-hci/downloads-tab/download/62542/Compute_Firmware_Bundle["Paquete de firmware de computación NetApp HCI"^] página.
+
+Visite link:task_hcc_upgrade_compute_node_firmware.html#use-the-baseboard-management-controller-bmc-user-interface-ui["Actualice el firmware del nodo de computación"] para obtener instrucciones sobre la actualización del firmware de su nodo de computación.
+
+
+
+== Problemas resueltos
+
+Los siguientes son problemas que se resolvieron en esta versión.
+
+|===
+| Problema | Descripción 
+
+
+| CSD-3321 / CSESF-129 | El BMC puede bloquearse y quedar inaccesible con el error `BMC Self Test Failed`. Esto se resuelve en el BMC 4.00.07 de H610C y el BMC 4.68.07 de H615C. 
+
+
+| CSESF-234 | La API de inventario de interfaz de usuario web de H610C devuelve el formato de número de serie de memoria incorrecto. Esto se resuelve en el BMC 4.00.07 de H610C. 
+
+
+| PE-6708 | El par NIC con conexión no conmuta por error al secundario cuando el NIC se cae o el puerto está desactivado. Esto se resuelve en el firmware de Mellanox 14.24.1000. 
+|===
+
+
+== Problemas conocidos
+
+A continuación se muestran problemas conocidos en esta versión que pueden afectar al funcionamiento diario en algunos entornos.
+
+|===
+| Problema | Descripción | Solución alternativa 
+
+
+| CSESF-295 | Se produce un error de actualización de firmware del nodo de computación cuando se actualiza el firmware en un nodo H410C con el paquete de firmware descargable.  a| 
+Actualice manualmente el BIOS a la versión NA3.7 del nodo H410C:
+
+. Vaya a la https://mysupport.netapp.com/site/products/all/details/netapp-hci/downloads-tab["Página de descargas de NetApp HCI"^].
+. Introduzca `H410C_BIOS_3.7` en el campo de texto de la lista desplegable.
+. Haga clic en *Ir*. Las instrucciones de actualización están disponibles en formato PDF en la página de descarga.
+
+
+Después de actualizar el BIOS y el BMC, actualice el firmware del nodo H410C con el paquete de firmware de computación 2.27.
+
+
+
+| CSESF-328 | En los nodos H410C y H300E/H500E/H700E, un sensor NIC para el NIC de Mellanox en el BMC informa del estado como "NA" y lee "no presente". | Ninguno 
+
+
+| CSESF-309 | Los nodos H410C y H300E/H500E/H700E no pueden activar el puerto NIC de Mellanox después de desconectar manualmente el puerto cuando se ejecuta VMware EXSi 6.7u1. | Ejecute el siguiente comando para recuperar los puertos: `esxcli network nic set -n vmnic2 -a` 
+
+
+| CSESF-303 | Se ven errores de estadísticas de red para el NIC de Mellanox en los nodos H410C. | Ninguno 
+
+
+| CSESF-293 / PE-10130 | El firmware de NIC de Mellanox puede degradarse mediante Bootstrap OS después de actualizar a la versión 2.27 del paquete de firmware de computación. | Vuelva a instalar el paquete de firmware de computación versión 2.27. 
+
+
+| PE-11033 | En cargas pesadas, a veces falta el mensaje de enlace vmnic0 esperado en los archivos de registro de nodos H615C. | Ninguno 
+
+
+| PE-11032 | En cargas pesadas, se producen errores de transmisión a veces para el NIC de Mellanox en nodos H610C. | Ninguno 
+
+
+| PE-10954 | Los nodos H610C reflejan a veces la configuración de MTU incorrecta después de establecer la MTU con la interfaz de usuario de terminal (TUI) del software Element. | Ninguno 
+|===
+[discrete]
+== Obtenga más información
+
+* link:firmware_driver_versions.html["Versiones de firmware y controlador ESXi compatibles para las versiones de NetApp HCI y firmware para los nodos de almacenamiento NetApp HCI"]
+

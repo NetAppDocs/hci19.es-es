@@ -1,0 +1,56 @@
+---
+sidebar: sidebar 
+permalink: docs/task_mnode_work_overview.html 
+summary: 'Es posible usar el nodo de gestión (mNode) para usar los servicios del sistema, gestionar los activos y las configuraciones del clúster, ejecutar pruebas y utilidades del sistema, configurar Active IQ para la supervisión del sistema y habilitar el acceso al soporte de NetApp para la solución de problemas.' 
+keywords: netapp, mnode, api, rest api, mnode ui, management node ui 
+---
+= Información general sobre los nodos de gestión
+:allow-uri-read: 
+
+
+[role="lead"]
+Es posible usar el nodo de gestión (mNode) para usar los servicios del sistema, gestionar los activos y las configuraciones del clúster, ejecutar pruebas y utilidades del sistema, configurar Active IQ para la supervisión del sistema y habilitar el acceso al soporte de NetApp para la solución de problemas.
+
+
+NOTE: Como práctica recomendada, solo asocie un nodo de gestión a una instancia de VMware vCenter y evite definir los mismos recursos de almacenamiento y computación o instancias de vCenter en varios nodos de gestión.
+
+En los clústeres que ejecutan el software Element versión 11.3 o posterior, se puede trabajar con el nodo de gestión mediante una de las dos interfaces:
+
+* Con la interfaz de usuario del nodo de gestión (`https://[mNode IP]:442`), puede realizar cambios en la configuración de la red y del clúster, ejecutar pruebas del sistema o utilizar utilidades del sistema.
+* Con la interfaz de usuario de API de REST integrada (`https://[mNode IP]/mnode`), puede ejecutar o comprender las API relacionadas con los servicios del nodo de administración, incluida la configuración del servidor proxy, las actualizaciones de nivel de servicio o la administración de activos.
+
+
+Instale o recupere un nodo de gestión:
+
+* link:task_mnode_install.html["Instale un nodo de gestión"]
+* link:task_mnode_install_add_storage_NIC.html["Configurar una controladora de interfaz de red (NIC) de almacenamiento"]
+* link:task_mnode_recover.html["Recupere un nodo de gestión"]
+
+
+Acceda al nodo de gestión:
+
+* link:task_mnode_access_ui.html["Acceder al nodo de gestión (interfaz de usuario o API de REST)"]
+
+
+Realice tareas con la interfaz de usuario del nodo de gestión:
+
+* link:task_mnode_work_overview_UI.html["Información general de la interfaz de usuario del nodo de gestión"]
+
+
+Realice tareas con las API DE REST del nodo de gestión:
+
+* link:task_mnode_work_overview_API.html["Información general de la interfaz de usuario de la API DE REST del nodo de"]
+
+
+Deshabilite o habilite la funcionalidad SSH remota o inicie una sesión de túnel de soporte remoto con el soporte de NetApp para ayudarle a resolver problemas:
+
+* link:task_mnode_enable_remote_support_connections.html["Habilite las conexiones remotas de soporte de NetApp"]
+* link:task_mnode_ssh_management.html["Gestione la funcionalidad SSH en el nodo de gestión"]
+
+
+[discrete]
+== Obtenga más información
+
+* https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Página de recursos de NetApp HCI"^]
+

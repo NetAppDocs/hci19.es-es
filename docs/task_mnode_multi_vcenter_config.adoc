@@ -1,0 +1,71 @@
+---
+sidebar: sidebar 
+permalink: docs/task_mnode_multi_vcenter_config.html 
+summary: Es posible configurar NetApp Hybrid Cloud Control para utilizar varias vCenter mediante la interfaz de usuario de LA API DE REST. 
+keywords: netapp, mnode, management node, multi-vcenter, hci 
+---
+= Configure Cloud Control de NetApp híbrido para varias instancias de vCenter
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Es posible configurar NetApp Hybrid Cloud Control para gestionar activos desde dos o más vCenter que no utilicen Linked Mode.
+
+Debe utilizar este proceso después de la instalación inicial cuando necesite añadir activos para una instalación a escala reciente o cuando no se agreguen automáticamente activos nuevos a la configuración. Utilice estas API para añadir activos que se han añadido recientemente a su instalación.
+
+.Lo que necesitará
+* La versión del clúster ejecuta el software NetApp Element 11.3 o una versión posterior.
+* Un nodo de gestión se implementó con la versión 11.3 o posterior.
+
+
+.Pasos
+. link:task_mnode_add_assets.html["Añada nuevas instancias de vCenter como activos de la controladora"] a la configuración del nodo de gestión.
+. link:task_mnode_add_assets.html["Añada nuevos nodos de computación como activos de computación"] a la configuración del nodo de gestión.
++
+
+NOTE: Puede que necesite hacerlo link:task_hcc_edit_bmc_info.html["Cambie las credenciales de BMC para los nodos de computación"] para resolver un `Hardware ID not available` o. `Unable to Detect` El error aparece en el control del cloud híbrido de NetApp.
+
+. Actualice la API del servicio de inventario en el nodo de gestión:
++
+[listing]
+----
+https://<ManagementNodeIP>/inventory/1/
+----
++
+
+NOTE: Como alternativa, puede esperar 2 minutos para que el inventario se actualice en la interfaz de usuario de control del cloud híbrido de NetApp.
+
++
+.. Haga clic en *autorizar* y complete lo siguiente:
++
+... Introduzca el nombre de usuario y la contraseña del clúster.
+... Introduzca el ID de cliente as `mnode-client`.
+... Haga clic en *autorizar* para iniciar una sesión.
+... Cierre la ventana.
+
+
+.. En la interfaz de usuario DE LA API DE REST, haga clic en *GET ​/Installations*.
+.. Haga clic en *probar*.
+.. Haga clic en *Ejecutar*.
+.. Desde la respuesta, copie el ID del activo de instalación (`"id"`).
+.. En la interfaz de usuario DE LA API DE REST, haga clic en *GET /Installations/{id}*.
+.. Haga clic en *probar*.
+.. Establezca Refresh a. `True`.
+.. Pegue el ID de activo de instalación en el campo *id*.
+.. Haga clic en *Ejecutar*.
+
+
+. Actualice el explorador de NetApp Hybrid Cloud Control para ver los cambios.
+
+
+[discrete]
+== Obtenga más información
+
+* https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Página de recursos de NetApp HCI"^]
+

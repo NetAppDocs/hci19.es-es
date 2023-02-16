@@ -1,0 +1,46 @@
+---
+sidebar: sidebar 
+permalink: docs/task_nde_access_hcc.html 
+summary: Obtenga información sobre cómo acceder al control del cloud híbrido de NetApp después de poner en marcha NetApp HCI. 
+keywords: netapp, hci, deployment, review, GPU, install, driver, drivers 
+---
+= Acceda a Control del cloud híbrido de NetApp
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+El control del cloud híbrido de NetApp le permite gestionar NetApp HCI. Puede actualizar los servicios de gestión y otros componentes de NetApp HCI, así como ampliar y supervisar la instalación. Para iniciar sesión en NetApp Hybrid Cloud Control, vaya a la dirección IP del nodo de gestión.
+
+.Lo que necesitará
+* *Permisos de administrador de clúster*: Tiene permisos como administrador en el clúster de almacenamiento.
+* *Servicios de administración*: Ha actualizado sus servicios de administración a al menos la versión 2.1.326. El control del cloud híbrido de NetApp no está disponible en versiones anteriores del paquete de servicio. Para obtener información acerca de la versión actual del paquete de servicio, consulte https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Software/Management_services_for_Element_Software_and_NetApp_HCI/Management_Services_Release_Notes["Notas de la versión de los servicios de gestión"^].
+
+
+.Pasos
+. Abra la dirección IP del nodo de gestión en un navegador web. Por ejemplo:
++
+[listing]
+----
+https://<ManagementNodeIP>
+----
+. Inicie sesión en NetApp Hybrid Cloud Control proporcionando las credenciales de administrador del clúster de almacenamiento de NetApp HCI.
++
+Aparece la interfaz de control del cloud híbrido de NetApp.
+
+
+
+
+NOTE: Si ha iniciado sesión con permisos insuficientes, verá un mensaje "no se puede cargar" en todas las páginas de recursos de HCC y los recursos no estarán disponibles.
+
+
+
+== Obtenga más información
+
+* https://www.netapp.com/us/documentation/hci.aspx["Recursos de NetApp HCI"^]
+* https://docs.netapp.com/us-en/element-software/index.html["Documentación de SolidFire y el software Element"^]
+

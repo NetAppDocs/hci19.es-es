@@ -1,0 +1,57 @@
+---
+sidebar: sidebar 
+permalink: docs/task_mnode_work_overview_API.html 
+summary: 'Es posible usar la API del nodo de gestión (mNode) para actualizar los servicios del sistema, gestionar los activos y la configuración del clúster, ejecutar pruebas y utilidades del sistema, configurar Active IQ para la supervisión del sistema y habilitar o deshabilitar el acceso SSH de soporte de NetApp para la solución de problemas.' 
+keywords: netapp, mnode api, management node api, rest api 
+---
+= Información general de la interfaz de usuario de la API DE REST del nodo de
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Mediante el uso de la interfaz de usuario de API de REST integrada (`https://<ManagementNodeIP>/mnode`), puede ejecutar o comprender las API relacionadas con los servicios del nodo de administración, incluida la configuración del servidor proxy, las actualizaciones de nivel de servicio o la administración de activos.
+
+Tareas que se pueden realizar con API de REST:
+
+
+
+== Autorización
+
+* link:task_mnode_api_get_authorizationtouse.html["Obtenga autorización para utilizar las API de REST"]
+
+
+
+
+== Configuración de activos
+
+* link:task_mnode_enable_activeIQ.html["Habilite la supervisión de Active IQ y NetApp HCI"]
+* link:task_mnode_configure_proxy_server.html["Configure un servidor proxy para el nodo de gestión"]
+* link:task_mnode_multi_vcenter_config.html["Configure Cloud Control de NetApp híbrido para varias instancias de vCenter"]
+* link:task_mnode_add_assets.html["Añada activos de computación y de controladora al nodo de gestión"]
+* link:task_mnode_manage_storage_cluster_assets.html["Crear y gestionar activos de clúster de almacenamiento"]
+
+
+
+
+== Gestión de activos
+
+* link:task_mnode_edit_vcenter_assets.html["Ver o editar activos de controladora existentes"]
+* link:task_mnode_manage_storage_cluster_assets.html["Crear y gestionar activos de clúster de almacenamiento"]
+* link:task_mnode_remove_assets.html["Quite un activo del nodo de gestión"]
+* link:task_hcc_collectlogs.html#use-the-rest-api-to-collect-netapp-hci-logs["Use la API DE REST para recoger registros de NetApp HCI"]
+* link:task_mnode_api_find_mgmt_svcs_version.html["Verifique el sistema operativo del nodo de gestión y las versiones de servicios"]
+* link:task_mnode_logs.html["Obtener registros de los servicios de gestión"]
+
+
+[discrete]
+== Obtenga más información
+
+* link:task_mnode_access.html["Acceda al nodo de gestión"]
+* https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Página de recursos de NetApp HCI"^]
+

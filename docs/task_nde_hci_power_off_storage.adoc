@@ -1,0 +1,43 @@
+---
+sidebar: sidebar 
+permalink: docs/task_nde_hci_power_off_storage.html 
+summary: Aprenda a apagar los nodos de computación de NetApp HCI. 
+keywords: netapp, hci, netapp deployment engine, deployment, vsphere 
+---
+= Apague los recursos de almacenamiento de un sistema NetApp HCI
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+:keywords: netapp, hci, netapp deployment engine, deployment, vsphere
+
+
+[role="lead"]
+Al apagar los recursos de almacenamiento de NetApp HCI, debe utilizar el `Shutdown` El método API Element para detener correctamente los nodos de almacenamiento.
+
+.Pasos
+Después de apagar los recursos de computación, utilice un explorador web para apagar todos los nodos del clúster de almacenamiento de NetApp HCI.
+
+. Inicie sesión en el clúster de almacenamiento y compruebe que está conectado a la MVIP correcta.
+. Compruebe que el número de sesiones iSCSI sea cero.
+. Vaya a *Cluster > Nodes > Active* y registre los identificadores de nodo de todos los nodos activos del clúster.
+. Para apagar el clúster de almacenamiento de NetApp HCI, abra un explorador web y utilice la siguiente URL para invocar el procedimiento de apagado y detención, donde `{MVIP}` Es la dirección IP de administración del sistema de almacenamiento NetApp HCI y del `nodes=[]` La matriz incluye los ID de nodo que registró en el paso 2. Por ejemplo:
++
+[listing]
+----
+https://{MVIP}/json-rpc/1.0?method=Shutdown&nodes=[1,2,3,4]&option=halt
+----
+. Introduzca el nombre de usuario y la contraseña de administrador del clúster.
+. Compruebe que la llamada API se devolvió correctamente verificando que todos los nodos del clúster de almacenamiento están incluidos en la `successful` Del resultado de la API.
++
+Apagó correctamente todos los nodos de almacenamiento NetApp HCI.
+
+
+
+[discrete]
+== Obtenga más información
+
+* link:firmware_driver_versions.html["Versiones de firmware y controlador ESXi compatibles para las versiones de NetApp HCI y firmware para los nodos de almacenamiento NetApp HCI"]
+

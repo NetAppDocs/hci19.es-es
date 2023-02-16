@@ -1,0 +1,43 @@
+---
+sidebar: sidebar 
+permalink: docs/task_nde_select_net_topology.html 
+summary: Descubra cómo configurar VMware vSphere durante la implementación de NetApp HCI. 
+keywords: netapp, hci, netapp deployment engine, deployment, vsphere 
+---
+= Seleccione una topología de red
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+:keywords: netapp, hci, netapp deployment engine, deployment, vsphere
+
+
+[role="lead"]
+Durante el cableado de los nodos de NetApp HCI, existe la opción de usar configuraciones de cables de red diferentes según las necesidades. Para cada nodo de computación, es posible usar los seis puertos de red con diferentes tipos de tráfico asignados a cada par de puertos, o es posible usar dos puertos con todos los tipos de tráfico asignados a los puertos. Para los nodos de almacenamiento, se usa la configuración de cuatro cables estándar. Su elección afectará los nodos de computación que se puedan seleccionar en el inventario.
+
+.Lo que necesitará
+Si selecciona la topología de red de dos cables para los nodos de computación, debe tener en cuenta los siguientes requisitos:
+
+* Tiene una licencia VMware vSphere Enterprise Plus lista para aplicar después de completar la implementación.
+* Verificó que la configuración de la red y los switches de red es correcta.
+* Se requiere el etiquetado de VLAN en la redes de vMotion y de almacenamiento para todos los nodos de computación y de almacenamiento.
+
+
+.Pasos
+. En la página *topología de red*, seleccione una topología de nodo de computación que se ajuste a la manera en que instaló los nodos de computación para NetApp HCI:
++
+** *6 cable Option*: La opción de seis cables proporciona puertos dedicados para cada tipo de tráfico (administración, máquina virtual y almacenamiento). De manera opcional, es posible habilitar vSphere Distributed Switch (VDS). Al habilitar VDS, se configura un switch distribuido con el que es posible gestionar de forma simple y centralizada la configuración de red de las máquinas virtuales una vez completada la implementación de NetApp HCI. Si se habilita esta función, debe tener una licencia vSphere Enterprise Plus lista para aplicar después de la implementación.
+** *2 cable Option*: La opción de dos cables combina el tráfico de gestión, máquinas virtuales y almacenamiento en dos puertos Unidos. Esta opción de cableado requiere VDS y lo habilita automáticamente. Debe tener una licencia vSphere Enterprise Plus lista para aplicar después de la implementación.
+
+
+. Algunas opciones de cableado muestran varias vistas del panel posterior de diferentes tipos de hardware de nodos. Desplácese por las vistas del panel posterior para ver cómo conectar los cables de red para ese modelo de nodo específico y la opción de cableado.
+. Cuando termine, haga clic en *continuar*.
+
+
+[discrete]
+== Obtenga más información
+
+* link:firmware_driver_versions.html["Versiones de firmware y controlador ESXi compatibles para las versiones de NetApp HCI y firmware para los nodos de almacenamiento NetApp HCI"]
+

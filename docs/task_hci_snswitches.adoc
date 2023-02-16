@@ -1,0 +1,295 @@
+---
+sidebar: sidebar 
+permalink: docs/task_hci_snswitches.html 
+summary: Puede sustituir sin interrupciones un switch SN2000 defectuoso siguiendo las prácticas recomendadas y pasos de NetApp. 
+keywords: netapp, hci, SSDs, drives, replace drives, H410S, H610S 
+---
+= Sustituir los interruptores SN2010, SN2100 y SN2700
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puede sustituir sin interrupciones un switch SN2000 defectuoso siguiendo las prácticas recomendadas y pasos de NetApp.
+
+.Lo que necesitará
+* Asegúrese de que Putty está instalado en el portátil y de que captura la salida. Vea este vídeo para aprender a configurar Putty para capturar la sesión de salida.
+
+
+video::2LZfWH8HffA[youtube]
+* Asegúrese de ejecutar Config Advisor de NetApp antes y después de la sustitución. Esto puede ayudar a identificar otros problemas antes de que comience el mantenimiento. Descargue e instale Config Advisor, y acceda a la guía de inicio rápido desde link:https://mysupport.netapp.com/site/tools/tool-eula/activeiq-configadvisor/download["aquí (se requiere inicio de sesión)"^].
+* Obtenga un cable de alimentación, las herramientas manuales básicas y las etiquetas.
+* Asegúrese de haber planificado un plazo de mantenimiento de dos a cuatro horas.
+* Familiarícese con los siguientes puertos del switch:
+
+
+[#img-sn2010]
+.Cubierta del interruptor SN2010 y puertos
+image::sn2010.png[SN2010,600,400]
+
+[#img-sn2100]
+.Cubierta del interruptor SN2100 y puertos
+image::sn2100.png[SN2100,600,400]
+
+[#img-sn2010/2100]
+.Parte trasera de los interruptores SN2010 y SN2100
+image::sn2010_rear.png[Trasera SN2010 y SN2100,600,400]
+
+[#img-sn2700]
+.Interruptor SN2700 delantero y trasero
+image::SN2700.png[SN2700 parte delantera y trasera,600,400]
+
+.Acerca de esta tarea
+Debe realizar los pasos de este procedimiento en el siguiente orden. Esto es para garantizar que el tiempo de inactividad sea mínimo y que el interruptor de sustitución esté preconfigurado antes de sustituir el conmutador.
+
+
+NOTE: Póngase en contacto con el soporte de NetApp si necesita ayuda.
+
+A continuación se ofrece una descripción general de los pasos del procedimiento:<<Prepárese para sustituir el interruptor defectuoso>>
+<<Cree el archivo de configuración>>
+<<Retire el interruptor defectuoso e instale la sustitución>>
+<<Verifique la versión del sistema operativo en el interruptor>>
+<<Configure el interruptor de sustitución>>
+<<Complete la sustitución>>
+
+
+
+== Prepárese para sustituir el interruptor defectuoso
+
+Realice los pasos siguientes antes de sustituir el interruptor defectuoso.
+
+.Pasos
+. Compruebe que el interruptor de sustitución es el mismo modelo que el interruptor defectuoso.
+. Etiquete todos los cables conectados al interruptor defectuoso.
+. Identifique el servidor de archivos externo en el que se guardan los archivos de configuración del switch.
+. Asegúrese de haber obtenido la siguiente información:
++
+.. Interfaz utilizada para la configuración inicial: Puerto RJ-45 o interfaz de terminal serie.
+.. Las credenciales necesarias para el acceso del switch: Dirección IP del puerto de administración del switch no defectuoso y del switch defectuoso.
+.. Las contraseñas para el acceso de administración.
+
+
+
+
+
+
+== Cree el archivo de configuración
+
+Puede configurar un conmutador mediante los archivos de configuración que cree. Elija una de las siguientes opciones para crear el archivo de configuración para el conmutador.
+
+[cols="2*"]
+|===
+| Opción | Pasos 
+
+
+| Cree el archivo de configuración de copia de seguridad desde el conmutador defectuoso  a| 
+. Conéctese al switch de forma remota mediante SSH, como se muestra en el ejemplo siguiente:
++
+[listing]
+----
+ssh admin@<switch_IP_address
+----
+. Entre en el modo de configuración como se muestra en el siguiente ejemplo:
++
+[listing]
+----
+switch > enable
+switch # configure terminal
+----
+. Busque los archivos de configuración disponibles como se muestra en el siguiente ejemplo:
++
+[listing]
+----
+switch (config) #
+switch (config) # show configuration files
+----
+. Guarde el archivo de configuración de LA BANDEJA activa en un servidor externo:
++
+[listing]
+----
+switch (config) # configuration upload my-filename scp://myusername@my-server/path/to/my/<file>
+----
+
+
+
+
+| Cree el archivo de configuración de copia de seguridad modificando el archivo desde otro conmutador  a| 
+. Conéctese al switch de forma remota mediante SSH, como se muestra en el ejemplo siguiente:
++
+[listing]
+----
+ssh admin@<switch_IP_address
+----
+. Entre en el modo de configuración como se muestra en el siguiente ejemplo:
++
+[listing]
+----
+switch > enable
+switch # configure terminal
+----
+. Cargue un archivo de configuración basado en texto desde el switch a un servidor externo, como se muestra en el siguiente ejemplo:
++
+[listing]
+----
+switch (config) #
+switch (config) # configuration text file my-filename upload scp://root@my-server/root/tmp/my-filename
+----
+. Modifique los siguientes campos del archivo de texto para que coincidan con el conmutador defectuoso:
++
+[listing]
+----
+## Network interface configuration
+##
+no interface mgmt0 dhcp
+   interface mgmt0 ip address XX.XXX.XX.XXX /22
+
+##
+## Other IP configuration
+##
+   hostname oldhostname
+----
+
+
+|===
+
+
+== Retire el interruptor defectuoso e instale la sustitución
+
+Lleve a cabo los pasos necesarios para extraer el interruptor defectuoso e instalar la sustitución.
+
+.Pasos
+. Localice los cables de alimentación en el switch defectuoso.
+. Etiquete y desconecte los cables de alimentación después de reiniciar el interruptor.
+. Etiquete y desconecte todos los cables del interruptor defectuoso y fíjelos para evitar daños durante la sustitución del interruptor.
+. Retire el interruptor del rack.
+. Instale el interruptor de sustitución en el rack.
+. Conecte los cables de alimentación y los cables de puerto de gestión.
++
+
+NOTE: El interruptor se enciende automáticamente cuando se activa la alimentación de CA. No hay botón de encendido. Puede que el LED de estado del sistema demore hasta 5 minutos en ponerse en verde.
+
+. Conéctese al conmutador mediante el puerto de administración RJ-45 o la interfaz de terminal serie.
+
+
+
+
+== Verifique la versión del sistema operativo en el interruptor
+
+Compruebe la versión del software del sistema operativo en el switch. La versión del interruptor defectuoso y el interruptor en buen estado deben coincidir.
+
+.Pasos
+. Conéctese al switch de forma remota mediante SSH.
+. Acceda al modo de configuración.
+. Ejecute el `show version` comando. Consulte el siguiente ejemplo:
++
+[listing]
+----
+SFPS-HCI-SW02-A (config) #show version
+Product name:      Onyx
+Product release:   3.7.1134
+Build ID:          #1-dev
+Build date:        2019-01-24 13:38:57
+Target arch:       x86_64
+Target hw:         x86_64
+Built by:          jenkins@e4f385ab3f49
+Version summary:   X86_64 3.7.1134 2019-01-24 13:38:57 x86_64
+
+Product model:     x86onie
+Host ID:           506B4B3238F8
+System serial num: MT1812X24570
+System UUID:       27fe4e7a-3277-11e8-8000-506b4b891c00
+
+Uptime:            307d 3h 6m 33.344s
+CPU load averages: 2.40 / 2.27 / 2.21
+Number of CPUs:    4
+System memory:     3525 MB used / 3840 MB free / 7365 MB total
+Swap:              0 MB used / 0 MB free / 0 MB total
+
+----
+. Si las versiones no coinciden, debería actualizar el sistema operativo. Consulte link:https://community.mellanox.com/s/article/howto-upgrade-switch-os-software-on-mellanox-switch-systems["Guía de actualización de software de Mellanox"^] para obtener más detalles.
+
+
+
+
+== Configure el interruptor de sustitución
+
+Realice los pasos necesarios para configurar el interruptor de sustitución. Consulte link:https://docs.mellanox.com/display/MLNXOSv381000/Configuration+Management["Gestión de la configuración de Mellanox"^] para obtener más detalles.
+
+.Pasos
+. Elija una de las opciones que se aplican a usted:
+
+
+[cols="2*"]
+|===
+| Opción | Pasos 
+
+
+| Desde el archivo de configuración DE BIN  a| 
+. Recupere el archivo de configuración DE BIN como se muestra en el siguiente ejemplo:
++
+[listing]
+----
+switch (config) # configuration fetch scp://myusername@my-server/path/to/my/<file>
+----
+. Cargue el archivo de configuración DE BIN que ha obtenido en el paso anterior, como se muestra en el siguiente ejemplo:
++
+[listing]
+----
+switch (config) # configuration switch-to my-filename
+----
+. Tipo `yes` para confirmar el reinicio.
+
+
+
+
+| Del archivo de texto  a| 
+. Restablezca el interruptor a los valores predeterminados de fábrica:
++
+[listing]
+----
+switch (config) # reset factory keep-basic
+----
+. Aplicar el archivo de configuración basado en texto:
++
+[listing]
+----
+switch (config) # configuration text file my-filename apply
+----
+. Cargue un archivo de configuración basado en texto desde el switch a un servidor externo, como se muestra en el siguiente ejemplo:
++
+[listing]
+----
+switch (config) #
+switch (config) # configuration text file my-filename upload scp://root@my-server/root/tmp/my-filename
+----
++
+
+NOTE: No es necesario reiniciar el archivo de texto.
+
+
+
+|===
+
+
+== Complete la sustitución
+
+Lleve a cabo los pasos necesarios para completar el procedimiento de sustitución.
+
+.Pasos
+. Inserte los cables utilizando las etiquetas que le guiarán.
+. Ejecución de Config Advisor de NetApp. Acceda a la Guía de inicio rápido desde link:https://mysupport.netapp.com/site/tools/tool-eula/activeiq-configadvisor/download["aquí (se requiere inicio de sesión)"^].
+. Compruebe su entorno de almacenamiento.
+. Devuelva el switch defectuoso a NetApp.
+
+
+
+
+== Obtenga más información
+
+* https://www.netapp.com/us/documentation/hci.aspx["Recursos de NetApp HCI"^]
+* http://docs.netapp.com/sfe-122/index.jsp["Centro de documentación de SolidFire y el software Element"^]
+

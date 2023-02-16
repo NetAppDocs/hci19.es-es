@@ -1,0 +1,27 @@
+---
+sidebar: sidebar 
+permalink: docs/hci_solutions_index.html 
+summary: NetApp HCI le permite implementar servicios cloud en varios proveedores de cloud público y en las instalaciones. Puede usar NetApp HCI para implementar servicios similares a los que podría hacer con un proveedor de cloud, todo ello en un modo de autoservicio sin involucrar al DEPARTAMENTO DE TI. 
+keywords: netapp, hci, solutions, performance, scale, multiple, workloads 
+---
+= Soluciones NetApp HCI
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Las soluciones de NetApp HCI pueden ayudarle a lograr el rendimiento a escala con varias cargas de trabajo en la misma infraestructura sin ningún tipo de fricción.
+
+NetApp HCI le permite implementar servicios cloud en varios proveedores de cloud público y en las instalaciones. Puede usar NetApp HCI para implementar servicios similares a los que podría hacer con un proveedor de cloud, todo ello en un modo de autoservicio sin involucrar al DEPARTAMENTO DE TI.
+
+Para obtener más información sobre las soluciones NetApp HCI, consulte https://docs.netapp.com/us-en/hci-solutions/index.html["Documentación de las soluciones NetApp HCI"^].
+
+[discrete]
+== Obtenga más información
+
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Recursos de NetApp HCI"^]
+

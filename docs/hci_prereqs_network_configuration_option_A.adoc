@@ -1,0 +1,104 @@
+---
+sidebar: sidebar 
+permalink: docs/hci_prereqs_network_configuration_option_A.html 
+summary: Obtenga información acerca de la opción de configuración de red NetApp HCI A. 
+keywords: netapp, hci, cabling, network configuration 
+---
+= Configuración de red
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+:keywords: netapp, hci, cabling, network configuration
+
+
+[role="lead"]
+NetApp HCI puede utilizar varias configuraciones de VLAN y cableado de red distintas. La primera configuración, la opción A, utiliza dos cables de red para cada nodo de computación.
+
+
+
+== Opción de configuración A: Dos cables para nodos de computación
+
+Los nodos de computación NetApp H410C, H610C y H615C admiten el uso de dos cables de red para conectividad a todas las redes NetApp HCI. Esta configuración requiere que las redes de almacenamiento, vMotion y máquina virtual utilicen el etiquetado de VLAN. Todos los nodos de computación y de almacenamiento deben usar el mismo esquema de ID de VLAN. Esta configuración utiliza switches distribuidos de vSphere que requieren licencia VMware vSphere Enterprise Plus.
+
+La documentación de NetApp HCI utiliza letras para hacer referencia a los puertos de red en el panel posterior de los nodos H-Series.
+
+Aquí se muestran los puertos de red y las ubicaciones en el nodo de almacenamiento H410C:
+
+[#H35700E_H410C]
+image::HCI_ISI_compute_6cable.png[Puertos de red del nodo de almacenamiento NetApp H410C]
+
+Aquí están los puertos de red y las ubicaciones en el nodo de computación H610C:
+
+[#H610C]
+image::H610C_node-cabling.png[Puertos de red de nodos de computación H610C de NetApp]
+
+A continuación, se muestran los puertos de red y las ubicaciones en el nodo de computación H615C:
+
+[#H615C]
+image::H615C_node_cabling.png[Puertos de red del nodo de computación H615C de NetApp]
+
+Esta configuración utiliza los siguientes puertos de red en cada nodo:
+
+|===
+| Nodo | Puertos de red utilizados 
+
+
+| H410C | D y E 
+
+
+| H610C | C y D 
+
+
+| H615C | A y B 
+|===
+
+
+=== Configuración de VLAN
+
+Una práctica recomendada es configurar los segmentos de red necesarios en todos los puertos del switch que usen los nodos. Por ejemplo:
+
+|===
+| Nombre de la red | ID DE VLAN | Configuración de puertos del switch 
+
+
+| Gestión | 100 | Nativo 
+
+
+| Reducida | 105 | Etiquetada 
+
+
+| VMotion | 107 | Etiquetada 
+
+
+| Equipos virtuales | 200, 201 | Etiquetada 
+|===
+En la siguiente ilustración, se muestra la configuración de cableado recomendada para los nodos de computación H410C de dos cables y los nodos de almacenamiento H410S de cuatro cables. Todos los puertos del switch de este ejemplo comparten la misma configuración.
+
+image::hci_networking_config_scenario_1.png[Opción de configuración a image de HCI para redes]
+
+
+
+=== Comandos del switch de ejemplo
+
+Es posible usar los siguientes comandos de ejemplo a fin de configurar todos los puertos del switch utilizados para los nodos de NetApp HCI. Estos comandos se basan en una configuración de Cisco, pero podrían requerir únicamente pequeños cambios para aplicarlos a los switches Mellanox. Consulte en la documentación de su switch los comandos específicos que necesita para implementar esta configuración. Reemplace el nombre de la interfaz, la descripción y las VLAN por los valores para su entorno.
+
+`interface {interface name, such as EthernetX/Y or GigabitEthernetX/Y/Z}`
+`description {desired description, such as NetApp-HCI-NodeX-PortY}`
+`mtu 9216`
+`switchport mode trunk`
+`switchport trunk native vlan 100`
+`switchport trunk allowed vlan 105,107,200,201`
+`spanning-tree port type edge trunk`
+
+
+NOTE: Algunos switches pueden requerir la inclusión de la VLAN nativa en la lista de VLAN permitidas. Consulte la documentación de su modelo de switch y versión de software específicos.
+
+[discrete]
+== Obtenga más información
+
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Recursos de NetApp HCI"^]
+* https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
+

@@ -1,0 +1,65 @@
+---
+sidebar: sidebar 
+permalink: docs/task_mnode_run_system_utilities.html 
+summary: Es posible crear o eliminar paquetes de soporte de clúster, restablecer la configuración de nodos o reiniciar redes. 
+keywords: netapp, element, management node ui, mnode ui, system utilities 
+---
+= Ejecute las utilidades del sistema desde el nodo de gestión
+:allow-uri-read: 
+
+
+[role="lead"]
+Se puede usar la interfaz de usuario por nodo para el nodo de gestión a fin de crear o eliminar paquetes de soporte de clústeres, restablecer la configuración de nodos o reiniciar las redes.
+
+.Pasos
+. Abra la interfaz de usuario de cada nodo de gestión con las credenciales de administrador del nodo de gestión.
+. Haga clic en *Utilidades del sistema*.
+. Haga clic en el botón de la utilidad que desea ejecutar:
++
+.. *Potencia de control*: Reinicia, enciende o apaga el nodo. Especifique cualquiera de las siguientes opciones.
++
+
+IMPORTANT: Esta operación provoca la pérdida temporal de conectividad de red.
+
++
+*** *Acción*: Las opciones incluyen `Restart` y.. `Halt` (apagado).
+*** *Retardo de activación*: Cualquier tiempo adicional antes de que el nodo vuelva a estar en línea.
+
+
+.. *Crear paquete de soporte de clúster*: Crea el paquete de soporte de clúster para ayudar a las evaluaciones de diagnóstico del soporte de NetApp de uno o más nodos de un clúster. Especifique las siguientes opciones:
++
+*** *Nombre del paquete*: Nombre único para cada paquete de soporte creado. Si no se proporciona ningún nombre, "supportBundle" y el nombre de nodo se utilizan como nombre de archivo.
+*** *Mvip*: La MVIP del cluster. Los paquetes se agrupan en todos los nodos del clúster. Este parámetro es obligatorio si no se especifica el parámetro Nodes.
+*** *Nodes*: Las direcciones IP de los nodos de los que se van a recopilar paquetes. Use nodos o Mvip, pero no ambos, para especificar los nodos a partir de los cuales se van a formar paquetes. Este parámetro es obligatorio si no se especifica Mvip.
+*** *Nombre de usuario*: El nombre de usuario administrador del clúster.
+*** *Contraseña*: La contraseña de administrador del clúster.
+*** *Permitir incompleto*: Permite que la secuencia de comandos continúe ejecutándose si los paquetes no se pueden recopilar de uno o más de los nodos.
+*** *Extra args*: Este parámetro se carga al `sf_make_support_bundle` guión. Este parámetro solo se debe usar si lo solicita el soporte de NetApp.
+
+
+.. *Eliminar todos los paquetes de soporte*: Elimina los paquetes de soporte actuales del nodo de administración.
+.. *Restablecer nodo*: Restablece el nodo de administración a una nueva imagen de instalación. Esto cambia todas las opciones, excepto la configuración de red al estado predeterminado. Especifique las siguientes opciones:
++
+*** *Build*: La dirección URL de una imagen de software de elemento remoto a la que se restablecerá el nodo.
+*** *Opciones*: Especificaciones para ejecutar las operaciones de restablecimiento. El soporte de NetApp puede proporcionar detalles si es necesario.
++
+
+IMPORTANT: Esta operación provoca la pérdida temporal de conectividad de red.
+
+
+
+.. *Reiniciar red*: Reinicia todos los servicios de red en el nodo de gestión.
++
+
+IMPORTANT: Esta operación provoca la pérdida temporal de conectividad de red.
+
+
+
+
+
+[discrete]
+== Obtenga más información
+
+* https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Página de recursos de NetApp HCI"^]
+

@@ -1,0 +1,111 @@
+---
+sidebar: sidebar 
+permalink: docs/hci_prereqs_network_configuration_option_C.html 
+summary: Obtenga información acerca de la opción de configuración de red NetApp HCI C. 
+keywords: netapp, hci, cabling, network configuration 
+---
+= Configuración de red
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+:keywords: netapp, hci, cabling, network configuration
+
+
+[role="lead"]
+NetApp HCI puede utilizar varias configuraciones de VLAN y cableado de red distintas. La tercera configuración, la opción C, utiliza seis cables de red para cada nodo de computación con VLAN nativas.
+
+
+
+== Opción de configuración C: Seis cables para nodos de computación con VLAN nativas
+
+Es posible implementar NetApp HCI sin utilizar VLAN etiquetadas para el tráfico de almacenamiento y virtualización y, en su lugar, basarse en la configuración del switch para separar los segmentos de red. Se puede usar esta configuración con switches estándar de vSphere o switches distribuidos de vSphere (que requieren licencia de VMware vSphere Enterprise Plus).
+
+La documentación de NetApp HCI utiliza letras para hacer referencia a los puertos de red en el panel posterior de los nodos H-Series.
+
+Aquí se muestran los puertos de red y las ubicaciones en el nodo de almacenamiento H410C:
+
+[#H35700E_H410C]
+image::HCI_ISI_compute_6cable.png[Puertos de red del nodo de almacenamiento NetApp H410C]
+
+A continuación, se muestran los puertos de red y las ubicaciones en el nodo de almacenamiento H410S:
+
+[#H410S]
+image::HCI_ISI_storage_cabling.png[Puertos de red de nodos de almacenamiento H410S de NetApp]
+
+A continuación, se muestran los puertos de red y las ubicaciones del nodo de almacenamiento H610S:
+
+[#H610S]
+image::H610S_back_panel_ports.png[Puertos de red del nodo de almacenamiento H610S de NetApp]
+
+
+
+=== Configuración de VLAN para nodos H410C, H410S y H610S
+
+Esta opción de topología utiliza la siguiente configuración de VLAN en nodos H410C, H410S y H610S:
+
+|===
+| Puertos de nodo utilizados | Nombre de la red | ID DE VLAN | Configuración de puertos del switch conectados 
+
+
+| Puertos A y B en nodos de computación y de almacenamiento | Gestión | 100 | Nativo 
+
+
+| Puertos D y E en nodos de computación | Reducida | 105 | Nativo 
+
+
+| Puertos C y D en nodos de almacenamiento | Reducida | 105 | Nativo 
+
+
+| Puertos C y F en nodos de computación | VMotion | 107 | Nativo 
+
+
+| Puertos C y F en nodos de computación | Equipos virtuales | 200, 201 | Etiquetada 
+|===
+
+CAUTION: Tenga cuidado al configurar los puertos del switch al implementar esta configuración. Los errores de configuración en esta topología de red pueden provocar problemas de implementación difíciles de diagnosticar.
+
+En la siguiente ilustración, se muestra información general de la configuración de red para esta opción de topología. En el ejemplo, los puertos del switch individuales se configuraron con un segmento de red apropiado como la red nativa.
+
+image::hci_networking_config_scenario_2.png[Opción de configuración C Image de HCI para redes]
+
+
+
+=== Comandos del switch de ejemplo
+
+Es posible usar los siguientes comandos del switch de ejemplo a fin de configurar los puertos del switch utilizados para los nodos de NetApp HCI. Estos comandos se basan en una configuración de Cisco, pero podrían requerir cambios mínimos para aplicarse a los switches Mellanox. Consulte en la documentación de su switch los comandos específicos que necesita para implementar esta configuración.
+
+Es posible usar los siguientes comandos de ejemplo a fin de configurar los puertos del switch utilizados para la red de gestión. Reemplace el nombre de la interfaz, la descripción y las VLAN por los valores para su configuración.
+
+
+`switchport access vlan 100`
+`spanning-tree port type edge`
+
+Es posible usar los siguientes comandos de ejemplo a fin de configurar los puertos del switch utilizados para la red de almacenamiento. Reemplace el nombre de la interfaz, la descripción y las VLAN por los valores para su configuración.
+
+
+`mtu 9216`
+`switchport access vlan 105`
+`spanning-tree port type edge`
+
+Es posible usar los siguientes comandos de ejemplo a fin de configurar los puertos del switch utilizados para la red de máquinas virtuales y de vMotion. Reemplace el nombre de la interfaz, la descripción y las VLAN por los valores para su configuración.
+
+`interface {interface name, such as EthernetX/Y or GigabitEthernetX/Y/Z}`
+`description {desired description, such as NetApp-HCI-NodeX-PortC|F}`
+`mtu 9216`
+`switchport mode trunk`
+`switchport trunk native vlan 107`
+`switchport trunk allowed vlan 200,201`
+`spanning-tree port type edge trunk`
+
+
+NOTE: Algunos switches pueden requerir la inclusión de la VLAN nativa en la lista de VLAN permitidas. Consulte la documentación de su modelo de switch y versión de software específicos.
+
+[discrete]
+== Obtenga más información
+
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Recursos de NetApp HCI"^]
+* https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
+

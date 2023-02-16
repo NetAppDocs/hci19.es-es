@@ -1,0 +1,39 @@
+---
+permalink: docs/concept_hcc_custom_protection_domains.html 
+sidebar: sidebar 
+keywords: protection domain layout,user-defined,custom layout 
+summary: Se puede definir un diseño de dominio de protección personalizado, donde cada nodo está asociado a un único dominio de protección personalizado. De manera predeterminada, cada nodo se asigna al mismo dominio de protección personalizado predeterminado. 
+---
+= Dominios de protección personalizados
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Se puede definir un diseño de dominio de protección personalizado, donde cada nodo está asociado a un único dominio de protección personalizado. De manera predeterminada, cada nodo se asigna al mismo dominio de protección personalizado predeterminado.
+
+Si no se asignan dominios de protección personalizados:
+
+* El funcionamiento del clúster no se ve afectado.
+* El nivel personalizado no es tolerante ni resiliente.
+
+
+Si se asigna más de un dominio de protección personalizado, cada subsistema asignará duplicados a distintos dominios de protección personalizados. Si esto no es posible, se revierte a la asignación de duplicados a nodos separados. Cada subsistema (por ejemplo, bandejas, segmentos, proveedores de extremo de protocolo y conjunto) realiza esto de forma independiente.
+
+
+NOTE: El uso de dominios de protección personalizados implica que no hay nodos que comparten un chasis.
+
+Los siguientes métodos API de Element exponen estos nuevos dominios de protección:
+
+* GetProtectionDomainLayout - muestra en qué chasis y qué dominio de protección personalizado se encuentra cada nodo.
+* SetProtectionDomainLayout - permite asignar un dominio de protección personalizado a cada nodo.
+
+
+Póngase en contacto con el soporte de NetApp para obtener más información sobre el uso de dominios de protección personalizados.
+
+
+
+== Obtenga más información
+
+link:api/index.html["Gestione el almacenamiento con la API de Element"]

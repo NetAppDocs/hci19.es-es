@@ -1,0 +1,18 @@
+---
+sidebar: sidebar 
+permalink: docs/hci_prereqs_management_node.html 
+summary: Obtenga información acerca de las prácticas recomendadas que rodean al nodo de gestión de NetApp HCI. 
+keywords: netapp, hci, management node, mnode, best practice 
+---
+= Requisitos del nodo de gestión
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+:keywords: netapp, hci, management node, mnode, best practice
+
+
+[role="lead"]
+Como práctica recomendada, solo asocie un nodo de gestión a una instancia de VMware vCenter y evite definir los mismos recursos de almacenamiento y computación o instancias de vCenter en varios nodos de gestión. Definir los mismos recursos en varios nodos de gestión puede provocar problemas, como la generación de informes de recursos incorrectos en Active IQ de NetApp.

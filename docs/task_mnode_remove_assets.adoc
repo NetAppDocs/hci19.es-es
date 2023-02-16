@@ -1,0 +1,50 @@
+---
+sidebar: sidebar 
+permalink: docs/task_mnode_remove_assets.html 
+summary: Aprenda a eliminar activos de nodo de computación del sistema con la API DE REST. 
+keywords: netapp, hci, api, REST, remove, compute, asset 
+---
+= Quite un activo del nodo de gestión
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si sustituye físicamente un nodo de computación o es necesario quitarlo del clúster NetApp HCI, debe quitar el activo del nodo de computación mediante las API del nodo de gestión.
+
+.Lo que necesitará
+* El clúster de almacenamiento ejecuta el software NetApp Element 11.3 o una versión posterior.
+* Un nodo de gestión se implementó con la versión 11.3 o posterior.
+
+
+.Pasos
+. Introduzca la dirección IP del nodo de gestión seguida de `/mnode/1/`:
++
+[listing]
+----
+https://<ManagementNodeIP>/mnode/1/
+----
+. Haga clic en *autorizar* o en cualquier icono de bloqueo e introduzca las credenciales de administración del clúster para los permisos de uso de las API.
++
+.. Introduzca el nombre de usuario y la contraseña del clúster.
+.. Seleccione *solicitar cuerpo* en la lista desplegable Tipo si el valor no está seleccionado.
+.. Introduzca el ID de cliente as `mnode-client` si el valor no se ha rellenado todavía.
+.. No introduzca un valor para el secreto de cliente.
+.. Haga clic en *autorizar* para iniciar una sesión.
+.. Cierre la ventana.
+
+
+. Cierre el cuadro de diálogo *autorizaciones disponibles*.
+. Haga clic en *GET/Assets*.
+. Haga clic en *probar*.
+. Haga clic en *Ejecutar*.
+. Desplácese hacia abajo en el cuerpo de respuesta hasta la sección *cálculo* y copie la `parent` y.. `id` valores para el nodo de computación con fallos.
+. Haga clic en *ELIMINAR/assets/{Asset_id}/compute-Nodes/{Compute_id}*.
+. Haga clic en *probar*.
+. Introduzca el `parent` y.. `id` valores copiados en un paso anterior.
+. Haga clic en *Ejecutar*.
+

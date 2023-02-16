@@ -1,0 +1,76 @@
+---
+sidebar: sidebar 
+permalink: docs/hci_prereqs_ip_address.html 
+summary: Más información acerca de los requisitos de dirección IP de NetApp HCI. 
+keywords: netapp, hci, IP address, requirements 
+---
+= Requisitos de dirección IP
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+:keywords: netapp, hci, IP address, requirements
+
+
+[role="lead"]
+NetApp HCI tiene requisitos de dirección IP específicos que dependen del tamaño de la implementación. Tenga en cuenta que, de forma predeterminada, las direcciones IP que se asignan a cada nodo antes de utilizar el motor de implementación de NetApp para implementar el sistema son temporales y no se pueden reutilizar. Debe separar un segundo conjunto permanente de direcciones IP sin usar que se puedan asignar durante la implementación final.
+
+
+
+== Número de direcciones IP necesarias por implementación de NetApp HCI
+
+La red de almacenamiento y de gestión de NetApp HCI deben utilizar distintos rangos contiguos de direcciones IP. Utilice la siguiente tabla para determinar cuántas direcciones IP se necesitan en la implementación:
+
+|===
+| Componente del sistema | Se requieren direcciones IP de red de gestión | Direcciones IP de red de almacenamiento requeridas | Direcciones IP de red de vMotion requeridas | Total de direcciones IP requeridas por componente 
+
+
+| Nodo de computación | 1 | 2 | 1 | 4 
+
+
+| Nodo de almacenamiento | 1 | 1 |  | 2 
+
+
+| Clúster de almacenamiento | 1 | 1 |  | 2 
+
+
+| VMware vCenter | 1 |  |  | 1 
+
+
+| Nodo de gestión | 1 | 1 |  | 2 
+
+
+| Nodo de testimonio | 1 | 1 |  | 2 por nodo testigo (se ponen en marcha dos nodos testigos para cada clúster de almacenamiento de dos o tres nodos) 
+|===
+
+
+== Direcciones IP reservadas por NetApp HCI
+
+NetApp HCI se reserva los siguientes rangos de direcciones IP para los componentes del sistema. Cuando planifique la red, evite el uso de estas direcciones IP:
+
+|===
+| Rango de direcciones IP | Descripción 
+
+
+| 10.0.0.0/24 | Red de superposición de Docker 
+
+
+| 10.0.1.0/24 | Red de superposición de Docker 
+
+
+| 10.255.0.0/16 | Red de entrada de Docker Swarm/Datacenter 
+
+
+| 169.254.100.1/22 | Red puente Docker 
+
+
+| 169.254.104.0/22 | Red puente Docker 
+|===
+[discrete]
+== Obtenga más información
+
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Recursos de NetApp HCI"^]
+* https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
+

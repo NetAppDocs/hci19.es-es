@@ -1,0 +1,83 @@
+---
+sidebar: sidebar 
+permalink: docs/concept_hci_upgrade_overview.html 
+summary: Es posible actualizar NetApp HCI y todos sus componentes. 
+keywords: netapp, hci, on premise, cluster, upgrade, element 
+---
+= Información general sobre la secuencia de actualización
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Es posible mantener actualizado el sistema NetApp HCI después de la puesta en marcha actualizando secuencialmente todos los componentes de software de NetApp HCI.
+
+Estos componentes incluyen servicios de gestión, HealthTools, NetApp Hybrid Cloud Control, software Element, nodo de gestión, firmware de computación, controladores de computación, Y el plugin de Element para vCenter Server.​
+
+La <<sys_upgrade_seq,secuencia de actualización del sistema>> Contenido describe las tareas necesarias para completar una actualización del sistema NetApp HCI. Lo ideal es realizar estos procedimientos como parte de la secuencia de actualización más grande y no de forma aislada. Si es necesaria una actualización o actualización basada en componentes, consulte los requisitos previos del procedimiento para garantizar que se aborden complejidades adicionales.
+
+La xref:task_hci_upgrade_all_vsphere.adoc[Secuencia de actualización de vSphere] Incluir el contenido del plugin de Element para vCenter Server describe los pasos adicionales previos y posteriores a la actualización necesarios para volver a instalar el plugin de Element para vCenter Server.
+
+.Lo que necesitará
+* Ejecuta el nodo de gestión 11.3 o una versión posterior. Las versiones más recientes del nodo de gestión tienen una arquitectura modular que proporciona servicios individuales.
++
+
+TIP: Para comprobar la versión, inicie sesión en el nodo de gestión y vea el número de versión de Element en el banner de inicio de sesión. Si no tiene 11.3, consulte link:task_hcc_upgrade_management_node.html["Actualice su nodo de gestión"].
+
+* Ha actualizado sus servicios de administración a al menos la versión 2.1.326.
++
+Las actualizaciones con Hybrid Cloud Control de NetApp no están disponibles en versiones anteriores del paquete de servicio.
+
+* Debe asegurarse de que la hora del sistema en todos los nodos esté sincronizada y que NTP esté correctamente configurado para el clúster de almacenamiento y los nodos. Cada nodo debe configurarse con un servidor de nombres DNS en la interfaz de usuario web por nodo (`https://[IP address]:442`) sin fallos de clúster sin resolver relacionados con la desviación de tiempo.
+
+
+
+
+== [[sys_upgrade_seq]]secuencia de actualización del sistema
+
+Puede usar la siguiente secuencia para actualizar el sistema NetApp HCI.
+
+.Pasos
+. link:task_hcc_update_management_services.html["Actualice los servicios de gestión de Hybrid Cloud Control"].
++
+
+IMPORTANT: Si actualiza los servicios de gestión a la versión 2.16 o posterior y ejecuta un nodo de gestión de 11.3 a 11.8, deberá aumentar la RAM de la máquina virtual del nodo de gestión antes de actualizar los servicios de gestión.
+
++
+
+IMPORTANT: Debe actualizar al paquete de servicios de gestión más reciente antes de actualizar el software Element.
+
+. link:task_upgrade_element_latest_healthtools.html["(Opcional) Actualice a la versión más reciente de HealthTools"].
++
+
+NOTE: Actualizar HealthTools solo es necesario si el nodo de gestión y el software Element que está ejecutando es 11.1 o anterior. HealthTools no es necesario para realizar actualizaciones de elementos mediante el control de cloud híbrido de NetApp.
+
+. link:task_hcc_upgrade_element_prechecks.html["Ejecute comprobaciones del estado del almacenamiento de Element antes de actualizar el almacenamiento"].
+. link:task_hcc_upgrade_element_software.html["Actualice el software Element y el firmware de almacenamiento"].
+. link:task_hcc_upgrade_storage_firmware.html["(Opcional) Actualice solo el firmware de almacenamiento de Element"].
++
+
+NOTE: Puede realizar esta tarea cuando haya una nueva actualización del firmware de almacenamiento disponible fuera de una versión principal.
+
+. link:task_hcc_upgrade_management_node.html["(Opcional) Actualice el nodo de gestión"].
++
+
+NOTE: Ya no se necesita actualizar el sistema operativo del nodo de gestión para actualizar el software Element en el clúster de almacenamiento. Si el nodo de gestión es la versión 11.3 o posterior, solo tiene que actualizar los servicios de gestión a la versión más reciente para realizar actualizaciones de Element mediante el control de cloud híbrido de NetApp. Siga el procedimiento de actualización del nodo de gestión para su escenario si desea actualizar el sistema operativo del nodo de gestión por otros motivos, como la corrección de seguridad.
+
+. link:task_vcp_upgrade_plugin.html["Actualice el plugin de Element para vCenter Server"].
+. link:task_upgrade_compute_prechecks.html["Ejecute comprobaciones de estado del nodo de computación antes de actualizar el firmware de computación"].
+. link:task_hcc_upgrade_compute_node_drivers.html["Actualice las controladoras del nodo de computación"].
+. link:task_hcc_upgrade_compute_node_firmware.html["Actualice el firmware de su nodo de computación mediante NetApp Hybrid Cloud Control"] o. link:task_hcc_upgrade_compute_firmware_ansible.html["Automatice las actualizaciones del firmware informático con Ansible"].
+
+
+[discrete]
+== Obtenga más información
+
+* https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Página de recursos de NetApp HCI"^]
+* https://docs.netapp.com/us-en/element-software/upgrade/task_sf_upgrade_all.html["Actualice un sistema de almacenamiento all-flash SolidFire de NetApp"^]
+

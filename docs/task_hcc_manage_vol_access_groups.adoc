@@ -1,0 +1,83 @@
+---
+sidebar: sidebar 
+permalink: docs/task_hcc_manage_vol_access_groups.html 
+summary: Aprenda a añadir nuevos grupos de acceso de volúmenes para trabajar con volúmenes de almacenamiento de NetApp HCI, quitar grupos de acceso de volúmenes del sistema, editar los grupos de acceso de volúmenes existentes y ver detalles de los grupos de acceso de volúmenes. 
+keywords: netapp, hci, on premise, cluster, element 
+---
+= Permite crear y gestionar grupos de acceso de volúmenes
+:allow-uri-read: 
+
+
+[role="lead"]
+Se pueden crear nuevos grupos de acceso de volúmenes, realizar cambios en el nombre, los iniciadores asociados o los volúmenes asociados de los grupos de acceso, o eliminar los grupos de acceso de volúmenes existentes mediante NetApp Hybrid Cloud Control.
+
+.Lo que necesitará
+* Tiene credenciales de administrador para este sistema NetApp HCI.
+* Ha actualizado sus servicios de administración a al menos la versión 2.15.28. La gestión del almacenamiento de control de cloud híbrido de NetApp no está disponible en versiones anteriores del paquete de servicio.
+* Asegúrese de tener un esquema de nomenclatura lógico para los grupos de acceso de volúmenes.
+
+
+
+
+== Añadir un grupo de acceso de volúmenes
+
+Es posible añadir un grupo de acceso de volúmenes a un clúster de almacenamiento mediante NetApp Hybrid Cloud Control.
+
+.Pasos
+. Inicie sesión en NetApp Hybrid Cloud Control proporcionando las credenciales de administrador del clúster de almacenamiento de NetApp HCI o Element.
+. En Dashboard de, expanda el nombre del clúster de almacenamiento en el menú de navegación izquierdo.
+. Seleccione *volúmenes*.
+. Seleccione la ficha *grupos de acceso*.
+. Seleccione el botón *Crear grupo de acceso*.
+. En el cuadro de diálogo que se abre, escriba un nombre para el nuevo grupo de acceso de volúmenes.
+. (Opcional) en la sección *Initiators*, seleccione uno o más iniciadores para asociarlos con el nuevo grupo de acceso de volúmenes.
++
+Si asocia un iniciador con el grupo de acceso de volúmenes, ese iniciador puede acceder a cada volumen del grupo sin necesidad de autenticación.
+
+. (Opcional) en la sección *Volumes*, seleccione uno o varios volúmenes para incluirlos en este grupo de acceso de volúmenes.
+. Seleccione *Crear grupo de acceso*.
+
+
+
+
+== Edite un grupo de acceso de volúmenes
+
+Puede editar las propiedades de un grupo de acceso de volúmenes existente mediante NetApp Hybrid Cloud Control. Es posible realizar cambios en el nombre, los iniciadores asociados o los volúmenes asociados de un grupo de acceso.
+
+.Pasos
+. Inicie sesión en NetApp Hybrid Cloud Control proporcionando las credenciales de administrador del clúster de almacenamiento de NetApp HCI o Element.
+. En Dashboard de, expanda el nombre del clúster de almacenamiento en el menú de navegación izquierdo.
+. Seleccione *volúmenes*.
+. Seleccione la ficha *grupos de acceso*.
+. En la columna *acciones* de la tabla de grupos de acceso, expanda el menú de opciones para el grupo de acceso que necesita editar.
+. En el menú de opciones, seleccione *Editar*.
+. Realice los cambios necesarios en el nombre, los iniciadores asociados o los volúmenes asociados.
+. Confirme los cambios seleccionando *Guardar*.
+. En la tabla *grupos de acceso*, compruebe que el grupo de acceso refleja los cambios.
+
+
+
+
+== Elimine un grupo de acceso de volúmenes
+
+Es posible quitar un grupo de acceso de volúmenes mediante NetApp Hybrid Cloud Control y, al mismo tiempo, quitar los iniciadores asociados con este grupo de acceso del sistema.
+
+.Pasos
+. Inicie sesión en NetApp Hybrid Cloud Control proporcionando las credenciales de administrador del clúster de almacenamiento de NetApp HCI o Element.
+. En Dashboard de, expanda el nombre del clúster de almacenamiento en el menú de navegación izquierdo.
+. Seleccione *volúmenes*.
+. Seleccione la ficha *grupos de acceso*.
+. En la columna *acciones* de la tabla de grupos de acceso, expanda el menú de opciones para el grupo de acceso que necesita eliminar.
+. En el menú de opciones, seleccione *Eliminar*.
+. Si no desea eliminar los iniciadores asociados con el grupo de acceso, anule la selección de la casilla de verificación *Eliminar iniciadores de este grupo de acceso*.
+. Confirme la operación de eliminación seleccionando *Sí*.
+
+
+[discrete]
+== Obtenga más información
+
+* link:concept_hci_volume_access_groups.html["Obtenga información acerca de los grupos de acceso de volúmenes"]
+* link:task_hcc_manage_initiators.html#add-initiators-to-a-volume-access-group["Añada un iniciador de a un grupo de acceso de volúmenes"]
+* https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Página de recursos de NetApp HCI"^]
+

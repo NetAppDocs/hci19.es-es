@@ -1,0 +1,35 @@
+---
+sidebar: sidebar 
+permalink: docs/concept_hci_storage.html 
+summary: NetApp HCI está disponible en una amplia gama de opciones de configuración tanto para computación como para almacenamiento. A partir de NetApp HCI 1.8, puede tener una configuración inicial mínima de dos nodos de almacenamiento y dos nodos de computación. En las versiones anteriores, la configuración mínima necesaria eran cuatro nodos de almacenamiento y dos nodos de computación. 
+keywords: netapp, hci, storage nodes, volumes 
+---
+= Reducida
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+NetApp HCI está disponible en una amplia gama de opciones de configuración tanto para computación como para almacenamiento. A partir de NetApp HCI 1.8, puede tener una configuración inicial mínima de dos nodos de almacenamiento y de computación. Antes de NetApp HCI 1.8, la configuración mínima necesaria eran cuatro nodos de almacenamiento y dos nodos de computación.
+
+* NetApp HCI admite varios modelos de nodos de almacenamiento H-Series, como H300S, H500S, H700S, H410S y H610S.
++
+Consulte https://www.netapp.com/us/products/converged-systems/hyper-converged-infrastructure.aspx#modelsAndSpecs["Especificaciones y modelos de NetApp HCI"^]
+
+* La capa de almacenamiento de NetApp HCI es proporcionada por el software NetApp Element y el nivel de gestión lo proporciona el plugin de NetApp Element para vCenter Server.
+* Un nodo de almacenamiento de es un servidor que contiene una colección de unidades que se comunican entre sí a través de la interfaz de red Bond10G.
+* Cada nodo de almacenamiento está conectado a dos redes, almacenamiento y gestión, cada una con dos enlaces independientes por motivos de redundancia y rendimiento. Cada nodo requiere una dirección IP en cada red.
+* Es posible crear un clúster con nodos de almacenamiento nuevos o añadir nodos de almacenamiento a un clúster existente para aumentar el rendimiento y la capacidad del almacenamiento.
+* En el ecosistema de NetApp HCI y SolidFire, el almacenamiento se aprovisiona mediante volúmenes.
+
+
+
+
+== Obtenga más información
+
+* https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
+

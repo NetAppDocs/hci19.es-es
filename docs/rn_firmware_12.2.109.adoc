@@ -1,0 +1,76 @@
+---
+sidebar: sidebar 
+permalink: docs/rn_firmware_12.2.109.html 
+summary: Obtenga enlaces a las notas de la versión para los paquetes de firmware que puede descargar y aplicar a nodos NetApp HCI. 
+keywords: netapp, hci, compute firmware 
+---
+= Notas de la versión de Compute firmware Bundle 12.2.109
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+:keywords: hci, release notes, vcp, element, management services, firmware
+
+
+[role="lead"]
+El paquete de firmware de computación descargable contiene las mejoras más recientes de la BIOS y las funciones de BMC, correcciones de errores y compatibilidad de hardware para todos los nodos de computación de NetApp HCI compatibles.
+
+
+
+== Novedades
+
+La versión 12.2.109 presenta la compatibilidad de BMC para las API DMTF Redfish, que permite disfrutar de futuras funcionalidades para el control del cloud híbrido de NetApp. Las actualizaciones del firmware también contienen correcciones de errores generales y resuelven problemas de memoria. Las actualizaciones de BMC para los nodos de computación H300E, H500E y H700E solucionan varias vulnerabilidades de seguridad, incluidas CVE-2019-16649, CVE-2019-16650 y CVE-2019-6260.
+
+Este paquete de firmware contiene las siguientes versiones de firmware para componentes de hardware, con las versiones actualizadas en negrita:
+
+|===
+| Componente | H300E, H500E, H700E | H410C | H610C | H615C 
+
+
+| BIOS | NA2.1 | *NA3.7* | *3B01* | 3B06.CO 
+
+
+| BMC | *6.84.00* | 6.71.06 | *3.96.07* | *4.64.07* 
+
+
+| NIC / Mellanox | 14.21.1000 | 14.21.1000 | 14.22.1002 | 14.23.1020 
+|===
+Para descargar el paquete de firmware de computación, vaya a la https://mysupport.netapp.com/site/products/all/details/netapp-hci/downloads-tab/download/62542/Compute_Firmware_Bundle["Paquete de firmware de computación NetApp HCI"^] página.
+
+Visite link:task_hcc_upgrade_compute_node_firmware.html#use-the-baseboard-management-controller-bmc-user-interface-ui["Actualice el firmware del nodo de computación"] para obtener instrucciones sobre la actualización del firmware de su nodo de computación.
+
+
+
+== Problemas resueltos
+
+Los siguientes son problemas que se resolvieron en esta versión.
+
+|===
+| Problema | Descripción 
+
+
+| PE-10306 | Cuando actualiza el software BMC en un nodo de almacenamiento de Element 11.8, se pierden credenciales de usuario de BMC. 
+
+
+| CSESF-26 | En algunas circunstancias, los nodos H610C pueden mostrar ruido intermitente del ventilador. 
+
+
+| CSESF-293 | Cuando se actualiza al firmware del nodo de computación versión 12.2.92 en un nodo H410C, H610C, H300E, H500E o H700E, Se instala la versión 14.21.1000 del firmware de la tarjeta de interfaz de red (NIC) de Mellanox, incluso si anteriormente tenía una versión nueva. 
+
+
+| CSESF-352 | Las versiones 1.0 y 1.1 de TLS presentan vulnerabilidades de seguridad. Esta versión deshabilita TLS 1.0 y 1.1 para los nodos de computación H610C y H615C. 
+|===
+
+
+== Problemas conocidos
+
+A continuación se muestran problemas conocidos en esta versión que pueden afectar al funcionamiento diario en algunos entornos.
+
+|===
+| Problema | Descripción | Solución alternativa 
+
+
+| CSESF-295 | Se produce un error de actualización de firmware del nodo de computación cuando se actualiza el firmware en un nodo H410C con el paquete de firmware descargable. | Actualice manualmente el BIOS a la versión NA3.7 en el nodo H410C: 1. Vaya a la https://mysupport.netapp.com/site/products/all/details/netapp-hci/downloads-tab["Página de descargas de NetApp HCI"^]. 2. Introduzca `H410C_BIOS_3.7` en el campo de texto de la lista desplegable. 3. Haga clic en *Ir*. Las instrucciones de actualización están disponibles en formato PDF en la página de descarga. Después de actualizar el BIOS y el BMC, actualice el firmware del nodo H410C con el paquete de firmware de computación 12.2.109. 
+|===

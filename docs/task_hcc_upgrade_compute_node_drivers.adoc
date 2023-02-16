@@ -1,0 +1,70 @@
+---
+sidebar: sidebar 
+permalink: docs/task_hcc_upgrade_compute_node_drivers.html 
+summary: Como parte de una actualización del sistema NetApp HCI, se actualizan los controladores de los nodos de computación. 
+keywords: netapp, hci, on premise, cluster, element, compute node 
+---
+= Actualice las controladoras del nodo de computación
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Para cualquier nodo de computación H-Series, se pueden actualizar los controladores que se usan en los nodos mediante VMware Update Manager.
+
+.Lo que necesitará
+Consulte la matriz de firmware y controlador para el hardware en link:firmware_driver_versions.html["Versiones de firmware y controlador ESXi compatibles"].
+
+.Acerca de esta tarea
+Ejecute solo una de estas operaciones de actualización a la vez.
+
+Debe comprobar la versión del controlador ESXi actual antes de intentar actualizar el firmware de computación. Si el conductor no está actualizado, actualice primero el controlador. A continuación, actualice el firmware de computación para los nodos de computación.
+
+.Pasos
+. Vaya a la https://mysupport.netapp.com/site/products/all/details/netapp-hci/downloads-tab["Descargas de software de NetApp HCI"^] Y seleccione el enlace de descarga para la versión correcta de NetApp HCI.
+. Seleccione *ESXI_drivers* en la lista desplegable.
+. Acepte el contrato de licencia para usuario final.
+. Descargue el paquete de controladores para el tipo de nodo y la versión ESXi.
+. Extraiga el paquete de controladores descargado en el equipo local.
++
+
+NOTE: El paquete de controladores de NetApp incluye uno o varios archivos ZIP del paquete sin conexión de VMware; no extraiga estos archivos ZIP.
+
+. Vaya a *VMware Update Manager* en VMware vCenter.
+. Importe el archivo del paquete sin conexión del controlador para los nodos de computación al *repositorio de parches*.
++
+** Para VMware ESXi 7.0, todos los controladores necesarios para los nodos de computación H610C, H615C, H410C y Hx00E de NetApp, y sus componentes del sistema de compilación se incluyen en la imagen ISO estándar de instalación de VMware ESXi 7.0. No se requieren controladores adicionales o actualizados para los nodos de computación de NetApp HCI que ejecuten VMware ESXi 7.0 (y actualizaciones).
+** En el caso de VMware ESXi 6.x, realice los siguientes pasos para importar el archivo del paquete sin conexión del controlador:
++
+... Seleccione la ficha *actualizaciones*.
+... SELECCIONE *CARGAR DESDE ARCHIVO*.
+... Busque el paquete offline que se descargó anteriormente y seleccione *IMPORT*.
+
+
+
+
+. Cree una nueva base de host para el nodo de computación.
+. Elija *extensión de host* para Nombre y Tipo y seleccione todos los paquetes de controladores importados que se incluirán en la nueva línea de base.
+. En el menú *Host and Clusters* de vCenter, seleccione el clúster con los nodos de computación que desea actualizar y desplácese hasta la pestaña *Update Manager*.
+. Seleccione *solucionar* y seleccione la línea base del host recién creado. Asegúrese de que los controladores incluidos en la línea de base están seleccionados.
+. Continúe con el asistente hasta *Opciones de resolución de host* y asegúrese de que la opción *no cambiar estado de alimentación de VM* está seleccionada para mantener las máquinas virtuales en línea durante la actualización del controlador.
++
+
+NOTE: Si está habilitado el programador de recursos distribuidos de VMware (DRS) en el clúster (este es el valor predeterminado en las instalaciones de NetApp HCI), las máquinas virtuales se migrarán automáticamente a otros nodos del clúster.
+
+. Vaya a la página *preparado para completar* del asistente y seleccione *Finalizar*.
++
+Las controladoras para todos los nodos de computación del clúster se actualizan de uno en uno mientras las máquinas virtuales permanecen en línea.
+
+
+
+[discrete]
+== Obtenga más información
+
+* https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Página de recursos de NetApp HCI"^]
+

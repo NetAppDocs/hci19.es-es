@@ -1,0 +1,71 @@
+---
+sidebar: sidebar 
+permalink: docs/task_trident_configure_networking.html 
+summary: Habilite la compatibilidad de Trident para clústeres de usuarios. 
+keywords: netapp, hci, netapp, networking, clusters, user, trident, rancher 
+---
+= Habilite la compatibilidad de Trident para clústeres de usuarios
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si el entorno de NetApp HCI no tiene una ruta entre las redes de gestión y almacenamiento, y se implementan los clústeres de usuario que necesitan compatibilidad con Trident, se debe seguir configurando las redes de clúster de usuarios después de instalar Trident. Para cada clúster de usuario, debe habilitar la comunicación entre las redes de gestión y almacenamiento. Para ello, puede modificar la configuración de red de cada nodo del clúster de usuarios.
+
+.Acerca de esta tarea
+Siga estos pasos generales para modificar la configuración de red de cada nodo del clúster de usuarios. En estos pasos se asume que ha creado el clúster de usuario con la plantilla de nodo predeterminada que se instala con Rancher en NetApp HCI.
+
+
+NOTE: Puede realizar estos cambios como parte de una plantilla de nodo personalizada para usarlos en futuros clústeres de usuarios.
+
+.Pasos
+. Implemente un clúster de usuarios con una plantilla predeterminada existente.
+. Conecte la red de almacenamiento al clúster de usuarios.
++
+.. Abra VMware vSphere Web Client para la instancia de vCenter conectada.
+.. En el árbol de inventario hosts and Clusters, seleccione un nodo en el clúster de usuario recién implementado.
+.. Edite la configuración del nodo.
+.. En el cuadro de diálogo de configuración, agregue un nuevo adaptador de red.
+.. En la lista desplegable *Nueva red*, busque una red y seleccione *HCI_Internal_Storage_Data_Network*.
+.. Expanda la sección del adaptador de red y registre la dirección MAC del nuevo adaptador de red.
+.. Haga clic en *Aceptar*.
+
+
+. En Rancher, descargue el archivo de claves privadas SSH para cada nodo del clúster de usuarios.
+. Conéctese mediante SSH a un nodo del clúster de usuarios, mediante el archivo de claves privadas que descargó para ese nodo:
++
+[listing]
+----
+ssh -i <private key filename> <ip address>
+----
+. Como superusuario, edite y guarde el `/etc/netplan/50-cloud-init.yaml` de modo que incluya la `ens224` de forma similar al ejemplo siguiente. Sustituya `<MAC address>` Con la dirección MAC registrada anteriormente:
++
+[listing]
+----
+network:
+    ethernets:
+        ens192:
+            dhcp4: true
+            match:
+                macaddress: 00:50:56:91:1d:41
+            set-name: ens192
+        ens224:
+            dhcp4: true
+            match:
+                macaddress: <MAC address>
+            set-name: ens224
+    version: 2
+----
+. Utilice el siguiente comando para reconfigurar la red:
++
+[listing]
+----
+`netplan try`
+----
+. Repita los pasos 4 a 6 para cada nodo restante del clúster de usuarios.
+. Cuando haya reconfigurado la red para cada nodo del clúster de usuarios, puede implementar aplicaciones en el clúster de usuarios que utilicen Trident.
+

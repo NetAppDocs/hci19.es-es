@@ -1,0 +1,77 @@
+---
+sidebar: sidebar 
+permalink: docs/task_nde_review_deploy.html 
+summary: Descubra cómo revisar su configuración final e implementar NetApp HCI con estas opciones. 
+keywords: netapp, hci, deployment, review, deploy 
+---
+= Revisar e implementar la configuración
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Antes de iniciar la implementación, es posible revisar la información proporcionada. También es posible corregir los datos incorrectos o incompletos antes de continuar.
+
+
+NOTE: Durante la implementación, el proceso de instalación del nodo de gestión crea volúmenes con nombres que comienzan con `NetApp-HCI-` En el clúster de almacenamiento de Element y una cuenta de SolidFire que comienza con el nombre `tenant_`. No elimine estos volúmenes o cuentas; si lo hace, se producirá una pérdida en la funcionalidad de gestión.
+
+.Pasos
+. Opcional: Seleccione el icono *Descargar* para descargar la información de instalación en formato CSV. Puede guardar este archivo y consultarlo posteriormente para obtener información de configuración.
++
+
+NOTE: Puede importar el archivo CSV como perfil de instalación en la página *Perfil de instalación* del motor de puesta en marcha de NetApp (NDE) si es necesario durante una instalación futura.
+
+. Expanda cada sección y revise la información. Para expandir todas las secciones a la vez, seleccione *expandir todo*.
+. Opcional: Para hacer cambios en la información de una sección que se muestra:
++
+.. Seleccione *Editar* en la sección correspondiente.
+.. Realice los cambios necesarios.
+.. Seleccione *continuar* hasta que llegue a la página *Revisión*. La configuración anterior se guarda en cada página.
+.. Repita los pasos 2 y 3 para hacer otros cambios que sean necesarios.
+
+
+. Si no desea enviar estadísticas del clúster ni información de soporte a los servidores SolidFire Active IQ alojados en NetApp, desactive la casilla de comprobación final.
++
+Esta acción deshabilita la supervisión de diagnóstico y estado en tiempo real para NetApp HCI. Al deshabilitar esta función, se elimina la habilidad de NetApp para admitir y supervisar NetApp HCI de forma anticipada a fin de detectar y resolver problemas antes de que la producción se vea afectada.
+
+. Si toda la información es correcta, seleccione *Iniciar despliegue*.
++
+Aparecerá un cuadro de diálogo. En caso de que se produzcan problemas eléctricos o de conectividad de red durante el proceso de configuración final, o si se pierde la sesión del explorador, es posible copiar la URL que se muestra en el cuadro de diálogo y utilizarla para ir a la página de progreso de configuración final.
+
+. Revise la información en el cuadro de diálogo y seleccione *Copiar en Portapapeles* para copiar la URL en el portapapeles.
+. Guarde la URL en un archivo de texto en el equipo.
+. Cuando esté listo para continuar con la implementación, seleccione *OK*.
++
+Se inicia la implementación y se muestra una página de progreso. No cierre la ventana del explorador ni salga de la página de progreso hasta que finalice la implementación. Si pierde la sesión del explorador por algún motivo, puede ir a la URL que copió anteriormente (y aceptar cualquier advertencia de seguridad que se muestre) para volver a obtener acceso a la página de progreso de configuración final.
+
++
+
+NOTE: Si se produce un error en la implementación, guarde el texto del mensaje de error y póngase en contacto con el soporte de NetApp.
+
++
+Una vez completada la implementación, los nodos de computación pueden reiniciarse más de una vez antes de prepararse para el servicio.
+
+
+
+.Después de terminar
+Empiece a usar NetApp HCI seleccionando *Iniciar vSphere*.
+
+[NOTE]
+====
+* Para las instalaciones de NetApp HCI mediante vSphere 6.7, este enlace inicia la interfaz web HTML5 de vSphere. Para las instalaciones que utilizan vSphere 6.5, este enlace inicia la interfaz web de Adobe Flash vSphere.
+* En dos configuraciones de nodos de almacenamiento o tres, NDE configura los nodos del testigo para usar el almacén de datos local en los nodos de computación. Como resultado, el cliente vSphere muestra dos advertencias sobre el uso del almacén de datos en el disco*. Para continuar, seleccione el enlace *Restablecer a verde* en cada advertencia.
+
+
+====
+
+
+== Obtenga más información
+
+* https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
+* https://www.netapp.com/us/documentation/hci.aspx["Recursos de NetApp HCI"^]
+* https://docs.netapp.com/us-en/element-software/index.html["Documentación de SolidFire y el software Element"^]
+

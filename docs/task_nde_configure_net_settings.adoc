@@ -1,0 +1,271 @@
+---
+sidebar: sidebar 
+permalink: docs/task_nde_configure_net_settings.html 
+summary: Aprenda a configurar los ajustes de red de implementación de NetApp HCI. 
+keywords: netapp, hci, deployment, compatibility, nodes 
+---
+= Configure los ajustes de red
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+NetApp HCI proporciona una página de ajustes de red con varias secciones para simplificar la configuración de red. Puede continuar por cada sección e introducir información o asignar direcciones IP a los hosts y nodos de cada red.
+
+.Lo que necesitará
+* Obtuvo la siguiente información:
++
+** El prefijo de nombre planificado para los hosts y el clúster de almacenamiento
+** La máscara de subred, la dirección IP inicial, la puerta de enlace predeterminada y los identificadores de VLAN planificados para las redes de gestión, iSCSI y vMotion
+** La máscara de subred, la dirección IP, la puerta de enlace predeterminada y los identificadores de VLAN para las implementaciones de VMware vCenter planificadas
+** La dirección del servidor del protocolo de tiempo de redes (NTP) para NetApp HCI
+** La información de dirección IP del servidor DNS para NetApp HCI
+
+
+* Si desea implementar una instancia de vSphere Distributed Switch, debe tener una licencia vSphere Enterprise Plus lista para aplicar después de completar la implementación.
+* Si asignó identificadores de VLAN a puertos de nodo durante la configuración de la interfaz de usuario de terminal (TUI), ha configurado esos puertos con el mismo ID de VLAN durante la configuración de red. No es necesario configurar puertos de host etiquetados como puertos de acceso o VLAN nativas en los puertos del switch conectados.
+* Comprobó que la configuración del switch de red es correcta. Una configuración incorrecta del switch (como redes VLAN o tamaños de MTU incorrectos) produce errores en la implementación.
+
+
+.Acerca de esta tarea
+Si seleccionó la topología de red de dos cables para los nodos de computación, debe usar identificadores de VLAN para las redes de almacenamiento y de vMotion de todos los nodos de computación y de almacenamiento en la implementación (los identificadores de VLAN son opcionales para las redes de gestión). Tenga en cuenta que NetApp HCI valida las direcciones IP que introduzca durante estos pasos, pero puede desactivar esta validación con el botón *validación de red en directo es*. NetApp HCI también realiza comprobaciones con otra información que introduce durante estos pasos, como garantizar que no se solapen las subredes, garantizando que no se asigne ningún identificador de VLAN a varias redes y otras validaciones básicas.
+
+
+NOTE: En entornos que requieren el etiquetado de VLAN en el lado del host antes de la puesta en marcha, si ha configurado identificadores de VLAN en los nodos de computación y de almacenamiento, de manera que sean detectables por el motor de puesta en marcha de NetApp, asegúrese de utilizar las VLAN correctas al configurar la configuración de red en el motor de puesta en marcha de NetApp.
+
+Si va a implementar un clúster de almacenamiento de dos o tres nodos, puede completar la información de la dirección IP de los nodos testigo en la página *Configuración de red*.
+
+
+NOTE: En las páginas de asignación de direcciones IP, la información que introduzca en el modo *asignar automáticamente direcciones IP* no afecta a la información introducida en el modo *asignar manualmente direcciones IP* y viceversa. Si introduce direcciones IP en ambos modos, NetApp HCI utiliza la información de la dirección IP en cualquier modo que esté activo al hacer clic en *continuar* en la parte inferior de la página.
+
+.Resolución de problemas comunes
+NetApp HCI realiza comprobaciones sobre la información que introduce en estas páginas. A continuación se presentan algunos problemas y soluciones comunes:
+
+|===
+| Problema | Solución alternativa 
+
+
+| En el modo de asignación automática de direcciones IP, después de introducir una dirección IP inicial, verá el mensaje `IPs in the range are in use:` Con una lista desplegable desplazable de las direcciones IP en uso. | NetApp HCI ha asignado un rango contiguo de direcciones IP, pero una o varias de esas direcciones IP ya están en uso. Libere las direcciones IP en uso y vuelva a intentarlo, o utilice el modo de asignación manual de direcciones IP para asignar direcciones IP específicas. 
+
+
+| Tras introducir una puerta de enlace predeterminada, aparecerá el mensaje `The gateway is not valid`.  a| 
+La dirección IP de la puerta de enlace predeterminada no coincide con la subred que ha proporcionado o hay un problema con la red o el servidor que debe resolver. Consulte los siguientes artículos de la base de conocimientos de NetApp si desea obtener más información:
+
+* https://kb.netapp.com/Advice_and_Troubleshooting/Hybrid_Cloud_Infrastructure/NetApp_HCI/Troubleshoot_Invalid_Gateway_in_NDE["Solucione problemas de una puerta de enlace no válida en el motor de implementación de NetApp"^]
+* https://kb.netapp.com/Advice_and_Troubleshooting/Hybrid_Cloud_Infrastructure/NetApp_HCI/%22The_gateway_is_not_valid%22_during_NDE["La puerta de enlace no es válida en el motor de implementación de NetApp"^]
+
+
+
+
+| Ha completado varias páginas de configuración *Configuración de red* y se ha dado cuenta de que hay información incorrecta sobre una de las páginas anteriores en la secuencia. | Mediante la secuencia de páginas numeradas en la parte superior de la página, puede seleccionar una página que haya completado previamente y cambiar la información allí. Cuando haya terminado, puede hacer clic en *continuar* en las páginas completadas para volver a la página actual. 
+|===
+
+
+== Configure los ajustes de DNS y NTP
+
+.Pasos
+. En la página *DNS/NTP*, introduzca la información del servidor DNS y NTP para NetApp HCI en los siguientes campos:
++
+|===
+| Campo | Descripción 
+
+
+| *Dirección IP del servidor DNS 1* | La dirección IP del servidor DNS primario para NetApp HCI. Si especificó un servidor DNS en la página vCenter Configuration, este campo se rellena y es de solo lectura. 
+
+
+| *Dirección IP del servidor DNS 2 (opcional)* | La dirección IP opcional de un servidor DNS secundario para NetApp HCI. 
+
+
+| *Dirección del servidor NTP 1* | La dirección IP o el nombre de dominio completo del servidor NTP primario para esta infraestructura. 
+
+
+| *Dirección del servidor NTP 2 (opcional)* | Una dirección IP opcional o un nombre de dominio completo del servidor NTP secundario para esta infraestructura. 
+|===
+
+
+
+
+== Asigne identificadores de VLAN
+
+En la página *VLAN IDs*, puede asignar identificadores de VLAN a redes NetApp HCI. También puede optar por no utilizar los identificadores de VLAN. Si seleccionó la topología de red de dos cables para los nodos de computación, debe usar identificadores de VLAN para las redes de almacenamiento y de vMotion de todos los nodos de computación y de almacenamiento en la implementación (los identificadores de VLAN son opcionales para las redes de gestión).
+
+
+NOTE: Cuando asigna identificadores de VLAN, está configurando etiquetas de VLAN que NetApp HCI aplicará al tráfico de red. No es necesario introducir la VLAN nativa como un identificador de VLAN; para utilizar la VLAN nativa para una red, deje el campo correspondiente vacío.
+
+.Pasos
+Seleccione una de las siguientes opciones:
+
+|===
+| Opción | Pasos 
+
+
+| Asigne identificadores de VLAN  a| 
+. Seleccione *Sí* para la opción * Will you assign VLAN IDs*.
+. En la columna *VLAN ID*, introduzca una etiqueta VLAN que se utilizará para cada tipo de tráfico de red que desee asignar a una VLAN.
++
+Tanto el tráfico de vMotion como el tráfico de iSCSI de computación deben utilizar un identificador de VLAN no compartido.
+
+. Haga clic en *continuar*.
+
+
+
+
+| No asigne identificadores de VLAN  a| 
+. Seleccione *no* para la opción *Will you assign VLAN IDs*.
+. Haga clic en *continuar*.
+
+
+|===
+
+
+== Configure la red de gestión
+
+En la página *Administración*, puede elegir que NetApp HCI rellene automáticamente los rangos de direcciones IP para las redes de administración en función de una dirección IP inicial o puede elegir introducir manualmente toda la información de direcciones IP.
+
+.Pasos
+Seleccione una de las siguientes opciones:
+
+|===
+| Opción | Pasos 
+
+
+| Asignar automáticamente direcciones IP  a| 
+. Seleccione la opción *asignar direcciones IP* automáticamente.
+. En la columna *Subnet*, introduzca una definición de subred en formato CIDR para cada VLAN.
+. En la columna *Default Gateway*, introduzca una puerta de enlace predeterminada para cada VLAN.
+. En la columna *Subnet*, introduzca una dirección IP inicial que se utilizará para cada VLAN y tipo de nodo.
++
+NetApp HCI rellena automáticamente las direcciones IP finales para cada host o grupo de hosts.
+
+. Haga clic en *continuar*.
+
+
+
+
+| Asignar manualmente direcciones IP  a| 
+. Seleccione la opción *asignar manualmente direcciones IP*.
+. En la columna *Subnet*, introduzca una definición de subred en formato CIDR para cada VLAN.
+. En la columna *Default Gateway*, introduzca una puerta de enlace predeterminada para cada VLAN.
+. En la fila de cada host o nodo, introduzca la dirección IP para ese host o nodo.
+. Introduzca la dirección IP virtual de gestión (MVIP) para la red de gestión.
+. Haga clic en *continuar*.
+
+
+|===
+
+
+== Configure la red de vMotion
+
+En la página *vMotion*, puede optar por que NetApp HCI rellene automáticamente los rangos de direcciones IP para la red de vMotion en función de una dirección IP inicial o puede optar por introducir manualmente toda la información de direcciones IP.
+
+.Pasos
+Seleccione una de las siguientes opciones:
+
+|===
+| Opción | Pasos 
+
+
+| Asignar automáticamente direcciones IP  a| 
+. Seleccione la opción *asignar direcciones IP* automáticamente.
+. En la columna *Subnet*, introduzca una definición de subred en formato CIDR para cada VLAN.
+. (Opcional) en la columna *Default Gateway*, introduzca una puerta de enlace predeterminada para cada VLAN.
+. En la columna *Subnet*, introduzca una dirección IP inicial que se utilizará para cada VLAN y tipo de nodo.
++
+NetApp HCI rellena automáticamente las direcciones IP finales para cada host o grupo de hosts.
+
+. Haga clic en *continuar*.
+
+
+
+
+| Asignar manualmente direcciones IP  a| 
+. Seleccione la opción *asignar manualmente direcciones IP*.
+. En la columna *Subnet*, introduzca una definición de subred en formato CIDR para cada VLAN.
+. (Opcional) en la columna *Default Gateway*, introduzca una puerta de enlace predeterminada para cada VLAN.
+. En la fila de cada host o nodo, introduzca la dirección IP para ese host o nodo.
+. Haga clic en *continuar*.
+
+
+|===
+
+
+== Configure la red iSCSI
+
+En la página *iSCSI*, puede elegir que NetApp HCI rellene automáticamente los rangos de direcciones IP para la red iSCSI basándose en una dirección IP inicial o puede elegir introducir manualmente toda la información de direcciones IP.
+
+.Pasos
+Seleccione una de las siguientes opciones:
+
+|===
+| Opción | Pasos 
+
+
+| Asignar automáticamente direcciones IP  a| 
+. Seleccione la opción *asignar direcciones IP* automáticamente.
+. En la columna *Subnet*, introduzca una definición de subred en formato CIDR para la red iSCSI.
+. (Opcional) en la columna *Default Gateway*, introduzca una puerta de enlace predeterminada para la red iSCSI.
+. En la columna *Subnet*, introduzca una dirección IP inicial que se utilizará para cada tipo de nodo.
++
+NetApp HCI rellena automáticamente las direcciones IP finales para cada host o grupo de hosts.
+
+. Haga clic en *continuar*.
+
+
+
+
+| Asignar manualmente direcciones IP  a| 
+. Seleccione la opción *asignar manualmente direcciones IP*.
+. En la columna *Subnet*, introduzca una definición de subred en formato CIDR para la red iSCSI.
+. (Opcional) en la columna *Default Gateway*, introduzca una puerta de enlace predeterminada para la red iSCSI.
+. En la sección *nodo de gestión*, introduzca una dirección IP para el nodo de administración.
+. Para cada nodo de la sección *nodos de computación*, introduzca las direcciones IP iSCSI A e iSCSI B.
+. En la fila *Storage Virtual IP (SVIP)*, introduzca la dirección IP SVIP para la red iSCSI.
+. En las filas restantes, para cada host o nodo, introduzca la dirección IP de ese host o nodo.
+. Haga clic en *continuar*.
+
+
+|===
+
+
+== Asigne los nombres de clúster y host
+
+En la página *Nomenclatura*, puede optar por que NetApp HCI rellene automáticamente el nombre del clúster y los nombres de los nodos del clúster en función de un prefijo de nomenclatura. También puede elegir introducir manualmente todos los nombres del clúster y los nodos.
+
+.Pasos
+Seleccione una de las siguientes opciones:
+
+|===
+| Opción | Pasos 
+
+
+| Asignar automáticamente nombres de clúster y host  a| 
+. Seleccione la opción *asignar automáticamente nombres de clúster/host*.
+. En la sección *prefijo de instalación*, introduzca un prefijo de nombre que se utilizará para todos los nombres de host de nodo del clúster (incluidos los nodos testigo y nodo de administración).
++
+NetApp HCI rellena automáticamente los nombres de host según el tipo de nodo, así como sufijos para los nombres de nodos comunes (como los nodos de computación y de almacenamiento).
+
+. (Opcional) en la columna *Esquema de nomenclatura*, modifique cualquiera de los nombres resultantes para los hosts.
+. Haga clic en *continuar*.
+
+
+
+
+| Asignar manualmente los nombres de clúster y host  a| 
+. Seleccione la opción *asignar manualmente nombres de clúster/host*.
+. En la columna *Host / Cluster Name*, introduzca el nombre de host de cada host y un nombre de clúster para el clúster de almacenamiento.
+. Haga clic en *continuar*.
+
+
+|===
+
+
+== Obtenga más información
+
+* https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
+* https://www.netapp.com/us/documentation/hci.aspx["Recursos de NetApp HCI"^]
+* https://docs.netapp.com/us-en/element-software/index.html["Documentación de SolidFire y el software Element"^]
+

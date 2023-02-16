@@ -1,0 +1,93 @@
+---
+sidebar: sidebar 
+permalink: docs/concept_hci_clusters.html 
+summary: Un clúster de está formado por una colección de nodos de almacenamiento. Un clúster de almacenamiento de NetApp HCI debe tener al menos dos nodos de almacenamiento. Un clúster aparece en la red como un grupo lógico y se puede acceder a él como almacenamiento basado en bloques. 
+keywords: netapp, hci, storage nodes, clusters, two-node cluster, three-node cluster, 2-node cluster, 3-node cluster 
+---
+= De clúster
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Un clúster es un grupo de nodos que funciona como un conjunto colectivo, que proporcionan recursos de almacenamiento o de computación. A partir de NetApp HCI 1.8, puede tener un clúster de almacenamiento con dos nodos. Un clúster de almacenamiento aparece en la red como un grupo lógico y se puede acceder a él como almacenamiento basado en bloques.
+
+La capa de almacenamiento de NetApp HCI es proporcionada por el software NetApp Element y el nivel de gestión lo proporciona el plugin de NetApp Element para vCenter Server. Un nodo de almacenamiento de es un servidor que contiene una colección de unidades que se comunican entre sí a través de la interfaz de red Bond10G. Cada nodo de almacenamiento está conectado a dos redes, almacenamiento y gestión, cada una con dos enlaces independientes por motivos de redundancia y rendimiento. Cada nodo requiere una dirección IP en cada red. Es posible crear un clúster con nodos de almacenamiento nuevos o añadir nodos de almacenamiento a un clúster existente para aumentar el rendimiento y la capacidad del almacenamiento.
+
+
+
+== Clústeres de almacenamiento autoritativos
+
+El clúster de almacenamiento autorizado es el clúster de almacenamiento que utiliza Hybrid Cloud Control de NetApp para autenticar usuarios.
+
+Si su nodo de gestión solo tiene un clúster de almacenamiento, es el clúster autorizado. Si su nodo de gestión tiene dos o más clústeres de almacenamiento, uno de esos clústeres se asigna como un clúster autorizado y solo los usuarios de ese clúster pueden iniciar sesión en Hybrid Cloud Control de NetApp. Para averiguar qué clúster es el clúster autorizado, puede utilizar `GET /mnode/about` API. En la respuesta, la dirección IP de la `token_url` Field es la dirección IP virtual de gestión (MVIP) del clúster de almacenamiento autorizado. Si intenta iniciar sesión en NetApp Hybrid Cloud Control como usuario que no está en el clúster autorizado, el intento de inicio de sesión fallará.
+
+Muchas funciones de control de cloud híbrido de NetApp están diseñadas para funcionar con varios clústeres de almacenamiento, pero la autenticación y la autorización tienen limitaciones. La limitación de la autenticación y la autorización consiste en que el usuario del clúster autorizado puede ejecutar acciones en otros clústeres vinculados a Hybrid Cloud Control de NetApp incluso si no son usuarios en otros clústeres de almacenamiento. Antes de continuar con la gestión de varios clústeres de almacenamiento, debe asegurarse de que los usuarios definidos en los clústeres autorizados se hayan definido en todos los demás clústeres de almacenamiento con los mismos permisos.
+
+Puede gestionar usuarios con NetApp Hybrid Cloud Control.
+
+Antes de continuar con la gestión de varios clústeres de almacenamiento, debe asegurarse de que los usuarios definidos en los clústeres autorizados se hayan definido en todos los demás clústeres de almacenamiento con los mismos permisos. Consulte link:task_mnode_manage_storage_cluster_assets.html["Crear y gestionar activos de clúster de almacenamiento"] para obtener más información sobre el trabajo con activos de clústeres de almacenamiento del nodo de gestión.
+
+
+
+== Capacidad desaprovechada
+
+Si un nodo que se acaba de añadir supone más del 50 % de la capacidad total del clúster, parte de la capacidad de este nodo se vuelve inutilizable ("trenzado"), de modo que cumpla con la regla de capacidad. Este sigue siendo el caso hasta que se añada más capacidad de almacenamiento. Si se añade un nodo muy grande que también desobedece la regla de capacidad, el nodo que antes se había abandonado ya no se quedará abandonado, mientras el nodo recién añadido se vuelve abandonado. La capacidad debe añadirse siempre por parejas para evitar que esto ocurra. Cuando un nodo se queda sin poner en cadena, se produce un error del clúster adecuado.
+
+
+
+== Clústeres de almacenamiento de dos nodos
+
+A partir de NetApp HCI 1.8, puede configurar un clúster de almacenamiento con dos nodos de almacenamiento.
+
+* Puede usar ciertos tipos de nodos para formar el clúster de almacenamiento de dos nodos. Consulte https://library.netapp.com/ecm/ecm_download_file/ECMLP2865021["Notas de la versión de NetApp HCI 1.8"^].
++
+
+NOTE: En un clúster de dos nodos, los nodos de almacenamiento se limitan a los nodos con unidades de 480 GB y 960 GB. Además, los nodos deben ser del mismo tipo de modelo.
+
+* Los clústeres de almacenamiento de dos nodos son ideales para las implementaciones a pequeña escala con cargas de trabajo que no dependen de grandes requisitos de capacidad y alto rendimiento.
+* Además de dos nodos de almacenamiento, un clúster de almacenamiento de dos nodos también incluye dos * nodos testigos de NetApp HCI*.
++
+
+NOTE: Más información acerca de link:concept_hci_nodes.html["Nodos de testigos."]
+
+* Es posible escalar un clúster de almacenamiento de dos nodos a un clúster de almacenamiento de tres nodos. Los clústeres de tres nodos aumentan la resiliencia al proporcionar la capacidad de recuperarse automáticamente de fallos de nodos de almacenamiento.
+* Los clústeres de almacenamiento de dos nodos proporcionan las mismas funciones de seguridad y funcionalidades que los clústeres de almacenamiento de cuatro nodos tradicionales.
+* Los clústeres de almacenamiento de dos nodos utilizan las mismas redes que los clústeres de almacenamiento de cuatro nodos. Las redes se configuran durante la implementación de NetApp HCI mediante el asistente del motor de puesta en marcha de NetApp.
+
+
+
+
+=== Quórum del clúster de almacenamiento
+
+El software Element crea un clúster de almacenamiento a partir de los nodos seleccionados, que mantiene una base de datos replicada de la configuración de clúster. Se necesita un mínimo de tres nodos para participar en el conjunto de clústeres a fin de mantener el quórum para la resiliencia del clúster. Los nodos de testigos de un clúster de dos nodos se utilizan para garantizar que haya suficientes nodos de almacenamiento para formar un conjunto de quórum válido. Para la creación del conjunto, los nodos de almacenamiento se prefieren frente a los nodos de testimonio. Para el conjunto mínimo de tres nodos que implica un clúster de almacenamiento de dos nodos, se utilizan dos nodos de almacenamiento y un nodo de testigo.
+
+
+TIP: En un conjunto de tres nodos con dos nodos de almacenamiento y un nodo de testigo, si un nodo de almacenamiento se desconecta, el clúster entra en un estado degradado. De los dos nodos de testigos, solo uno puede estar activo en el conjunto. El segundo nodo de testimonio no se puede añadir al conjunto, ya que ejecuta el rol de backup. El clúster permanece en estado degradado hasta que el nodo de almacenamiento sin conexión vuelve a estar en línea o un nodo de sustitución se une al clúster.
+
+Si se produce un error en un nodo de testigo, el nodo de testigo restante se une al conjunto para formar un conjunto de tres nodos. Puede implementar un nuevo nodo testigo para reemplazar el nodo testigo fallido.
+
+
+
+=== Reparación automática y gestión de fallos en clústeres de almacenamiento de dos nodos
+
+Si un componente de hardware falla en un nodo que forma parte de un clúster tradicional, el clúster puede reequilibrar los datos que se encuentran en el componente que no ha fallado en otros nodos disponibles del clúster. Esta capacidad para recuperarse automáticamente no está disponible en un clúster de almacenamiento de dos nodos, ya que debe haber disponible un mínimo de tres nodos de almacenamiento físico para que el clúster los repare automáticamente. Cuando falla un nodo de un clúster de dos nodos, el clúster de dos nodos no requiere la regeneración de una segunda copia de los datos. Las nuevas escrituras se replican para los datos en bloque en el nodo de almacenamiento activo restante. Cuando el nodo que ha fallado se reemplaza y se une al clúster, los datos se reequilibran entre los dos nodos de almacenamiento físicos.
+
+
+
+== Clústeres de almacenamiento con tres o más nodos
+
+Al ampliar de dos nodos de almacenamiento a tres nodos de almacenamiento, el clúster será más resiliente gracias a que permite la reparación automática en caso de fallos de nodos y unidades, pero no proporciona capacidad adicional. Puede ampliar utilizando la link:task_hcc_expand_storage.html["IU de control del cloud híbrido de NetApp"]. Al expandir un clúster de dos nodos a un clúster de tres nodos, la capacidad se puede dejar sin usar (consulte <<Capacidad desaprovechada>>). El asistente de la interfaz de usuario muestra advertencias sobre la capacidad desaprovechada antes de la instalación. Aún está disponible un único nodo de testigo para mantener el quórum del conjunto en caso de que se produzca un fallo en el nodo de almacenamiento, con un segundo nodo de testigo en espera. Cuando se amplía un clúster de almacenamiento de tres nodos a un clúster de cuatro nodos, la capacidad y el rendimiento aumentan. En un clúster de cuatro nodos, los nodos testigos ya no son necesarios para formar el quórum del clúster. Es posible ampliar hasta 64 nodos de computación y 40 nodos de almacenamiento.
+
+
+
+== Obtenga más información
+
+* https://www.netapp.com/us/media/tr-4823.pdf["Clúster de almacenamiento de dos nodos NetApp HCI | TR-4823"^]
+* https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
+* http://docs.netapp.com/sfe-122/index.jsp["Centro de documentación de SolidFire y el software Element"^]
+

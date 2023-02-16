@@ -1,0 +1,49 @@
+---
+sidebar: sidebar 
+permalink: docs/concept_nde_hci_power_off_on.html 
+summary: Descubra cómo configurar VMware vSphere durante la implementación de NetApp HCI. 
+keywords: netapp, hci, netapp deployment engine, deployment, vsphere 
+---
+= Apagar o encender el sistema NetApp HCI
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+:keywords: netapp, hci, netapp deployment engine, deployment, vsphere
+
+
+[role="lead"]
+Puede apagar o encender el sistema NetApp HCI si tiene una interrupción programada, si necesita realizar mantenimiento en el hardware o si necesita expandir el sistema. Utilice las siguientes tareas para apagar o encender el sistema NetApp HCI según sea necesario.
+
+Es posible que deba apagar el sistema NetApp HCI en diferentes circunstancias, como:
+
+* Se han programado interrupciones del servicio
+* Sustituciones de ventiladores del chasis
+* Actualizaciones de firmware
+* Ampliación de recursos de almacenamiento o computación
+
+
+A continuación se ofrece información general de las tareas que debe realizar para apagar un sistema NetApp HCI:
+
+* Apague todas las máquinas virtuales, excepto VMware vCenter Server (vcsa).
+* Apague todos los servidores ESXi, excepto el que aloja la instancia de vcsa.
+* Apague la instancia de vcsa.
+* Apague el sistema de almacenamiento NetApp HCI.
+
+
+A continuación se ofrece una descripción general de las tareas que necesita completar para encender un sistema NetApp HCI:
+
+* Encienda todos los nodos de almacenamiento físico.
+* Encienda todos los nodos de computación físicos.
+* Encienda la instancia de vcsa.
+* Compruebe el sistema y encienda equipos virtuales adicionales.
+
+
+
+
+== Obtenga más información
+
+* link:firmware_driver_versions.html["Versiones de firmware y controlador ESXi compatibles para las versiones de NetApp HCI y firmware para los nodos de almacenamiento NetApp HCI"]
+

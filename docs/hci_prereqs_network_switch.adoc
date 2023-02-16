@@ -1,0 +1,61 @@
+---
+sidebar: sidebar 
+permalink: docs/hci_prereqs_network_switch.html 
+summary: Descubra las novedades de esta versión de NetApp HCI. 
+keywords: netapp, hci, network, switch, requirements 
+---
+= Requisitos de switch y red
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+:keywords: netapp, hci, network, switch, requirements
+
+
+[role="lead"]
+Los switches que usa para NetApp HCI requieren una configuración específica para garantizar una implementación correcta. Consulte la documentación de su switch para ver instrucciones específicas sobre cómo implementar cada uno de los requisitos siguientes para su entorno.
+
+Una implementación de NetApp HCI requiere al menos tres segmentos de red, uno para cada tipo de tráfico a continuación:
+
+* Gestión
+* VMware vMotion
+* Almacenamiento/datos
+
+
+Según los modelos de nodos de almacenamiento y computación de NetApp H-Series, y la configuración de cableado planificada, estas redes se pueden separar mediante switches distintos, o bien mediante VLAN. Para la mayoría de las implementaciones, sin embargo, es necesario separar lógicamente estas redes (y cualquier otra red de máquina virtual adicional) mediante VLAN.
+
+Los nodos de computación y de almacenamiento deben ser capaces de comunicarse antes, durante y después de la implementación. Si va a implementar redes de gestión independientes para los nodos de computación y de almacenamiento, asegúrese de que estas redes de gestión tengan rutas de red entre ellas. Estas redes deben tener puertas de enlace asignadas, y debe existir una ruta entre las puertas de enlace. Asegúrese de que cada nodo nuevo tenga asignada una puerta de enlace para facilitar la comunicación entre nodos y redes de gestión.
+
+NetApp HCI tiene los siguientes requisitos de switch:
+
+* Todos los puertos de switch conectados a los nodos NetApp HCI deben estar configurados como puertos periféricos de árbol de expansión.
++
+** En los switches Cisco, en función del modelo del switch, la versión del software y el tipo de puerto, puede hacerlo con uno de los siguientes comandos:
++
+*** `spanning-tree port type edge`
+*** `spanning-tree port type edge trunk`
+*** `spanning-tree portfast`
+*** `spanning-tree portfast trunk`
+
+
+** En los switches Mellanox, puede hacerlo con `spanning-tree port type edge` comando.
+
+
+* Los nodos NetApp HCI tienen puertos redundantes para todas las funciones de red, excepto la gestión fuera de banda. Para obtener la mejor resiliencia, divida estos puertos entre dos switches con vínculos superiores redundantes ya sea a una arquitectura jerárquica tradicional o una arquitectura tipo espina de capa 2.
+* Los switches que controlan el tráfico de almacenamiento, máquinas virtuales y vMotion deben admitir velocidades de al menos 10 GbE por puerto (se admiten hasta 25 GbE por puerto).
+* Los switches que controlan el tráfico de gestión deben admitir velocidades de al menos 1 GbE por puerto.
+* Debe configurar tramas gigantes en los puertos del switch que controla el tráfico de vMotion y almacenamiento. Los hosts deben poder enviar paquetes de 9000 bytes de extremo a extremo para una instalación correcta.
+* Es necesario configurar los puertos del switch de red de gestión para permitir el tamaño MTU para el que estén configurados los puertos NIC de gestión en cada host. Por ejemplo, si los puertos de red de gestión de host utilizan un tamaño de MTU de 1750 bytes, deben configurarse los puertos del switch de red de gestión para permitir un mínimo de 1750 bytes (la red de gestión no requiere un MTU de 9000 bytes). La configuración de MTU debe ser coherente de extremo a extremo
+* La latencia de red de ida y vuelta entre todos los nodos de computación y almacenamiento no debe exceder los 2 ms.
+
+
+Todos los nodos NetApp HCI proporcionan funcionalidades de gestión fuera de banda adicionales a través de un puerto de gestión dedicado. NETAPP H300S, H300E, H500S, H500E, H700S, Los nodos H700E y H410C también permiten el acceso de IPMI a través del puerto A. Como práctica recomendada, debe facilitar la gestión remota de NetApp HCI mediante la configuración de la gestión fuera de banda para todos los nodos del entorno.
+
+[discrete]
+== Obtenga más información
+
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Recursos de NetApp HCI"^]
+* https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
+

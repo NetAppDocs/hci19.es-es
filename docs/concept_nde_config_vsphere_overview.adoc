@@ -1,0 +1,35 @@
+---
+sidebar: sidebar 
+permalink: docs/concept_nde_config_vsphere_overview.html 
+summary: Descubra cómo configurar VMware vSphere durante la implementación de NetApp HCI. 
+keywords: netapp, hci, netapp deployment engine, deployment, vsphere 
+---
+= Configuración de VMware vSphere
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+:keywords: netapp, hci, netapp deployment engine, deployment, vsphere
+
+
+[role="lead"]
+NetApp HCI utiliza los componentes de vCenter Server y ESXi de VMware vSphere. VCenter Server se utiliza para gestionar y supervisar el hipervisor ESXi de VMware instalado en cada nodo de computación. Puede instalar y configurar una nueva puesta en marcha de vSphere, que también instala el plugin de NetApp Element para vCenter Server, o bien puede unir y ampliar una puesta en marcha de vSphere existente.
+
+Tenga en cuenta las siguientes salvedades cuando utilice el motor de implementación de NetApp para instalar una implementación de vSphere nueva:
+
+* El motor de implementación de NetApp instala la nueva instancia de vCenter Server Appliance con la opción de implementación de tamaño pequeño.
+* La licencia de vCenter Server es una licencia de evaluación temporal. Para extender el funcionamiento después del período de evaluación, se debe obtener una clave de licencia nueva de VMware y añadirla al inventario de licencias de vCenter Server.
+
+
+
+NOTE: Si la configuración de inventario de vSphere utiliza una carpeta para almacenar el clúster de NetApp HCI en el centro de datos de vCenter, se producirá un error en algunas operaciones, como la ampliación de los recursos de computación de NetApp HCI. Compruebe que el clúster de NetApp HCI se encuentre directamente en el centro de datos en el árbol de inventario del cliente web de vSphere y que no se almacene en una carpeta. Consulte el artículo de la base de conocimientos de NetApp para obtener más información.
+
+Si se instala una nueva instancia de vCenter Server, es posible instalar un switch estándar de vSphere o un switch distribuido de vSphere (VDS) durante la configuración de red. Un VDS permite una gestión de red de máquinas virtuales simplificada y centralizada después de la implementación de NetApp HCI. La funcionalidad de servicios de datos cloud en NetApp HCI requiere VDS; los switches estándar de vSphere no son compatibles con los servicios de datos en el cloud.
+
+[discrete]
+== Obtenga más información
+
+* link:firmware_driver_versions.html["Versiones de firmware y controlador ESXi compatibles para las versiones de NetApp HCI y firmware para los nodos de almacenamiento NetApp HCI"]
+

@@ -1,0 +1,67 @@
+---
+sidebar: sidebar 
+permalink: docs/concept_hci_nodes.html 
+summary: Los nodos son elementos de hardware que se agrupan en un clúster para poder acceder a ellos como recursos de computación o almacenamiento basado en bloques. 
+keywords: netapp, hci, storage nodes, volumes, compute nodes, witness nodes, management node 
+---
+= Nodos
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Los nodos son recursos virtuales o de hardware que se agrupan en un clúster para proporcionar funcionalidades de computación y almacenamiento basado en bloques.
+
+El software NetApp HCI y Element define varios roles de nodo para un clúster. Los cuatro tipos de roles de nodo son: *Nodo de gestión*, *nodo de almacenamiento*, *nodo de computación* y *nodos testigos NetApp HCI*.
+
+
+
+== Nodo de gestión
+
+El nodo de gestión (a veces abreviado como mNode) interactúa con un clúster de almacenamiento para realizar acciones de gestión, pero no es miembro del clúster de almacenamiento. Los nodos de gestión recopilan información periódicamente sobre el clúster a través de llamadas API e informan a Active IQ para la supervisión remota (si está habilitada). Los nodos de gestión también son responsables de coordinar las actualizaciones de software de los nodos del clúster.
+
+El nodo de gestión es una máquina virtual (VM) que se ejecuta en paralelo con uno o varios clústeres de almacenamiento basados en el software Element. Además de las actualizaciones, se usa para proporcionar servicios del sistema como supervisión y telemetría, gestionar los activos y las configuraciones del clúster, ejecutar pruebas y utilidades del sistema y habilitar el acceso al soporte de NetApp para la solución de problemas. A partir del lanzamiento de Element 11.3, el nodo de gestión funciona como host de microservicio, lo que permite actualizar más rápidamente los servicios de software seleccionados que no se incluyen en las principales versiones. Estos microservicios o servicios de gestión, como el recopilador Active IQ, QoSSIOC para el plugin de vCenter y el servicio de nodos de gestión, se actualizan con frecuencia como paquetes de servicio.
+
+
+
+== Nodos de almacenamiento
+
+Los nodos de almacenamiento de NetApp HCI de son elementos de hardware que proporcionan recursos de almacenamiento para un sistema NetApp HCI de. Las unidades de cada nodo contienen espacio de bloques y metadatos para almacenar y gestionar los datos. Cada nodo contiene una imagen de fábrica de software NetApp Element. Los nodos de almacenamiento de NetApp HCI se pueden gestionar mediante el punto de extensión NetApp Element Management.
+
+
+
+== Nodos de computación
+
+Los nodos de computación NetApp HCI son elementos de hardware que proporcionan recursos de computación, como CPU, memoria y redes, que se necesitan para la virtualización en la instalación de NetApp HCI. Como cada servidor ejecuta VMware ESXi, la gestión de los nodos de computación NetApp HCI (añadir o quitar hosts) debe realizarse fuera del plugin dentro del menú hosts and Clusters de vSphere. Ya sea que se trate de un clúster de almacenamiento de cuatro nodos o de un clúster de almacenamiento de dos nodos, el número mínimo de nodos de computación sigue siendo dos para una implementación de NetApp HCI.
+
+
+
+== Nodos de testigos
+
+Los nodos de testimonio de NetApp HCI son máquinas virtuales que se ejecutan en nodos de computación en paralelo con un clúster de almacenamiento basado en el software Element. Los nodos de testigos no alojan los servicios de segmentos o bloques. Un nodo testigo habilita la disponibilidad de un clúster de almacenamiento en caso de que se produzca un fallo en un nodo de almacenamiento. Puede gestionar y actualizar los nodos de testigos de la misma forma que los de otros nodos de almacenamiento. Un clúster de almacenamiento puede tener hasta cuatro nodos testigos. Su propósito principal es garantizar que existan nodos de clúster suficientes para formar un quórum de conjunto válido.
+
+|===
+
+
+ a| 
+*Mejor práctica:* Configurar las VM del nodo testigo para utilizar el almacén de datos local del nodo de computación (establecido por NDE de forma predeterminada), no configurarlas en el almacenamiento compartido, como los volúmenes de almacenamiento SolidFire. Para evitar la migración automática de los equipos virtuales, establezca el nivel de automatización del planificador de recursos distribuidos (DRS) del nodo testigo en *Desactivado*. De este modo, se evita que ambos nodos testigos se ejecuten en el mismo nodo de computación y se cree una configuración de parejas que no sea de alta disponibilidad (ha).
+
+|===
+
+TIP: Más información acerca de link:hci_prereqs_witness_nodes.html["Requisitos de recursos del nodo de observación"] y.. link:hci_prereqs_ip_address.html["Requisitos de dirección IP de los nodos de observación"].
+
+
+NOTE: En un clúster de almacenamiento de dos nodos, se ponen en marcha un mínimo de dos nodos testigos para garantizar la redundancia en caso de que se produzca un fallo en un nodo testigo. Cuando el proceso de instalación de NetApp HCI instala nodos testigo, se almacena una plantilla de máquina virtual en VMware vCenter que puede utilizar para volver a poner en marcha un nodo de testigo en caso de que se elimine, se pierda o se dañe por accidente. También puede utilizar la plantilla para volver a poner en marcha un nodo de testigo si necesita sustituir un nodo de computación con errores que alojaba el nodo de testigo. Para obtener instrucciones, consulte la sección *nodos de testigo de nueva puesta en marcha para clústeres de almacenamiento de dos y tres nodos* link:task_hci_h410crepl.html["aquí"].
+
+
+
+== Obtenga más información
+
+* https://www.netapp.com/us/media/tr-4823.pdf["Clúster de almacenamiento de dos nodos NetApp HCI | TR-4823"^]
+* https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
+* http://docs.netapp.com/sfe-122/index.jsp["Centro de documentación de SolidFire y el software Element"^]
+

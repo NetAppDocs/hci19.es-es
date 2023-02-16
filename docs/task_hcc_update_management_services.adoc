@@ -1,0 +1,220 @@
+---
+sidebar: sidebar 
+permalink: docs/task_hcc_update_management_services.html 
+summary: Como parte de una actualización del sistema NetApp HCI, debe actualizar los servicios de administración. 
+keywords: netapp, hci, on premise, cluster, management services 
+---
+= Actualice los servicios de gestión
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Es posible actualizar los servicios de gestión a la versión de paquete más reciente después de haber instalado el nodo de gestión 11.3 o una versión posterior.
+
+A partir del lanzamiento del nodo de gestión Element 11.3, el diseño del nodo de gestión se ha modificado en función de una nueva arquitectura modular que proporciona servicios individuales. Estos servicios modulares proporcionan funcionalidades de gestión centrales y ampliadas para los sistemas NetApp HCI. Los servicios de gestión incluyen servicios de telemetría, de registro y de actualización, el servicio QoSSIOC para el plugin de Element para vCenter Server, Cloud Control de NetApp, etc.
+
+.Acerca de esta tarea
+* Debe actualizar al paquete de servicios de gestión más reciente antes de actualizar el software Element.
+
+
+[NOTE]
+====
+* Los servicios de gestión 2.22.7 incluyen el plugin de NetApp Element para VMware vCenter Server 5.0, que contiene el plugin remoto. Si usa el plugin de Element, debe actualizar a la versión 5.0 para cumplir con la directiva de VMware que elimina la compatibilidad con los plugins locales. https://kb.vmware.com/s/article/87880["Leer más"^]. Si no se utiliza el plugin, esta es una actualización opcional.
+* Para obtener las notas de la versión de los servicios de gestión más recientes, en las que se describen servicios principales, funciones nuevas, correcciones de errores y soluciones alternativas para cada paquete de servicio, consulte https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Software/Management_services_for_Element_Software_and_NetApp_HCI/Management_Services_Release_Notes["las notas de la versión de los servicios de gestión"^]
+
+
+====
+.Lo que necesitará
+A partir de los servicios de gestión 2.20.69, debe aceptar y guardar el contrato de licencia de usuario final (CLUF) antes de utilizar la API o la interfaz de usuario de control de cloud híbrido de NetApp para actualizar los servicios de gestión:
+
+. Abra la dirección IP del nodo de gestión en un navegador web:
++
+[listing]
+----
+https://<ManagementNodeIP>
+----
+. Inicie sesión en Hybrid Cloud Control de NetApp proporcionando las credenciales de administrador del clúster de almacenamiento.
+. Seleccione *Actualizar* cerca de la parte superior derecha de la interfaz.
+. Aparece el EULA. Desplácese hacia abajo, seleccione *Acepto para actualizaciones actuales y futuras* y seleccione *Guardar*.
++
+
+NOTE: Cuando acepta el CLUF, se registra para todas las actualizaciones futuras y se habilita la función de descarga automática. Recibirá actualizaciones sobre las actualizaciones y renovaciones del software de NetApp, que puede instalar cuando le convenga y si así lo desea. Es posible deshabilitar la función de descarga automática si se deshabilita la conectividad de red en el repositorio de software en línea de NetApp.
+
+
+
+.Opciones de actualización
+Los servicios de gestión se pueden actualizar con la interfaz de usuario de Hybrid Cloud Control de NetApp o la API DE REST del nodo de gestión:
+
+* <<Actualice los servicios de gestión con Hybrid Cloud Control>> (Método recomendado)
+* <<Actualice los servicios de gestión mediante la API del nodo de gestión>>
+* <<Actualice los servicios de gestión mediante la API del nodo de gestión para sitios oscuros>>
+
+
+
+
+== Actualice los servicios de gestión con Hybrid Cloud Control
+
+Puede actualizar los servicios de gestión de NetApp mediante Hybrid Cloud Control de NetApp.
+
+Los paquetes de servicios de gestión ofrecen funcionalidades y correcciones mejoradas para la instalación fuera de las versiones principales.
+
+.Antes de empezar
+* Ejecuta el nodo de gestión 11.3 o una versión posterior.
+* Si actualiza los servicios de gestión a la versión 2.16 o posterior y ejecuta un nodo de gestión de 11.3 a 11.8, deberá aumentar la RAM de la máquina virtual del nodo de gestión antes de actualizar los servicios de gestión:
++
+.. Apague la máquina virtual del nodo de gestión.
+.. Cambie la RAM de la máquina virtual del nodo de gestión de 12 GB a 24 GB de RAM.
+.. Encienda la máquina virtual del nodo de gestión.
+
+
+* La versión del clúster ejecuta el software NetApp Element 11.3 o una versión posterior.
+* Ha actualizado sus servicios de administración a al menos la versión 2.1.326. Las actualizaciones de control del cloud híbrido de NetApp no están disponibles en paquetes de servicio anteriores.
+
+
+
+NOTE: Para obtener una lista de los servicios disponibles para cada versión del paquete de servicio, consulte https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Software/Management_services_for_Element_Software_and_NetApp_HCI/Management_Services_Release_Notes["Notas de la versión de los servicios de gestión"^].
+
+.Pasos
+. Abra la dirección IP del nodo de gestión en un navegador web:
++
+[listing]
+----
+https://<ManagementNodeIP>
+----
+. Inicie sesión en Hybrid Cloud Control de NetApp proporcionando las credenciales de administrador del clúster de almacenamiento.
+. Seleccione *Actualizar* cerca de la parte superior derecha de la interfaz.
+. En la página actualizaciones, seleccione la ficha *Servicios de administración*.
++
+La ficha Servicios de administración muestra las versiones actuales y disponibles del software de servicios de administración.
+
++
+
+NOTE: Si la instalación no puede acceder a Internet, sólo se muestra la versión de software actual. Si dispone de conectividad externa pero NetApp HCI no puede acceder al repositorio en línea de NetApp, compruebe su link:task_mnode_configure_proxy_server.html["configuración de proxy"^].
+
+. Si su instalación puede acceder a Internet y dispone de una actualización de servicios de administración, seleccione *Iniciar actualización*.
+. Si la instalación no puede acceder a Internet, haga lo siguiente:
++
+.. Siga las instrucciones de la página para descargar y guardar un paquete de actualización de servicios de administración en su equipo.
+.. Seleccione *examinar* para localizar el paquete que guardó y cargarlo.
++
+Después de cargar el paquete, la actualización se inicia automáticamente.
+
+
+
+
+
+Después de comenzar la actualización, puede ver el estado de la actualización en esta página. Durante la actualización, es posible que pierda la conexión con NetApp Hybrid Cloud Control y tenga que volver a iniciar sesión para ver los resultados de la actualización.
+
+
+
+== Actualice los servicios de gestión mediante la API del nodo de gestión
+
+Los usuarios deberían llevar a cabo, idealmente, actualizaciones de los servicios de gestión desde el control del cloud híbrido de NetApp. Sin embargo, es posible actualizar manualmente los servicios de gestión con la interfaz de usuario de API de REST desde el nodo de gestión.
+
+.Antes de empezar
+* Ejecuta el nodo de gestión 11.3 o una versión posterior.
+* Si actualiza los servicios de gestión a la versión 2.16 o posterior y ejecuta un nodo de gestión de 11.3 a 11.8, deberá aumentar la RAM de la máquina virtual del nodo de gestión antes de actualizar los servicios de gestión:
++
+.. Apague la máquina virtual del nodo de gestión.
+.. Cambie la RAM de la máquina virtual del nodo de gestión de 12 GB a 24 GB de RAM.
+.. Encienda la máquina virtual del nodo de gestión.
+
+
+* La versión del clúster ejecuta el software NetApp Element 11.3 o una versión posterior.
+* Ha actualizado sus servicios de administración a al menos la versión 2.1.326. Las actualizaciones de control del cloud híbrido de NetApp no están disponibles en paquetes de servicio anteriores.
+
+
+
+NOTE: Para obtener una lista de los servicios disponibles para cada versión del paquete de servicio, consulte https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Software/Management_services_for_Element_Software_and_NetApp_HCI/Management_Services_Release_Notes["Notas de la versión de los servicios de gestión"^].
+
+.Pasos
+. Abra la interfaz de usuario de API DE REST en el nodo de gestión: `https://<ManagementNodeIP>/mnode`
+. Seleccione *autorizar* y complete lo siguiente:
++
+.. Introduzca el nombre de usuario y la contraseña del clúster.
+.. Introduzca el ID de cliente as `mnode-client` si el valor no se ha rellenado todavía.
+.. Seleccione *autorizar* para iniciar una sesión.
+.. Cierre la ventana.
+
+
+. (Opcional) Confirmar las versiones disponibles de los servicios del nodo de gestión: `GET /services/versions`
+. (Opcional) Obtenga información detallada sobre la última versión: `GET /services/versions/latest`
+. (Opcional) Obtenga información detallada sobre una versión concreta: `GET /services/versions/{version}/info`
+. Realice una de las siguientes opciones de actualización de los servicios de administración:
++
+.. Ejecute este comando para actualizar a la versión más reciente de los servicios de nodos de gestión: `PUT /services/update/latest`
+.. Ejecute este comando para actualizar a una versión específica de los servicios de nodos de gestión: `PUT /services/update/{version}`
+
+
+. Ejecución `GET/services/update/status` para supervisar el estado de la actualización.
++
+Una actualización correcta devuelve un resultado similar al siguiente ejemplo:
+
++
+[listing]
+----
+{
+"current_version": "2.10.29",
+"details": "Updated to version 2.14.60",
+"status": "success"
+}
+----
+
+
+
+
+== Actualice los servicios de gestión mediante la API del nodo de gestión para sitios oscuros
+
+Los usuarios deberían llevar a cabo, idealmente, actualizaciones de los servicios de gestión desde el control del cloud híbrido de NetApp. Sin embargo, puede cargar, extraer y poner en marcha manualmente una actualización de paquete de servicio para los servicios de gestión en el nodo de gestión mediante la API DE REST. Puede ejecutar cada comando desde la interfaz de usuario de la API de REST para el nodo de gestión.
+
+.Antes de empezar
+* Implementó un nodo de gestión de software de NetApp Element 11.3 o posterior.
+* Si actualiza los servicios de gestión a la versión 2.16 o posterior y ejecuta un nodo de gestión de 11.3 a 11.8, deberá aumentar la RAM de la máquina virtual del nodo de gestión antes de actualizar los servicios de gestión:
++
+.. Apague la máquina virtual del nodo de gestión.
+.. Cambie la RAM de la máquina virtual del nodo de gestión de 12 GB a 24 GB de RAM.
+.. Encienda la máquina virtual del nodo de gestión.
+
+
+* La versión del clúster ejecuta el software NetApp Element 11.3 o una versión posterior.
+* Ha descargado la actualización del paquete de servicios de https://mysupport.netapp.com/site/products/all/details/mgmtservices/downloads-tab["Sitio de soporte de NetApp"^] a un dispositivo que se puede utilizar en el sitio oscuro.
+
+
+.Pasos
+. Abra la interfaz de usuario de API DE REST en el nodo de gestión: `https://<ManagementNodeIP>/mnode`
+. Seleccione *autorizar* y complete lo siguiente:
++
+.. Introduzca el nombre de usuario y la contraseña del clúster.
+.. Introduzca el ID de cliente as `mnode-client` si el valor no se ha rellenado todavía.
+.. Seleccione *autorizar* para iniciar una sesión.
+.. Cierre la ventana.
+
+
+. Cargue y extraiga el paquete de servicio en el nodo de gestión mediante este comando: `PUT /services/upload`
+. Ponga en marcha los servicios de gestión en el nodo de gestión: `PUT /services/deploy`
+. Supervise el estado de la actualización: `GET /services/update/status`
++
+Una actualización correcta devuelve un resultado similar al siguiente ejemplo:
+
++
+[listing]
+----
+{
+"current_version": "2.10.29",
+"details": "Updated to version 2.17.52",
+"status": "success"
+}
+----
+
+
+[discrete]
+== Obtenga más información
+
+* https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Página de recursos de NetApp HCI"^]
+

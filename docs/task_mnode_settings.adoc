@@ -1,0 +1,110 @@
+---
+sidebar: sidebar 
+permalink: docs/task_mnode_settings.html 
+summary: Puede modificar y probar la red de los nodos de gestión, el clúster y la configuración del sistema. 
+keywords: netapp, management node ui, mnode ui, network settings, test network, cluster settings 
+---
+= Modifique y pruebe la red, el clúster y la configuración del sistema de los nodos de gestión
+:allow-uri-read: 
+
+
+[role="lead"]
+Puede modificar y probar la red de los nodos de gestión, el clúster y la configuración del sistema.
+
+* <<Actualice la configuración de red del nodo de gestión>>
+* <<Actualice la configuración del clúster del nodo de gestión>>
+* <<Pruebe los ajustes del nodo de gestión>>
+
+
+
+
+== Actualice la configuración de red del nodo de gestión
+
+En la pestaña Network Settings de la interfaz de usuario de nodo de gestión por nodo, puede modificar los campos de la interfaz de red de los nodos de gestión.
+
+. Abra la interfaz de usuario de cada nodo de gestión.
+. Haga clic en la ficha *Configuración de red*.
+. Vea o introduzca la siguiente información:
++
+.. *Método*: Elija uno de los siguientes métodos para configurar la interfaz:
++
+*** `loopback`: Utilice para definir la interfaz de bucle invertido de IPv4.
+*** `manual`: Se utiliza para definir interfaces para las que no se realiza ninguna configuración de forma predeterminada.
+*** `dhop`: Se utiliza para obtener una dirección IP a través de DHCP.
+*** `static`: Se utiliza para definir interfaces Ethernet con direcciones IPv4 asignadas estáticamente.
+
+
+.. *Velocidad de enlace*: La velocidad negociada por la NIC virtual.
+.. *Dirección IPv4*: La dirección IPv4 de la red eth0.
+.. *Máscara de subred IPv4*: Subdivisiones de dirección de la red IPv4.
+.. *Dirección de puerta de enlace IPv4*: Dirección de red del router para enviar paquetes fuera de la red local.
+.. *Dirección IPv6*: La dirección IPv6 de la red eth0.
+.. *Dirección de puerta de enlace IPv6*: Dirección de red del enrutador para enviar paquetes fuera de la red local.
++
+
+IMPORTANT: Las opciones IPv6 no son compatibles con las versiones 11.3 o posteriores del nodo de gestión.
+
+.. *MTU*: Tamaño de paquete más grande que un protocolo de red puede transmitir. Debe ser mayor o igual que 1500. Si se añade un segundo NIC de almacenamiento, el valor debería ser 9000.
+.. *Servidores DNS*: Interfaz de red utilizada para la comunicación de clústeres.
+.. *Buscar dominios*: Busque direcciones MAC adicionales disponibles para el sistema.
+.. *Estado*: Valores posibles:
++
+*** `UpAndRunning`
+*** `Down`
+*** `Up`
+
+
+.. *Rutas*: Rutas estáticas a hosts o redes específicos a través de la interfaz asociada que las rutas están configuradas para utilizar.
+
+
+
+
+
+
+== Actualice la configuración del clúster del nodo de gestión
+
+En la pestaña Cluster Settings de la interfaz de usuario por nodo para la gestión de los nodos, los campos de la interfaz de clúster se pueden modificar cuando un nodo está en el estado Available, Pending, PendingActive y Active.
+
+. Abra la interfaz de usuario de cada nodo de gestión.
+. Haga clic en la ficha *Configuración de clúster*.
+. Vea o introduzca la siguiente información:
++
+** *Rol*: Función que tiene el nodo de administración en el clúster. El posible valor es: `Management`.
+** *Versión*: Versión del software Element que se ejecuta en el cluster.
+** *Interfaz predeterminada*: Interfaz de red predeterminada utilizada para la comunicación del nodo de administración con el clúster que ejecuta el software Element.
+
+
+
+
+
+
+== Pruebe los ajustes del nodo de gestión
+
+Después de cambiar la configuración de red y de gestión del nodo de gestión y confirmar los cambios, puede ejecutar pruebas para validar los cambios realizados.
+
+. Abra la interfaz de usuario de cada nodo de gestión.
+. En la interfaz de usuario del nodo de gestión, haga clic en *pruebas del sistema*.
+. Realice alguna de las siguientes acciones:
++
+.. Para comprobar que la configuración de red configurada es válida para el sistema, haga clic en *probar configuración de red*.
+.. Para probar la conectividad de red a todos los nodos del clúster en las interfaces 1G y 10G mediante paquetes ICMP, haga clic en *probar ping*.
+
+
+. Vea o introduzca lo siguiente:
++
+** *Hosts*: Especifique una lista separada por comas de direcciones o nombres de host de los dispositivos que se van a hacer ping.
+** *Intentos*: Especifique el número de veces que el sistema debe repetir la prueba ping. El valor predeterminado es 5.
+** *Tamaño de paquete*: Especifique el número de bytes que se enviarán en el paquete ICMP que se envía a cada IP. El número de bytes debe ser inferior al MTU máximo especificado en la configuración de red.
+** *Tiempo de espera msec*: Especifique el número de milisegundos que se deben esperar para cada respuesta de ping individual. Valor predeterminado: 500 ms.
+** *Tiempo de espera total Sec*: Especifique el tiempo en segundos que el ping debe esperar a una respuesta del sistema antes de emitir el siguiente intento de ping o de terminar el proceso. El valor predeterminado es 5.
+** *Prohibir fragmentación*: Activar el indicador DF (no fragmentar) para los paquetes ICMP.
+
+
+
+
+[discrete]
+== Obtenga más información
+
+* https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Página de recursos de NetApp HCI"^]
+

@@ -1,0 +1,125 @@
+---
+sidebar: sidebar 
+permalink: docs/task_mnode_install_add_storage_NIC.html 
+summary: Si utiliza una NIC adicional para almacenamiento, debe configurar una interfaz de red sin etiquetas o sin etiquetas. 
+keywords: netapp, element, management node, mnode, network, nic, storage nic 
+---
+= Configurar una controladora de interfaz de red (NIC) de almacenamiento
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si utiliza una NIC adicional para almacenamiento, puede conectarse SSH al nodo de gestión o usar la consola de vCenter y ejecutar un comando curl para configurar una interfaz de red etiquetada o sin etiqueta.
+
+.Antes de empezar
+* Conoce la dirección IP eth0.
+* La versión del clúster ejecuta el software NetApp Element 11.3 o una versión posterior.
+* Implementó un nodo de gestión 11.3 o posterior.
+
+
+.Opciones de configuración
+Elija la opción relevante para su entorno:
+
+* <<Configure un controlador de interfaz de red (NIC) de almacenamiento para una interfaz de red sin etiquetas>>
+* <<Configure un controlador de interfaz de red (NIC) de almacenamiento para una interfaz de red etiquetada>>
+
+
+
+
+== Configure un controlador de interfaz de red (NIC) de almacenamiento para una interfaz de red sin etiquetas
+
+.Pasos
+. Abra una consola SSH o vCenter.
+. Sustituya los valores de la siguiente plantilla de comandos y ejecute el comando:
++
+
+NOTE: Los valores se representan mediante `$` para cada uno de los parámetros necesarios para la nueva interfaz de red de almacenamiento. La `cluster` es necesario y se puede utilizar para cambiar el nombre del host del nodo de gestión en la siguiente plantilla. `--insecure` o. `-k` las opciones no se deben utilizar en entornos de producción.
+
++
+[listing]
+----
+curl -u $mnode_user_name:$mnode_password --insecure -X POST \
+https://$mnode_IP:442/json-rpc/10.0 \
+-H 'Content-Type: application/json' \
+-H 'cache-control: no-cache' \
+-d ' {
+     "params": {
+               "network": {
+                          "$eth1": {
+                                   "#default" : false,
+                                   "address" : "$storage_IP",
+                                   "auto" : true,
+                                   "family" : "inet",
+                                   "method" : "static",
+                                   "mtu" : "9000",
+                                   "netmask" : "$subnet_mask",
+                                   "status" : "Up"
+                                   }
+                          },
+               "cluster": {
+                         "name": "$mnode_host_name"
+                         }
+             },
+    "method": "SetConfig"
+}
+'
+----
+
+
+
+
+== Configure un controlador de interfaz de red (NIC) de almacenamiento para una interfaz de red etiquetada
+
+.Pasos
+. Abra una consola SSH o vCenter.
+. Sustituya los valores de la siguiente plantilla de comandos y ejecute el comando:
++
+
+NOTE: Los valores se representan mediante `$` para cada uno de los parámetros necesarios para la nueva interfaz de red de almacenamiento. La `cluster` es necesario y se puede utilizar para cambiar el nombre del host del nodo de gestión en la siguiente plantilla. `--insecure` o. `-k` las opciones no se deben utilizar en entornos de producción.
+
++
+[listing]
+----
+curl -u $mnode_user_name:$mnode_password --insecure -X POST \
+https://$mnode_IP:442/json-rpc/10.0 \
+-H 'Content-Type: application/json' \
+-H 'cache-control: no-cache' \
+-d ' {
+     "params": {
+               "network": {
+                          "$eth1": {
+                                   "#default" : false,
+                                   "address" : "$storage_IP",
+                                   "auto" : true,
+                                   "family" : "inet",
+                                   "method" : "static",
+                                   "mtu" : "9000",
+                                   "netmask" : "$subnet_mask",
+                                   "status" : "Up",
+                                   "virtualNetworkTag" : "$vlan_id"
+                                   }
+                          },
+               "cluster": {
+                         "name": "$mnode_host_name",
+                         "cipi": "$eth1.$vlan_id",
+                         "sipi": "$eth1.$vlan_id"
+                         }
+             },
+    "method": "SetConfig"
+}
+'
+----
+
+
+[discrete]
+== Obtenga más información
+
+* link:task_mnode_add_assets.html["Añada activos de computación y de controladora al nodo de gestión"]
+* https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Página de recursos de NetApp HCI"^]
+

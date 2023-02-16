@@ -1,0 +1,293 @@
+---
+sidebar: sidebar 
+permalink: docs/task_hcc_manage_vol_management.html 
+summary: Aprenda a crear un volumen y asociarlo con una cuenta determinada. 
+keywords: netapp, hci, cluster, element, volume 
+---
+= Cree y gestione volúmenes mediante Hybrid Cloud Control de NetApp
+:allow-uri-read: 
+
+
+[role="lead"]
+Es posible crear un volumen y asociarlo con una cuenta determinada. Al asociar un volumen con una cuenta, la cuenta podrá acceder al volumen a través de iniciadores iSCSI y las credenciales de CHAP.
+
+Puede especificar la configuración de calidad de servicio de un volumen mientras lo crea.
+
+Puede gestionar volúmenes en NetApp Hybrid Cloud Control de las siguientes formas:
+
+* <<Cree un volumen>>
+* <<Aplique una política de calidad de servicio en un volumen>>
+* <<Editar un volumen>>
+* <<Clonar volúmenes>>
+* <<Añada volúmenes a un grupo de acceso de volúmenes>>
+* <<Eliminar un volumen>>
+* <<Restaurar un volumen eliminado>>
+* <<Purgar un volumen eliminado>>
+
+
+
+
+== Cree un volumen
+
+Puede crear un volumen de almacenamiento con NetApp Hybrid Cloud Control.
+
+.Pasos
+. Inicie sesión en NetApp Hybrid Cloud Control proporcionando las credenciales de administrador del clúster de almacenamiento de NetApp HCI o Element.
+. En Dashboard de, expanda el nombre del clúster de almacenamiento en el menú de navegación izquierdo.
+. Seleccione la ficha *volúmenes* > *Descripción general*.
++
+image::hcc_volumes_overview_active.png[Página HCC Volumes > imagen de la pestaña Overview]
+
+. Seleccione *Crear volumen*.
+. Escriba un nombre para el volumen nuevo.
+. Introduzca el tamaño total del volumen.
++
+
+NOTE: El tamaño de volumen predeterminado se selecciona en GB. Los volúmenes se pueden crear con tamaños en GB o GIB: 1 GB = 1 000 000 000 bytes 1 GIB = 1 073 741 824 bytes
+
+. Seleccione un tamaño de bloque para el volumen.
+. En la lista *cuenta*, seleccione la cuenta que debe tener acceso al volumen.
++
+Si no existe ninguna cuenta, haga clic en *Crear nueva cuenta*, escriba un nuevo nombre de cuenta y haga clic en *Crear cuenta*. La cuenta se crea y se asocia con el nuevo volumen en la lista *cuenta*.
+
++
+
+NOTE: Si hay más de 50 cuentas, no aparecerá la lista. Comience a escribir y la función de autocompletar mostrará los valores que puede elegir.
+
+. Para configurar Quality of Service del volumen, realice una de las siguientes acciones:
++
+** En *Configuración de calidad de servicio*, establezca valores mínimos, máximos y de ráfaga personalizados para IOPS o utilice los valores de QoS predeterminados.
+** Seleccione una política de QoS existente activando la opción *asignar directiva de calidad de servicio* y eligiendo una política de QoS existente en la lista resultante.
+** Cree y asigne una nueva directiva QoS activando el botón *asignar directiva de calidad de servicio* y haciendo clic en *Crear nueva directiva QoS*. En la ventana que se abre, escriba un nombre para la política de calidad de servicio y, a continuación, escriba los valores de calidad de servicio. Cuando termine, haga clic en *Crear política de calidad de servicio*.
+
+
++
+Los volúmenes que tengan un valor de IOPS máximo o de ráfaga superior a 20 20,000 IOPS podrían requerir una profundidad de cola alta o varias sesiones para alcanzar este nivel de IOPS en un único volumen.
+
+. Haga clic en *Crear volumen*.
+
+
+
+
+== Aplique una política de calidad de servicio en un volumen
+
+Puede aplicar una política de calidad de servicio a los volúmenes de almacenamiento existentes mediante Cloud Control de NetApp. Si en cambio, debe establecer valores de calidad de servicio personalizados para un volumen, puede hacerlo <<Editar un volumen>>. Para crear una nueva política de calidad de servicio, consulte link:task_hcc_qos_policies.html["Cree y gestione políticas de calidad de servicio de volúmenes"^].
+
+.Pasos
+. Inicie sesión en NetApp Hybrid Cloud Control proporcionando las credenciales de administrador del clúster de almacenamiento de NetApp HCI o Element.
+. En Dashboard de, expanda el nombre del clúster de almacenamiento en el menú de navegación izquierdo.
+. Seleccione *volúmenes* > *Descripción general*.
+. Seleccione uno o varios volúmenes para asociarlos con una política de calidad de servicio.
+. Haga clic en la lista desplegable *acciones* situada en la parte superior de la tabla Volumes y seleccione *aplicar directiva QoS*.
+. En la ventana resultante, seleccione una directiva QoS de la lista y haga clic en *aplicar directiva QoS*.
++
+
+NOTE: Si utiliza políticas de calidad de servicio en un volumen, puede establecer la calidad de servicio personalizada para quitar la asociación de la política de calidad de servicio con el volumen. Los valores de calidad de servicio personalizados anulan los valores de política de calidad de servicio de los volúmenes.
+
+
+
+
+
+== Editar un volumen
+
+Con Hybrid Cloud Control de NetApp, es posible editar atributos de volúmenes como los valores de calidad de servicio, el tamaño de los volúmenes y la unidad de medida mediante la cual se calculan los valores de bytes. También se puede modificar el acceso de la cuenta para el uso de la replicación o para restringir el acceso al volumen.
+
+.Acerca de esta tarea
+Puede cambiar el tamaño de un volumen cuando haya espacio suficiente en el clúster en las siguientes condiciones:
+
+* Condiciones de funcionamiento normales.
+* Se informa de los errores de los volúmenes.
+* El volumen se clona.
+* El volumen se vuelve a sincronizar.
+
+
+.Pasos
+. Inicie sesión en NetApp Hybrid Cloud Control proporcionando las credenciales de administrador del clúster de almacenamiento de NetApp HCI o Element.
+. En Dashboard de, expanda el nombre del clúster de almacenamiento en el menú de navegación izquierdo.
+. Seleccione *volúmenes* > *Descripción general*.
+. En la columna *acciones* de la tabla Volumes, expanda el menú para el volumen y seleccione *Editar*.
+. Realice los cambios necesarios:
++
+.. Cambie el tamaño total del volumen.
++
+
+NOTE: Puede aumentar el tamaño del volumen, pero no reducirlo. En cada operación de ajuste de tamaño, solo se puede ajustar el tamaño de un volumen. Las operaciones de recopilación de datos basura y las actualizaciones de software no interrumpen la operación de cambio de tamaño.
+
++
+
+NOTE: Si desea ajustar el tamaño del volumen para la replicación, primero aumente el tamaño del volumen asignado como el destino de replicación. Posteriormente, puede cambiar el tamaño del volumen de origen. El tamaño del volumen de destino puede ser mayor o igual que el del volumen de origen, pero no menor.
+
++
+
+NOTE: El tamaño de volumen predeterminado se selecciona en GB. Los volúmenes se pueden crear con tamaños en GB o GIB: 1 GB = 1 000 000 000 bytes 1 GIB = 1 073 741 824 bytes
+
+.. Seleccione un nivel de acceso de cuenta diferente:
++
+*** Solo lectura
+*** Lectura/Escritura
+*** Bloqueado
+*** Destino de replicación
+
+
+.. Seleccione la cuenta que debería tener acceso al volumen.
++
+Comience a escribir y la función de autocompletar mostrará los posibles valores que puede elegir.
+
++
+Si no existe ninguna cuenta, haga clic en *Crear nueva cuenta*, escriba un nuevo nombre de cuenta y haga clic en *Crear*. La cuenta se creará y se asociará con el volumen existente.
+
+.. Cambie la calidad de servicio llevando a cabo una de las siguientes acciones:
++
+... Seleccione una política existente.
+... En Custom Settings, establezca los valores mínimos, máximos y de ráfaga para IOPS, o bien utilice los valores predeterminados.
++
+
+NOTE: Si utiliza políticas de calidad de servicio en un volumen, puede establecer la calidad de servicio personalizada para quitar la asociación de la política de calidad de servicio con el volumen. La calidad de servicio personalizada anulará los valores de las políticas de calidad de servicio de los volúmenes.
+
++
+
+TIP: Cuando cambie los valores de IOPS, debe incrementar sus diez o cien. Los valores de entrada deben ser números enteros válidos. Configure los volúmenes con un valor de ráfaga muy alto. De este modo, el sistema podrá procesar grandes cargas de trabajo secuenciales en bloque ocasionales con mayor rapidez, a la vez que se limitan las IOPS sostenidas de un volumen.
+
+
+
+
+
+. Seleccione *Guardar*.
+
+
+
+
+== Clonar volúmenes
+
+Es posible crear un clon de un solo volumen de almacenamiento o clonar un grupo de volúmenes para hacer una copia de los datos en un momento específico. Cuando se clona un volumen, el sistema crea una copia de Snapshot del volumen y, a continuación, crea una copia de los datos que se indican en la copia de Snapshot.
+
+.Antes de empezar
+* Debe haber al menos un clúster añadido y en ejecución.
+* Se creó al menos un volumen.
+* Se creó una cuenta de usuario.
+* El espacio sin aprovisionar disponible debe ser igual o mayor que el tamaño del volumen.
+
+
+.Acerca de esta tarea
+El clúster admite hasta dos solicitudes de clones en ejecución por volumen a la vez y hasta 8 operaciones de clones de volúmenes activos a la vez. Las solicitudes que superen este límite se pondrán en cola para procesarlas más adelante.
+
+El clonado de volúmenes es un proceso asíncrono, y la cantidad de tiempo que requiere el proceso depende del tamaño del volumen que se clona y de la carga del clúster actual.
+
+
+NOTE: Los volúmenes clonados no heredan pertenencia al grupo de acceso de volúmenes en el volumen de origen.
+
+.Pasos
+. Inicie sesión en NetApp Hybrid Cloud Control proporcionando las credenciales de administrador del clúster de almacenamiento de NetApp HCI o Element.
+. En Dashboard de, expanda el nombre del clúster de almacenamiento en el menú de navegación izquierdo.
+. Seleccione la ficha *volúmenes* > *Descripción general*.
+. Seleccione cada volumen que desea clonar.
+. Haga clic en la lista desplegable *acciones* situada en la parte superior de la tabla Volumes y seleccione *Clonar*.
+. En la ventana que se abre, realice lo siguiente:
++
+.. Introduzca un prefijo de nombre de volumen (lo cual es opcional).
+.. Seleccione el tipo de acceso en la lista *Access*.
+.. Elija una cuenta para asociar con el nuevo clon de volumen (de forma predeterminada, se selecciona *Copiar desde volumen*, que utilizará la misma cuenta que el volumen original).
+.. Si no existe ninguna cuenta, haga clic en *Crear nueva cuenta*, escriba un nuevo nombre de cuenta y haga clic en *Crear cuenta*. La cuenta se creará y se asociará con el volumen.
++
+
+TIP: Utilice prácticas recomendadas de nomenclatura descriptiva. Esto es especialmente importante si se utilizan varios clústeres o instancias de vCenter Server en el entorno.
+
++
+
+NOTE: Al aumentar el tamaño del volumen de un clon, se genera un volumen nuevo con espacio libre adicional al final del volumen. Según cómo use el volumen, podría necesitar ampliar las particiones o crear otras nuevas en el espacio libre para utilizarlo.
+
+.. Haga clic en *Clonar volúmenes*.
++
+
+NOTE: El tiempo para completar una operación de clonación se ve afectado por el tamaño del volumen y la carga actual del clúster. Actualice la página si el volumen clonado no aparece en la lista de volúmenes.
+
+
+
+
+
+
+
+== Añada volúmenes a un grupo de acceso de volúmenes
+
+Es posible añadir un volumen único o un grupo de volúmenes a un grupo de acceso de volúmenes.
+
+.Pasos
+. Inicie sesión en NetApp Hybrid Cloud Control proporcionando las credenciales de administrador del clúster de almacenamiento de NetApp HCI o Element.
+. En Dashboard de, expanda el nombre del clúster de almacenamiento en el menú de navegación izquierdo.
+. Seleccione *volúmenes* > *Descripción general*.
+. Seleccione uno o varios volúmenes para asociarlos con un grupo de acceso de volúmenes.
+. Haga clic en la lista desplegable *acciones* de la parte superior de la tabla Volumes y seleccione *Agregar a grupo de acceso*.
+. En la ventana que aparece, seleccione un grupo de acceso de volúmenes de la lista *Grupo de acceso de volúmenes*.
+. Haga clic en *Añadir volumen*.
+
+
+
+
+== Eliminar un volumen
+
+Es posible eliminar uno o varios volúmenes de un clúster de almacenamiento de Element.
+
+.Acerca de esta tarea
+El sistema no purga de manera inmediata volúmenes eliminados; estos siguen disponibles durante aproximadamente ocho horas. Después de ocho horas, se purgan y ya no están disponibles. Si un volumen se restaura antes de que el sistema lo purgue, el volumen volverá a conectarse y las conexiones iSCSI se restaurarán.
+
+Si se elimina el volumen que se utilizó para crear una snapshot, sus snapshots asociadas pasan a estar inactivas. Cuando se purgan los volúmenes de origen eliminados, también se eliminan del sistema las snapshots inactivas asociadas.
+
+
+IMPORTANT: Los volúmenes persistentes asociados con servicios de gestión se crean y se asignan a una nueva cuenta durante la instalación o la actualización. Si utiliza volúmenes persistentes, no modifique o elimine los volúmenes o su cuenta asociada. Si elimina estos volúmenes, podría dejar el nodo de gestión inutilizable.
+
+.Pasos
+. Inicie sesión en NetApp Hybrid Cloud Control proporcionando las credenciales de administrador del clúster de almacenamiento de NetApp HCI o Element.
+. En Dashboard de, expanda el nombre del clúster de almacenamiento en el menú de navegación izquierdo.
+. Seleccione *volúmenes* > *Descripción general*.
+. Seleccione uno o varios volúmenes para eliminarlos.
+. Haga clic en la lista desplegable *acciones* situada en la parte superior de la tabla Volumes y seleccione *Eliminar*.
+. En la ventana resultante, confirme la acción haciendo clic en *Sí*.
+
+
+
+
+== Restaurar un volumen eliminado
+
+Después de eliminar un volumen de almacenamiento, es posible restaurarlo si lo hace antes de ocho horas después de la eliminación.
+
+El sistema no purga de manera inmediata volúmenes eliminados; estos siguen disponibles durante aproximadamente ocho horas. Después de ocho horas, se purgan y ya no están disponibles. Si un volumen se restaura antes de que el sistema lo purgue, el volumen volverá a conectarse y las conexiones iSCSI se restaurarán.
+
+.Pasos
+. Inicie sesión en NetApp Hybrid Cloud Control proporcionando las credenciales de administrador del clúster de almacenamiento de NetApp HCI o Element.
+. En Dashboard de, expanda el nombre del clúster de almacenamiento en el menú de navegación izquierdo.
+. Seleccione *volúmenes* > *Descripción general*.
+. Seleccione *eliminado*.
+. En la columna *acciones* de la tabla Volumes, expanda el menú para el volumen y seleccione *Restaurar*.
+. Confirme el proceso seleccionando *Sí*.
+
+
+
+
+== Purgar un volumen eliminado
+
+Una vez que se eliminan los volúmenes de almacenamiento, siguen disponibles durante ocho horas aproximadamente. Después de ocho horas, se purgan automáticamente y ya no están disponibles. Si no desea esperar las ocho horas, puede eliminarse
+
+.Pasos
+. Inicie sesión en NetApp Hybrid Cloud Control proporcionando las credenciales de administrador del clúster de almacenamiento de NetApp HCI o Element.
+. En Dashboard de, expanda el nombre del clúster de almacenamiento en el menú de navegación izquierdo.
+. Seleccione *volúmenes* > *Descripción general*.
+. Seleccione *eliminado*.
+. Seleccione uno o varios volúmenes para purgar.
+. Debe realizar una de las siguientes acciones:
++
+** Si ha seleccionado varios volúmenes, haga clic en el filtro rápido *Purge* situado en la parte superior de la tabla.
+** Si seleccionó un único volumen, en la columna *acciones* de la tabla Volumes, expanda el menú para el volumen y seleccione *Purgar*.
+
+
+. En la columna *acciones* de la tabla de volúmenes, expanda el menú para el volumen y seleccione *Purgar*.
+. Confirme el proceso seleccionando *Sí*.
+
+
+[discrete]
+== Obtenga más información
+
+* link:concept_hci_volumes.html["Más información acerca de los volúmenes"]
+* https://docs.netapp.com/us-en/element-software/index.html["Documentación de SolidFire y el software Element"^]
+* https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Página de recursos de NetApp HCI"^]
+

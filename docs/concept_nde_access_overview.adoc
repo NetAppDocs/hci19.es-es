@@ -1,0 +1,41 @@
+---
+sidebar: sidebar 
+permalink: docs/concept_nde_access_overview.html 
+summary: Acceda al motor de implementación de NetApp antes de implementar NetApp HCI mediante uno de varios métodos, según su entorno. 
+keywords: netapp, hci, netapp deployment engine, deployment, engine, deploy, access 
+---
+= Información general de las opciones de acceso del motor de implementación de NetApp
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+:keywords: hci, release notes, vcp, element, management services, firmware
+
+
+[role="lead"]
+Para implementar NetApp HCI, necesita acceso al motor de implementación de NetApp en uno de los nodos de almacenamiento de NetApp H-Series a través de la dirección IPv4 asignada a la interfaz Bond1G; esta es la interfaz lógica que combina los puertos A y B para los nodos de almacenamiento. Este nodo de almacenamiento se convierte en el nodo de almacenamiento de control para el proceso de implementación. Según el entorno, se debe configurar la dirección IPv4 o recuperarla de uno de los nodos de almacenamiento.
+
+
+NOTE: Solo se puede acceder al motor de implementación de NetApp con la interfaz Bond1G de un nodo de almacenamiento. No se admite el uso de la interfaz Bond10G, la interfaz lógica que combina los puertos C y D para los nodos de almacenamiento.
+
+De los siguientes métodos, utilice el que mejor describa su entorno de red para acceder al motor de implementación de NetApp:
+
+|===
+| Situación | Método 
+
+
+| No tiene DHCP en el entorno | link:task_nde_access_no_dhcp.html["Acceda al motor de implementación de NetApp en entornos sin DHCP"] 
+
+
+| Tiene DHCP en el entorno | link:task_nde_access_dhcp.html["Acceda al motor de implementación de NetApp en entornos con DHCP"] 
+
+
+| Desea asignar manualmente todas las direcciones IP | link:task_nde_access_manual_ip.html["Asignar manualmente todas las direcciones IP para acceder al motor de implementación de NetApp"] 
+|===
+[discrete]
+== Obtenga más información
+
+* link:task_nde_access_ui_fqdn.html["Configure el acceso completo a la interfaz de usuario web de Nombre de dominio"^]
+

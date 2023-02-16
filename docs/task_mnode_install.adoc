@@ -1,0 +1,360 @@
+---
+sidebar: sidebar 
+permalink: docs/task_mnode_install.html 
+summary: Puede instalar el nodo de gestión para el clúster que ejecuta el software NetApp Element. 
+keywords: netapp, element, management node, mnode, storage, install 
+---
+= Instale un nodo de gestión
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puede instalar manualmente el nodo de gestión para el clúster que ejecuta el software NetApp Element con la imagen adecuada de su configuración.
+
+Este proceso manual está dirigido a los administradores de NetApp HCI que no utilizan el motor de implementación de NetApp para la instalación de nodos de gestión.
+
+.Lo que necesitará
+* La versión del clúster ejecuta el software NetApp Element 11.3 o una versión posterior.
+* En la instalación utiliza IPv4. El nodo de gestión 11.3 no admite IPv6.
++
+
+NOTE: Si necesita compatibilidad con IPv6, se puede usar el nodo de gestión 11.1.
+
+* Tiene permiso para descargar software del sitio de soporte de NetApp.
+* Identificó el tipo de imagen del nodo de gestión correcto para su plataforma:
++
+[cols="30,30"]
+|===
+| Plataforma | Tipo de imagen de instalación 
+
+
+| Microsoft Hyper-V | .iso 
+
+
+| KVM | .iso 
+
+
+| VSphere de VMware | .iso, .ova 
+
+
+| Citrix XenServer | .iso 
+
+
+| OpenStack | .iso 
+|===
+* (Nodo de gestión 12.0 y posterior con servidor proxy) ha actualizado el control de cloud híbrido de NetApp a los servicios de gestión versión 2.16 antes de configurar un servidor proxy.
+
+
+.Acerca de esta tarea
+El nodo de gestión Element 12.2 es una actualización opcional. No es necesario para las puestas en marcha existentes.
+
+Antes de seguir este procedimiento, debe tener conocimientos de link:concept_hci_volumes.html#persistent-volumes["volúmenes persistentes"] y si desea usarlos o no. Los volúmenes persistentes son opcionales, pero se recomienda para la recuperación de datos de configuración del nodo de gestión en caso de pérdida de una máquina virtual.
+
+.Pasos
+. <<Descargue ISO o OVA e implemente la VM>>
+. <<Cree el administrador del nodo de gestión y configure la red>>
+. <<Configurar la sincronización de hora>>
+. <<Configure el nodo de gestión>>
+. <<Configurar activos de controladora>>
+. <<Configure compute node assets,(Solo NetApp HCI) Configure los activos de nodos de computación>>
+
+
+
+
+== Descargue ISO o OVA e implemente la VM
+
+. Descargue el OVA o ISO para su instalación desde https://mysupport.netapp.com/site/products/all/details/netapp-hci/downloads-tab["NetApp HCI"^] Página del sitio de soporte de NetApp:
++
+.. Seleccione *Descargar la versión más reciente* y acepte el EULA.
+.. Seleccione la imagen del nodo de gestión que desea descargar.
+
+
+. Si ha descargado el OVA, siga estos pasos:
++
+.. Implemente el OVA.
+.. Si el clúster de almacenamiento se encuentra en una subred separada de su nodo de gestión (eth0) y desea utilizar volúmenes persistentes, añada una segunda controladora de interfaz de red (NIC) a la máquina virtual en la subred de almacenamiento (por ejemplo, eth1) o asegúrese de que la red de gestión pueda enrutar a la red de almacenamiento.
+
+
+. Si ha descargado la ISO, siga estos pasos:
++
+.. Cree una nueva máquina virtual de 64 bits desde el hipervisor con la siguiente configuración:
++
+*** Seis CPU virtuales
+*** 24 GB DE MEMORIA RAM
+*** Tipo de adaptador de almacenamiento definido en LSI Logic Parallel
++
+
+IMPORTANT: El valor predeterminado para el nodo de gestión puede ser LSI Logic SAS. En la ventana *Nueva máquina virtual*, compruebe la configuración del adaptador de almacenamiento seleccionando *Personalizar hardware* > *hardware virtual*. Si es necesario, cambie LSI Logic SAS a *LSI Logic Parallel*.
+
+*** Disco virtual de 400 GB, thin provisioning
+*** Una interfaz de red virtual con acceso a Internet y acceso a la MVIP de almacenamiento.
+*** Una interfaz de red virtual con acceso de red de gestión al clúster de almacenamiento de. Si el clúster de almacenamiento se encuentra en una subred separada de su nodo de gestión (eth0) y desea utilizar volúmenes persistentes, añada una segunda controladora de interfaz de red (NIC) a la máquina virtual en la subred de almacenamiento (eth1) o asegúrese de que la red de gestión pueda enrutar a la red de almacenamiento.
++
+
+IMPORTANT: No encienda la máquina virtual antes del paso que indique hacerlo más adelante en este procedimiento.
+
+
+
+.. Adjunte ISO a la máquina virtual y arranque en la imagen de instalación .iso.
++
+
+NOTE: La instalación de un nodo de gestión con la imagen puede provocar un retraso de 30 segundos antes de que aparezca la pantalla de inicio.
+
+
+
+. Encienda la máquina virtual del nodo de gestión cuando se complete la instalación.
+
+
+
+
+== Cree el administrador del nodo de gestión y configure la red
+
+. Con la interfaz de usuario de terminal (TUI), cree un usuario administrador del nodo de gestión.
++
+
+TIP: Para desplazarse por las opciones del menú, pulse las teclas de flecha hacia arriba o hacia abajo. Para desplazarse por los botones, pulse TAB. Para pasar de los botones a los campos, pulse TAB. Para desplazarse por los campos, pulse las teclas de flecha hacia arriba o hacia abajo.
+
+. Configure la red del nodo de gestión (eth0).
++
+
+NOTE: Si necesita una NIC adicional para aislar el tráfico de almacenamiento, consulte las instrucciones para configurar otra NIC: link:task_mnode_install_add_storage_NIC.html["Configurar una controladora de interfaz de red (NIC) de almacenamiento"].
+
+
+
+
+
+== Configurar la sincronización de hora
+
+. Asegúrese de que la hora se haya sincronizado entre el nodo de gestión y el clúster de almacenamiento mediante NTP:
++
+
+NOTE: A partir del elemento 12.3.1, los subpasos (a) a (e) se realizan automáticamente. Para el nodo de gestión 12.3.1, vaya a. <<substep_f_install_config_time_sync,subpaso (f)>> para completar la configuración de sincronización de tiempo.
+
++
+.. Inicie sesión en el nodo de gestión mediante SSH o la consola proporcionada por su hipervisor.
+.. Stop NTPD:
++
+[listing]
+----
+sudo service ntpd stop
+----
+.. Edite el archivo de configuración NTP `/etc/ntp.conf`:
++
+... Comente los servidores predeterminados (`server 0.gentoo.pool.ntp.org`) agregando una `#` delante de cada uno.
+... Agregue una nueva línea para cada servidor de tiempo predeterminado que desee agregar. Los servidores de hora predeterminados deben ser los mismos servidores NTP que se utilicen en el clúster de almacenamiento que se utilizará en un link:task_mnode_install.html#set-up-the-management-node["paso posterior"].
++
+[listing]
+----
+vi /etc/ntp.conf
+
+#server 0.gentoo.pool.ntp.org
+#server 1.gentoo.pool.ntp.org
+#server 2.gentoo.pool.ntp.org
+#server 3.gentoo.pool.ntp.org
+server <insert the hostname or IP address of the default time server>
+----
+... Guarde el archivo de configuración cuando finalice.
+
+
+.. Fuerce una sincronización NTP con el servidor que se acaba de añadir.
++
+[listing]
+----
+sudo ntpd -gq
+----
+.. Reinicie NTPD.
++
+[listing]
+----
+sudo service ntpd start
+----
+.. [[substep_f_install_config_Time_SYNC]]Deshabilitar la sincronización de hora con el host a través del hipervisor (el siguiente es un ejemplo de VMware):
++
+
+NOTE: Si implementa el mNode en un entorno de hipervisor distinto a VMware, por ejemplo, desde la imagen .iso en un entorno de OpenStack, consulte la documentación del hipervisor para obtener los comandos equivalentes.
+
++
+... Desactivar la sincronización periódica:
++
+[listing]
+----
+vmware-toolbox-cmd timesync disable
+----
+... Mostrar y confirmar el estado actual del servicio:
++
+[listing]
+----
+vmware-toolbox-cmd timesync status
+----
+... En vSphere, compruebe que el `Synchronize guest time with host` La casilla no está activada en las opciones de la máquina virtual.
++
+
+NOTE: No habilite esta opción si realiza cambios futuros en la máquina virtual.
+
+
+
+
+
+
+
+
+NOTE: No edite el NTP después de completar la configuración de sincronización de hora porque afecta al NTP cuando ejecuta el link:task_mnode_install.html#set-up-the-management-node["comando setup"] en el nodo de gestión.
+
+
+
+== Configure el nodo de gestión
+
+. Configure y ejecute el comando de configuración del nodo de gestión:
++
+
+NOTE: Se le pedirá que introduzca contraseñas en un mensaje seguro. Si su clúster de está situado detrás de un servidor proxy, debe configurar el proxy de manera que pueda llegar a una red pública.
+
++
+[listing]
+----
+sudo /sf/packages/mnode/setup-mnode --mnode_admin_user [username] --storage_mvip [mvip] --storage_username [username] --telemetry_active [true]
+----
++
+.. Sustituya el valor entre corchetes [ ] (incluidos los corchetes) para cada uno de los siguientes parámetros necesarios:
++
+
+NOTE: La forma abreviada del nombre del comando está entre paréntesis ( ) y se puede sustituir por el nombre completo.
+
++
+*** *--mnode_admin_user (-mu) [username]*: El nombre de usuario de la cuenta de administrador del nodo de gestión. Probablemente este sea el nombre de usuario de la cuenta de usuario que utilizó para iniciar sesión en el nodo de gestión.
+*** *--Storage_mvip (-sm) [dirección MVIP]*: La dirección IP virtual de gestión (MVIP) del clúster de almacenamiento que ejecuta el software Element. Configure el nodo de gestión con el mismo clúster de almacenamiento que utilizó durante link:task_mnode_install.html#configure-time-sync["Configuración de servidores NTP"].
+*** *--Storage_username (-su) [nombre de usuario]*: El nombre de usuario administrador del clúster de almacenamiento para el clúster especificado por `--storage_mvip` parámetro.
+*** *--Telemetry_active (-t) [true]*: Conserve el valor true que permite la recopilación de datos para análisis por Active IQ.
+
+
+.. (Opcional): Añada los parámetros de extremo de Active IQ al comando:
++
+*** *--remote_host (-rh) [AIQ_endpoint]*: El punto final donde se envían los datos de telemetría Active IQ para ser procesados. Si no se incluye el parámetro, se utiliza el extremo predeterminado.
+
+
+.. (Recomendado): Añada los siguientes parámetros de volumen persistente. No modifique ni elimine la cuenta y los volúmenes creados para la funcionalidad de volúmenes persistentes o se producirá una pérdida en la funcionalidad de gestión.
++
+*** *--use_persistent_Volumes (-pv) [true/false, default: False]*: Enable o disable volúmenes persistentes. Introduzca el valor en true para habilitar la funcionalidad de volúmenes persistentes.
+*** *--persistent_Volumes_account (-pva) [account_name]*: If `--use_persistent_volumes` está configurado en true, use este parámetro e introduzca el nombre de la cuenta de almacenamiento que se usará para los volúmenes persistentes.
++
+
+NOTE: Utilice un nombre de cuenta único para volúmenes persistentes que sean diferentes del nombre de cuenta existente en el clúster. Es de vital importancia mantener la cuenta de los volúmenes persistentes separados del resto del entorno.
+
+*** *--persistent_Volumes_mvip (-pvm) [mvip]*: Introduzca la dirección IP virtual de gestión (MVIP) del clúster de almacenamiento que ejecuta el software Element que se usará con volúmenes persistentes. Esto solo es necesario si el nodo de gestión gestiona varios clústeres de almacenamiento. Si no se gestionan varios clústeres, se utiliza la dirección MVIP del clúster predeterminada.
+
+
+.. Configure un servidor proxy:
++
+*** *--use_proxy (-up) [true/false, default: False]*: Activa o desactiva el uso del proxy. Este parámetro es necesario para configurar un servidor proxy.
+*** *--proxy_hostname_or_ip (-pi) [host]*: El nombre de host del proxy o IP. Esto es necesario si desea utilizar un proxy. Si lo especifica, se le solicitará que introduzca `--proxy_port`.
+*** *--proxy_username (-pu) [nombre de usuario]*: El nombre de usuario del proxy. Este parámetro es opcional.
+*** *--proxy_password (-pp) [password]*: La contraseña del proxy. Este parámetro es opcional.
+*** *--proxy_Port (-pq) [puerto, por defecto: 0]*: El puerto proxy. Si especifica esto, se le pedirá que introduzca el nombre de host del proxy o la dirección IP (`--proxy_hostname_or_ip`).
+*** *--proxy_ssh_Port (-ps) [puerto, por defecto: 443]*: El puerto proxy SSH. De forma predeterminada, se establece el puerto 443.
+
+
+.. (Opcional) Use Parameter help si necesita información adicional acerca de cada parámetro:
++
+*** *--help (-h)*: Devuelve información acerca de cada parámetro. Los parámetros se definen como obligatorios u opcionales según la puesta en marcha inicial. Los requisitos de los parámetros de actualización y nueva puesta en marcha pueden variar.
+
+
+.. Ejecute el `setup-mnode` comando.
+
+
+
+
+
+
+== Configurar activos de controladora
+
+. Busque el ID de instalación:
++
+.. Desde un explorador, inicie sesión en la API DE REST del nodo de gestión:
+.. Vaya a la MVIP de almacenamiento e inicie sesión. Esta acción hace que se acepte el certificado para el siguiente paso.
+.. Abra la interfaz de usuario de la API DE REST del servicio de inventario en el nodo de gestión:
++
+[listing]
+----
+https://<ManagementNodeIP>/inventory/1/
+----
+.. Seleccione *autorizar* y complete lo siguiente:
++
+... Introduzca el nombre de usuario y la contraseña del clúster.
+... Introduzca el ID de cliente as `mnode-client`.
+... Seleccione *autorizar* para iniciar una sesión.
+
+
+.. En la interfaz de usuario DE LA API DE REST, seleccione *GET ​/Installations*.
+.. Seleccione *probar*.
+.. Seleccione *Ejecutar*.
+.. Desde el cuerpo de respuesta del código 200, copie y guarde `id` para la instalación para utilizar en un paso posterior.
++
+Su instalación tiene una configuración de activos base que se creó durante la instalación o la actualización.
+
+
+
+. (Solo NetApp HCI) Busque la etiqueta de hardware del nodo de computación en vSphere:
++
+.. Seleccione el host en el navegador vSphere Web Client.
+.. Seleccione la ficha *Monitor* y seleccione *Estado del hardware*.
+.. Se muestran el fabricante del BIOS del nodo y el número de modelo. Copie y guarde el valor para `tag` para su uso en un paso posterior.
+
+
+. Añada un activo de controladora de vCenter para la supervisión de NetApp HCI (solo instalaciones NetApp HCI) y el control del cloud híbrido (para todas las instalaciones) a los activos conocidos del nodo de gestión:
++
+.. Acceda a la interfaz de usuario de API de servicio mnode en el nodo de gestión introduciendo la dirección IP del nodo de gestión seguida de `/mnode`:
++
+[listing]
+----
+https:/<ManagementNodeIP>/mnode
+----
+.. Seleccione *autorizar* o cualquier icono de bloqueo y complete lo siguiente:
++
+... Introduzca el nombre de usuario y la contraseña del clúster.
+... Introduzca el ID de cliente as `mnode-client`.
+... Seleccione *autorizar* para iniciar una sesión.
+... Cierre la ventana.
+
+
+.. Seleccione *POST /assets/{Asset_id}/controllers* para agregar un subactivo de controlador.
++
+
+NOTE: Debe crear un nuevo rol HCC de NetApp en vCenter para añadir un subsistema de controladora. Este nuevo rol de HCC de NetApp limitará la visión de los servicios de los nodos de gestión a activos de NetApp. Consulte link:task_mnode_create_netapp_hcc_role_vcenter.html["Cree una función HCC de NetApp en vCenter"].
+
+.. Seleccione *probar*.
+.. Introduzca el ID de activo base principal que copió en el portapapeles en el campo *Asset_id*.
+.. Introduzca los valores de carga útil necesarios con el tipo `vCenter` De aplicaciones y vCenter.
+.. Seleccione *Ejecutar*.
+
+
+
+
+
+
+== (Solo NetApp HCI) Configure los activos de nodos de computación
+
+. (Solo para NetApp HCI) Añada un activo de nodo de computación a los activos conocidos del nodo de gestión:
++
+.. Seleccione *POST /assets/{Asset_id}/Compute-Nodes* para agregar un subactivo de nodo de computación con credenciales para el activo de nodo de computación.
+.. Seleccione *probar*.
+.. Introduzca el ID de activo base principal que copió en el portapapeles en el campo *Asset_id*.
+.. En la carga útil, introduzca los valores de carga útil necesarios tal y como se definen en la ficha Modelo . Introduzca `ESXi Host` como `type` e introduzca la etiqueta de hardware guardada durante un paso anterior para `hardware_tag`.
+.. Seleccione *Ejecutar*.
+
+
+
+
+[discrete]
+== Obtenga más información
+
+* link:concept_hci_volumes.html#persistent-volumes["Volúmenes persistentes"]
+* link:task_mnode_add_assets.html["Añada activos de computación y de controladora al nodo de gestión"]
+* link:task_mnode_install_add_storage_NIC.html["Configurar un NIC de almacenamiento"]
+* https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Página de recursos de NetApp HCI"^]
+

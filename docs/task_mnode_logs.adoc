@@ -1,0 +1,80 @@
+---
+sidebar: sidebar 
+permalink: docs/task_mnode_logs.html 
+summary: Es posible recuperar registros de los servicios que se ejecutan en la ndoe de gestión mediante la API DE REST. 
+keywords: netapp, element, management node, management services, mnode, logs 
+---
+= Obtener registros de los servicios de gestión
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Es posible recuperar registros de los servicios que se ejecutan en el nodo de gestión mediante la API DE REST. Puede extraer registros de todos los servicios públicos o especificar servicios específicos y utilizar parámetros de consulta para definir mejor los resultados devueltos.
+
+.Lo que necesitará
+* La versión del clúster ejecuta el software NetApp Element 11.3 o una versión posterior.
+* Un nodo de gestión se implementó con la versión 11.3 o posterior.
+
+
+.Pasos
+. Abra la interfaz de usuario de API de REST en el nodo de gestión.
++
+** A partir de los servicios de administración 2.21.61:
++
+[listing]
+----
+https://<ManagementNodeIP>/mnode/4/
+----
+** Para los servicios de gestión 2.20.69 o anteriores:
++
+[listing]
+----
+https://<ManagementNodeIP>/mnode
+----
+
+
+. Seleccione *autorizar* o cualquier icono de bloqueo y complete lo siguiente:
++
+.. Introduzca el nombre de usuario y la contraseña del clúster.
+.. Introduzca el ID de cliente como mnode-client si el valor no está ya rellenado.
+.. Seleccione *autorizar* para iniciar una sesión.
+.. Cierre la ventana.
+
+
+. Seleccione *GET /logs*.
+. Seleccione *probar*.
+. Especifique los siguientes parámetros:
++
+** `Lines`: Introduzca el número de líneas que desea que devuelva el registro. Este parámetro es un entero que se establece de manera predeterminada en 1000.
++
+
+TIP: Evite solicitar el historial completo del contenido de registro estableciendo líneas en 0.
+
+** `since`: Agrega una Marca de tiempo ISO-8601 para el punto de inicio de los registros de servicio.
++
+
+TIP: Usar un razonable `since` parámetro cuando se recogen registros de timespans más amplios.
+
+** `service-name`: Introduzca un nombre de servicio.
++
+
+TIP: Utilice la `GET /services` comando para mostrar los servicios del nodo de gestión.
+
+** `stopped`: Establecer en `true` para recuperar registros de servicios detenidos.
+
+
+. Seleccione *Ejecutar*.
+. En el cuerpo de la respuesta, seleccione *Descargar* para guardar la salida del registro.
+
+
+[discrete]
+== Obtenga más información
+
+* https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Página de recursos de NetApp HCI"^]
+

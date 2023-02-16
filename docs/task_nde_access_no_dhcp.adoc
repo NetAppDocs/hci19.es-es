@@ -1,0 +1,55 @@
+---
+sidebar: sidebar 
+permalink: docs/task_nde_access_no_dhcp.html 
+summary: Aprenda a acceder al motor de implementación de NetApp en entornos sin DHCP. 
+keywords: netapp, hci, netapp deployment engine, deployment, engine, deploy, access 
+---
+= Acceda al motor de implementación de NetApp en entornos sin DHCP
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+:keywords: hci, release notes, vcp, element, management services, firmware
+
+
+[role="lead"]
+Cuando DHCP no está en uso en la red, se debe establecer la dirección IPv4 estática en la interfaz Bond1G de uno de los nodos de almacenamiento (también conocido como nodo de almacenamiento de control) que se utilizará para acceder al motor de implementación de NetApp. El motor de implementación de NetApp en el nodo de almacenamiento de control detecta y se comunica con otros nodos de almacenamiento mediante direcciones IPv4 configuradas automáticamente en las interfaces Bond10G de todos los nodos. Debe usar este método a menos que la red tenga requisitos especiales.
+
+.Lo que necesitará
+* Usted o el administrador de red completaron las tareas del documento instrucciones de instalación y configuración.
+* Tiene acceso físico a los nodos del NetApp HCI.
+* Todos los nodos del NetApp HCI están encendidos.
+* DHCP no está habilitado para las redes NetApp HCI, y los nodos NetApp HCI no obtuvieron direcciones IP de los servidores DHCP.
+* La red de gestión de NetApp HCI está configurada como la VLAN nativa en las interfaces Bond1G y Bond10G de todos los nodos.
+
+
+.Pasos
+. Conecte un KVM a la parte posterior de uno de los nodos de almacenamiento NetApp HCI (este nodo se convertirá en el nodo de almacenamiento de control).
+. Configure la dirección IP, la máscara de subred y la dirección de puerta de enlace para Bond1G en la interfaz de usuario. También puede configurar un ID de VLAN para la red Bond1G si es necesario.
++
+
+NOTE: No se puede reutilizar esta dirección IPv4 más adelante durante la implementación con el motor de implementación de NetApp.
+
+. Abra un explorador web en un equipo que pueda acceder a la red de gestión de NetApp HCI.
+. Vaya a la dirección IP que asignó al nodo de almacenamiento de control. Por ejemplo:
++
+[listing]
+----
+http://<Bond1G IP address>
+----
++
+
+NOTE: Asegúrese de utilizar HTTP aquí.
+
++
+Esto lo llevará hasta la interfaz de usuario del motor de implementación de NetApp.
+
+
+
+[discrete]
+== Obtenga más información
+
+* link:firmware_driver_versions.html["Versiones de firmware y controlador ESXi compatibles para las versiones de NetApp HCI y firmware para los nodos de almacenamiento NetApp HCI"]
+

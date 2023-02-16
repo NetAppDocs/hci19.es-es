@@ -1,0 +1,48 @@
+---
+sidebar: sidebar 
+permalink: docs/task_hci_removewn.html 
+summary: Después de expandir un clúster de almacenamiento de dos nodos a cuatro o más nodos, puede eliminar la pareja de nodos de testimonio para liberar recursos de computación en la instalación de NetApp HCI. 
+keywords: netapp, hci, witness nodes, two-node cluster, four-node cluster, compute nodes, virtual machine, vm 
+---
+= Quite nodos de testigos después de expandir el clúster
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Después de expandir un clúster de almacenamiento de dos nodos a cuatro o más nodos, puede eliminar el par de nodos de testigo para liberar recursos de computación en la instalación de NetApp HCI. Los nodos de testimonio utilizados anteriormente en el clúster de almacenamiento siguen visibles como máquinas virtuales en espera (VM) en vSphere Web Client.
+
+.Acerca de esta tarea
+No se necesitan nodos de testigos en clústeres con más de cuatro nodos de almacenamiento. Este es un procedimiento opcional si desea liberar la CPU y la memoria después de expandir el clúster de dos nodos a cuatro o más nodos.
+
+
+TIP: Compruebe que no se ha notificado ningún error o fallo del clúster. Para encontrar información sobre las alertas del sistema, haga clic en *informar > Alertas* en el punto de extensión NetApp Element Management de vSphere.
+
+.Pasos
+. Desde vSphere, acceda al punto de extensión NetApp Element Management desde la pestaña *Accesos directos* o el panel lateral.
+. Seleccione *Administración de NetApp Element > clúster > nodos*.
++
+image::vcp-witnessnode.gif[Muestra la página NetApp Element Management > Clusters con los nodos mostrados.]
+
+. Seleccione la casilla de verificación para el nodo testigo que desea eliminar y haga clic en *acciones > Quitar*.
+. Confirme la acción en el símbolo del sistema.
+. Haga clic en *hosts y clústeres*.
+. Desplácese hasta la máquina virtual del nodo de testigo que haya quitado anteriormente.
+. Haga clic con el botón derecho en la máquina virtual y apáguela.
+. Haga clic con el botón derecho del ratón en la máquina virtual que ha apagado y haga clic en *Eliminar del disco*.
+. Confirme la acción en el símbolo del sistema.
+
+
+
+
+== Obtenga más información
+
+* https://www.netapp.com/us/media/tr-4823.pdf["Clúster de almacenamiento de dos nodos NetApp HCI | TR-4823"^]
+* https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
+* https://www.netapp.com/us/documentation/hci.aspx["Recursos de NetApp HCI"^]
+* http://docs.netapp.com/sfe-122/index.jsp["Centro de documentación de SolidFire y el software Element"^]
+

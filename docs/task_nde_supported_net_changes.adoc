@@ -1,0 +1,140 @@
+---
+sidebar: sidebar 
+permalink: docs/task_nde_supported_net_changes.html 
+summary: Obtenga más información sobre las tareas posteriores a la implementación de NetApp HCI. 
+keywords: netapp, hci, deployment, review, deploy 
+---
+= Cambios de red admitidos
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Después de implementar NetApp HCI, puede realizar cambios limitados en la configuración de red predeterminada. Sin embargo, se requieren ciertos ajustes para un funcionamiento fluido y una detección de red adecuada. Cambiar esta configuración provocará un comportamiento inesperado y podría evitar que amplíe los recursos de computación y almacenamiento.
+
+Después de implementar el sistema, puede realizar los siguientes cambios en la configuración de red predeterminada en VMware vSphere, según lo dicten los requisitos de red:
+
+* Cambie los nombres de vSwitch
+* Cambie los nombres de grupo de puertos
+* Agregar y quitar grupos de puertos adicionales
+* Cambie el orden de conmutación por error de la interfaz vmnic para los grupos de puertos adicionales que haya agregado
+
+
+
+
+== Los nodos de computación H300E, H500E, H700E y H410C
+
+NetApp HCI espera la siguiente configuración de red para los nodos H300E, H500E, H700E y H410C.
+
+A continuación, se muestra una configuración de seis interfaces con VMware vSphere Distributed Switching (VDS). Esta configuración solo es compatible cuando se utiliza con switches distribuidos de VMware vSphere y requiere la licencia de VMware vSphere Enterprise Plus.
+
+|===
+| Función de red | vmkernel | vmnic (interfaz física) 
+
+
+| Gestión | vmk0 | Vmnic2 (puerto A), vmnic3 (puerto B) 
+
+
+| ISCSI-a | vmk1 | Vmnic5 (puerto E) 
+
+
+| ISCSI-B | vmk2 | Vmnic1 (puerto D) 
+
+
+| VMotion | vmk3 | Vmnic4 (puerto C), vmnic0 (puerto F) 
+|===
+A continuación se muestra una configuración de seis interfaces con VMware vSphere Standard Switching (VSS). Esta configuración utiliza VMware vSphere Standard Switch (VSS).
+
+|===
+| Función de red | vmkernel | vmnic (interfaz física) 
+
+
+| Gestión | vmk0 | Vmnic2 (puerto A), vmnic3 (puerto B) 
+
+
+| ISCSI-a | vmk2 | Vmnic1 (puerto E) 
+
+
+| ISCSI-B | vmk3 | Vmnic5 (puerto D) 
+
+
+| VMotion | vmk1 | Vmnic4 (puerto C), vmnic0 (puerto F) 
+|===
+A continuación se muestra una configuración con dos interfaces. Esta configuración solo se admite cuando se utiliza con switches distribuidos (VDS) de VMware vSphere y requiere una licencia de VMware vSphere Enterprise Plus.
+
+|===
+| Función de red | vmkernel | vmnic (interfaz física) 
+
+
+| Gestión | vmk0 | Vmnic1 (puerto D), vmnic5 (puerto E) 
+
+
+| ISCSI-a | vmk1 | Vmnic1 (puerto E) 
+
+
+| ISCSI-B | vmk2 | Vmnic5 (puerto D) 
+
+
+| VMotion | vmk3 | Vmnic1 (puerto C), vmnic5 (puerto F) 
+|===
+
+
+== Nodos de computación H610C
+
+NetApp HCI espera la siguiente configuración de red para los nodos H610C.
+
+Esta configuración solo se admite cuando se utiliza con switches distribuidos (VDS) de VMware vSphere y requiere una licencia de VMware vSphere Enterprise Plus.
+
+
+NOTE: Los puertos A y B no se utilizan en H610C.
+
+|===
+| Función de red | vmkernel | vmnic (interfaz física) 
+
+
+| Gestión | vmk0 | Vmnic2 (puerto C), vmnic3 (puerto D) 
+
+
+| ISCSI-a | vmk1 | Vmnic3 (puerto D) 
+
+
+| ISCSI-B | vmk2 | Vmnic2 (puerto C) 
+
+
+| VMotion | vmk3 | Vmnic2 (puerto C), vmnic3 (puerto D) 
+|===
+
+
+== Nodos de computación H615C
+
+NetApp HCI espera la siguiente configuración de red para los nodos H615C.
+
+Esta configuración solo se admite cuando se utiliza con switches distribuidos (VDS) de VMware vSphere y requiere una licencia de VMware vSphere Enterprise Plus.
+
+|===
+| Función de red | vmkernel | vmnic (interfaz física) 
+
+
+| Gestión | vmk0 | Vmnic0 (puerto A), vmnic1 (puerto B) 
+
+
+| ISCSI-a | vmk1 | Vmnic0 (puerto B) 
+
+
+| ISCSI-B | vmk2 | Vmnic1 (puerto A) 
+
+
+| VMotion | vmk3 | Vmnic0 (puerto A), vmnic1 (puerto B) 
+|===
+
+
+== Obtenga más información
+
+* https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
+* https://www.netapp.com/us/documentation/hci.aspx["Recursos de NetApp HCI"^]
+* https://docs.netapp.com/us-en/element-software/index.html["Documentación de SolidFire y el software Element"^]
+

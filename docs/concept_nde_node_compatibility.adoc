@@ -1,0 +1,57 @@
+---
+sidebar: sidebar 
+permalink: docs/concept_nde_node_compatibility.html 
+summary: Obtenga información acerca de los requisitos de compatibilidad de nodos de NetApp HCI para la implementación. 
+keywords: netapp, hci, deployment, compatibility, nodes 
+---
+= Selección de inventario y compatibilidad de nodos
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Al elegir nodos para su implementación, algunas restricciones se aplican a las configuraciones de nodos que puede combinar en la misma implementación.
+
+
+
+== Compatibilidad del nodo de almacenamiento
+
+NetApp HCI admite nodos de almacenamiento y unidades con la funcionalidad de cifrado de unidades SED (unidad de cifrado automático) y FIPS 140-2-2. Al poner en marcha o ampliar NetApp HCI, se pueden combinar nodos con diferentes niveles de cifrado reportados, pero NetApp HCI solo admite una forma más básica de cifrado en esta situación. Por ejemplo, si combina un nodo de almacenamiento que es compatible con el cifrado FIPS con nodos que solo admiten el cifrado SED, el cifrado SED es compatible con esta configuración, pero el cifrado de unidad FIPS no lo es.
+
+
+NOTE: Añadir nodos de almacenamiento capaces de cifrar unidades FIPS en el clúster de almacenamiento no habilita automáticamente la función de cifrado de unidades FIPS. Después de implementar o expandir una instalación con nodos compatibles con FIPS, debe habilitar manualmente el cifrado de unidades FIPS. Consulte https://docs.netapp.com/us-en/element-software/index.html["Documentación del software Element"^] si desea obtener instrucciones.
+
+Todos los nodos de almacenamiento deben ejecutar la misma versión secundaria del software Element para que sean compatibles con la misma puesta en marcha. Por ejemplo, no es posible mezclar un nodo de almacenamiento que ejecuta Element 11.3.1 con otros nodos de almacenamiento que ejecutan Element 11.5.
+
+
+NOTE: Según la configuración de hardware de un nodo, los nodos de almacenamiento H410S pueden aparecer en la lista de inventario etiquetada como H300S, H500S o H700S.
+
+NetApp HCI solo admite algunos modelos de nodo de almacenamiento en clústeres de almacenamiento de dos nodos. Para obtener más información, consulte link:concept_hci_clusters.html#two-node-storage-clusters["clústeres de almacenamiento de dos nodos"] O las notas de la versión de NetApp HCI.
+
+
+NOTE: Para puestas en marcha de clústeres de almacenamiento de dos nodos, los tipos de nodos de almacenamiento se limitan a los nodos con unidades de 480 GB y 960 GB.
+
+
+
+== Compatibilidad del nodo de computación
+
+Los nodos de computación deben cumplir con los siguientes requisitos para poder seleccionarse como inventario:
+
+* Las generaciones de CPU de todos los nodos de computación deben coincidir para que VMware vMotion funcione correctamente. Después de seleccionar un nodo de computación del inventario, no se pueden seleccionar nodos de computación con generaciones de CPU diferentes.
+* No se pueden combinar nodos de computación con nodos de computación habilitados para GPU en el mismo clúster de computación. Si selecciona un nodo de computación habilitado para GPU, los nodos de computación solo para CPU pasan a ser inseleccionables y viceversa.
+* La versión de software que se ejecuta en el nodo de computación debe coincidir con la versión principal y secundaria del motor de puesta en marcha de NetApp que aloja la puesta en marcha. Si este no es el caso, debe volver a crear la imagen del nodo de computación mediante el proceso RTFI. Consulte los artículos de la base de conocimientos de NetApp sobre RTFI para obtener instrucciones.
+* El nodo de computación debe tener la configuración de cableado seleccionada en la página Topología de red para poder seleccionarse en la lista *nodos de computación*.
+* Las configuraciones de cableado de red para nodos de computación del mismo modelo deben coincidir en un único clúster de computación.
+
+
+
+
+== Obtenga más información
+
+* https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
+* https://docs.netapp.com/us-en/element-software/index.html["Documentación sobre SolidFire y el software Element"^]
+

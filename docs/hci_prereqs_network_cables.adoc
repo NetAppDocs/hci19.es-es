@@ -1,0 +1,46 @@
+---
+sidebar: sidebar 
+permalink: docs/hci_prereqs_network_cables.html 
+summary: Obtenga información acerca de los requisitos de cables de red NetApp HCI. 
+keywords: netapp, hci, network, cable, requirements 
+---
+= Requisitos de cables de red
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+:keywords: netapp, hci, network, cable, requirements
+
+
+[role="lead"]
+Puede utilizar las siguientes pautas para asegurarse de contar con la cantidad suficiente del tipo correcto de cables de red según el tamaño de la implementación. Para los puertos RJ45, debe usar cables con clasificación Cat 5e o Cat 6.
+
+* Configuración de nodos de computación de dos cables: Cada nodo de computación debe estar conectado a una red de 10 GbE a través de dos interfaces SFP+/SFP28 (un cable Cat 5e/6 adicional es opcional para la gestión fuera de banda).
+* Configuración de nodos de computación de seis cables: Cada nodo de computación debe estar conectado a una red de 10/25 GbE a través de cuatro interfaces SFP+/SFP28 y a una red de 10 GbE a través de dos cables Cat 5e/6 (un cable Cat 5e/6 adicional es opcional para la gestión fuera de banda).
+* Cada nodo de almacenamiento debe estar conectado a una red de 10/25 GbE a través de dos interfaces SFP+/SFP28 y a una red de 10 GbE a través de dos cables Cat 5e/6 (un cable Cat 5e/6 adicional es opcional para la gestión fuera de banda).
+* Asegúrese de que los cables de red que utiliza para conectar el sistema NetApp HCI a la red sean lo suficientemente largos como para llegar cómodamente a los switches.
+
+
+Por ejemplo, una implementación que contiene cuatro nodos de almacenamiento y tres nodos de computación (con la configuración de seis cables) requiere la siguiente cantidad de cables de red:
+
+* (14) cables Cat 5e/6 con conectores RJ45 (más siete cables para tráfico IPMI si se desea)
+* (20) cables Twinax con conectores SFP28/SFP+
+
+
+Esto se debe a las siguientes razones:
+
+* Cuatro nodos de almacenamiento requieren ocho (8) cables Cat 5e/6 y ocho (8) cables Twinax.
+* Tres nodos de computación que utilizan una configuración de seis cables requieren seis (6) cables Cat 5e/6 y doce (12) cables Twinax.
+
+
+
+NOTE: En una configuración de seis cables, se reservan dos puertos para VMware ESXi y los configura y gestiona el motor de puesta en marcha de NetApp. No es posible acceder a estos puertos ESXi dedicados ni gestionarlos mediante la TUI de Element o la interfaz gráfica de usuario web de Element.
+
+[discrete]
+== Obtenga más información
+
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Recursos de NetApp HCI"^]
+* https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
+

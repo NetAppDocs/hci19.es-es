@@ -1,0 +1,111 @@
+---
+sidebar: sidebar 
+permalink: docs/concept_hci_performance.html 
+summary:  
+keywords: netapp, hci, on premise, concept_hci_performance 
+---
+= Rendimiento y calidad de servicio
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+:keywords: hci, onprem, documentation,
+
+
+[role="lead"]
+Un clúster de almacenamiento de SolidFire puede proporcionar parámetros de calidad de servicio (QoS) por volumen. Puede garantizar el rendimiento del clúster medido en entradas y salidas por segundo (IOPS) utilizando tres parámetros configurables que definen la calidad de servicio: Min IOPS, Max IOPS y Burst IOPS.
+
+
+NOTE: SolidFire Active IQ tiene una página de recomendaciones de calidad de servicio que ofrece asesoramiento sobre la configuración óptima y la configuración de las opciones de calidad de servicio.
+
+
+
+== Parámetros de calidad de servicio
+
+Los parámetros de IOPS se definen de las siguientes formas:
+
+* *Mínimo de IOPS*: El número mínimo de entradas y salidas sostenidas por segundo (IOPS) que el clúster de almacenamiento proporciona a un volumen. El valor de Min IOPS configurado para un volumen es el nivel garantizado de rendimiento de un volumen. El rendimiento nunca es inferior a este nivel.
+* *Maximum IOPS*: El número máximo de IOPS sostenidas que el clúster de almacenamiento proporciona a un volumen. Cuando los niveles de IOPS del clúster son extremadamente altos, este nivel de rendimiento de IOPS nunca se supera.
+* *Burst IOPS*: El número máximo de IOPS permitidas en un escenario de ráfaga breve. Si un volumen se ejecuta por debajo del valor Max IOPS, se acumulan créditos de ráfaga. Cuando los niveles de rendimiento llegan a ser muy altos e incluso alcanzan los niveles máximos, se permiten ráfagas breves de IOPS en el volumen.
++
+El software Element usa Burst IOPS cuando un clúster se ejecuta en un estado de bajo uso de IOPS de clúster.
+
++
+Un solo volumen puede acumular Burst IOPS y usar los créditos para superar su Max IOPS en ráfagas hasta su nivel de Burst IOPS durante un "período de ráfaga" establecido. Un volumen puede usar ráfagas durante hasta 60 segundos si el clúster tiene la capacidad de acomodar la ráfaga. Un volumen acumula un segundo de crédito de ráfaga (hasta un máximo de 60 segundos) por cada segundo que se ejecuta el volumen por debajo de su límite de Max IOPS.
+
++
+Burst IOPS se limita de dos formas:
+
++
+** Un volumen puede usar ráfagas por encima de su Max IOPS durante un número de segundos que sea igual al número de créditos de ráfaga que ha acumulado el volumen.
+** Cuando un volumen usa ráfagas por encima de su configuración de Max IOPS, estará limitado por su valor de Burst IOPS. Por ello, la IOPS de ráfaga nunca supera el valor de Burst IOPS del volumen.
+
+
+* *Ancho de banda máximo efectivo*: El ancho de banda máximo se calcula multiplicando el número de IOPS (en función de la curva QoS) por el tamaño de E/S.
++
+Ejemplo: Una configuración del parámetro de calidad de servicio de 100 Min IOPS, 1000 Max IOPS y 1500 Burst IOPS afectan a la calidad del rendimiento de la siguiente manera:
+
++
+** Las cargas de trabajo pueden alcanzar y sostener un máximo de 1000 IOPS hasta que la condición de contención de carga de trabajo de IOPS se hace evidente en el clúster. Las IOPS se reducen de forma incremental hasta que las IOPS de todos los volúmenes estén dentro de los rangos de calidad de servicio designados y la contención para el rendimiento mejore.
+** El rendimiento de todos los volúmenes se empuja hasta el valor de Min IOPS de 100. Los niveles no se sitúan por debajo del valor de Min IOPS, pero podrían ser superiores a los 100 IOPS cuando la contención de carga de trabajo mejora.
+** El rendimiento nunca supera las 1000 IOPS ni es inferior a 100 IOPS durante un período sostenido. Se permite el rendimiento de 1500 IOPS (Burst IOPS), pero solo para esos volúmenes que hayan acumulado créditos de ráfaga al ejecutarse por debajo del valor de Max IOPS y solo se permite durante breves periodos de tiempo. Los niveles de ráfaga nunca son sostenidos.
+
+
+
+
+
+
+== Límites de valor de calidad de servicio
+
+Estos son los posibles valores mínimos y máximos de la calidad de servicio.
+
+[cols="7*"]
+|===
+| Parámetros | Valor mínimo | Predeterminado | 4 4 KB | 5 8 KB | 6 16 KB | 262 KB 
+
+
+| IOPS mín | 50 | 50 | 15,000 | 9,375* | 5556* | 385* 
+
+
+| Tasa máx. De IOPS | 100 | 15,000 | 200,000** | 125,000 | 74,074 | 5128 
+
+
+| IOPS de ráfaga | 100 | 15,000 | 200,000** | 125,000 | 74.074 | 5128 
+|===
+*Estas estimaciones son aproximadas. **Max IOPS y Burst IOPS se pueden establecer con un valor máximo de 200,000 000; sin embargo, este valor solo se permite para destapar de forma efectiva el rendimiento de un volumen. El rendimiento máximo en el mundo real de un volumen está limitado por el uso del clúster y el rendimiento por cada nodo.
+
+
+
+== Rendimiento de la calidad de servicio
+
+La curva de rendimiento de calidad de servicio muestra la relación entre el tamaño de bloque y el porcentaje de IOPS.
+
+El tamaño de bloque y el ancho de banda repercuten directamente en el número de IOPS que puede obtener una aplicación. El software Element toma en cuenta los tamaños de bloque que recibe definiendo de forma general el tamaño de los bloques en 4k. En función de la carga de trabajo, el sistema podría aumentar los tamaños de bloque. A medida que estos aumenten, el sistema aumentará el ancho de banda hasta el nivel que necesite para procesar los tamaños de bloque más grandes. A medida que aumenta el ancho de banda, se reduce el número de IOPS que el sistema es capaz de conseguir.
+
+La curva de rendimiento de calidad de servicio muestra la relación entre el aumento de los tamaños de bloque y el porcentaje de IOPS en disminución:
+
+image::hci_performance_curve.png[Curva de rendimiento de calidad de servicio]
+
+A modo de ejemplo, si el tamaño de los bloques es de 4k y el ancho de banda es de 4000 kbps, la IOPS será de 1000. Si el tamaño de los bloques aumenta hasta 8k, el ancho de banda aumentará también hasta los 5000 kbps y la IOPS se reducirá hasta 625. Al tener en cuenta el tamaño de bloque, el sistema garantiza que las cargas de trabajo con prioridad más baja que utilizan tamaños de bloque más altos, como backups y actividades del hipervisor, no necesiten demasiado del rendimiento que necesita el tráfico de mayor prioridad utilizando tamaños de bloque más pequeños.
+
+
+
+== Políticas de calidad de servicio
+
+Una política de calidad de servicio permite crear y guardar un ajuste de calidad de servicio estandarizado que se puede aplicar a muchos volúmenes.
+
+Las políticas de calidad de servicio son mejores para los entornos de servicio, por ejemplo, con servidores de bases de datos, aplicaciones o infraestructuras que rara vez se reinician y necesitan igual acceso constante al almacenamiento. La calidad de servicio de un volumen individual es la mejor opción para equipos virtuales de uso reducido, como escritorios virtuales o equipos virtuales especializados de tipo quiosco, que pueden reiniciarse, encenderse o apagarse a diario o varias veces al día.
+
+Las políticas de calidad de servicio y calidad de servicio no se deben utilizar juntas. Si utiliza políticas de calidad de servicio, no use la calidad de servicio personalizada en un volumen. La calidad de servicio personalizada anulará y ajustará los valores de las políticas de calidad de servicio de los volúmenes.
+
+
+NOTE: El clúster seleccionado debe ser Element 10.0 o posterior para usar políticas de calidad de servicio; de lo contrario, las funciones de las políticas de calidad de servicio no estarán disponibles.
+
+[discrete]
+== Obtenga más información
+
+* https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
+* https://www.netapp.com/us/documentation/hci.aspx["Recursos de NetApp HCI"^]
+

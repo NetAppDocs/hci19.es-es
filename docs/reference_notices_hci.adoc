@@ -1,0 +1,82 @@
+---
+sidebar: sidebar 
+permalink: docs/reference_notices_hci.html 
+keywords: copyrights, notice, trademarks, patents, privacy, open source 
+summary: Los avisos legales proporcionan acceso a las declaraciones de copyright, marcas comerciales, patentes y mucho más. 
+translate: false 
+---
+= Avisos legales
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Los avisos legales proporcionan acceso a las declaraciones de copyright, marcas comerciales, patentes y mucho más.
+
+
+
+== Derechos de autor
+
+http://www.netapp.com/us/legal/copyright.aspx[]
+
+
+
+== Marcas comerciales
+
+NETAPP, el logotipo de NETAPP y las marcas enumeradas en la página de marcas comerciales de NetApp son marcas comerciales de NetApp, Inc. Los demás nombres de empresas y productos son marcas comerciales de sus respectivos propietarios.
+
+http://www.netapp.com/us/legal/netapptmlist.aspx[]
+
+
+
+== Estadounidenses
+
+Puede encontrar una lista actual de las patentes propiedad de NetApp en:
+
+https://www.netapp.com/us/media/patents-page.pdf[]
+
+
+
+== Política de privacidad
+
+https://www.netapp.com/us/legal/privacypolicy/index.aspx[]
+
+
+
+== Código abierto
+
+Los archivos de notificación proporcionan información sobre los derechos de autor y las licencias de terceros que se utilizan en software de NetApp.
+
+* link:../media/ansible-products-notice.pdf["Aviso sobre el rol de Ansible para las actualizaciones de computación"^]
+* link:../media/Ember_12.3_notice.pdf["Aviso para Ember OS 12.3.1"^]
+* link:../media/Ember_12.3_notice.pdf["Aviso para Ember OS 12.3"^]
+* link:../media/mNode_12.3_notice.pdf["Aviso para el nodo de gestión 12.3.1"^]
+* link:../media/mNode_12.3_notice.pdf["Aviso para el nodo de gestión 12.3"^]
+* link:../media/NetApp_HCI_1.9_notice.pdf["Aviso para NetApp HCI 1.9P1"^]
+* link:../media/NetApp_HCI_1.9_notice.pdf["Aviso para NetApp HCI 1.9"^]
+* link:../media/storage_firmware_bundle_2.146_notices.pdf["Aviso para el paquete de firmware de almacenamiento 2.146"^]
+* link:../media/compute_firmware_bundle_2.146_notices.pdf["Aviso para el paquete de firmware de computación 2.146"^]
+* link:../media/storage_firmware_bundle_2.99_notices.pdf["Aviso para el paquete de firmware de almacenamiento 2.99.2"^]
+* link:../media/compute_firmware_bundle_2.76_notices.pdf["Aviso para el paquete de firmware de computación 2.76"^]
+* link:../media/storage_firmware_bundle_2.76_notices.pdf["Aviso para el paquete de firmware de almacenamiento 2.76"^]
+* link:../media/compute_firmware_bundle_2.27_notices.pdf["Aviso para el paquete de firmware de computación 2.27"^]
+* link:../media/storage_firmware_bundle_2.27_notices.pdf["Aviso para el paquete de firmware de almacenamiento 2.27"^]
+* link:../media/compute_iso_notice.pdf["Aviso para ISO de firmware de computación"^]
+* link:../media/H610S_BMC_notice.pdf["Aviso de H610S BMC"^]
+* link:../media/mgmt_svcs_2.22_notice.pdf["Aviso para servicios de gestión 2.22.7 (plugin de NetApp Element para vCenter Server 5.0.37)"^]
+* link:../media/mgmt_svcs_2.21_notice.pdf["Aviso para servicios de gestión 2.21.61 (complemento NetApp Element para vCenter Server 4.10.12)"^]
+* link:../media/2.20_notice.pdf["Aviso para servicios de gestión 2.20.69 (plugin de NetApp Element para vCenter Server 4.9.14)"^]
+* link:../media/2.19_notice.pdf["Aviso para servicios de gestión 2.19.48 (plugin de NetApp Element para vCenter Server 4.8.34)"^]
+* link:../media/2.18_notice.pdf["Aviso para servicios de gestión 2.18.91 (plugin de NetApp Element para vCenter Server 4.7.10)"^]
+* link:../media/2.17.56_notice.pdf["Aviso para servicios de gestión 2.17.56 (plugin de NetApp Element para vCenter Server 4.6.32)"^]
+* link:../media/2.17_notice.pdf["Aviso para servicios de gestión 2.17.52 (plugin de NetApp Element para vCenter Server 4.6.29)"^]
+* link:../media/2.16_notice.pdf["Aviso para servicios de gestión 2.16 (plugin de NetApp Element para vCenter Server 4.6.29)"^]
+* link:../media/mgmt_svcs_2.14_notice.pdf["Aviso para servicios de gestión 2.14 (plugin de NetApp Element para vCenter Server 4.5.42)"^]
+* link:../media/2.13_notice.pdf["Aviso para servicios de gestión 2.13 (plugin de NetApp Element para vCenter Server 4.5.42)"^]
+* link:../media/mgmt_svcs2.11_notice.pdf["Aviso para servicios de gestión 2.11 (plugin de NetApp Element para vCenter Server 4.4.72)"^]
+* https://library.netapp.com/ecm/ecm_download_file/ECMLP2870307["Aviso para NetApp HCI 1.8"^]
+

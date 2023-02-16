@@ -1,0 +1,89 @@
+---
+sidebar: sidebar 
+permalink: docs/concept_cg_hci_accounts.html 
+summary: Cada sistema NetApp HCI con servicios cloud habilitados se asocia a una cuenta de Cloud Central de NetApp. 
+keywords: netapp, hci, on premise, administrator, user account, cloud services, cluster 
+---
+= Cuentas de usuario
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Para acceder a los recursos de almacenamiento del sistema, tendrá que configurar cuentas de usuario.
+
+
+
+== Gestionar cuentas de usuario
+
+Las cuentas de usuario se utilizan para controlar el acceso a los recursos de almacenamiento en una red basada en software de NetApp Element. Se requiere al menos una cuenta de usuario para poder crear un volumen.
+
+Cuando crea un volumen, este se asigna a una cuenta. Si creó un volumen virtual, la cuenta será el contenedor de almacenamiento.
+
+A continuación, se indican algunas consideraciones adicionales:
+
+* La cuenta contiene la autenticación CHAP que se necesita para acceder a los volúmenes que tiene asignados.
+* Una cuenta puede tener hasta 2000 volúmenes asignados, pero un volumen solo puede pertenecer a una cuenta.
+* Las cuentas de usuario se pueden gestionar desde el punto de extensión NetApp Element Management.
+
+
+Con el control del cloud híbrido de NetApp, puede crear y gestionar los siguientes tipos de cuentas:
+
+* Cuentas de usuario de administrador para el clúster de almacenamiento de
+* Cuentas de usuario autoritativas
+* Cuentas de volúmenes, específicas solo para el clúster de almacenamiento en el que se crearon.
+
+
+
+
+== Cuentas de administrador de clúster de almacenamiento
+
+Existen dos tipos de cuentas de administrador que se pueden encontrar en un clúster de almacenamiento donde se ejecuta el software NetApp Element:
+
+* *Cuenta de administrador del clúster principal*: Esta cuenta de administrador se crea cuando se crea el clúster. Es la cuenta administrativa principal con el nivel de acceso al clúster más alto. Esta cuenta es similar a un usuario raíz en un sistema Linux. Puede cambiar la contraseña de esta cuenta de administrador.
+* *Cuenta de administrador de clúster*: Puede otorgar a una cuenta de administrador de clúster un rango limitado de acceso administrativo para realizar tareas específicas dentro de un clúster. Las credenciales que se asignan a cada cuenta de administrador de clúster sirven para autenticar las solicitudes de la API y la interfaz de usuario de Element dentro del sistema de almacenamiento.
+
+
+
+NOTE: Se necesita una cuenta de administrador de clúster local (que no sea LDAP) para acceder a los nodos activos en un clúster a través de la interfaz de usuario por nodo. No se necesitan credenciales de cuenta para acceder a un nodo que aún no forme parte de un clúster.
+
+Las cuentas de administrador de clúster se pueden gestionar creando, eliminando y editando las cuentas de administrador de clúster, cambiando la contraseña de administrador de clúster y configurando los ajustes LDAP para gestionar el acceso al sistema para los usuarios.
+
+
+
+== Cuentas de usuario autoritativas
+
+Las cuentas de usuario con autoridad pueden autenticarse en cualquier activo de almacenamiento asociado con la instancia de Cloud Control de NetApp de los nodos y los clústeres. Con esta cuenta, puede gestionar volúmenes, cuentas, grupos de acceso y mucho más en todos los clústeres.
+
+Las cuentas de usuario autorizadas se gestionan desde la opción de gestión de usuarios del menú superior derecho del control de cloud híbrido de NetApp.
+
+La link:concept_hci_clusters.html#authoritative-storage-clusters["clúster de almacenamiento fiable"] Es el clúster de almacenamiento que utiliza el control del cloud híbrido de NetApp para autenticar usuarios.
+
+Todos los usuarios que se creen en el clúster de almacenamiento autorizado pueden iniciar sesión en Hybrid Cloud Control de NetApp. Los usuarios creados en otros clústeres de almacenamiento _no se pueden_ iniciar sesión en Hybrid Cloud Control.
+
+* Si su nodo de gestión solo tiene un clúster de almacenamiento, es el clúster autorizado.
+* Si su nodo de gestión tiene dos o más clústeres de almacenamiento, uno de esos clústeres se asigna como un clúster autorizado y solo los usuarios de ese clúster pueden iniciar sesión en Hybrid Cloud Control de NetApp.
+
+
+Aunque muchas de las funciones de control de cloud híbrido de NetApp funcionan con varios clústeres de almacenamiento, la autenticación y la autorización tienen las limitaciones necesarias. La limitación de la autenticación y la autorización consiste en que los usuarios del clúster autorizado pueden ejecutar acciones en otros clústeres vinculados a Hybrid Cloud Control de NetApp incluso si no son usuarios en otros clústeres de almacenamiento. Antes de continuar con la gestión de varios clústeres de almacenamiento, debe asegurarse de que los usuarios definidos en los clústeres autorizados se hayan definido en todos los demás clústeres de almacenamiento con los mismos permisos. Puede gestionar usuarios desde NetApp Hybrid Cloud Control.
+
+
+
+== Cuentas de volumen
+
+Las cuentas específicas de cada volumen solo son específicas del clúster de almacenamiento en el que se crearon. Estas cuentas permiten establecer permisos en volúmenes específicos de la red, pero no afectan fuera de dichos volúmenes.
+
+Las cuentas de volumen se gestionan en la tabla volúmenes de control de cloud híbrido de NetApp.
+
+[discrete]
+== Obtenga más información
+
+* link:task_hcc_manage_accounts.html["Administrar cuentas de usuario"]
+* link:concept_hci_clusters.html["Obtenga información acerca de los clústeres"]
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Recursos de NetApp HCI"^]
+* https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
+

@@ -1,0 +1,40 @@
+---
+sidebar: sidebar 
+permalink: docs/hci_prereqs_overview.html 
+summary: Obtenga información sobre los requisitos de implementación de NetApp HCI. 
+keywords: netapp, hci, deployment, requirements 
+---
+= Información general sobre los requisitos para la puesta en marcha de NetApp HCI
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+:keywords: netapp, hci, environment, requirements
+
+
+[role="lead"]
+NetApp HCI tiene requisitos físicos y de red específicos para que el centro de datos funcione correctamente. Procure aplicar los requisitos y las recomendaciones siguientes antes de iniciar la implementación.
+
+Antes de recibir el hardware de NetApp HCI, asegúrese de completar los elementos de la lista de comprobación en el libro de trabajo previo a la puesta en marcha de los servicios profesionales de NetApp. Este documento contiene una lista completa de tareas que debe completar para preparar la red y el entorno para una puesta en marcha de NetApp HCI correcta.
+
+A continuación encontrará los enlaces a los requisitos y las tareas previas a la implementación:
+
+* link:hci_prereqs_required_network_ports.html["Requisitos de puerto de red"]
+* link:hci_prereqs_network_switch.html["Requisitos de switch y red"]
+* link:hci_prereqs_network_cables.html["Requisitos de cables de red"]
+* link:hci_prereqs_ip_address.html["Requisitos de dirección IP"]
+* link:hci_prereqs_network_configuration.html["Configuración de red"]
+* link:hci_prereqs_timekeeping.html["Requisitos de DNS y de control del tiempo"]
+* link:hci_prereqs_environmental.html["Requisitos ambientales"]
+* link:hci_prereqs_protection_domains.html["Dominios de protección"]
+* link:hci_prereqs_witness_nodes.html["Requisitos de recursos de nodo de observación para clústeres de almacenamiento de dos nodos"]
+
+
+[discrete]
+== Obtenga más información
+
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Recursos de NetApp HCI"^]
+* https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
+

@@ -1,0 +1,48 @@
+---
+sidebar: sidebar 
+permalink: docs/task_hci_upgrade_all_vsphere.html 
+summary: Puede actualizar los componentes de VMware para una instancia de NetApp HCI y realizar pasos adicionales para volver a instalar el plugin de vCenter. 
+keywords: netapp, hci, vSphere components, upgrade, vCenter, ESXi 
+---
+= Actualice los componentes de vSphere para un sistema NetApp HCI con el plugin de Element para vCenter Server
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Al actualizar los componentes de VMware vSphere de la instalación de NetApp HCI, tendrá que realizar algunos pasos adicionales al plugin de Element para vCenter Server.
+
+.Pasos
+. Para actualizaciones de vcsa, https://docs.netapp.com/us-en/vcp/vcp_task_qossioc.html#clear-qossioc-settings["claro"^] Configuración de QoSSIOC en el plugin (*Configuración de NetApp Element > Configuración de QoSSIOC*). Aparece el campo *Estado de QoSSIOC* `Not Configured` una vez completado el proceso.
+. Para actualizaciones de vcsa y Windows, https://docs.netapp.com/us-en/vcp/task_vcp_unregister.html["cancele el registro"^] El plugin desde la instancia de vCenter Server a la que se asocia mediante la utilidad de registro.
+. https://docs.vmware.com/en/VMware-vSphere/6.7/com.vmware.vcenter.upgrade.doc/GUID-7AFB6672-0B0B-4902-B254-EE6AE81993B2.html["Actualice vSphere, incluidos vCenter Server, ESXi, VMs y otros componentes de VMware"^].
++
+[IMPORTANT]
+====
+Debe actualizar al plugin de NetApp Element para vCenter Server 5.0 a fin de ofrecer la capacidad de implementar el plugin con VMware vCenter 7.0 Update 3 sin tener que aplicar una solución alternativa.
+
+Con el plugin de Element para vCenter Server 4.x, cuando se actualiza a VMware vCenter Server 7.0 Update 3, el plugin 4.x no puede implementar. Para resolver este problema con Spring Framework 4, consulte https://kb.netapp.com/Advice_and_Troubleshooting/Hybrid_Cloud_Infrastructure/NetApp_HCI/vCenter_plug-in_deployment_fails_after_upgrading_vCenter_to_version_7.0_U3["Este artículo de la base de conocimientos"^].
+
+====
++
+
+NOTE: Cuando actualice ESXi para nodos de computación de un https://www.netapp.com/us/media/tr-4823.pdf["clúster de dos nodos"^], actualice sólo un nodo de computación a la vez para que sólo un nodo testigo no esté disponible temporalmente y se pueda mantener el quórum del clúster.
+
+. https://docs.netapp.com/us-en/vcp/vcp_task_getstarted.html#register-the-plug-in-with-vcenter["Regístrese"^] El plugin de Element para vCenter Server nuevamente con vCenter.
+. https://docs.netapp.com/us-en/vcp/vcp_task_getstarted.html#add-storage-clusters-for-use-with-the-plug-in["Añadir clústeres"^] con el plugin.
+. https://docs.netapp.com/us-en/vcp/vcp_task_getstarted.html#configure-qossioc-settings-using-the-plug-in["Configure los ajustes de QoSSIOC"^] con el plugin.
+. https://docs.netapp.com/us-en/vcp/vcp_task_qossioc.html#enabling-qossioc-automation-on-datastores["Habilite QoSSIOC"^] para todos los almacenes de datos controlados por el plugin.
+
+
+
+
+== Obtenga más información
+
+* https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Página de recursos de NetApp HCI"^]
+* https://www.netapp.com/us/media/tr-4823.pdf["Informe técnico de dos nodos de clúster de almacenamiento de NetApp HCI"^]
+

@@ -1,0 +1,181 @@
+---
+sidebar: sidebar 
+permalink: docs/task_mnode_add_assets.html 
+summary: Es posible añadir activos de computación y controladora a la configuración del nodo de gestión mediante la interfaz de usuario de API DE REST. 
+keywords: netapp, mnode, management node, rest api, hci 
+---
+= Añada activos de computación y de controladora al nodo de gestión
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Es posible añadir activos de computación y controladora a la configuración del nodo de gestión mediante la interfaz de usuario de API DE REST.
+
+Es posible que tenga que agregar un activo si ha escalado recientemente su instalación y no se han añadido automáticamente nuevos activos a la configuración. Utilice estas API para añadir activos que se han añadido recientemente a su instalación.
+
+.Lo que necesitará
+* La versión del clúster ejecuta el software NetApp Element 11.3 o una versión posterior.
+* Un nodo de gestión se implementó con la versión 11.3 o posterior.
+* Ya tienes link:task_mnode_create_netapp_hcc_role_vcenter.html["Se ha creado un nuevo rol HCC de NetApp en vCenter"] Para limitar la vista de servicios de nodos de gestión a activos de solo NetApp.
+* Tiene la dirección IP de gestión de vCenter y las credenciales.
+* Tiene la dirección IP de gestión y las credenciales raíz del nodo de computación (ESXi).
+* Tiene la dirección IP de administración del hardware (BMC) y las credenciales de administrador.
+
+
+.Acerca de esta tarea
+(Solo NetApp HCI) Si no ve nodos de computación en control de cloud híbrido (HCC) después de escalar el sistema NetApp HCI, puede añadir un nodo de computación con el `POST /assets/{asset_id}/compute-nodes` se describe en este procedimiento.
+
+
+NOTE: Cuando agregue nodos de computación manualmente, asegúrese de que también agrega los activos de BMC; de lo contrario, se devuelve un error.
+
+.Pasos
+. Obtenga el ID de activo base para la instalación:
++
+.. Abra la interfaz de usuario de la API DE REST del servicio de inventario en el nodo de gestión:
++
+[listing]
+----
+https://<ManagementNodeIP>/inventory/1/
+----
+.. Seleccione *autorizar* y complete lo siguiente:
++
+... Introduzca el nombre de usuario y la contraseña del clúster.
+... Introduzca el ID de cliente as `mnode-client`.
+... Seleccione *autorizar* para iniciar una sesión.
+... Cierre la ventana.
+
+
+.. En la interfaz de usuario DE LA API DE REST, seleccione *GET ​/Installations*.
+.. Seleccione *probar*.
+.. Seleccione *Ejecutar*.
+.. Del cuerpo de respuesta del código 200, copie el `id` para la instalación.
++
+[listing, subs="+quotes"]
+----
+{
+  "installations": [
+    {
+      "_links": {
+        "collection": "https://10.111.211.111/inventory/1/installations",
+        "self": "https://10.111.217.111/inventory/1/installations/abcd01e2-ab00-1xxx-91ee-12f111xxc7x0x"
+      },
+      *"id": "abcd01e2-ab00-1xxx-91ee-12f111xxc7x0x",*
+----
++
+
+NOTE: Su instalación tiene una configuración de activos base que se creó durante la instalación o la actualización.
+
+.. En la interfaz de usuario DE LA API DE REST, seleccione *GET /Installations/{id}*.
+.. Seleccione *probar*.
+.. Pegue el ID de activo de instalación en el campo *id*.
+.. Seleccione *Ejecutar*.
+.. En la respuesta, copie y guarde el ID de controladora del clúster (`"controllerId"`) para usar en un paso posterior.
+
+
+. (Solo para nodos de computación) xref:task_mnode_locate_hardware_tag.adoc[Busque la etiqueta de hardware para el nodo de computación] En vSphere.
+. Para añadir un activo de controladora (vCenter), nodo de computación (ESXi) o hardware (BMC) a un activo base existente, seleccione una de las siguientes opciones.
++
+[cols="40,60"]
+|===
+| Opción | Descripción 
+
+
+| POST /assets/{asset_id}/controladoras  a| 
+.. Abra la interfaz de usuario de API DE REST de mNode Service en el nodo de gestión:
++
+[listing]
+----
+https://<ManagementNodeIP>/mnode
+----
++
+... Seleccione *autorizar* y complete lo siguiente:
++
+.... Introduzca el nombre de usuario y la contraseña del clúster.
+.... Introduzca el ID de cliente as `mnode-client`.
+.... Seleccione *autorizar* para iniciar una sesión.
+.... Cierre la ventana.
+
+
+
+
+.. Seleccione *POST /Asset/{Asset_id}/controllers*.
+.. Seleccione *probar*.
+.. Introduzca el ID de activo base principal en el campo *Asset_id*.
+.. Añada los valores necesarios a la carga útil.
+.. Seleccione *Ejecutar*.
+
+
+
+
+| POST /Asset/{Asset_id}/Compute-Nodes  a| 
+.. Abra la interfaz de usuario de API DE REST de mNode Service en el nodo de gestión:
++
+[listing]
+----
+https://<ManagementNodeIP>/mnode
+----
++
+... Seleccione *autorizar* y complete lo siguiente:
++
+.... Introduzca el nombre de usuario y la contraseña del clúster.
+.... Introduzca el ID de cliente as `mnode-client`.
+.... Seleccione *autorizar* para iniciar una sesión.
+.... Cierre la ventana.
+
+
+
+
+.. Seleccione *POST /Asset/{Asset_id}/Compute-Nodes*.
+.. Seleccione *probar*.
+.. Introduzca el ID de activo base principal que copió en un paso anterior en el campo *Asset_id*.
+.. En la carga útil, haga lo siguiente:
++
+... Introduzca la IP de gestión para el nodo en la `ip` campo.
+... Para `hardwareTag`, introduzca el valor de etiqueta de hardware que guardó en un paso anterior.
+... Introduzca otros valores, según sea necesario.
+
+
+.. Seleccione *Ejecutar*.
+
+
+
+
+| POST /assets/{asset_id}/hardware-nodos  a| 
+.. Abra la interfaz de usuario de API DE REST de mNode Service en el nodo de gestión:
++
+[listing]
+----
+https://<ManagementNodeIP>/mnode
+----
++
+... Seleccione *autorizar* y complete lo siguiente:
++
+.... Introduzca el nombre de usuario y la contraseña del clúster.
+.... Introduzca el ID de cliente as `mnode-client`.
+.... Seleccione *autorizar* para iniciar una sesión.
+.... Cierre la ventana.
+
+
+
+
+.. Seleccione *POST /assets/{asset_id}/hardware-nodes*.
+.. Seleccione *probar*.
+.. Introduzca el ID de activo base principal en el campo *Asset_id*.
+.. Añada los valores necesarios a la carga útil.
+.. Seleccione *Ejecutar*.
+
+
+|===
+
+
+[discrete]
+== Obtenga más información
+
+* https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Página de recursos de NetApp HCI"^]
+

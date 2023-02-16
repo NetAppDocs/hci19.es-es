@@ -1,0 +1,53 @@
+---
+sidebar: sidebar 
+permalink: docs/task_mnode_locate_hardware_tag.html 
+summary: Es necesario usar la etiqueta de hardware para añadir los activos del nodo de computación a la configuración del nodo de gestión mediante la interfaz de usuario de la API DE REST. 
+keywords: netapp, management node, rest api, hci, hardware tag 
+---
+= Cómo localizar una etiqueta de hardware para un nodo de computación
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Es necesario usar la etiqueta de hardware para añadir los activos del nodo de computación a la configuración del nodo de gestión mediante la interfaz de usuario de la API DE REST.
+
+[role="tabbed-block"]
+====
+.VMware vSphere 8.0 y 7.0
+--
+Busque la etiqueta de hardware para un nodo de computación en VMware vSphere Web Client 8.0 y 7.0.
+
+.Pasos
+. Seleccione el host en el navegador vSphere Web Client.
+. Seleccione la ficha *Configurar*.
+. En la barra lateral, seleccione *hardware* > *Descripción general*. Compruebe si la etiqueta de hardware aparece en la `System` tabla.
++
+image:../media/hw_tag_70.PNG["Captura de pantalla de la tabla System"]
+
+. Copie y guarde el valor para *Tag*.
+. xref:task_mnode_add_assets.adoc[Añada los activos de computación y de controladora al nodo de gestión].
+
+
+--
+.VMware vSphere 6.7 y 6.5
+--
+Busque la etiqueta de hardware para un nodo de computación en VMware vSphere Web Client 6.7 y 6.5.
+
+.Pasos
+. Seleccione el host en el navegador vSphere Web Client.
+. Seleccione la ficha *Monitor* y seleccione *Estado del hardware*.
+. Compruebe si la etiqueta aparece en la lista con el fabricante del BIOS y el número de modelo.
++
+image:../media/hw_tag_67.PNG["Captura de pantalla de la tabla System"]
+
+. Copie y guarde el valor para *Tag*.
+. xref:task_mnode_add_assets.adoc[Añada los activos de computación y de controladora al nodo de gestión].
+
+
+--
+====

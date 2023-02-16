@@ -1,0 +1,30 @@
+---
+sidebar: sidebar 
+permalink: docs/task_nde_hci_power_on_storage.html 
+summary: Aprenda a apagar los nodos de computación de NetApp HCI. 
+keywords: netapp, hci, netapp deployment engine, deployment, vsphere 
+---
+= Activar recursos de almacenamiento para un sistema NetApp HCI
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+:keywords: netapp, hci, netapp deployment engine, deployment, vsphere
+
+
+[role="lead"]
+NetApp HCI se puede encender después de completar la interrupción programada.
+
+.Pasos
+. Encienda todos los nodos de almacenamiento usando el botón de encendido físico o el BMC.
+. Si utiliza el BMC, inicie sesión en cada nodo y desplácese a *Control remoto > Control de alimentación > servidor de encendido*.
+. Cuando todos los nodos de almacenamiento estén en línea, inicie sesión en el sistema de almacenamiento de NetApp HCI y verifique que todos los nodos estén operativos.
+
+
+[discrete]
+== Obtenga más información
+
+* link:firmware_driver_versions.html["Versiones de firmware y controlador ESXi compatibles para las versiones de NetApp HCI y firmware para los nodos de almacenamiento NetApp HCI"]
+

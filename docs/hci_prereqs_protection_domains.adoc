@@ -1,0 +1,25 @@
+---
+sidebar: sidebar 
+permalink: docs/hci_prereqs_protection_domains.html 
+summary: Obtenga más información sobre la función Protection Domains para los clústeres de almacenamiento de NetApp HCI. 
+keywords: netapp, hci, element, storage, protection domains 
+---
+= Dominios de protección
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+:keywords: netapp, hci, element, storage, protection domains
+
+
+[role="lead"]
+Compatibilidad con el software NetApp Element link:concept_hci_dataprotection.html#protection-domains["dominios de protección"] funcionalidad, que optimiza la distribución de datos en nodos de almacenamiento para obtener la mejor disponibilidad de datos. Para usar esta función, debe dividir la capacidad de almacenamiento de manera uniforme en tres o más chasis de NetApp H-Series para una fiabilidad de almacenamiento óptima. En este escenario, el clúster de almacenamiento habilita automáticamente los dominios de protección.
+
+[discrete]
+== Obtenga más información
+
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Recursos de NetApp HCI"^]
+* https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
+

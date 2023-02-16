@@ -1,0 +1,84 @@
+---
+sidebar: sidebar 
+permalink: docs/concept_rancher_product_overview.html 
+summary: Al implementar Rancher en NetApp HCI, se pone en marcha el plano Rancher Control, también conocido como servidor Rancher, le permite crear clústeres de Kubernetes en las instalaciones. 
+keywords: netapp, hci, rancher, architecture, kubernetes, cluster 
+---
+= Descripción general de rancher on NetApp HCI
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Rancher es una completa pila de software para equipos que adoptan contenedores. Rancher responde a los retos operativos y de seguridad que plantea la gestión de varios clústeres de Kubernetes en distintas infraestructuras, y proporciona a los equipos de DevOps herramientas integradas para ejecutar cargas de trabajo en contenedores.
+
+Al implementar Rancher en NetApp HCI, se pone en marcha el plano de control Rancher, también conocido como _Rancher Server_ y se pueden crear clústeres de Kubernetes en las instalaciones. Puede poner en marcha el plano de control Rancher mediante Cloud Control de NetApp híbrido.
+
+Después de la puesta en marcha, con el plano de control de Rancher, puede aprovisionar, gestionar y supervisar clústeres de Kubernetes que utilizan los equipos de desarrollo y operaciones. Los equipos de desarrollo y operaciones pueden usar Rancher para realizar actividades en clústeres de usuarios que residen en la propia NetApp HCI, un proveedor de cloud público o cualquier otra infraestructura que permita Rancher.
+
+
+
+== Ventajas de Rancher en NetApp HCI
+
+* Facilidad de instalación: No necesita aprender a instalar y configurar Rancher. Puede implementar una implementación basada en plantillas, desarrollada conjuntamente por NetApp HCI y Rancher.
+* Gestión del ciclo de vida: En una implementación manual de Rancher, las actualizaciones para la aplicación del servidor Rancher o el clúster RKE (RKE) no están automatizadas. Rancher en NetApp HCI proporciona la capacidad de realizar actualizaciones en el clúster de administración, que incluye el servidor Rancher y el RKE.
+
+
+
+
+== Lo que puede hacer con Rancher en NetApp HCI
+
+Con Rancher en NetApp HCI, podrá:
+
+* Ponga en marcha servicios entre proveedores de cloud y su cloud privado.
+* Puertos de las aplicaciones y los datos en una arquitectura de cloud híbrido independientemente de la ubicación del cloud sin comprometer los acuerdos de nivel de servicio.
+* Aumente la velocidad de las aplicaciones nativas del cloud.
+* Centralice la gestión de varios clústeres (nuevos y existentes).
+* Realice la orquestación de las aplicaciones basadas en Kubernetes del cloud híbrido.
+
+
+
+
+== Opción de soporte técnico
+
+El uso de Rancher en NetApp HCI y el software de código abierto Kubernetes incluye la puesta en marcha y el uso gratuitos. Las claves de licencia no son necesarias.
+
+Puede elegir una opción de soporte para Rancher de NetApp para obtener soporte empresarial basado en los núcleos.
+
+
+NOTE: No se incluye el soporte de rancher en su acuerdo Support Edge de NetApp. Póngase en contacto con el departamento de ventas de NetApp o con su distribuidor para obtener más información sobre Si adquiere Rancher Support de NetApp, recibirá un correo electrónico con las instrucciones.
+
+
+
+== Ranchero sobre la arquitectura y los componentes de NetApp HCI
+
+A continuación se ofrece una descripción general de los distintos componentes de Rancher en NetApp HCI:
+
+image::rancher_architecture_diagram1.png[Guardabosques sobre la arquitectura de NetApp HCI]
+
+* *Control de cloud híbrido de NetApp*: Esta interfaz le permite implementar Rancher en el software NetApp HCI y NetApp Element, necesario para Rancher en NetApp HCI.
++
+
+TIP: Puede usar el control de cloud híbrido de NetApp también para actualizar los servicios de gestión, ampliar el sistema, recopilar registros y supervisar la instalación.
+
+* *Servicios de gestión*: Los servicios de gestión se ejecutan en el nodo de gestión y le permiten implementar Rancher en NetApp HCI mediante el control de cloud híbrido de NetApp.
+* *Clúster de gestión*: Rancher en NetApp HCI implementa tres máquinas virtuales en el clúster de gestión de Rancher, que puede ver mediante el control de cloud híbrido de NetApp, vCenter Server o la interfaz de usuario de Rancher. Las máquinas virtuales del clúster de gestión alojan el servidor Rancher, el motor Rancher Kubernetes Engine (RKE) y el sistema operativo Linux.
+
+
+
+TIP: Para obtener el mejor rendimiento y una mayor seguridad, considere la posibilidad de usar un clúster de Kubernetes dedicado para el servidor de gestión Rancher. No debe ejecutar las cargas de trabajo de usuario en el clúster de gestión.
+
+* *Clústeres de usuario*: Los clústeres de usuarios de Kubernetes que están en proceso de flujo descendente ejecutan sus aplicaciones y servicios. Cualquier clúster que implemente desde Rancher o importe en Rancher es un clúster de usuarios.
+* *Trident*: Hay un catálogo de Trident disponible para Rancher en NetApp HCI y se ejecuta en los clústeres de usuarios. La inclusión de este catálogo simplifica la puesta en marcha de Trident en los clústeres de usuarios.
+
+
+[discrete]
+== Obtenga más información
+
+* https://rancher.com/docs/rancher/v2.x/en/overview/architecture/["Documentación de rancher sobre arquitectura"^]
+* https://www.netapp.com/us/documentation/hci.aspx["Recursos de NetApp HCI"^]
+

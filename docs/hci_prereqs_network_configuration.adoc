@@ -1,0 +1,97 @@
+---
+sidebar: sidebar 
+permalink: docs/hci_prereqs_network_configuration.html 
+summary: Obtenga información acerca de las opciones de configuración de red para NetApp HCI. 
+keywords: netapp, hci, cabling, network configuration 
+---
+= Configuración de red
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+:keywords: netapp, hci, cabling, network configuration
+
+
+[role="lead"]
+NetApp HCI puede utilizar varias configuraciones de VLAN y cableado de red distintas. Es importante planificar la configuración de red para garantizar una correcta implementación.
+
+
+
+== Segmentos de red requeridos
+
+NetApp HCI requiere tres segmentos de red como mínimo: Tráfico de gestión, almacenamiento y virtualización (que incluye máquinas virtuales y tráfico de vMotion de VMware). También es posible separar el tráfico de la máquina virtual y de vMotion. Estos segmentos de red, en general, existen como VLAN separadas en la infraestructura de red de NetApp HCI.
+
+El modo en que los nodos de computación y almacenamiento se conectan a estas redes depende de cómo se diseñan y se cablean los nodos. Las ilustraciones de red de ejemplo incluidas en esta guía suponen las siguientes redes:
+
+|===
+| Nombre de la red | ID DE VLAN 
+
+
+| Gestión | 100 
+
+
+| Reducida | 105 
+
+
+| VMotion | 107 
+
+
+| Equipos virtuales | 200, 201 
+|===
+Para la detección y configuración automática de los nodos NetApp HCI en el motor de implementación de NetApp, debe tener un segmento de red que esté disponible como VLAN sin etiquetas o nativa en todos los puertos del switch que se utilizan para las interfaces SFP+/SFP28 de los nodos. De este modo, se proporcionará comunicación de capa 2 entre todos los nodos para su detección y puesta en marcha. Sin una VLAN nativa, debe configurar las interfaces SFP+/SFP28 de todos los nodos manualmente con una dirección VLAN y IPv4 para que se puedan detectar. En los ejemplos de configuración de red de este documento, la red de gestión (VLAN ID 100) se utiliza con este propósito.
+
+El motor de implementación de NetApp permite configurar rápidamente las redes para los nodos de computación y almacenamiento durante la implementación inicial. Puede colocar algunos componentes de gestión incorporados, como vCenter y el nodo de gestión, en su propio segmento de red. Estos segmentos de red requieren enrutamiento para permitir que vCenter y el nodo de gestión se comuniquen con las redes de gestión de almacenamiento y computación. En la mayoría de las implementaciones, esos componentes utilizan la misma red de gestión (ID de VLAN 100 en este ejemplo).
+
+
+NOTE: Las redes de máquina virtual se configuran con vCenter. La red de máquina virtual predeterminada (grupo de puertos "VM_Network") en las implementaciones de NetApp HCI se configura sin un identificador de VLAN. Si planea utilizar varias redes de máquina virtual etiquetadas (VLAN 200 y 201 en el ejemplo anterior), asegúrese de incluirlas en la planificación de red inicial.
+
+
+
+== Opciones de configuración y cableado de red
+
+Se puede usar una configuración de red de dos cables para los nodos de computación H410C, lo cual simplifica el enrutamiento de los cables. Esta configuración utiliza dos interfaces SFP+/SFP28 más una interfaz RJ45 opcional para la comunicación IPMI. Estos nodos también pueden usar una configuración de seis cables con dos interfaces RJ45 y cuatro SFP28/SFP+.
+
+Los nodos de almacenamiento H410S y H610S admiten una topología de red que utiliza cuatro puertos de red (puertos A a a D).
+
+Los nodos de computación admiten tres topologías de red, según la plataforma de hardware:
+
+|===
+| Opción de configuración | Cableado para nodos H410C | Cableado para nodos H610C | Cableado para nodos H615C 
+
+
+| Opción A | Dos cables con los puertos D y E | Dos cables con los puertos C y D | Dos cables que utilizan los puertos A y B 
+
+
+| Opción B | Seis cables con los puertos A a F | No disponible | No disponible 
+
+
+| Opción C 3+| Similar a la opción B, pero con VLAN nativas (o "puertos de acceso") en el switch para las redes de gestión, almacenamiento y vMotion 
+|===
+Los nodos que no tienen el número correcto de cables conectados no pueden participar en la implementación. Por ejemplo, no se puede implementar un nodo de computación en una configuración de seis cables si solo tiene conectados los puertos D y E.
+
+
+NOTE: Es posible ajustar la configuración de red NetApp HCI después de la implementación para satisfacer las necesidades de infraestructura. Sin embargo, al ampliar los recursos de NetApp HCI, recuerde que los nodos nuevos deben tener la misma configuración de cables que los nodos de computación y de almacenamiento existentes.
+
+[NOTE]
+====
+Si el motor de puesta en marcha de NetApp falla porque su red no admite tramas gigantes, puede realizar una de las siguientes soluciones alternativas:
+
+* Use una dirección IP estática y establezca manualmente una unidad de transmisión máxima (MTU) de 9000 bytes en la red Bond10G.
+* Configure el Protocolo de configuración dinámica de host para anunciar una MTU de interfaz de 9000 bytes en la red Bond10G.
+
+
+====
+.Opciones de configuración de red
+* link:hci_prereqs_network_configuration_option_A.html["Opción de configuración de red A"]
+* link:hci_prereqs_network_configuration_option_B.html["Opción de configuración de red B"]
+* link:hci_prereqs_network_configuration_option_C.html["Opción de configuración de red C"]
+
+
+[discrete]
+== Obtenga más información
+
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Recursos de NetApp HCI"^]
+* https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
+

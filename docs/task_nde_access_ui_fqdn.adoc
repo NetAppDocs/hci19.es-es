@@ -1,0 +1,226 @@
+---
+sidebar: sidebar 
+permalink: docs/task_nde_access_ui_fqdn.html 
+summary: Aprenda a configurar, quitar y solucionar los problemas del acceso FQDN del sistema a la interfaz de usuario web. 
+keywords: netapp, hci, fqdn, ui, access, web, administration 
+---
+= Configure el acceso completo a la interfaz de usuario web de Nombre de dominio
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+NetApp HCI con el software Element 12.2 o una versión posterior le permite acceder a las interfaces web del clúster de almacenamiento mediante el nombre de dominio completo (FQDN). Si desea usar el FQDN para acceder a interfaces de usuario web como la interfaz de usuario web de Element, la interfaz de usuario por nodo o la interfaz de usuario de nodo de gestión, primero debe añadir un ajuste de clúster de almacenamiento para identificar el FQDN que utiliza el clúster.
+
+Ahora se puede acceder a las interfaces web del clúster de almacenamiento mediante el nombre de dominio completo (FQDN). Si desea usar el FQDN para acceder a interfaces de usuario web como la interfaz de usuario web de Element, la interfaz de usuario por nodo o la interfaz de usuario de nodo de gestión, primero debe añadir un ajuste de clúster de almacenamiento para identificar el FQDN que utiliza el clúster. Esto permite al clúster redirigir correctamente una sesión de inicio de sesión y mejora la integración con servicios externos como gestores de claves y proveedores de identidades para la autenticación de múltiples factores.
+
+.Lo que necesitará
+* Esta función requiere Element 12.2 o posterior.
+* Para configurar esta función con las API REST de NetApp Hybrid Cloud Control, se requieren servicios de gestión 2.15 o posteriores.
+* Para configurar esta función con la interfaz de usuario de control del cloud híbrido de NetApp se requieren servicios de gestión 2.19 o posteriores.
+* Para utilizar las API DE REST, debe haber puesto en marcha un nodo de gestión que ejecuta la versión 11.5 o una versión posterior.
+* Necesita nombres de dominio completos para el nodo de gestión y cada clúster de almacenamiento que se resuelven correctamente con la dirección IP del nodo de gestión y cada dirección IP de clúster de almacenamiento de.
+
+
+Puede configurar o quitar el acceso de interfaz de usuario web FQDN de NetApp Hybrid Cloud Control y la API DE REST. También puede solucionar problemas de RFQ configuradas incorrectamente.
+
+* <<Configure el acceso de interfaz de usuario web de FQDN mediante NetApp Hybrid Cloud Control>>
+* <<Configure el acceso de interfaz de usuario web del FQDN mediante la API DE REST>>
+* <<Elimine el acceso de interfaz de usuario web de FQDN mediante el control de cloud híbrido de NetApp>>
+* <<Quite el acceso de interfaz de usuario web del FQDN mediante la API DE REST>>
+* <<Resolución de problemas>>
+
+
+
+
+== Configure el acceso de interfaz de usuario web de FQDN mediante NetApp Hybrid Cloud Control
+
+.Pasos
+. Abra la dirección IP del nodo de gestión en un navegador web:
++
+[listing]
+----
+https://<ManagementNodeIP>
+----
+. Inicie sesión en Hybrid Cloud Control de NetApp proporcionando las credenciales de administrador del clúster de almacenamiento.
+. Seleccione el icono de menú en la parte superior derecha de la página.
+. Seleccione *Configurar*.
+. En el panel *nombres de dominio completos*, seleccione *Configurar*.
+. En la ventana que aparece, introduzca las FQDN para el nodo de administración y cada clúster de almacenamiento.
+. Seleccione *Guardar*.
++
+El panel *nombres de dominio completos* enumera cada clúster de almacenamiento con su MVIP y FQDN asociados.
+
++
+
+NOTE: En el panel *nombres de dominio completos* sólo aparecen los clústeres de almacenamiento conectados con el conjunto FQDN.
+
+
+
+
+
+== Configure el acceso de interfaz de usuario web del FQDN mediante la API DE REST
+
+.Pasos
+. Asegúrese de que los nodos de almacenamiento de Element y el nodo de gestión tengan DNS configurado correctamente para el entorno de red para que se puedan resolver las FQDN del entorno. Para establecer DNS, vaya a la interfaz de usuario por nodo para nodos de almacenamiento y al nodo de gestión y seleccione *Configuración de red* > *Red de administración*.
++
+.. IU por nodo para nodos de almacenamiento: `https://<storage_node_management_IP>:442`
+.. IU por nodo para el nodo de gestión: `https://<management_node_IP>:442`
+
+
+. Cambie la configuración del clúster de almacenamiento mediante la API de Element.
++
+.. Acceda a la API de Element y cree la siguiente preferencia de interfaz del clúster mediante el `CreateClusterInterfacePreference` Método API e inserte el FQDN de MVIP del clúster para el valor de preferencia:
++
+*** Nombre: `mvip_fqdn`
+*** Valor: <Fully Qualified Domain Name for the Cluster MVIP>
++
+Por ejemplo, aquí el nombre de dominio completo es `storagecluster.my.org`:
+
++
+[listing]
+----
+https://<Cluster_MVIP>/json-rpc/12.2?method=CreateClusterInterfacePreference&name=mvip_fqdn&value=storagecluster.my.org
+----
+
+
+
+
+. Cambie la configuración del nodo de gestión con la API DE REST en el nodo de gestión:
++
+.. Acceda a la interfaz de usuario de API DE REST para el nodo de gestión. Para ello, introduzca la dirección IP del nodo de gestión seguida de `/mnode/2/`. Por ejemplo:
++
+[listing]
+----
+https://<management_node_IP>/mnode/2/
+----
+.. Seleccione *autorizar* o cualquier icono de bloqueo e introduzca el nombre de usuario y la contraseña del clúster de elementos.
+.. Introduzca el ID de cliente as `mnode-client`.
+.. Seleccione *autorizar* para iniciar una sesión.
+.. Cierre la ventana.
+.. Seleccione *GET /settings*.
+.. Seleccione *probar*.
+.. Seleccione *Ejecutar*.
+.. Tenga en cuenta si el proxy se utiliza o no como se indica en la `"use_proxy"` por `true` o. `false`.
+.. Seleccione *COLOCAR /settings*.
+.. Seleccione *probar*.
+.. En el área cuerpo de la solicitud, introduzca el nombre de dominio completo del nodo de gestión como valor para `mnode_fqdn` parámetro. Especifique también si se debe utilizar el proxy (`true` o. `false` desde el paso anterior) para la `use_proxy` parámetro.
++
+[listing]
+----
+{
+  "mnode_fqdn": "mnode.my.org",
+  "use_proxy": false
+}
+----
+.. Seleccione *Ejecutar*.
+
+
+
+
+
+
+== Elimine el acceso de interfaz de usuario web de FQDN mediante el control de cloud híbrido de NetApp
+
+Puede usar este procedimiento para quitar el acceso web FQDN para el nodo de gestión y los clústeres de almacenamiento.
+
+.Pasos
+. En el panel *nombres de dominio completos*, seleccione *Editar*.
+. En la ventana resultante, elimine el contenido en el campo de texto *FQDN*.
+. Seleccione *Guardar*.
++
+La ventana se cierra y el FQDN ya no aparece en el panel *nombres de dominio completos*.
+
+
+
+
+
+== Quite el acceso de interfaz de usuario web del FQDN mediante la API DE REST
+
+.Pasos
+. Cambie la configuración del clúster de almacenamiento mediante la API de Element.
++
+.. Acceda a la API de Element y elimine la siguiente preferencia de interfaz de clúster mediante el `DeleteClusterInterfacePreference` Método API:
++
+*** Nombre: `mvip_fqdn`
++
+Por ejemplo:
+
++
+[listing]
+----
+https://<Cluster_MVIP>/json-rpc/12.2?method=DeleteClusterInterfacePreference&name=mvip_fqdn
+----
+
+
+
+
+. Cambie la configuración del nodo de gestión con la API DE REST en el nodo de gestión:
++
+.. Acceda a la interfaz de usuario de API DE REST para el nodo de gestión. Para ello, introduzca la dirección IP del nodo de gestión seguida de `/mnode/2/`. Por ejemplo:
++
+[listing]
+----
+https://<management_node_IP>/mnode/2/
+----
+.. Seleccione *autorizar* o cualquier icono de bloqueo e introduzca el nombre de usuario y la contraseña del clúster de elementos.
+.. Introduzca el ID de cliente as `mnode-client`.
+.. Seleccione *autorizar* para iniciar una sesión.
+.. Cierre la ventana.
+.. Seleccione *COLOCAR /settings*.
+.. Seleccione *probar*.
+.. En el área cuerpo de la solicitud, no introduzca un valor para `mnode_fqdn` parámetro. Especifique también si se debe utilizar el proxy (`true` o. `false`) para `use_proxy` parámetro.
++
+[listing]
+----
+{
+  "mnode_fqdn": "",
+  "use_proxy": false
+}
+----
+.. Seleccione *Ejecutar*.
+
+
+
+
+
+
+== Resolución de problemas
+
+Si las FQDN están configuradas incorrectamente, es posible que tenga problemas para acceder al nodo de administración, a un clúster de almacenamiento o a ambos. Utilice la siguiente información como ayuda para solucionar el problema.
+
+|===
+| Problema | Causa | Resolución 
+
+
+ a| 
+* Se obtiene un error del explorador al intentar acceder al nodo de gestión o al clúster de almacenamiento mediante el FQDN.
+* No puede iniciar sesión en el nodo de gestión ni en el clúster de almacenamiento mediante una dirección IP.
+
+| El nombre de dominio completo del nodo de gestión y el nombre de dominio completo del clúster de almacenamiento están configurados incorrectamente. | Use las instrucciones de API DE REST que aparecen en esta página para quitar las opciones de FQDN del nodo de gestión y del clúster de almacenamiento y volver a configurarlos. 
+
+
+ a| 
+* Se obtiene un error del explorador al intentar acceder al FQDN del clúster de almacenamiento.
+* No puede iniciar sesión en el nodo de gestión ni en el clúster de almacenamiento mediante una dirección IP.
+
+| El nombre de dominio completo del nodo de gestión está configurado correctamente, pero el nombre de dominio completo del clúster de almacenamiento está configurado incorrectamente. | Use las instrucciones de API DE REST que aparecen en esta página para quitar la configuración de FQDN del clúster de almacenamiento y volver a configurarlos. 
+
+
+ a| 
+* Obtiene un error del explorador al intentar acceder al FQDN del nodo de gestión.
+* Puede iniciar sesión en el nodo de gestión y el clúster de almacenamiento con una dirección IP.
+
+| El nombre de dominio completo del nodo de gestión está configurado incorrectamente, pero el nombre de dominio completo del clúster de almacenamiento está configurado correctamente. | Inicie sesión en NetApp Hybrid Cloud Control para corregir los ajustes FQDN del nodo de gestión en la interfaz de usuario o utilice las instrucciones API DE REST en esta página para corregir los ajustes. 
+|===
+[discrete]
+== Obtenga más información
+
+* https://docs.netapp.com/us-en/element-software/api/reference_element_api_createclusterinterfacepreference.html["CreateClusterInterfacePreference información de la API en la documentación de SolidFire y Element"^]
+* https://www.netapp.com/us/documentation/hci.aspx["Recursos de NetApp HCI"^]
+* https://docs.netapp.com/us-en/element-software/index.html["Documentación de SolidFire y el software Element"^]
+

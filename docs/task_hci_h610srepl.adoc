@@ -1,0 +1,97 @@
+---
+sidebar: sidebar 
+permalink: docs/task_hci_h610srepl.html 
+summary: 'Puede que deba sustituir el chasis si falla el ventilador, la unidad de procesamiento central (CPU) o el módulo de memoria en línea doble (DIMM), o bien si resuelve problemas de sobrecalentamiento o problemas con el proceso de arranque. El LED ámbar parpadeante de la parte frontal del chasis indica la posible necesidad de sustituir el chasis. Debe comunicarse con el soporte de NetApp antes de continuar.' 
+keywords: netapp, hci, h610s, chassis replacement, node replacement 
+---
+= Sustituya los nodos H610S
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puede que deba sustituir el chasis si falla el ventilador, la unidad de procesamiento central (CPU) o el módulo de memoria en línea doble (DIMM), o bien si resuelve problemas de sobrecalentamiento o problemas con el proceso de arranque. El LED ámbar parpadeante de la parte frontal del chasis indica la posible necesidad de sustituir el chasis. Debe comunicarse con el soporte de NetApp antes de continuar.
+
+
+NOTE: Consulte link:https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Software/Element_Software/NetApp_H610S_installation_requirements_for_replacement_or_expansion_nodes["Artículo de base de conocimientos"^] Para obtener información acerca de los requisitos de instalación para los nodos H610S. Los nodos de almacenamiento H610S nuevos y de repuesto pueden tener requisitos de instalación adicionales según la versión existente del software Element del clúster de almacenamiento. Póngase en contacto con el soporte de NetApp si desea obtener más información.
+
+
+TIP: Los términos "nodo" y "chasis" se utilizan indistintamente en el caso de H610S, que es un chasis de unidad de rack (1U).
+
+
+
+== Prácticas recomendadas para agregar y quitar unidades
+
+Debe seguir estas prácticas recomendadas para añadir unidades al clúster:
+
+* Añada todas las unidades de bloques y asegúrese de que la sincronización de bloques se complete antes de añadir las unidades de segmentos.
+* Para el software Element 10.x y versiones posteriores, añada todas las unidades de bloques a la vez. Asegúrese de no hacerlo para más de tres nodos a la vez.
+* Para el software Element 9.x y versiones anteriores, añada tres unidades a la vez que le permitan sincronizarse completamente antes de añadir el siguiente grupo de tres.
+* Quite la unidad de segmentos y asegúrese de que la sincronización de segmentos se complete antes de quitar las unidades de bloques.
+* Quite todas las unidades de bloques de un único nodo a la vez. Asegúrese de que toda la sincronización de bloques esté completa antes de moverse al siguiente nodo.
+
+
+.Lo que necesitará
+* Se ha puesto en contacto con el soporte de NetApp. Si solicita una sustitución, debe tener un caso abierto con el soporte de NetApp.
+* Ha obtenido el nodo de sustitución.
+* Usted tiene una muñequera de descarga electrostática (ESD), o usted ha tomado otra protección antiestática.
+* Si necesita realizar el proceso Volver a la imagen de fábrica (RTFI), ha obtenido la llave USB. El soporte de NetApp puede ayudarle a decidir si necesita llevar a cabo el proceso RTFI.
+* Tiene un teclado y un monitor.
+* Ha quitado el nodo con errores correctamente del clúster.
+* Si un DIMM ha dado error, ha quitado las unidades antes de quitar el nodo del clúster.
+
+
+.Acerca de esta tarea
+Las alarmas en VMware vSphere Web Client alertan de un fallo en un host. Debe coincidir con el número de serie del host con el error desde VMware vSphere Web Client con el número de serie en la etiqueta adhesiva que aparece en la parte posterior del nodo.
+
+.Pasos
+. Localice la etiqueta de servicio en la parte frontal del chasis con errores.
++
+image::h610s-servicetag.gif[Muestra la etiqueta de servicio en la parte frontal del chasis H610S.]
+
+. Compruebe que el número de serie de la etiqueta de servicio coincida con el número de caso de soporte de NetApp cuando solicitó el chasis de reemplazo.
+. Conecte el teclado y el monitor a la parte posterior del chasis con errores.
+. Compruebe el número de serie del nodo con errores con el soporte de NetApp.
+. Apague el chasis.
+. Etiquete las unidades frontales y los cables posteriores con sus ubicaciones, de modo que se puedan volver a colocar en las mismas ubicaciones después de la sustitución.
++
+Consulte la siguiente imagen para ver la colocación de las unidades en el chasis:
+
++
+image::h610s-drives.gif[Muestra el frente del chasis H610S con las unidades etiquetadas.]
+
+. Quite los cables.
+. Retire el chasis desenroscando los tornillos de apriete manual de las orejas de montaje. Debe empaquetar y devolver el chasis con errores a NetApp.
+. Instale el chasis de repuesto.
+. Quite las unidades con cuidado del chasis que ha fallado e insértelas en el chasis de reemplazo.
++
+
+NOTE: Debe insertar las unidades en las mismas ranuras en las que estaban antes de quitarlas.
+
+. Quite las unidades de suministro de alimentación del chasis con errores e insértelas en el chasis de reemplazo.
+. Inserte los cables de suministro de alimentación y los cables de red en sus puertos originales.
+. Es posible que se inserten transceptores de factor de forma pequeño conectable (SFP) en los puertos 10 GbE del nodo de reemplazo. Debe quitarlos antes de conectar los puertos 10 GbE.
++
+
+NOTE: Consulte la documentación del proveedor del switch si el switch no reconoce los cables.
+
+. Encienda el chasis pulsando el botón de encendido situado en la parte frontal. El nodo tarda aproximadamente cinco minutos y 30 segundos en arrancar.
+. Realice los pasos de configuración.
++
+** Si el nodo H610S forma parte de una instalación de NetApp HCI, utilice Hybrid Cloud Control de NetApp para configurar el recurso de almacenamiento. Consulte link:task_hcc_expand_storage.html["Amplíe los recursos de almacenamiento de NetApp HCI"].
+** Si el nodo H610S forma parte de una instalación de almacenamiento all-flash de SolidFire, configure el nodo mediante la interfaz de usuario de software (IU) de NetApp Element. Comuníquese con el soporte de NetApp para obtener ayuda.
+
+
+
+
+
+
+== Obtenga más información
+
+* https://www.netapp.com/us/documentation/hci.aspx["Recursos de NetApp HCI"^]
+* http://docs.netapp.com/sfe-122/index.jsp["Centro de documentación de SolidFire y el software Element"^]
+

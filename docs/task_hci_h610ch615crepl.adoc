@@ -1,0 +1,269 @@
+---
+sidebar: sidebar 
+permalink: docs/task_hci_h610ch615crepl.html 
+summary: Debe reemplazar un chasis para reparar errores de nodo de computación relacionados con la CPU, la placa base o si no enciende. Si tiene un DIMM defectuoso en su nodo de computación H610C que ejecuta NetApp HCI Bootstrap OS versión 1.6 o posterior, puede sustituir el DIMM y no tiene que sustituir el chasis. En los nodos H615C, no es necesario sustituir el chasis si un DIMM falla; solo puede sustituir el DIMM con errores. 
+keywords: netapp, hci, H610C, H615C, chassis replacement, node replacement 
+---
+= Reemplace los nodos H610C y H615C
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Debe reemplazar un chasis para reparar errores de nodo de computación relacionados con la CPU, la placa base o si no enciende. Si tiene un DIMM defectuoso en su nodo de computación H610C que ejecuta NetApp HCI Bootstrap OS versión 1.6 o posterior, puede sustituir el DIMM y no tiene que sustituir el chasis. En los nodos H615C, no es necesario sustituir el chasis si un DIMM falla; solo puede sustituir el DIMM con errores.
+
+
+NOTE: En el caso de H610C y H615C, los términos "nodo" y "chasis" se utilizan indistintamente, ya que el nodo y el chasis no son componentes separados.
+
+.Lo que necesitará
+* Verificó que el nodo ha fallado.
+* Tiene un chasis de reemplazo. Para solicitar una sustitución, debe ponerse en contacto con el soporte de NetApp.
+* Usted tiene una muñequera de descarga electrostática (ESD), o usted ha tomado otra protección antiestática.
+* Ha etiquetado cada cable conectado al chasis.
+
+
+.Acerca de esta tarea
+Las alarmas en VMware vSphere Web Client alertan de un fallo en un host. Debe coincidir con el número de serie del host con el error desde VMware vSphere Web Client con el número de serie en la etiqueta adhesiva que aparece en la parte posterior del nodo.
+
+.Descripción general de los pasos
+A continuación se ofrece una descripción general de los pasos de este procedimiento:<<Prepare para sustituir el nodo>>
+<<Sustituya el nodo>>
+<<Añada el nodo al clúster>>
+<<Instale los controladores de la GPU>>
+
+
+
+== Prepare para sustituir el nodo
+
+Antes de reemplazar el nodo, debe migrar las máquinas virtuales (VM) alojadas en el nodo a un host disponible y quitar el nodo del clúster. Debe obtener detalles sobre el nodo, como el número de serie y la información de red.
+
+
+NOTE: En el caso de fallos de componentes donde el nodo sigue conectado y funcionando, por ejemplo, un fallo de un módulo de memoria en línea doble (DIMM), debe quitar las unidades del clúster antes de quitar el nodo con errores.
+
+.Pasos
+. En VMware vSphere Web Client, realice los pasos necesarios para migrar las máquinas virtuales a otro host disponible.
++
+
+NOTE: Consulte la documentación de VMware para conocer los pasos de migración.
+
+. Seleccione el nodo que ha fallado y seleccione *Monitor > Estado del hardware > Sensores*.
+. Anote el número de serie del nodo con errores. La siguiente captura de pantalla es sólo un ejemplo:
++
+image::h610c serial number.gif[Muestra el número de serie del nodo con errores en VMware vSphere Web Client.]
+
++
+Necesita el número de serie para identificar el chasis emparejando el número que ha indicado con el número de serie de la etiqueta en la parte posterior del nodo.
+
+. Haga clic con el botón derecho del ratón en el nodo que ha fallado y seleccione *Conexión > desconectar*.
+. Seleccione *Sí* para confirmar la acción.
+. Haga clic con el botón derecho del ratón en el nodo con errores y seleccione *Quitar del inventario*.
+. Haga clic en *Sí* para confirmar la acción.
+
+
+
+
+== Sustituya el nodo
+
+Después de quitar el nodo con errores del clúster, puede quitar el chasis con errores e instalar el chasis de reemplazo.
+
+
+NOTE: Asegúrese de tener protección antiestática antes de realizar los pasos aquí.
+
+.Pasos
+. Desembale el nuevo chasis y configúrelo en una superficie nivelada. Conserve el material de empaque durante el momento en que devuelve el chasis fallido a NetApp.
+. Etiquete cada cable que esté insertado en la parte posterior del chasis que va a quitar. Después de instalar el nuevo chasis, debe insertar los cables nuevamente en los puertos originales.
+. Desconecte todos los cables de la parte posterior del chasis.
+. Retire el chasis desenroscando los tornillos de apriete manual de las orejas de montaje. Debe empaquetar y devolver el chasis con errores a NetApp.
+. Deslice el chasis de repuesto sobre los rieles.
++
+
+CAUTION: Asegúrese de no utilizar una fuerza excesiva al deslizar el chasis sobre los rieles.
+
+. Solo para H615C. Quite los DIMM del chasis con errores e inserte estos DIMM en el chasis de reemplazo.
++
+
+NOTE: Debe sustituir los DIMM en las mismas ranuras desde las que se quitaron en el nodo con errores.
+
+. Quite las dos unidades de suministro de alimentación de cada lado del chasis con errores e insértelas en el chasis de reemplazo.
+. Vuelva a conectar los cables a los puertos desde los que se desconectaron originalmente. Las etiquetas que había añadido a los cables cuando los desconectó le ayudarán a guiar.
++
+
+CAUTION: Si la apertura de flujo de aire de la parte trasera del chasis está bloqueada con cables o etiquetas, puede provocar fallos prematuros en los componentes debido al sobrecalentamiento. No fuerce los cables hacia los puertos, podría dañar los cables, los puertos o ambos.
+
+. Encienda el chasis.
+
+
+
+
+== Añada el nodo al clúster
+
+Debe configurar NetApp HCI para usar el nodo de computación nuevo.
+
+.Lo que necesitará
+* La instancia de vSphere que utiliza NetApp HCI tiene licencia vSphere Enterprise Plus si va a añadir el nodo a una implementación con switches virtuales distribuidos.
+* Ninguna de las instancias de vCenter o vSphere que se utilizan con NetApp HCI tiene licencias caducadas.
+* Tiene direcciones IPv4 gratuitas y sin usar en el mismo segmento de red que los nodos existentes (el nuevo nodo debe instalarse en la misma red que los nodos existentes de su tipo).
+* Tiene listas las credenciales de cuenta de administrador de vCenter.
+
+
+.Pasos
+. Abra la dirección IP del nodo de gestión en un navegador web. Por ejemplo:
++
+[listing]
+----
+https://<ManagementNodeIP>
+----
+. Inicie sesión en NetApp Hybrid Cloud Control proporcionando las credenciales de administrador del clúster de almacenamiento de NetApp HCI.
+. En el panel expandir instalación, seleccione *expandir*. El explorador abre el motor de implementación de NetApp.
+. Inicie sesión en el motor de implementación de NetApp. Para ello, proporcione las credenciales de administrador del clúster de almacenamiento de NetApp HCI.
+. En la página de bienvenida, seleccione *Sí*.
+. En la página End User License, realice las siguientes acciones:
++
+.. Lea el contrato de licencia para usuario final de VMware.
+.. Si acepta los términos, seleccione *Acepto* al final del texto del acuerdo.
+
+
+. Haga clic en Continue.
+. En la página vCenter, realice los pasos siguientes:
++
+.. Introduzca un FQDN o una dirección IP y credenciales de administrador para la instancia de vCenter asociada con la instalación de NetApp HCI.
+.. Seleccione *continuar*.
+.. Seleccione un centro de datos de vSphere existente al cual añadir nodos de computación nuevos o seleccione Create New Datacenter para añadir los nodos de computación nuevos a un centro de datos nuevo.
++
+
+NOTE: Si selecciona Create New Datacenter, el campo Cluster se completa automáticamente.
+
+.. Si seleccionó un centro de datos existente, seleccione un clúster de vSphere con el que se deben asociar los nodos de computación nuevos.
++
+
+NOTE: Si NetApp HCI no puede reconocer la configuración de red del clúster que seleccionó para la ampliación, asegúrese de que la asignación vmkernel y vmnic para las redes de gestión, almacenamiento y vMotion se establezcan con los valores predeterminados de puesta en marcha.
+
+.. Seleccione *continuar*.
+
+
+. En la página ESXi Credentials, introduzca una contraseña raíz ESXi para los nodos de computación que va a añadir. Debe usar la misma contraseña que se creó durante la implementación inicial de NetApp HCI.
+. Seleccione *continuar*.
+. Si creó un clúster de centro de datos de vSphere nuevo, en la página Network Topology, seleccione una topología de red para que coincida con los nodos de computación nuevos que se añaden.
++
+
+NOTE: Solo puede seleccionar la opción de dos cables si los nodos de computación utilizan la topología de dos cables y la implementación de NetApp HCI existente se configuró con identificadores de VLAN.
+
+. En la página Available Inventory, seleccione el nodo que se va a añadir a la instalación existente de NetApp HCI.
++
+
+TIP: Para algunos nodos de computación, es posible que deba habilitar EVC en el nivel más alto admitido por la versión de vCenter antes de añadirlos a la instalación. Debe utilizar el cliente de vSphere a fin de habilitar EVC para estos nodos de computación. Después de habilitar dicha función, actualice la página Inventory e intente añadir nuevamente los nodos de computación.
+
+. Seleccione *continuar*.
+. Opcional: Si creó un nuevo clúster de centro de datos de vSphere, en la página Network Settings, importe la información de la red desde una implementación de NetApp HCI existente seleccionando la casilla de comprobación *Copiar configuración desde un clúster existente*. Esto rellena la información de la pasarela y de la subred predeterminadas para cada red.
+. En la página Network Settings, se ha detectado parte de la información de red desde la implementación inicial. Cada nodo de computación nuevo se enumera por número de serie, y es necesario asignarle información de red nueva. Para cada nodo de computación nuevo, realice los siguientes pasos:
++
+.. Si NetApp HCI detectó un prefijo de nomenclatura, cópielo desde el campo Detected Naming Prefix e insértelo como prefijo para el nuevo nombre de host único que añade en el campo Hostname.
+.. En el campo Management IP Address, introduzca una dirección IP de gestión para el nodo de computación que está en la subred de la red de gestión.
+.. En el campo vMotion IP Address, introduzca una dirección IP de vMotion para el nodo de computación que está en la subred de la red de vMotion.
+.. En el campo iSCSI A - IP Address, introduzca una dirección IP para el primer puerto iSCSI del nodo de computación que está en la subred de la red iSCSI.
+.. En el campo iSCSI B - IP Address, introduzca una dirección IP para el segundo puerto iSCSI del nodo de computación que está en la subred de la red iSCSI.
+
+
+. Seleccione *continuar*.
+. En la página Review de la sección Network Settings, el nodo nuevo se muestra en texto en negrita. Si necesita hacer cambios en la información de alguna sección, realice los pasos siguientes:
++
+.. Seleccione *Editar* para esa sección.
+.. Cuando termine de hacer los cambios, seleccione *continuar* en cualquier página posterior para volver a la página Revisión.
+
+
+. Opcional: Si no desea enviar estadísticas del clúster ni información de soporte a los servidores SolidFire Active IQ alojados en NetApp, desactive la casilla de comprobación final. Esta acción deshabilita la supervisión de diagnóstico y estado en tiempo real para NetApp HCI. Al deshabilitar esta función, se elimina la habilidad de NetApp para admitir y supervisar NetApp HCI de forma anticipada a fin de detectar y resolver problemas antes de que la producción se vea afectada.
+. Seleccione *Agregar nodos*. Puede supervisar el progreso mientras NetApp HCI añade y configura los recursos.
+. Opcional: Verifique que haya nodos de computación nuevos visibles en vCenter.
+
+
+
+
+== Instale los controladores de la GPU
+
+Los nodos de computación con unidades de procesamiento de gráficos (GPU) de NVIDIA, al igual que el nodo H610C, necesitan los controladores de software de NVIDIA instalados en VMware ESXi para poder aprovechar la potencia de procesamiento aumentada. Para instalar las controladoras de GPU, el nodo de computación debe tener una tarjeta GPU.
+
+.Pasos
+. Abra un explorador y vaya al portal de licencias de NVIDIA en la siguiente URL:
+`https://nvid.nvidia.com/dashboard/`
+. Descargue uno de los siguientes paquetes de controladores en su equipo, dependiendo de su entorno:
++
+[cols="2*"]
+|===
+| La versión de vSphere | Paquete de controladores 
+
+
+| VSphere 6.0  a| 
+NVIDIA-GRID-vSphere-6.0-390.94-390.96-392.05.zip
+
+
+
+| VSphere 6.5  a| 
+NVIDIA-GRID-vSphere-6.5-410.92-410.91-412.16.zip
+
+
+
+| VSphere 6.7  a| 
+NVIDIA-GRID-vSphere-6.7-410.92-410.91-412.16.zip
+
+|===
+. Extraiga el paquete de controladores del ordenador. El archivo .VIB resultante es el archivo de controlador sin comprimir.
+. Copie el archivo del controlador .VIB del equipo en ESXi que se ejecuta en el nodo de computación. Los siguientes comandos de ejemplo para cada versión suponen que el controlador se encuentra en el directorio $HOME/NVIDIA/ESX6.x/ del host de administración. La utilidad SCP está disponible en la mayoría de distribuciones de Linux, o está disponible como una utilidad descargable para todas las versiones de Windows:
++
+[cols="2*"]
+|===
+| Opción | Descripción 
+
+
+| ESXi 6.0  a| 
+scp $HOME/NVIDIA/ESX6.0/NVIDIA**.vib root@<ESXi_IP_ADDR>:/.
+
+
+
+| ESXi 6.5  a| 
+scp $HOME/NVIDIA/ESX6.5/NVIDIA**.vib root@<ESXi_IP_ADDR>:/.
+
+
+
+| ESXi 6.7  a| 
+scp $HOME/NVIDIA/ESX6.7/NVIDIA**.vib root@<ESXi_IP_ADDR>:/.
+
+|===
+. Siga los pasos siguientes para iniciar sesión como root en el host ESXi e instalar NVIDIA vGPU Manager en ESXi.
++
+.. Ejecute el siguiente comando para iniciar sesión en el host ESXi como usuario raíz:
+`ssh root@<ESXi_IP_ADDRESS>`
+.. Ejecute el siguiente comando para verificar que no hay controladores de GPU NVIDIA instalados actualmente:
+`nvidia-smi`Este comando debería devolver el mensaje `nvidia-smi: not found`.
+.. Ejecute los siguientes comandos para activar el modo de mantenimiento en el host e instale NVIDIA vGPU Manager desde el archivo VIB:
+`esxcli system maintenanceMode set --enable true`
+`esxcli software vib install -v /NVIDIA**.vib`Debería ver el mensaje `Operation finished successfully`.
+.. Ejecute el siguiente comando y compruebe que los ocho controladores de GPU aparecen en la lista del resultado del comando:
+`nvidia-smi`
+.. Ejecute el siguiente comando para comprobar que el paquete NVIDIA vGPU se ha instalado y cargado correctamente:
+`vmkload_mod -l | grep nvidia`El comando debería mostrar un resultado similar al siguiente: `nvidia 816 13808`
+.. Ejecute los siguientes comandos para salir del modo de mantenimiento y reiniciar el host:
+`esxcli system maintenanceMode set –enable false`
+`reboot -f`
+
+
+. Repita los pasos 4-6 para cualquier otro nodo de computación recién implementado con GPU de NVIDIA.
+. Realice las siguientes tareas siguiendo las instrucciones del sitio de documentación de NVIDIA:
++
+.. Instale el servidor de licencias de NVIDIA.
+.. Configurar los invitados de máquinas virtuales para el software NVIDIA vGPU.
+.. Si utiliza puestos de trabajo habilitados para vGPU en un contexto de infraestructura de puestos de trabajo virtuales (VDI), configure VMware Horizon View para el software vGPU de NVIDIA.
+
+
+
+
+
+
+== Obtenga más información
+
+* https://www.netapp.com/us/documentation/hci.aspx["Recursos de NetApp HCI"^]
+* http://docs.netapp.com/sfe-122/index.jsp["Centro de documentación de SolidFire y el software Element"^]
+

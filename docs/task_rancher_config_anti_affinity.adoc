@@ -1,0 +1,34 @@
+---
+sidebar: sidebar 
+permalink: docs/task_rancher_config_anti_affinity.html 
+summary: Descubra cómo configurar reglas de anti-afinidad para equipos virtuales Rancher para ayudar con la resiliencia del host. 
+keywords: netapp, hci, rancher, deploy, cluster, kubernetes, anti, affinity, resiliency 
+---
+= Mejore la resiliencia de los equipos virtuales Rancher
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Después de implementar Rancher en NetApp HCI, su entorno vSphere contendrá tres nodos nuevos como máquinas virtuales para alojar el entorno Rancher. La interfaz de usuario web de Rancher está disponible en cada uno de estos nodos. Para lograr una resiliencia completa, cada una de las tres máquinas virtuales junto con los discos virtuales correspondientes debería residir en un host físico diferente, después de eventos como ciclos de alimentación y recuperación tras fallos.
+
+Para garantizar que cada equipo virtual y sus recursos permanezcan en un host físico diferente, puede crear reglas de afinidad para el programador de recursos distribuidos (DRS) de VMware vSphere. Esto no está automatizado como parte de Rancher en la implementación de NetApp HCI.
+
+Para obtener instrucciones sobre cómo configurar las reglas de anti-afinidad de DRS, consulte los siguientes recursos de documentación de VMware:
+
+https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.resmgmt.doc/GUID-FBE46165-065C-48C2-B775-7ADA87FF9A20.html["Crear reglas de antiafinidad de VM"^]
+
+https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.avail.doc/GUID-E137A9F8-17E4-4DE7-B986-94A0999CF327.html["Reglas de afinidad de vSphere ha y DRS"^]
+
+[discrete]
+== Obtenga más información
+
+* https://rancher.com/docs/rancher/v2.x/en/overview/architecture/["Documentación de rancher sobre arquitectura"^]
+* https://rancher.com/docs/rancher/v2.x/en/overview/concepts/["Terminología de Kubernetes para Rancher"^]
+* https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
+* https://www.netapp.com/us/documentation/hci.aspx["Recursos de NetApp HCI"^]
+

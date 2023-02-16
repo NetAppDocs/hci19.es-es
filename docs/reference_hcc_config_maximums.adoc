@@ -1,0 +1,19 @@
+---
+sidebar: sidebar 
+permalink: docs/reference_hcc_config_maximums.html 
+summary: El control del cloud híbrido de NetApp tiene funcionalidades específicas, y NetApp recomienda trabajar dentro de ellas. 
+keywords: netapp, hci, HCC, configuration, capabilities, limits, maximums 
+---
+= Máximos de configuración del control del cloud híbrido de NetApp
+:allow-uri-read: 
+
+
+[role="lead"]
+NetApp HCI incluye el control del cloud híbrido de NetApp para simplificar la gestión del ciclo de vida de los recursos informáticos y del almacenamiento. Admite actualizaciones del software Element en nodos de almacenamiento para los clústeres de almacenamiento de NetApp HCI y SolidFire de NetApp, así como actualizaciones del firmware para los nodos de computación NetApp HCI en NetApp HCI. De manera predeterminada, está disponible en los nodos de gestión en NetApp HCI.
+
+Además de comunicar los componentes de hardware y software proporcionados por NetApp en una instalación de NetApp HCI, el control de cloud híbrido de NetApp interactúa con componentes de terceros en el entorno del cliente, como VMware vCenter. NetApp califica la funcionalidad de Hybrid Cloud Control de NetApp y su interacción con estos componentes de terceros en el entorno del cliente hasta cierta escala. Para obtener una experiencia óptima con el control de cloud híbrido de NetApp, NetApp recomienda permanecer dentro del rango de los máximos de configuración.
+
+Si supera estos máximos probados, puede que experimente problemas con el control del cloud híbrido de NetApp, como una interfaz de usuario más lenta y respuestas de API o una funcionalidad que no esté disponible. Si colabora con NetApp para obtener soporte para productos con el control de cloud híbrido de NetApp en entornos que estén configurados más allá de los máximos de configuración, el soporte de NetApp le solicitará que cambie la configuración para que esté dentro de los máximos de configuración documentados.
+
+.Máximos de configuración
+Control del cloud híbrido de NetApp es compatible con entornos VMware vSphere con hasta 500 nodos de computación de NetApp. Admite hasta 20 clústeres de almacenamiento basados en software de NetApp Element con 40 nodos de almacenamiento por clúster.

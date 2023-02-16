@@ -1,0 +1,83 @@
+---
+sidebar: sidebar 
+permalink: docs/task_mnode_enable_alerts.html 
+summary: Puede configurar los ajustes para supervisar las alertas en el sistema NetApp HCI. 
+keywords: netapp, element, management node, mnode, ui, alerts, alert monitoring 
+---
+= Configure la supervisión de alertas en NetApp HCI
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puede configurar los ajustes para supervisar las alertas en el sistema NetApp HCI.
+
+La supervisión de alertas de NetApp HCI reenvía las alertas del sistema de clúster de almacenamiento de NetApp HCI a vCenter Server, lo que permite ver todas las alertas de NetApp HCI desde la interfaz de vSphere Web Client.
+
+. Abra la interfaz de usuario de cada nodo de gestión (`https://[IP address]:442`).
+. Haga clic en la ficha *Monitor de alerta*.
+. Configure las opciones de supervisión de alertas.
+
+
+
+
+== Opciones de supervisión de alertas
+
+[cols="2*"]
+|===
+| opciones | Descripción 
+
+
+| Ejecutar pruebas de monitor de alerta  a| 
+Ejecuta pruebas del sistema de supervisión para comprobar lo siguiente:
+
+* Conectividad de NetApp HCI y VMware vCenter
+* Emparejamiento de NetApp HCI y VMware vCenter mediante información del almacén de datos suministrada por el servicio QoSSIOC
+* Listas actuales de alarmas de NetApp HCI y de vCenter
+
+
+
+
+| Recoger alertas | Habilita o deshabilita el reenvío de alarmas de almacenamiento de NetApp HCI a vCenter. El clúster de almacenamiento de destino se puede seleccionar en la lista desplegable. El valor predeterminado de esta opción es `Enabled`. 
+
+
+| Recopilación de alertas de prácticas recomendadas | Habilita o deshabilita el reenvío de alertas de prácticas recomendadas de almacenamiento de NetApp HCI a vCenter. Las alertas de prácticas recomendadas son errores que se activan mediante una configuración del sistema que no es óptima. El valor predeterminado de esta opción es `Disabled`. Cuando se deshabilitan, las alertas de prácticas recomendadas de almacenamiento de NetApp HCI no aparecen en vCenter. 
+
+
+| Envíe datos de soporte a AIQ  a| 
+Controla el flujo de datos de soporte y supervisión de VMware vCenter a SolidFire Active IQ de NetApp.
+
+Las opciones son las siguientes:
+
+* Enabled: Se envían todas las alarmas de vCenter, las alarmas de almacenamiento de NetApp HCI y los datos de soporte a SolidFire Active IQ de NetApp. Esto permite que NetApp respalde y supervise de forma proactiva la instalación de NetApp HCI a fin de detectar y resolver posibles problemas antes de que afecten el sistema.
+* Disabled: No se envía ninguna alarma de vCenter, alarma de almacenamiento de NetApp HCI ni dato de soporte a SolidFire Active IQ de NetApp.
+
+
+
+NOTE: Si desactiva la opción *Enviar datos a AIQ* mediante el motor de implementación de NetApp, debe hacerlo link:task_mnode_enable_activeIQ.html["habilite la telemetría"] De nuevo a través de la API DE REST del nodo de gestión para configurar el servicio desde esta página.
+
+
+
+| Envíe datos del nodo de computación a AIQ  a| 
+Controla el flujo de datos de soporte y supervisión de los nodos de computación a SolidFire Active IQ de NetApp.
+
+Las opciones son las siguientes:
+
+* Enabled: Se transmiten datos de soporte y supervisión acerca de los nodos de computación a SolidFire Active IQ de NetApp para permitir el soporte proactivo del hardware de los nodos de computación.
+* Disabled: No se transmiten datos de soporte y supervisión acerca de los nodos de computación a SolidFire Active IQ de NetApp.
+
+
+
+NOTE: Si desactiva la opción *Enviar datos a AIQ* mediante el motor de implementación de NetApp, debe hacerlo link:task_mnode_enable_activeIQ.html["habilite la telemetría"] De nuevo a través de la API DE REST del nodo de gestión para configurar el servicio desde esta página.
+
+|===
+[discrete]
+== Obtenga más información
+
+* https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Página de recursos de NetApp HCI"^]
+

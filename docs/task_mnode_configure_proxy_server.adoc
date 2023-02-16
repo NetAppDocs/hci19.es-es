@@ -1,0 +1,69 @@
+---
+sidebar: sidebar 
+permalink: docs/task_mnode_configure_proxy_server.html 
+summary: Es posible añadir activos de computación y controladora a la configuración del nodo de gestión mediante la interfaz de usuario de API DE REST. 
+keywords: netapp, hci, mnode, api, management node, add proxy, proxy server 
+---
+= Configure un servidor proxy
+:allow-uri-read: 
+
+
+[role="lead"]
+Si su clúster de está situado detrás de un servidor proxy, debe configurar el proxy de manera que pueda llegar a una red pública.
+
+Un servidor proxy se utiliza para recopiladores de telemetría y conexiones de túnel inverso. Puede habilitar y configurar un servidor proxy con la interfaz de usuario de la API de REST si aún no configuró un servidor proxy durante la instalación o la actualización. También puede modificar la configuración existente del servidor proxy o deshabilitar un servidor proxy.
+
+El comando para configurar un servidor proxy se actualiza y, a continuación, devuelve la configuración del proxy actual del nodo de gestión. Active IQ utiliza la configuración de proxy, el servicio de supervisión de NetApp HCI implementado por el motor de puesta en marcha de NetApp y otras utilidades de software Element instaladas en el nodo de gestión, incluido el túnel de soporte inverso para el soporte de NetApp.
+
+.Antes de empezar
+* Debe conocer información sobre el host y las credenciales del servidor proxy que desea configurar.
+* Asegúrese de que la versión de su clúster ejecute la versión 11.3 o posterior del software NetApp Element.
+* Asegúrese de haber implementado un nodo de gestión que ejecuta la versión 11.3 o una versión posterior.
+* (Nodo de gestión 12.0 y posterior) ha actualizado NetApp Hybrid Cloud Control a los servicios de gestión versión 2.16 antes de configurar un servidor proxy.
+
+
+.Pasos
+. Acceda a la interfaz de usuario de API DE REST en el nodo de gestión. Para ello, introduzca la dirección IP del nodo de gestión seguida de `/mnode`:
++
+[listing]
+----
+https://<ManagementNodeIP>/mnode
+----
+. Haga clic en *autorizar* o en cualquier icono de bloqueo y complete lo siguiente:
++
+.. Introduzca el nombre de usuario y la contraseña del clúster.
+.. Introduzca el ID de cliente as `mnode-client`.
+.. Haga clic en *autorizar* para iniciar una sesión.
+.. Cierre la ventana.
+
+
+. Haga clic en *PONER /settings*.
+. Haga clic en *probar*.
+. Para habilitar un servidor proxy, debe definir `use_proxy` a verdadero. Introduzca el nombre de host o la IP y los destinos de puerto proxy.
++
+El nombre de usuario del proxy, la contraseña del proxy y el puerto SSH son opcionales y deben omitirse si no se usan.
+
++
+[listing]
+----
+{
+"proxy_ip_or_hostname": "[IP or name]",
+"use_proxy": [true/false],
+"proxy_username": "[username]",
+"proxy_password": "[password]",
+"proxy_port": [port value],
+"proxy_ssh_port": [port value: default is 443]
+}
+----
+. Haga clic en *Ejecutar*.
+
+
+
+NOTE: Es posible que deba reiniciar su nodo de gestión según su entorno.
+
+[discrete]
+== Obtenga más información
+
+* https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Página de recursos de NetApp HCI"^]
+

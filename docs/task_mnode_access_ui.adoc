@@ -1,0 +1,69 @@
+---
+sidebar: sidebar 
+permalink: docs/task_mnode_access_ui.html 
+summary: Se puede acceder a la interfaz de usuario de gestión o a la API de REST. 
+keywords: netapp, mnode, management node, api, hci 
+---
+= Acceda al nodo de gestión
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+A partir de la versión 11.3 del software NetApp Element, el nodo de gestión contiene dos interfaces de usuario: Una interfaz de usuario para gestionar los servicios basados en REST y una interfaz de usuario por nodo para gestionar la configuración de red y de clúster, así como las pruebas y utilidades del sistema operativo.
+
+Para los clústeres que ejecutan el software Element de la versión 11.3 o posterior, es posible usar una de dos interfaces:
+
+* Con la interfaz de usuario del nodo de gestión (`https:// [mNode IP}:442`), puede realizar cambios en la configuración de la red y del clúster, ejecutar pruebas del sistema o utilizar utilidades del sistema.
+* Mediante el uso de la interfaz de usuario de API de REST integrada (`https://[mNode IP}/mnode`), puede ejecutar o comprender las API relacionadas con los servicios del nodo de administración, incluida la configuración del servidor proxy, las actualizaciones de nivel de servicio o la administración de activos.
+
+
+
+
+== Acceda a la interfaz de usuario de cada nodo de gestión
+
+Desde la interfaz de usuario por nodo, puede acceder a la configuración de red y clúster y utilizar las pruebas y las utilidades del sistema.
+
+.Pasos
+. Para acceder a la interfaz de usuario por nodo de gestión, introduzca la dirección IP del nodo de gestión seguida de :442
++
+[listing]
+----
+https://[IP address]:442
+----
++
+image::mnode_per_node_442_ui.png[Interfaz de usuario de nodo de gestión por nodo]
+
+. Introduzca el nombre de usuario y la contraseña del nodo de gestión cuando se le solicite.
+
+
+
+
+== Acceda a la interfaz de usuario de API DE REST del nodo de gestión
+
+Desde la interfaz de usuario de la API DE REST, puede acceder a un menú de API relacionadas con el servicio que controlan los servicios de gestión en el nodo de gestión.
+
+.Pasos
+. Para acceder a la interfaz de usuario de la API DE REST para los servicios de gestión, introduzca la dirección IP del nodo de gestión seguida de `/mnode`:
++
+[listing]
+----
+https://[IP address]/mnode
+----
++
+image::mnode_swagger_ui.png[Interfaz de usuario de API DE REST de nodo de gestión]
+
+. Haga clic en *autorizar* o en cualquier icono de bloqueo e introduzca las credenciales de administración del clúster para los permisos de uso de las API.
+
+
+[discrete]
+== Obtenga más información
+
+* link:task_mnode_enable_activeIQ.html["Habilite la supervisión de Active IQ y NetApp HCI"]
+* https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Página de recursos de NetApp HCI"^]
+

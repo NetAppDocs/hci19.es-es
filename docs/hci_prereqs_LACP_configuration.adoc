@@ -1,0 +1,36 @@
+---
+sidebar: sidebar 
+permalink: docs/hci_prereqs_LACP_configuration.html 
+summary: Descubra cómo configurar NetApp HCI para obtener el mejor rendimiento del almacenamiento. 
+keywords: netapp, hci, storage, performance, LACP 
+---
+= Configure LACP para alcanzar un rendimiento de almacenamiento óptimo
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+:keywords: netapp, hci, storage, performance, LACP
+
+
+[role="lead"]
+Para alcanzar un rendimiento óptimo en el clúster de almacenamiento de NetApp HCI, se debe configurar el protocolo de control de agregación de enlaces (LACP) en los puertos del switch que se utilizan para cada nodo de almacenamiento.
+
+.Antes de empezar
+* Configuró los puertos del switch conectados a las interfaces 10/25GbE de los nodos de almacenamiento de NetApp HCI como canales de puertos LACP.
+* Estableció los temporizadores LACP de los switches que controlan el tráfico de almacenamiento en “fast mode (1s)” para lograr un tiempo de detección de conmutación al nodo de respaldo óptimo. Durante la implementación, las interfaces Bond1G en todos los nodos de almacenamiento se configuran automáticamente para el modo activo-pasivo.
+* Configuró un canal de puerto virtual (VPC) de Cisco o una tecnología de apilamiento de switches equivalente para los switches que controlan la red de almacenamiento. La tecnología de apilamiento de switches facilita la configuración de LACP y los canales de puertos, y proporciona una topología sin bucles entre los switches y los puertos 10 GbE en los nodos de almacenamiento.
+
+
+.Pasos
+. Siga las recomendaciones del proveedor de switches a fin de habilitar LACP en los puertos del switch utilizados para los nodos de almacenamiento de NetApp H-Series.
+. Cambie el modo de unión con LACP de todos los nodos de almacenamiento en la interfaz de usuario en el nodo (también conocida como interfaz de usuario de terminal o TUI) antes de implementar NetApp HCI.
+
+
+[discrete]
+== Obtenga más información
+
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Recursos de NetApp HCI"^]
+* https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
+

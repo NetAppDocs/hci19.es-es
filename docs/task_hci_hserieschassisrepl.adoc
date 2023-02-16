@@ -1,0 +1,302 @@
+---
+sidebar: sidebar 
+permalink: docs/task_hci_hserieschassisrepl.html 
+summary: Si su chasis tiene un fallo de ventilador o un problema de alimentación, debe reemplazarlo Lo antes posible.. Los pasos del procedimiento de sustitución del chasis dependen de la configuración de NetApp HCI y la capacidad del clúster, lo que requiere considerar y planificar cuidadosamente. Debe ponerse en contacto con el soporte de NetApp para obtener instrucciones y solicitar un chasis de reemplazo. 
+keywords: netapp, hci, chassis replacement,2U chassis replacement, h-series 
+---
+= Sustituya el chasis 2U de la serie H
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si su chasis tiene un fallo de ventilador o un problema de alimentación, debe reemplazarlo Lo antes posible.. Los pasos del procedimiento de sustitución del chasis dependen de la configuración de NetApp HCI y la capacidad del clúster, lo que requiere considerar y planificar cuidadosamente. Debe ponerse en contacto con el soporte de NetApp para obtener instrucciones y solicitar un chasis de reemplazo.
+
+.Acerca de esta tarea
+Debe tener en cuenta lo siguiente antes de sustituir el chasis:
+
+* ¿Su rack tiene espacio adicional para un nuevo chasis?
+* ¿Alguno de los chasis de la implementación tiene ranuras de nodo sin utilizar?
+* Si el rack tiene espacio adicional, ¿puede mover cada uno de los nodos del chasis que ha fallado al nuevo chasis, uno por vez? Debe tener en cuenta que este proceso puede llevar tiempo.
+* ¿El clúster de almacenamiento puede permanecer en línea cuando quita los nodos que forman parte del chasis con errores?
+* ¿Sus máquinas virtuales (VM) y el clúster ESXi pueden manejar la carga de trabajo cuando quita los nodos de computación que forman parte del chasis con errores?
+
+
+.Opciones de sustitución
+Elija una de las siguientes opciones:<<Reemplace el chasis cuando haya espacio adicional sin utilizar disponible en el rack>>
+<<Sustituya el chasis cuando no se encuentre espacio adicional sin utilizar disponible en el rack>>
+
+
+
+== Reemplace el chasis cuando haya espacio adicional sin utilizar disponible en el rack
+
+Si su rack tiene espacio adicional, puede instalar el nuevo chasis y mover los nodos de uno en uno al nuevo chasis. Si alguno de los chasis instalados tiene ranuras para nodos no utilizadas, puede mover los nodos del chasis con errores a las ranuras no utilizadas de uno en uno y, a continuación, quite el chasis con errores. Antes de ser el procedimiento, asegúrese de que las longitudes de los cables sean suficientes y de que los puertos del switch estén disponibles.
+
+
+NOTE: Los pasos para mover nodos de computación son diferentes de los pasos para mover nodos de almacenamiento. Debe asegurarse de que los nodos estén apagados correctamente antes de moverlos. Después de mover todos los nodos del chasis con errores, debe quitar el chasis del rack y devolverlo a NetApp.
+
+
+
+=== Instale el chasis nuevo
+
+Puede instalar el nuevo chasis en el espacio de rack disponible y mover los nodos hacia él.
+
+.Lo que necesitará
+* Usted tiene una muñequera de descarga electrostática (ESD), o usted ha tomado otra protección antiestática.
+* Tiene el chasis de reemplazo.
+* Tiene un ascensor o dos o más personas para realizar los pasos.
+* Tiene un destornillador Phillips del número 1.
+
+
+.Pasos
+. Póngase protección antiestática.
+. Desembale el chasis de repuesto. Conserve el embalaje para cuando devuelva el chasis fallido a NetApp.
+. Inserte los rieles que se le enviaron junto con el chasis.
+. Deslice el chasis de repuesto en el rack.
++
+
+TIP: Utilice siempre mano de obra suficiente o un elevador mientras instala el chasis.
+
+. Fije el chasis al rack con los tornillos de fijación delanteros y apriete los tornillos con el destornillador.
+
+
+
+
+=== Mover un nodo de computación
+
+Antes de mover un nodo de computación al nuevo chasis o a un chasis existente que tiene ranuras adicionales sin utilizar, debe migrar las máquinas virtuales (VM), apagar el nodo correctamente y etiquetar los cables insertados en el nodo.
+
+
+NOTE: Asegúrese de tener protección antiestática al mover el nodo.
+
+.Pasos
+. Tome nota del número de serie del nodo en la etiqueta adhesiva que aparece en la parte posterior del nodo.
+. En VMware vSphere Web Client, seleccione *hosts and Clusters*, seleccione un nodo (host) y, a continuación, seleccione *Monitor > hardware Status > Sensors*.
+. En la sección *Sensores*, busque el número de serie que anotó en la pegatina situada en la parte posterior del nodo.
+. Después de encontrar el número de serie coincidente, migre las máquinas virtuales a otro host disponible.
++
+
+NOTE: Consulte la documentación de VMware para conocer los pasos de migración.
+
+. Haga clic con el botón derecho del ratón en el nodo y seleccione *Alimentación > Apagar*. Ahora está listo para quitar físicamente el nodo del chasis.
+. Etiquete el nodo y todos los cables que hay en la parte posterior del nodo.
+. Retire el nodo del chasis tirando del tirador de leva situado en el lado derecho de cada nodo y tirando del nodo hacia fuera con las dos asas de leva.
+. Reinstale el nodo en el nuevo chasis presionando el nodo hasta que oiga un clic. Las etiquetas que había conectado al nodo antes de quitar le guía de ayuda. El nodo se enciende automáticamente cuando lo instala correctamente.
++
+
+CAUTION: Asegúrese de que admite el nodo en cuando lo instale. No use una fuerza excesiva mientras presiona el nodo hacia el chasis.
+
++
+
+NOTE: Si se instala en el chasis nuevo, asegúrese de instalar el nodo en su ranura original en el chasis.
+
+. Vuelva a conectar los cables a los mismos puertos en la parte posterior del nodo. Las etiquetas que tenía en los cables cuando los desconectó le ayudan a guiar.
++
+
+CAUTION: Asegúrese de no forzar los cables en los puertos; podría dañar los cables, los puertos o ambos.
+
+. Confirme que el nodo de computación (host) figura en el clúster ESXi de VMware vSphere Web Client.
+. Ejecute estos pasos para todos los nodos de computación en el chasis con errores.
+
+
+
+
+=== Mover un nodo de almacenamiento
+
+Antes de mover los nodos de almacenamiento al nuevo chasis, debe quitar las unidades, apagar los nodos correctamente y etiquetar todos los componentes.
+
+.Pasos
+. Identifique el nodo que se va a quitar del siguiente modo:
++
+.. Tenga en cuenta el número de serie del nodo en la etiqueta adhesiva de la parte posterior del nodo.
+.. En VMware vSphere Web Client, seleccione *NetApp Element Management* y copie la dirección IP de MVIP.
+.. Utilice la dirección IP de MVIP en un explorador web para iniciar sesión en la interfaz de usuario del software de NetApp Element con el nombre de usuario y la contraseña que se configuraron en el motor de implementación de NetApp.
+.. Seleccione *Cluster > Nodes*.
+.. Haga coincidir el número de serie anotado con el número de serie (etiqueta de servicio) que aparece en la lista.
+.. Tome nota del ID de nodo del nodo.
+
+
+. Una vez que identifique el nodo, mueva las sesiones iSCSI fuera del nodo mediante la siguiente llamada API:
+`wget --no-check-certificate -q --user=<USER> --password=<PASS> -O - --post-data '{ "method":"MovePrimariesAwayFromNode", "params":{"nodeID":<NODEID>} }' https://<MVIP>/json-rpc/8.0`MVIP es la dirección IP de MVIP, NODEID es el ID del nodo, EL USUARIO es el nombre de usuario que configuró en el motor de puesta en marcha de NetApp cuando se configura NetApp HCI y PASS es la contraseña que configuró en el motor de implementación de NetApp cuando se configura NetApp HCI.
+. Seleccione *Cluster > Drives* para eliminar las unidades asociadas al nodo.
++
+
+NOTE: Debe esperar a que las unidades que quitó para mostrarse como disponibles antes de quitar el nodo.
+
+. Seleccione *Cluster > Nodes > Actions > Remove* para eliminar el nodo.
+. Utilice la siguiente llamada API para apagar el nodo:
+`wget --no-check-certificate -q --user=<USER> --password=<PASS> -O - --post-data '{ "method":"Shutdown", "params":{"option":"halt", "nodes":[ <NODEID>]} }' https://<MVIP>/json-rpc/8.0`MVIP es la dirección IP de MVIP, NODEID es el ID del nodo, EL USUARIO es el nombre de usuario que configuró en el motor de puesta en marcha de NetApp cuando se configura NetApp HCI y PASS es la contraseña que configuró en el motor de implementación de NetApp cuando se configura NetApp HCI. Después de apagar el nodo, estará listo para quitarlo físicamente del chasis.
+. Quite las unidades del nodo en el chasis de la siguiente manera:
++
+.. Retire el bisel.
+.. Etiquete las unidades.
+.. Abra la palanca de leva y deslice con cuidado cada unidad con ambas manos.
+.. Coloque las unidades en una superficie nivelada y antiestática.
+
+
+. Quite el nodo del chasis de la siguiente manera:
++
+.. Etiquete el nodo y los cables conectados.
+.. Tire hacia abajo del asa de leva en el lado derecho de cada nodo y tire del nodo para sacarlo con las dos asas de leva.
+
+
+. Vuelva a instalar el nodo en el chasis empujando el nodo hacia dentro hasta que oiga un clic. Las etiquetas que había conectado al nodo antes de quitar le guía de ayuda.
++
+
+CAUTION: Asegúrese de que admite el nodo en cuando lo instale. No use una fuerza excesiva mientras presiona el nodo hacia el chasis.
+
++
+
+NOTE: Si se instala en el chasis nuevo, asegúrese de instalar el nodo en su ranura original en el chasis.
+
+. Instale las unidades en sus ranuras respectivas del nodo presionando el asa de leva en cada unidad hasta que haga clic.
+. Vuelva a conectar los cables a los mismos puertos en la parte posterior del nodo. Las etiquetas que había conectado a los cables cuando los desconectó le ayudarán a guiar.
++
+
+CAUTION: Asegúrese de no forzar los cables en los puertos; podría dañar los cables, los puertos o ambos.
+
+. Después de que el nodo se encienda, añada el nodo al clúster.
++
+
+NOTE: Puede que el nodo tarde hasta 2 minutos en agregarse y se muestre en *nodos > activo*.
+
+. Añada las unidades.
+. Ejecute estos pasos para todos los nodos de almacenamiento del chasis.
+
+
+
+
+== Sustituya el chasis cuando no se encuentre espacio adicional sin utilizar disponible en el rack
+
+Si el rack no dispone de espacio adicional y si ninguno de los chasis de la implementación tiene ranuras de nodo sin usar, debe determinar qué puede permanecer en línea, de ser necesario, antes de realizar el procedimiento de reemplazo.
+
+.Acerca de esta tarea
+Debe tener en cuenta los siguientes puntos antes de sustituir el chasis:
+
+* ¿Su clúster de almacenamiento puede permanecer en línea sin los nodos de almacenamiento en el chasis con errores? Si la respuesta es no, debe apagar todos los nodos (tanto de computación como de almacenamiento) en la implementación de NetApp HCI. Si la respuesta es sí, solo puede apagar los nodos de almacenamiento en el chasis con errores.
+* ¿Sus máquinas virtuales y el clúster ESXi pueden permanecer en línea sin los nodos de computación del chasis con errores? Si la respuesta es no, debe apagar o migrar las máquinas virtuales adecuadas para poder apagar los nodos de computación en el chasis con errores. Si la respuesta es sí, solo puede apagar los nodos de computación del chasis con errores.
+
+
+
+
+=== Apague un nodo de computación
+
+Antes de mover el nodo de computación al nuevo chasis, debe migrar las máquinas virtuales, apagarlo correctamente y etiquetar los cables insertados en el nodo.
+
+.Pasos
+. Tome nota del número de serie del nodo en la etiqueta adhesiva que aparece en la parte posterior del nodo.
+. En VMware vSphere Web Client, seleccione *hosts and Clusters*, seleccione un nodo (host) y, a continuación, seleccione *Monitor > hardware Status > Sensors*.
+. En la sección *Sensores*, busque el número de serie que anotó en la pegatina situada en la parte posterior del nodo.
+. Después de encontrar el número de serie coincidente, migre las máquinas virtuales a otro host disponible.
++
+
+NOTE: Consulte la documentación de VMware para conocer los pasos de migración.
+
+. Haga clic con el botón derecho del ratón en el nodo y seleccione *Alimentación > Apagar*. Ahora está listo para quitar físicamente el nodo del chasis.
+
+
+
+
+=== Apague un nodo de almacenamiento
+
+Consulte los pasos <<move a storage node,aquí>>.
+
+
+
+=== Quite el nodo
+
+Debe asegurarse de quitar el nodo con cuidado del chasis y de etiquetar todos los componentes. Los pasos para quitar físicamente el nodo son los mismos para los nodos de computación y de almacenamiento. Para un nodo de almacenamiento de, quite la unidad antes de quitar el nodo.
+
+.Pasos
+. Para un nodo de almacenamiento de, quite las unidades del nodo en el chasis de la siguiente manera:
++
+.. Retire el bisel.
+.. Etiquete las unidades.
+.. Abra la palanca de leva y deslice con cuidado cada unidad con ambas manos.
+.. Coloque las unidades en una superficie nivelada y antiestática.
+
+
+. Quite el nodo del chasis de la siguiente manera:
++
+.. Etiquete el nodo y los cables conectados.
+.. Tire hacia abajo del asa de leva en el lado derecho de cada nodo y tire del nodo para sacarlo con las dos asas de leva.
+
+
+. Ejecute estos pasos en todos los nodos que desee quitar. Ahora está listo para quitar el chasis con errores.
+
+
+
+
+=== Sustituya el chasis
+
+Si el rack no dispone de espacio adicional, debe desinstalar el chasis con errores y reemplazarlo por el nuevo chasis.
+
+.Pasos
+. Póngase protección antiestática.
+. Desembale el chasis de repuesto y manténgalo en una superficie nivelada. Conserve el embalaje para cuando devuelva la unidad con error a NetApp.
+. Retire el chasis que ha fallado del bastidor y colóquelo en una superficie nivelada.
++
+
+NOTE: Utilice mano de obra suficiente o un elevador mientras mueve un chasis.
+
+. Retire los rieles.
+. Instale los nuevos rieles que se le enviaron con el chasis de reemplazo.
+. Deslice el chasis de repuesto en el rack.
+. Fije el chasis al rack con los tornillos de fijación delanteros y apriete los tornillos con el destornillador.
+. Instale los nodos en el nuevo chasis de la siguiente manera:
++
+.. Vuelva a instalar el nodo en su ranura original del chasis. Para ello, empuje el nodo hasta que oiga un clic. Las etiquetas que ha conectado al nodo antes de haberlo quitado como guía de ayuda.
++
+
+CAUTION: Asegúrese de que admite el nodo en cuando lo instale. No use una fuerza excesiva mientras presiona el nodo hacia el chasis.
+
+.. Para los nodos de almacenamiento, instale las unidades en sus ranuras respectivas del nodo presionando el asa de leva de cada unidad hasta que haga clic.
+.. Vuelva a conectar los cables a los mismos puertos en la parte posterior del nodo. Las etiquetas que está conectado a los cables cuando los ha desconectado le ayudan a guiar.
++
+
+CAUTION: Asegúrese de no forzar los cables en los puertos; podría dañar los cables, los puertos o ambos.
+
+
+
+. Asegúrese de que los nodos estén en línea de la siguiente manera:
++
+[cols="2*"]
+|===
+| Opción | Pasos 
+
+
+| Si reinstaló todos los nodos (tanto de almacenamiento como de computación) en la implementación de NetApp HCI  a| 
+.. En VMware vSphere Web Client, confirme que los nodos de computación (hosts) figuran en el clúster ESXi.
+.. En el plugin de Element para vCenter Server, confirme que los nodos de almacenamiento se enumeran como activos.
+
+
+
+
+| Si solo reinstaló los nodos en el chasis con errores  a| 
+.. En VMware vSphere Web Client, confirme que los nodos de computación (hosts) figuran en el clúster ESXi.
+.. En el plugin de Element para vCenter Server, seleccione *Cluster > Nodes > Pending*.
+.. Seleccione el nodo y seleccione *Agregar*.
++
+
+NOTE: Puede que el nodo tarde hasta 2 minutos en agregarse y se muestre en *nodos > activo*.
+
+.. Seleccione *unidades*.
+.. En la lista Available, añada las unidades.
+.. Realice estos pasos en todos los nodos de almacenamiento que reinstaló.
+
+
+|===
+. Verifique que los volúmenes y los almacenes de datos estén actualizados y accesibles.
+
+
+
+
+== Obtenga más información
+
+* https://www.netapp.com/us/documentation/hci.aspx["Recursos de NetApp HCI"^]
+* http://docs.netapp.com/sfe-122/index.jsp["Centro de documentación de SolidFire y el software Element"^]
+

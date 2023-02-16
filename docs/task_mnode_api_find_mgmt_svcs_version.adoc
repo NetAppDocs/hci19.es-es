@@ -1,0 +1,93 @@
+---
+sidebar: sidebar 
+permalink: docs/task_mnode_api_find_mgmt_svcs_version.html 
+summary: Las versiones del sistema operativo del nodo de gestión y de los servicios de gestión que utiliza el nodo de gestión mediante la API DE REST. 
+keywords: netapp, hci, management node, management services, version, bundle version, what is 
+---
+= Verifique el sistema operativo del nodo de gestión y las versiones de servicios
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puede verificar los números de versión del sistema operativo del nodo de gestión, del paquete de servicios de gestión y de los servicios individuales que se ejecutan en el nodo de gestión mediante la API DE REST en el nodo de gestión.
+
+.Lo que necesitará
+* El clúster ejecuta el software NetApp Element 11.3 o una versión posterior.
+* Un nodo de gestión se implementó con la versión 11.3 o posterior.
+
+
+.Opciones
+* <<Comandos API>>
+* <<PASOS PARA LA INTERFAZ DE USUARIO DE LA API DE REST>>
+
+
+
+
+== Comandos API
+
+* Obtenga información de la versión acerca del sistema operativo del nodo de gestión, el paquete de servicios de gestión y el servicio API del nodo de gestión (mnode-api) que se ejecutan en el nodo de gestión:
++
+[listing]
+----
+curl -X GET "https://<ManagementNodeIP>/mnode/about" -H  "accept: application/json"
+----
+* Obtenga información de versión sobre los servicios individuales que se ejecutan en el nodo de gestión:
++
+[listing]
+----
+curl -X GET "https://<ManagementNodeIP>/mnode/services?status=running" -H  "accept: */*" -H  "Authorization: Bearer ${TOKEN}"
+----
++
+
+NOTE: Usted puede encontrar al portador `${TOKEN}` Lo utiliza el comando API cuando lo utiliza link:task_mnode_api_get_authorizationtouse.html["autorizar"]. El portador `${TOKEN}` está en la respuesta curl.
+
+
+
+
+
+== PASOS PARA LA INTERFAZ DE USUARIO DE LA API DE REST
+
+. Acceda a la interfaz de usuario de la API DE REST del servicio introduciendo la dirección IP del nodo de gestión seguida de `/mnode/`:
++
+[listing]
+----
+https://<ManagementNodeIP>/mnode/
+----
+. Debe realizar una de las siguientes acciones:
++
+** Obtenga información de la versión acerca del sistema operativo del nodo de gestión, el paquete de servicios de gestión y el servicio API del nodo de gestión (mnode-api) que se ejecutan en el nodo de gestión:
++
+... Seleccione *GET /about*.
+... Seleccione *probar*.
+... Seleccione *Ejecutar*.
++
+La versión del paquete de servicios de gestión (`"mnode_bundle_version"`), versión del sistema operativo del nodo de gestión (`"os_version"`) Y la versión de la API del nodo de gestión (`"version"`) se indican en el cuerpo de respuesta.
+
+
+
+** Obtenga información de versión sobre los servicios individuales que se ejecutan en el nodo de gestión:
++
+... Seleccione *GET /Services*.
+... Seleccione *probar*.
+... Seleccione el estado como *en ejecución*.
+... Seleccione *Ejecutar*.
++
+Los servicios que se ejecutan en el nodo de gestión se indican en el cuerpo de respuesta.
+
+
+
+
+
+
+
+[discrete]
+== Obtenga más información
+
+* https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Página de recursos de NetApp HCI"^]
+

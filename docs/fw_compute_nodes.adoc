@@ -1,0 +1,401 @@
+---
+sidebar: sidebar 
+permalink: docs/fw_compute_nodes.html 
+keywords: documentation, earlier, previous, versions 
+summary: Versiones de firmware y controlador compatibles para los nodos de computación. 
+---
+= Nodos de computación
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+:keywords: hci, earlier, documentation, versions
+
+
+[role="lead"]
+Las versiones de firmware y del controlador ESXi compatibles para los nodos de computación NetApp HCI.
+
+* <<H615C>>
+* <<H610C>>
+* <<H410C>>
+* <<H300E/H500E/H700E>>
+
+
+
+
+== H615C
+
+*Número de modelo (parte de la familia):* H615C
+
+
+
+=== El firmware de los componentes está gestionado por un paquete de firmware de computación
+
+Durante el periodo de tiempo de 11.x, el software Element fue la única manera de liberar firmware. A partir de Element 12.0, se introdujo el concepto de *paquete de firmware de computación* y las actualizaciones de firmware eran ahora posibles a través de un paquete de firmware de computación de versión independiente.
+
+El controlador ESXi que es compatible con la NIC de 10/25 GbE NO se incluye en el paquete de firmware de computación, se especifica como referencia.
+
+
+NOTE: Un guión (*-*) en la tabla siguiente indica que el componente de hardware en particular NO estaba soportado en el vehículo de liberación dado.
+
+[cols="8*"]
+|===
+| Soltar el vehículo | Fecha de lanzamiento | BIOS | BMC | NIC de 10/25 GbE | Versión del controlador VMware ESXi 6.5 | Versión del controlador VMware ESXi 6.7 | Versión del controlador VMware ESXi 7.0 
+
+
+| *Paquete de firmware de computación 2.154.4* | 06/08/2022 | 3B12.CO | 4.72.07 | 14.29.1016 | 4.16.71.1 | 4.17.71.1 | 4.21.71.1 
+
+
+| *Paquete de firmware de almacenamiento 2.150.4 a NetApp HCI 1.10* | 06/08/2022 | 3B12.CO | 4.72.07 | 14.24.1000 | 4.16.13.5 | 4.17.16.15 | 4.17.16.15 
+
+
+| *Paquete de firmware de almacenamiento 2.146.2* | 02/022/2022 | 3B12.CO | 4.72.07 | 14.24.1000 | 4.16.13.5 | 4.17.16.15 | 4.17.16.15 
+
+
+| *Paquete de firmware de computación 2.99.4 a NetApp HCI 1.9P1* | 12/06/2021 | 3B08.CO | 4.68.07 | 14.24.1000 | 4.16.13.5 | 4.17.16.15 | 4.17.16.15 
+
+
+| *Paquete de firmware de computación 2.76.10* | 08/29/2021 | 3B08.CO | 4.68.07 | 14.24.1000 | 4.16.13.5 | 4.17.16.15 | 4.17.16.15 
+
+
+| *Paquete de firmware de computación 2.99 a NetApp HCI 1.9* | 04/15/2021 | 3B08.CO | 4.68.07 | 14.24.1000 | 4.16.13.5 | 4.17.16.15 | 4.17.16.15 
+
+
+| *Paquete de firmware de computación 2.76.8* | 02/03/2021 | 3B08.CO | 4.68.07 | 14.24.1000 | 4.16.13.5 | 4.17.16.15 | 4.17.16.15 
+
+
+| *Paquete de firmware de computación 2.27.1* | 09/18/2020 | 3B08.CO | 4.68.07 | 14.24.1000 | 4.16.13.5 | 4.17.16.15 | 4.17.16.15 
+
+
+| *Paquete de firmware de computación 2.21 a NetApp HCI 1.8P1* | 09/29/2020 | 3B08.CO | 4.64.07 | 14.23.1020 | 4.16.13.5 | 4.17.13.8 | - 
+
+
+| *Paquete de firmware de computación 12.2.109* | 08/07/2020 | 3B08.CO | 4.64.07 | 14.23.1020 | 4.16.13.5 | 4.17.13.8 | - 
+
+
+| *Paquete de firmware de computación 12.2.92* | 06/22/2020 | 3B06.CO | 4.64.07 | 14.23.1020 | 4.16.13.5 | 4.17.13.8 | - 
+
+
+| *Paquete de firmware de computación 1.2.17 a NetApp HCI 1.8* | 03/20/2020 | 3B06.CO | 4.60.07 | 14.23.1020 | 4.16.13.5 | 4.17.13.8 | - 
+
+
+| *NetApp HCI 1.7P1* | 11/21/2019 | 3B06.CO | 4.60.07 | 14.23.1020 | 4.16.13.5 | 4.17.13.8 | - 
+
+
+| *NetApp HCI 1.7* | 09/26/2019 | 3B06.CO | 4.60.07 | 14.23.1020 | 4.16.13.5 | 4.17.13.8 | - 
+|===
+
+
+=== El firmware del componente no está gestionado por un paquete de firmware de computación
+
+Un paquete de firmware de computación no gestiona el siguiente firmware:
+
+[cols="2*"]
+|===
+| Componente | Versión actual 
+
+
+| CPLD | 120 
+
+
+| GPU T4 | 90.04.38.00.03 (BIOS) 410.48 (controlador) 
+
+
+| Dispositivo de arranque DGSML-A28D81BCBQCA-4C6 | M161225i 
+|===
+
+
+== H610C
+
+*Número de modelo (porción de familia):* H610C
+
+
+
+=== El firmware de los componentes está gestionado por un paquete de firmware de computación
+
+Durante NetApp HCI 1.0 - NetApp HCI 1.7, NetApp HCI era la única manera de liberar firmware. A partir de NetApp HCI 1.8, se introdujo el concepto de *paquete de firmware de computación* y ahora es posible realizar actualizaciones de firmware con un paquete de firmware de computación de versión independiente.
+
+El controlador ESXi que es compatible con la NIC de 10/25 GbE NO se incluye en el paquete de firmware de computación, se especifica como referencia.
+
+
+NOTE: Un guión (*-*) en la tabla siguiente indica que el componente de hardware en particular NO estaba soportado en el vehículo de liberación dado.
+
+[cols="8*"]
+|===
+| Soltar el vehículo | Fecha de lanzamiento | BIOS | BMC | NIC de 10/25 GbE | Versión del controlador VMware ESXi 6.5 | Versión del controlador VMware ESXi 6.7 | Versión del controlador VMware ESXi 7.0 
+
+
+| *Paquete de firmware de computación 2.154.4* | 06/08/2022 | 3B07 | 4.04.07 | 14.29.1016 | 4.16.71.1 | 4.17.71.1 | 4.21.71.1 
+
+
+| *Paquete de firmware de almacenamiento 2.150.4 a NetApp HCI 1.10* | 06/08/2022 | 3B07 | 4.04.07 | 14.25.1020 | 4.16.13.5 | 4.17.16.15 | 4.17.16.15 
+
+
+| *Paquete de firmware de almacenamiento 2.146.2* | 02/22/2022 | 3B07 | 4.04.07 | 14.25.1020 | 4.16.13.5 | 4.17.16.15 | 4.17.16.15 
+
+
+| *Paquete de firmware de computación 2.99.4 a NetApp HCI 1.9P1* | 12/06/2021 | 3B03 | 4.00.07 | 14.25.1020 | 4.16.13.5 | 4.17.16.15 | 4.17.16.15 
+
+
+| *Paquete de firmware de computación 2.76.10* | 08/29/2021 | 3B03 | 4.00.07 | 14.25.1020 | 4.16.13.5 | 4.17.16.15 | 4.17.16.15 
+
+
+| *Paquete de firmware de computación 2.99 a NetApp HCI 1.9* | 04/15/2021 | 3B03 | 4.00.07 | 14.25.1020 | 4.16.13.5 | 4.17.16.15 | 4.17.16.15 
+
+
+| *Paquete de firmware de computación 2.76.8* | 02/03/2021 | 3B03 | 4.00.07 | 14.25.1020 | 4.16.13.5 | 4.17.16.15 | 4.17.16.15 
+
+
+| *Paquete de firmware de computación 2.27.1* | 09/18/2020 | 3B03 | 4.00.07 | 14.25.1020 | 4.16.13.5 | 4.17.16.15 | 4.17.16.15 
+
+
+| *Paquete de firmware de computación 2.21 a NetApp HCI 1.8P1* | 09/29/2020 | 3B01 | 3.96.07 | 14.22.1002 | 4.16.13.5 | 4.17.13.8 | - 
+
+
+| *Paquete de firmware de computación 12.2.109* | 08/07/2020 | 3B01 | 3.96.07 | 14.22.1002 | 4.16.13.5 | 4.17.13.8 | - 
+
+
+| *Paquete de firmware de computación 12.2.92* | 06/22/2020 | 3B01 | 3.96.07 | 14.22.1002 | 4.16.13.5 | 4.17.13.8 | - 
+
+
+| *Paquete de firmware de computación 1.2.17 a NetApp HCI 1.8* | 03/20/2020 | 3A02 | 3.91.07 | 14.22.1002 | 4.16.13.5 | 4.17.13.8 | - 
+
+
+| *NetApp HCI 1.7P1* | 11/21/2019 | 3A02 | 3.91.07 | 14.22.1002 | 4.16.13.5 | 4.17.13.8 | - 
+
+
+| *NetApp HCI 1.7* | 09/26/2019 | 3A02 | 3.91.07 | 14.22.1002 | 4.16.13.5 | 4.17.13.8 | - 
+
+
+| *NetApp HCI 1.6* | 08/19/2019 | 3A02 | 3.91.07 | 14.22.1002 | 4.16.13.5 | 4.17.13.8 | - 
+
+
+| *NetApp HCI 1.4P1* | 04/25/2019 | 3A02 | 3.91.07 | 14.22.1002 | 4.16.13.5 | 4.17.13.8 | - 
+
+
+| *NetApp HCI 1.4* | 11/29/2018 | 3A02 | 3.91.07 | 14.22.1002 | 4.16.13.5 | 4.17.13.8 | - 
+|===
+
+
+=== El firmware del componente no está gestionado por un paquete de firmware de computación
+
+Un paquete de firmware de computación no gestiona el siguiente firmware:
+
+[cols="2*"]
+|===
+| Componente | Versión actual 
+
+
+| CPLD | 120 
+
+
+| NIC de 1/10 GbE | 3,2d 0x80000b4b 
+
+
+| GPU M10 | 82.07.ab.00.12 82.07.ab.00.13 82.07.ab.00.14 82.07.ab.00.15 
+
+
+| Dispositivo de arranque DGSML-A28D81BCBQCA-4C6 | M161225i 
+|===
+
+
+== H410C
+
+*Número de modelo (porción de familia):* H410C
+
+
+
+=== El firmware de los componentes está gestionado por un paquete de firmware de computación
+
+Durante NetApp HCI 1.0 - NetApp HCI 1.7, NetApp HCI era la única manera de liberar firmware. A partir de NetApp HCI 1.8, se introdujo el concepto de *paquete de firmware de computación* y ahora es posible realizar actualizaciones de firmware con un paquete de firmware de computación de versión independiente.
+
+El controlador ESXi que es compatible con la NIC de 10/25 GbE NO se incluye en el paquete de firmware de computación, se especifica como referencia.
+
+
+NOTE: Un guión (*-*) en la tabla siguiente indica que el componente de hardware en particular NO estaba soportado en el vehículo de liberación dado.
+
+[cols="8*"]
+|===
+| Soltar el vehículo | Fecha de lanzamiento | BIOS | BMC | NIC de 10/25 GbE | Versión del controlador VMware ESXi 6.5 | Versión del controlador VMware ESXi 6.7 | Versión del controlador VMware ESXi 7.0 
+
+
+| *Paquete de firmware de computación 2.154.4* | 06/08/2022 | NATP3.10 | 6.71.20 | 14.29.1016 | 4.16.71.1 | 4.17.71.1 | 4.21.71.1 
+
+
+| *Paquete de firmware de almacenamiento 2.150.4 a NetApp HCI 1.10* | 06/08/2022 | NATP3.10 | 6.71.20 | 14.25.1020 | 4.16.13.5 | 4.17.15.16 | 4.19.16.1 
+
+
+| *Paquete de firmware de almacenamiento 2.146.2* | 02/22/2022 | NATP3.10 | 6.71.20 | 14.25.1020 | 4.16.13.5 | 4.17.15.16 | 4.19.16.1 
+
+
+| *Paquete de firmware de computación 2.99.4 a NetApp HCI 1.9P1* | 12/06/2021 | NATP3.9 | 6.71.18 | 14.25.1020 | 4.16.13.5 | 4.17.15.16 | 4.19.16.1 
+
+
+| *Paquete de firmware de computación 2.76.10* | 08/29/2021 | NATP3.9 | 6.71.20 | 14.25.1020 | 4.16.13.5 | 4.17.15.16 | 4.19.16.1 
+
+
+| *Paquete de firmware de computación 2.99 a NetApp HCI 1.9* | 04/15/2021 | NATP3.9 | 6.71.18 | 14.25.1020 | 4.16.13.5 | 4.17.15.16 | 4.19.16.1 
+
+
+| *Paquete de firmware de computación 2.76.8* | 02/03/2021 | NATP3.9 | 6.71.18 | 14.25.1020 | 4.16.13.5 | 4.17.15.16 | 4.19.16.1 
+
+
+| *Paquete de firmware de computación 2.27.1* | 09/18/2020 | NA3.7 | 6.71.18 | 14.25.1020 | 4.16.13.5 | 4.17.15.16 | 4.19.16.1 
+
+
+| *Paquete de firmware de computación 2.21 a NetApp HCI 1.8P1* | 09/29/2020 | NA3.7 | 6.71.18 | 14.25.1020 | 4.16.13.5 | 4.17.15.16 | - 
+
+
+| *Paquete de firmware de computación 12.2.109* | 08/07/2020 | NA3.7 | 6.71.18 | 14.25.1020 | 4.16.13.5 | 4.17.15.16 | - 
+
+
+| *Paquete de firmware de computación 12.2.92* | 06/22/2020 | NA3.7 | 6.71.18 | 14.25.1020 | 4.16.13.5 | 4.17.15.16 | - 
+
+
+| *Paquete de firmware de computación 1.2.17 a NetApp HCI 1.8* | 03/20/2020 | NA3.4 | 6.71.18 | 14.25.1020 | 4.16.13.5 | 4.17.15.16 | - 
+
+
+| *NetApp HCI 1.7P1* | 11/21/2019 | NA3.3 | 6.53 | 14.25.1020 | 4.16.13.5 | 4.17.15.16 | - 
+
+
+| *NetApp HCI 1.7* | 09/26/2019 | NA2.2 | 6.53 | 14.25.1020 | 4.16.13.5 | 4.17.15.16 | - 
+
+
+| *NetApp HCI 1.6* | 08/19/2019 | NA2.2 | 6.53 | 14.25.1020 | 4.16.13.5 | 4.17.15.16 | - 
+
+
+| *NetApp HCI 1.4P1* | 04/25/2019 | NA2.2 | 6.53 | 14.25.1020 | 4.16.13.5 | 4.17.15.16 | - 
+
+
+| *NetApp HCI 1.4* | 11/29/2018 | NA2.2 | 6.53 | 14.25.1020 | 4.16.13.5 | 4.17.15.16 | - 
+|===
+
+
+=== El firmware del componente no está gestionado por un paquete de firmware de computación
+
+Un paquete de firmware de computación no gestiona el siguiente firmware:
+
+[cols="2*"]
+|===
+| Componente | Versión actual 
+
+
+| CPLD | 03.B0.09 
+
+
+| Adaptador SAS | 16.00.01.00 
+
+
+| NIC SIOM 1/10 GbE | 1.93 
+
+
+| Suministro de alimentación | 1.3 
+
+
+| Dispositivo de arranque SSDSCKJB24G7 | N2010121 
+
+
+| Dispositivo de arranque MTFDDAV240TCB1AR | DOMU037 
+|===
+
+
+== H300E/H500E/H700E
+
+*Número de modelo (porción de familia):* H300E/H500E/H700E
+
+
+
+=== El firmware de los componentes está gestionado por un paquete de firmware de computación
+
+Durante NetApp HCI 1.0 - NetApp HCI 1.7, NetApp HCI era la única manera de liberar firmware. A partir de NetApp HCI 1.8, se introdujo el concepto de *paquete de firmware de computación* y ahora es posible realizar actualizaciones de firmware con un paquete de firmware de computación de versión independiente.
+
+El controlador ESXi que es compatible con la NIC de 10/25 GbE NO se incluye en el paquete de firmware de computación, se especifica como referencia.
+
+
+NOTE: Un guión (*-*) en la tabla siguiente indica que el componente de hardware en particular NO estaba soportado en el vehículo de liberación dado.
+
+[cols="8*"]
+|===
+| Soltar el vehículo | Fecha de lanzamiento | BIOS | BMC | NIC de 10/25 GbE | Versión del controlador VMware ESXi 6.5 | Versión del controlador VMware ESXi 6.7 | Versión del controlador VMware ESXi 7.0 
+
+
+| *Paquete de firmware de computación 2.154.4* | 06/08/2022 | NAT3.4 | 6.98.00 | 14.29.1016 | 4.16.71.1 | 4.17.71.1 | 4.21.71.1 
+
+
+| *Paquete de firmware de computación 2.150.4 a NetApp HCI 1.10* | 06/08/2022 | NAT3.4 | 6.98.00 | 14.25.1020 | 4.16.13.5 | 4.17.15.16 | 4.19.16.1 
+
+
+| *Paquete de firmware de computación 2.146.2* | 02/22/2022 | NAT3.4 | 6.98.00 | 14.25.1020 | 4.16.13.5 | 4.17.15.16 | 4.19.16.1 
+
+
+| *Paquete de firmware de computación 2.99.4 a NetApp HCI 1.9P1* | 12/06/2021 | NA2.1 | 6.84.00 | 14.25.1020 | 4.16.13.5 | 4.17.15.16 | 4.19.16.1 
+
+
+| *Paquete de firmware de computación 2.76.10* | 08/29/2021 | NA2.1 | 6.84.00 | 14.25.1020 | 4.16.13.5 | 4.17.15.16 | 4.19.16.1 
+
+
+| *Paquete de firmware de computación 2.99 a NetApp HCI 1.9* | 04/15/2021 | NA2.1 | 6.84.00 | 14.25.1020 | 4.16.13.5 | 4.17.15.16 | 4.19.16.1 
+
+
+| *Paquete de firmware de computación 2.76.8* | 02/03/2021 | NA2.1 | 6.84.00 | 14.25.1020 | 4.16.13.5 | 4.17.15.16 | 4.19.16.1 
+
+
+| *Paquete de firmware de computación 2.27.1* | 09/18/2020 | NA2.1 | 6.84.00 | 14.25.1020 | 4.16.13.5 | 4.17.15.16 | 4.19.16.1 
+
+
+| *Paquete de firmware de computación 2.21 a NetApp HCI 1.8P1* | 09/29/2020 | NA2.1 | 6.84.00 | 14.21.1000 | 4.16.13.5 | 4.17.13.8 | - 
+
+
+| *Paquete de firmware de computación 12.2.109* | 08/07/2020 | NA2.1 | 6.84.00 | 14.21.1000 | 4.16.13.5 | 4.17.13.8 | - 
+
+
+| *Paquete de firmware de computación 12.2.92* | 06/22/2020 | NA2.1 | 6.84.00 | 14.21.1000 | 4.16.13.5 | 4.17.13.8 | - 
+
+
+| *Paquete de firmware de computación 1.2.17 a NetApp HCI 1.8* | 03/20/2020 | NA2.1 | 3.25 | 14.21.1000 | 4.16.13.5 | 4.17.13.8 | - 
+
+
+| *NetApp HCI 1.7P1* | 11/21/2019 | NA2.1 | 3.25 | 14.21.1000 | 4.16.13.5 | 4.17.13.8 | - 
+
+
+| *NetApp HCI 1.7* | 09/26/2019 | NA2.1 | 3.25 | 14.21.1000 | 4.16.13.5 | 4.17.13.8 | - 
+
+
+| *NetApp HCI 1.6* | 08/19/2019 | NA2.1 | 3.25 | 14.21.1000 | 4.16.13.5 | 4.17.13.8 | - 
+
+
+| *NetApp HCI 1.4P1* | 04/25/2019 | NA2.1 | 3.25 | 14.17.2020 | 4.16.13.5 | 4.17.13.8 | - 
+
+
+| *NetApp HCI 1.4* | 11/29/2018 | NA2.1 | 3.25 | 14.17.2020 | 4.16.13.5 | 4.17.13.8 | - 
+|===
+
+
+=== El firmware del componente no está gestionado por un paquete de firmware de computación
+
+Un paquete de firmware de computación no gestiona el siguiente firmware:
+
+[cols="2*"]
+|===
+| Componente | Versión actual 
+
+
+| CPLD | 01.A1.06 
+
+
+| Adaptador SAS | 16.00.01.00 
+
+
+| NIC SIOM 1/10 GbE | 1.93 
+
+
+| Suministro de alimentación | 1.3 
+
+
+| Dispositivo de arranque SSDSCKJB24G7 | N2010121 
+
+
+| Dispositivo de arranque MTFDDAV240TCB1AR | DOMU037 
+|===

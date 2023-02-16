@@ -1,0 +1,58 @@
+---
+sidebar: sidebar 
+permalink: docs/concept_hci_storage_maintenance_mode.html 
+summary: Si necesita desconectar un nodo de almacenamiento para realizar tareas de mantenimiento, como actualizaciones de software o reparaciones de host, puede minimizar el impacto de I/o del resto del clúster de almacenamiento habilitando el modo de mantenimiento para ese nodo. Puede utilizar el modo de mantenimiento con los dos nodos de dispositivo, así como los nodos SDS de empresa SolidFire. 
+keywords: netapp, hci, storage nodes, maintenance, mode 
+---
+= Modo de mantenimiento
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si necesita desconectar un nodo de almacenamiento para realizar tareas de mantenimiento, como actualizaciones de software o reparaciones de host, puede minimizar el impacto de I/o del resto del clúster de almacenamiento habilitando el modo de mantenimiento para ese nodo. Puede utilizar el modo de mantenimiento con los dos nodos de dispositivo, así como los nodos SDS de empresa SolidFire.
+
+
+NOTE: Cuando se apaga un nodo de almacenamiento, se muestra como *no disponible* en la columna Estado del nodo de la página almacenamiento en HCC, ya que esta columna muestra el estado del nodo desde la perspectiva del clúster. El estado apagado del nodo se indica mediante el icono *fuera de línea* junto al nombre de host del nodo.
+
+Solo puede realizar la transición de un nodo de almacenamiento al modo de mantenimiento si el estado del nodo es bueno (no tiene fallos de clúster de bloqueo) y el clúster de almacenamiento es tolerante a un único nodo de fallo. Una vez que se habilita el modo de mantenimiento para un nodo en buen estado y tolerante, el nodo no se realiza la transición de forma inmediata, sino que se supervisa hasta que se cumplen las siguientes condiciones:
+
+* Todos los volúmenes alojados en el nodo se han relevo en caso de fallo
+* El nodo ya no aloja como principal de ningún volumen
+* Se asigna un nodo en espera temporal para cada volumen que se realiza el relevo de errores
+
+
+Una vez que se cumplen estos criterios, el nodo pasa al modo de mantenimiento. Si no se cumplen estos criterios en un periodo de 5 minutos, el nodo no entrará en el modo de mantenimiento.
+
+Cuando deshabilita el modo de mantenimiento para un nodo de almacenamiento, el nodo se supervisa hasta que se cumplen las siguientes condiciones:
+
+* Todos los datos se replican completamente en el nodo
+* Se resuelven todos los fallos del clúster de bloqueo
+* Todas las asignaciones temporales de nodos en espera de los volúmenes alojados en el nodo se han desactivado
+
+
+Una vez que se cumplen estos criterios, el nodo pasa del modo de mantenimiento. Si no se cumplen estos criterios en una hora, no podrá realizar la transición desde el modo de mantenimiento.
+
+Puede ver los estados de las operaciones en modo de mantenimiento cuando trabaja con el modo de mantenimiento mediante la API de Element:
+
+* *Deshabilitado*: No se ha solicitado ningún mantenimiento.
+* *FailedToRecover*: El nodo no pudo recuperarse del mantenimiento.
+* *RecoveringFromMaintenance*: El nodo se está recuperando del mantenimiento.
+* * PreparingForMaintenance*: Se están llevando a cabo acciones para permitir que un nodo realice tareas de mantenimiento.
+* *ReadyForMaintenance*: El nodo está listo para realizar el mantenimiento.
+
+
+
+
+== Obtenga más información
+
+* https://docs.netapp.com/us-en/element-software/api/reference_element_api_enablemaintenancemode.html["Habilite el modo de mantenimiento con la API de Element"^]
+* https://docs.netapp.com/us-en/element-software/api/reference_element_api_disablemaintenancemode.html["Deshabilite el modo de mantenimiento con la API de Element"^]
+* https://docs.netapp.com/us-en/element-software/api/concept_element_api_about_the_api.html["Documentación sobre API de NetApp Element"^]
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Recursos de NetApp HCI"^]
+* https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
+

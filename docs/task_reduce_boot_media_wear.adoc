@@ -1,0 +1,27 @@
+---
+sidebar: sidebar 
+permalink: docs/task_reduce_boot_media_wear.html 
+summary: Aprenda a reducir el desgaste de medios de arranque en un nodo de computación NetApp HCI. 
+keywords: netapp, hci, deployment, review, deploy, boot, drive, wear 
+---
+= Reduzca el desgaste de los medios de arranque en un nodo de computación NetApp HCI
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Cuando utiliza medios de arranque flash o NVDIMM con un nodo de computación NetApp HCI, mantener los registros del sistema en ese medio provoca escrituras frecuentes en ese medio. Esto puede degradar al final la memoria flash. Utilice las instrucciones del siguiente artículo de la base de conocimientos para mover el registro de host y el archivo de volcado principal a una ubicación de almacenamiento compartido, lo que puede ayudar a evitar la degradación del medio de arranque a lo largo del tiempo y ayudar a evitar errores de disco de arranque completo.
+
+https://kb.netapp.com/Advice_and_Troubleshooting/Hybrid_Cloud_Infrastructure/NetApp_HCI/How_to_reduce_wear_on_the_boot_drive_of_a_Netapp_HCI_compute_node["Cómo reducir el deterioro de la unidad de arranque de un nodo de computación NetApp HCI"^]
+
+
+
+== Obtenga más información
+
+* https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
+* https://www.netapp.com/us/documentation/hci.aspx["Recursos de NetApp HCI"^]
+

@@ -1,0 +1,176 @@
+---
+sidebar: sidebar 
+permalink: docs/task_hci_driverepl.html 
+summary: Si falla una unidad o si el nivel de deterioro de la unidad está por debajo de un umbral, es necesario reemplazarla. Es posible cambiar en caliente una unidad con error. 
+keywords: netapp, hci, SSDs, drives, replace drives, H410S, H610S 
+---
+= Sustituya las unidades para los nodos de almacenamiento
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si una unidad está defectuosa o si el nivel de deterioro de la unidad está por debajo de un umbral, debe reemplazarla. Las alarmas en la interfaz de usuario del software Element y VMware vSphere Web Client se notifican cuando se produce un error en una unidad o se produce un fallo. Es posible cambiar en caliente una unidad con error.
+
+.Acerca de esta tarea
+Este procedimiento permite reemplazar unidades en nodos de almacenamiento H610S y H410S. Al quitar una unidad, esta se desconecta. Los datos en la unidad se extraen y se migran a otras unidades del clúster. La migración de datos a otras unidades activas del sistema puede demorar desde algunos minutos hasta una hora según el uso de la capacidad y las operaciones de I/o activas en el clúster.
+
+
+
+== Prácticas recomendadas para gestionar unidades
+
+Se deben seguir las siguientes prácticas recomendadas para gestionar las unidades:
+
+* Mantenga la unidad en la bolsa ESD hasta que esté listo para instalarla.
+* Abra la bolsa ESD a mano o corte la parte superior con unas tijeras.
+* Utilice siempre una muñequera ESD conectada a una superficie sin pintar en su chasis.
+* Utilice siempre ambas manos cuando quite, instale o lleve una unidad.
+* No fuerce nunca una unidad en el chasis.
+* Utilice siempre paquetes aprobados cuando los lleve.
+* No coloque las unidades entre sí.
+
+
+
+
+== Prácticas recomendadas para agregar y quitar unidades
+
+Debe seguir estas prácticas recomendadas para añadir unidades al clúster y quitar unidades del clúster:
+
+* Añada todas las unidades de bloques y asegúrese de que la sincronización de bloques se complete antes de añadir las unidades de segmentos.
+* Para el software Element 10.x y versiones posteriores, añada todas las unidades de bloques a la vez. Asegúrese de no hacerlo para más de tres nodos a la vez.
+* Para el software Element 9.x y versiones anteriores, añada tres unidades a la vez que le permitan sincronizarse completamente antes de añadir el siguiente grupo de tres.
+* Quite la unidad de segmentos y asegúrese de que la sincronización de segmentos se complete antes de quitar las unidades de bloques.
+* Quite todas las unidades de bloques de un único nodo a la vez. Asegúrese de que toda la sincronización de bloques esté completa antes de moverse al siguiente nodo.
+
+
+.Pasos
+. Quite la unidad del clúster mediante la interfaz de usuario del software NetApp Element o el punto de extensión NetApp Element Management del plugin de Element para vCenter Server.
++
+[cols="2*"]
+|===
+| Opción | Pasos 
+
+
+| Usar la interfaz de usuario de Element  a| 
+.. En la interfaz de usuario de Element, seleccione *Cluster > Drives*.
+.. Haga clic en *error* para ver la lista de unidades con errores.
+.. Anote el número de ranura de la unidad con error. Esta información se necesita para localizar la unidad con error en el chasis.
+.. Haga clic en *acciones* para la unidad que desea quitar.
+.. Haga clic en *Quitar*.
+
+
+Ahora puede quitar físicamente la unidad del chasis.
+
+
+
+| Usar el plugin de Element para la interfaz de usuario de vCenter Server  a| 
+.. En el punto de extensión NetApp Element Management de vSphere Web Client, seleccione *Gestión de NetApp Element > clúster*.
+.. Si se añaden dos o más clústeres, el clúster que se planea utilizar para la tarea debe estar seleccionado en la barra de navegación.
+.. Seleccione *todo* en la lista desplegable para ver la lista completa de unidades.
+.. Seleccione la casilla de comprobación de cada unidad que desea quitar.
+.. Seleccione *Quitar unidades*.
+.. Confirme la acción.
++
+
+NOTE: Si no hay suficiente capacidad para quitar las unidades activas antes de quitar un nodo, se muestra un mensaje de error al confirmar la eliminación de la unidad. Después de resolver el error, ahora puede quitar físicamente la unidad del chasis.
+
+
+
+|===
+. Sustituya la unidad del chasis:
++
+.. Desembale la unidad de repuesto y colóquela en una superficie plana y sin estática cerca del bastidor. Guarde los materiales de embalaje para cuando devuelva la unidad con error a NetApp. Aquí tiene la vista frontal de los nodos de almacenamiento H610S y H410S con las unidades:
++
+image::h610s_h410s.png[Muestra la vista frontal de los nodos de almacenamiento H610S y H410S.]
+
+.. Realice los pasos según el modelo de nodo:
++
+[cols="2*"]
+|===
+| Modelo de nodo | Pasos 
+
+
+| H410S  a| 
+... Identifique el nodo haciendo coincidir el número de serie (etiqueta de servicio) con el número que anotó abajo en la interfaz de usuario de Element. El número de serie está en una pegatina situada en la parte posterior de cada nodo. Después de identificar el nodo, se puede usar la información de ranura para identificar la ranura en la que está ubicada la unidad con error. Las unidades se ordenan alfabéticamente de La A a la D y del 0 al 5.
+... Retire el bisel.
+... Pulse el botón de liberación de la unidad con error:
++
+image::h410s_drive.png[Muestra el botón de lanzamiento de la unidad para nodos de almacenamiento H410S.]
+
++
+Al pulsar el botón de liberación, la palanca de leva de los resortes de accionamiento se abre parcialmente y la unidad se libera del plano medio.
+
+... Abra el mango de la leva y deslice la unidad con cuidado con ambas manos.
+... Coloque la unidad sobre una superficie nivelada y antiestática.
+... Inserte la unidad de sustitución en la ranura completamente en el chasis con ambas manos.
+... Presione el asa de la leva hasta que haga clic.
+... Vuelva a instalar el bisel.
+... Notifique al soporte de NetApp sobre el reemplazo de la unidad. El soporte de NetApp proporcionará instrucciones para la devolución de la unidad con error.
+
+
+
+
+| H610S  a| 
+... Coincida el número de ranura de la unidad con error desde la interfaz de usuario de Element con el número en el chasis. El LED de la unidad con error se ilumina en ámbar.
+... Retire el bisel.
+... Pulse el botón de liberación y quite la unidad con error como se muestra en la siguiente ilustración:
++
+image::h610s_driveremove.png[Muestra la unidad que se quita del nodo H610S.]
+
++
+
+NOTE: Asegúrese de que el asa de la bandeja está completamente abierto antes de intentar sacar la unidad del chasis.
+
+... Deslice la unidad hacia fuera y colóquela sobre una superficie nivelada y sin estática.
+... Pulse el botón de liberación de la unidad de repuesto antes de insertarla en el compartimiento para unidades. Los muelles del mango de la bandeja de unidades se abren.
++
+image::H600S_driveinstall.png[Muestra la unidad que se está instalando en el nodo H610S.]
+
+... Inserte la transmisión de sustitución sin aplicar demasiada fuerza. Cuando la unidad se inserta por completo, se oye un clic.
+... Cierre Tratar con cuidado. del soporte de unidades
+... Vuelva a instalar el bisel.
+... Notifique al soporte de NetApp sobre el reemplazo de la unidad. El soporte de NetApp proporcionará instrucciones para la devolución de la unidad con error.
+
+
+|===
+
+
+. Vuelva a añadir la unidad al clúster mediante la interfaz de usuario de Element o el punto de extensión NetApp Element Management del plugin de Element para vCenter Server.
++
+
+NOTE: Al instalar una unidad nueva en un nodo existente, la unidad se registra automáticamente como *disponible* en la interfaz de usuario de Element. La unidad se debe añadir al clúster antes de que esta pueda participar en el clúster.
+
++
+[cols="2*"]
+|===
+| Opción | Pasos 
+
+
+| Usar la interfaz de usuario de Element  a| 
+.. En la interfaz de usuario de Element, seleccione *Cluster > Drives*.
+.. Seleccione *Available* para ver la lista de unidades disponibles.
+.. Seleccione el icono acciones de la unidad que desea agregar y seleccione *Agregar*.
+
+
+
+
+| Usar el plugin de Element para la interfaz de usuario de vCenter Server  a| 
+.. En el punto de extensión NetApp Element Management de vSphere Web Client, seleccione *Gestión de NetApp Element > clúster > unidades*.
+.. En la lista desplegable disponible, seleccione la unidad y seleccione *Agregar*.
+.. Confirme la acción.
+
+
+|===
+
+
+
+
+== Obtenga más información
+
+* https://www.netapp.com/us/documentation/hci.aspx["Recursos de NetApp HCI"^]
+* http://docs.netapp.com/sfe-122/index.jsp["Centro de documentación de SolidFire y el software Element"^]
+

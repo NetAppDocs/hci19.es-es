@@ -1,0 +1,164 @@
+---
+sidebar: sidebar 
+permalink: docs/rancher_prereqs_overview.html 
+summary: Obtenga más información sobre los requisitos para un Rancher exitoso en la instalación de NetApp HCI. 
+keywords: netapp, hci, Rancher, install, installation, requirements 
+---
+= Requisitos para Rancher en NetApp HCI
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Antes de instalar Rancher en NetApp HCI, asegúrese de que su entorno y su sistema NetApp HCI cumplen estos requisitos.
+
+
+NOTE: Si se implementa accidentalmente Rancher en NetApp HCI con información incorrecta (como un FQDN de servidor Rancher incorrecto), no hay forma de corregir la implementación sin eliminarla ni volver a implementarla. Deberá quitar el Rancher en la instancia de NetApp HCI y, a continuación, volver a poner en marcha Rancher en NetApp HCI desde la IU de control de cloud híbrido de NetApp. Consulte link:task_rancher_remove_deployment.html["Retire una instalación de Rancher en NetApp HCI"] si quiere más información.
+
+
+
+== Requisitos de nodo
+
+* Compruebe que su sistema NetApp HCI tenga al menos tres nodos de computación; esto es necesario para obtener una resiliencia completa. Rancher en NetApp HCI no es compatible con configuraciones de solo almacenamiento.
+* Compruebe que el almacén de datos que pretende utilizar para la implementación de Rancher en NetApp HCI tenga al menos 60 GB de espacio libre.
+* Asegúrese de que el clúster de NetApp HCI ejecute servicios de gestión versión 2.17 o posterior.
+
+
+
+
+=== Detalles del nodo
+
+Rancher en NetApp HCI pone en marcha un clúster de gestión de tres nodos.
+
+Todos los nodos tienen las siguientes características:
+
+[cols="15,15, 15"]
+|===
+| VCPU | RAM (GB) | Disco (GB) 
+
+
+| 2 | 8 | 20 
+|===
+
+
+== Requisitos de red
+
+* Compruebe que la red que pretende implementar el Rancher en el clúster de gestión de NetApp HCI tiene una ruta hacia la red de gestión de nodos de gestión.
+* Rancher en NetApp HCI admite direcciones DHCP para el plano de control (servidor Rancher) y los clústeres de usuarios, pero recomendamos direcciones IP estáticas para entornos de producción. Asegúrese de haber asignado las direcciones IP estáticas necesarias si se va a implementar en un entorno de producción.
++
+** El servidor de rancher requiere tres direcciones IP estáticas.
+** Cada clúster de usuarios requiere tantas direcciones IP estáticas como nodos en el clúster. Por ejemplo, un clúster de usuarios con cuatro nodos requiere cuatro direcciones IP estáticas.
+** Si piensa utilizar direcciones DHCP para el plano de control Rancher o los clústeres de usuarios, asegúrese de que la duración de la concesión DHCP sea de al menos 24 horas.
+
+
+* Si necesita utilizar un proxy HTTP para habilitar el acceso a Internet para Rancher en NetApp HCI, debe realizar un cambio previo a la implementación del nodo de gestión. Inicie sesión en su nodo de gestión mediante SSH y siga el https://docs.docker.com/config/daemon/systemd/#httphttps-proxy["instrucciones"^] En la documentación de Docker para actualizar manualmente la configuración de proxy para Docker.
+* Si activa y configura un servidor proxy durante la implementación, los siguientes rangos de direcciones IP y dominios se agregan automáticamente a la configuración de noProxy del servidor Rancher:
++
+[listing]
+----
+127.0.0.0/8, 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16, .svc, .cluster.local
+----
+* Asegúrese de que el nodo de gestión pueda usar DNS para resolver el nombre de host `<any IP address>.nip.io` A una dirección IP. Este es el proveedor DNS que se utiliza durante la implementación; si el nodo de gestión no puede resolver esta URL, se producirá un error en la implementación.
+* Asegúrese de que ha configurado registros DNS para cada dirección IP estática que necesite.
+
+
+
+
+== Requisitos de vSphere de VMware
+
+* Compruebe que la instancia de VMware vSphere que utiliza sea la versión 6.5, 6.7 o 7.0.
+* Puede usar una configuración de red de vSphere Standard Switch (VSS), pero si lo hace, asegúrese de que los switches virtuales y los hosts físicos utilizados para los equipos virtuales Rancher puedan acceder a todos los mismos grupos de puertos, del mismo modo que se asegurará de que lo hagan con las máquinas virtuales normales.
+
+
+
+
+== Consideraciones sobre la implementación
+
+Quizás desee revisar las siguientes consideraciones:
+
+* Tipos de implementaciones
++
+** Puestas en marcha de demostraciones
+** Instalaciones de producción
+
+
+* Rancher FQDN
+
+
+
+TIP: Rancher en NetApp HCI no es resiliente a los fallos de nodo a menos que configure algún tipo de balanceo de carga de red. Como solución sencilla, cree una entrada DNS por turnos para las tres direcciones IP estáticas reservadas para el servidor Rancher. Estas entradas DNS deben resolverse en el FQDN del servidor Rancher que utilizará para acceder al host del servidor Rancher, que sirve a la interfaz de usuario web de Rancher una vez completada la implementación.
+
+
+
+=== Tipos de implementaciones
+
+Puede implementar Rancher en NetApp HCI de las siguientes formas:
+
+* *Implementaciones de demostración*: Si DHCP está disponible en el entorno de implementación dirigido y desea realizar una demostración de la capacidad de Rancher en NetApp HCI, entonces la implementación de DHCP es la más conveniente.
++
+En este modelo de implementación, se puede acceder a la interfaz de usuario de Rancher desde cada uno de los tres nodos del clúster de gestión.
+
++
+Si su organización no utiliza DHCP, también puede probarlo utilizando cuatro direcciones IP estáticas asignadas antes de la implementación, de modo similar a lo que se haría para una implementación de producción.
+
+* *Implementaciones de producción*: Para implementaciones de producción o cuando DHCP no está disponible en el entorno de implementación dirigido, se requiere un poco más de trabajo previo a la implementación. El primer paso es obtener tres direcciones IP consecutivas. Introduzca el primero durante la implementación.
++
+Se recomienda utilizar el equilibrio de carga L4 o la configuración DNS round-robin para entornos de producción. Esto requiere una cuarta dirección IP y una entrada independiente en la configuración de DNS.
+
++
+** * Equilibrio de carga L4*: Esta es una técnica donde una máquina virtual o contenedor que aloja una aplicación como nginx está configurado para distribuir solicitudes entre los tres nodos del cluster de administración.
+** *Round-robin DNS*: Es una técnica en la que se configura un único nombre de host en el sistema DNS que rota las solicitudes entre los tres hosts que forman el clúster de administración.
+
+
+
+
+
+
+=== Rancher FQDN
+
+La instalación requiere la asignación de una dirección URL de Rancher, que incluye el nombre de dominio completo (FQDN) del host donde se servirá la interfaz de usuario de Rancher una vez finalizada la instalación.
+
+En todos los casos, se puede acceder a la interfaz de usuario de Rancher en el navegador mediante el protocolo https (puerto 443).
+
+Las puestas en marcha de producción requieren un FQDN configurado que equilibra la carga entre los nodos del clúster de gestión. Sin usar un FQDN y el equilibrio de carga, el entorno no es flexible y solo es adecuado para entornos de demostración.
+
+
+
+== Puertos necesarios
+
+Asegúrese de que la lista de puertos de la sección "puertos para nodos de servidor de RKE" de la sección *nodos de Rancher* del funcionario https://rancher.com/docs/rancher/v2.x/en/installation/requirements/ports/#ports-for-rancher-server-nodes-on-rke["Documentación del rancher"^] Están abiertos en la configuración del firewall hacia y desde los nodos que ejecutan el servidor Rancher.
+
+
+
+== URL requeridas
+
+Debe accederse a las siguientes direcciones URL desde los hosts en los que reside el plano de control Rancher:
+
+|===
+| URL | Descripción 
+
+
+| https://charts.jetstack.io/[] | Integración con Kubernetes 
+
+
+| https://releases.rancher.com/server-charts/stable[] | Descargas de software de rancher 
+
+
+| https://entropy.ubuntu.com/[] | Servicio de entropía de Ubuntu para la generación aleatoria de números 
+
+
+| https://raw.githubusercontent.com/vmware/cloud-init-vmware-guestinfo/v1.3.1/install.sh[] | Adiciones de VMware 
+
+
+| https://download.docker.com/linux/ubuntu/gpg[] | Clave pública de Docker Ubuntu GPG 
+
+
+| https://download.docker.com/linux/ubuntu[] | Enlace de descarga de Docker 
+
+
+| https://hub.docker.com/[] | Docker Hub para NetApp Hybrid Cloud Control 
+|===

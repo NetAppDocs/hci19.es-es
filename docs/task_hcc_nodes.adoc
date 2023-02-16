@@ -1,0 +1,74 @@
+---
+sidebar: sidebar 
+permalink: docs/task_hcc_nodes.html 
+summary: Puede ver sus activos de almacenamiento y computación en el sistema mediante la página Hybrid Cloud Control Nodes. 
+keywords: netapp, hci, on premise, cluster, inventory, nodes, storage, compute 
+---
+= Consulte el inventario en la página Nodes
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Puede ver tanto los activos de almacenamiento como los activos de computación en el sistema y determinar sus direcciones IP, sus nombres y sus versiones de software.
+
+Se puede ver información de almacenamiento de los sistemas de varios nodos y todos los nodos de observación de NetApp HCI asociados con clústeres de dos o tres nodos. Si link:concept_hcc_custom_protection_domains.html["dominios de protección personalizados"] se asignan, puede ver qué dominios de protección se asignan a nodos específicos.
+
+Los nodos de testigos gestionan el quórum dentro del clúster, no se utilizan para el almacenamiento. Los nodos de testigos se aplican solo a NetApp HCI y no a los entornos de almacenamiento all-flash.
+
+Para obtener más información sobre los nodos de testigos, consulte link:concept_hci_nodes.html["Definiciones de nodos"].
+
+Para los nodos SDS de SolidFire Enterprise, puede supervisar el inventario en la pestaña Storage.
+
+.Pasos
+. Abra la dirección IP del nodo de gestión en un navegador web. Por ejemplo:
++
+[listing]
+----
+https://<ManagementNodeIP>
+----
+. Inicie sesión en NetApp Hybrid Cloud Control proporcionando las credenciales de administrador del clúster de almacenamiento de NetApp HCI.
+. En la navegación de la izquierda, haga clic en *Nodes*.
++
+image::hcc_nodes_storage_2nodes.png[Imagen de página nodos de Cloud Control híbrido]
+
++
+
+NOTE: Cuando inicia una nueva sesión de control del cloud híbrido de NetApp por primera vez, es posible que haya un retraso en la carga de la página nodos de control del cloud híbrido de NetApp cuando el nodo de gestión gestiona muchos clústeres. El tiempo de carga varía en función del número de clústeres que gestiona el nodo de gestión activamente. Para lanzamientos posteriores, experimentará tiempos de carga más rápidos.
+
+. En la ficha *almacenamiento* de la página Nodes, revise la siguiente información:
++
+.. Clústeres de dos nodos: Aparece una etiqueta de “dos nodos” en la ficha almacenamiento y se muestran los nodos de testigos asociados.
+.. Clústeres de tres nodos: Se enumeran los nodos de almacenamiento y los nodos testigo asociados. Los clústeres de tres nodos tienen un nodo testigo puesto en marcha en espera para mantener la alta disponibilidad en caso de fallo del nodo.
+.. Clústeres con cuatro nodos o más: Se muestra información para los clústeres con cuatro o más nodos. Los nodos de testigos no se aplican. Si comenzó con dos o tres nodos de almacenamiento y añadió más nodos, los nodos testigos seguirán apareciendo. De lo contrario, la tabla de nodos de testigos no aparecerá.
+.. La versión del paquete de firmware: A partir de la versión 2.14 de los servicios de gestión, si los clústeres ejecutan Element 12.0 o una versión posterior, es posible ver la versión del paquete de firmware de estos clústeres. Si los nodos de un clúster tienen diferentes versiones de firmware en ellos, puede ver *multiple* en la columna *Versión de paquete de firmware*.
+.. Dominios de protección personalizados: Si en el clúster se usan dominios de protección personalizados, puede ver asignaciones de dominios de protección personalizadas para cada nodo del clúster. Si los dominios de protección personalizados no están habilitados, esta columna no aparece.
+
+
+. Para ver la información de inventario de computación, haga clic en *calcular*.
+. Puede manipular la información de estas páginas de varias maneras:
++
+.. Para filtrar la lista de elementos de los resultados, haga clic en el icono *filtro* y seleccione los filtros. También puede introducir texto para el filtro.
+.. Para mostrar u ocultar columnas, haga clic en el icono *Mostrar/ocultar columnas*.
+.. Para descargar la tabla, haga clic en el icono *Descargar*.
+.. Para agregar o editar las credenciales de BMC almacenadas para un nodo de computación con errores de conexión de BMC, haga clic en *Editar configuración de conexión* en el texto del mensaje de error en la columna *BMC Connection Status*. Solo si el intento de conexión falla para un nodo de computación, se muestra un mensaje de error en esta columna para ese nodo.
+
+
+
+
+
+TIP: Para ver el número de recursos de almacenamiento y computación, observe la consola de control del cloud híbrido (HCC) de NetApp. Consulte link:task_hcc_dashboard.html["Supervise los recursos de almacenamiento y computación con la consola de HCC"].
+
+
+NOTE: Para gestionar un nodo de computación en NetApp Hybrid Cloud Control, debe hacerlo https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Software/Management_services_for_Element_Software_and_NetApp_HCI/How_to_set_up_compute_node_management_in_NetApp_Hybrid_Cloud_Control["Añada el nodo de computación a un clúster de hosts de vCenter"^].
+
+[discrete]
+== Obtenga más información
+
+* https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Página de recursos de NetApp HCI"^]
+

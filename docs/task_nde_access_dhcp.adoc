@@ -1,0 +1,45 @@
+---
+sidebar: sidebar 
+permalink: docs/task_nde_access_dhcp.html 
+summary: Aprenda a acceder al motor de implementación de NetApp en entornos que utilizan DHCP para asignar direcciones IP. 
+keywords: netapp, hci, netapp deployment engine, deployment, engine, deploy, access, dhcp 
+---
+= Acceda al motor de implementación de NetApp en entornos con DHCP
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+:keywords: hci, release notes, vcp, element, management services, firmware
+
+
+[role="lead"]
+En los entornos donde los servidores adquieren automáticamente la configuración de IPv4 desde DHCP, es posible acceder al motor de implementación de NetApp con la dirección IPv4 asignada a la interfaz Bond1G en uno de los nodos de almacenamiento. Puede usar un stick USB para recuperar la dirección IPv4 de uno de los nodos de almacenamiento. El motor de implementación de NetApp detecta automáticamente otros nodos de almacenamiento y computación que utilizan direcciones IPv4 asignadas por DHCP. No debe utilizar este método a menos que la red tenga requisitos especiales.
+
+.Lo que necesitará
+* Usted o el administrador de red completaron las tareas del documento instrucciones de instalación y configuración.
+* Tiene acceso físico a los nodos del NetApp HCI.
+* Todos los nodos del NetApp HCI están encendidos.
+* DHCP está habilitado en las redes de almacenamiento y gestión de NetApp HCI.
+* El pool de direcciones de DHCP es lo suficientemente grande para admitir dos direcciones IPv4 por nodo NetApp HCI.
+
+
+
+NOTE: Para una correcta implementación de NetApp HCI, todos los nodos de la implementación deben tener direcciones IPv4 autoconfiguradas o adquiridas por DHCP (no se pueden mezclar los métodos de asignación de direcciones IPv4).
+
+.Acerca de esta tarea
+Si DHCP está en uso solo para la red de almacenamiento (interfaces Bond10G), debe usar los pasos descritos en el enlace: link:task_nde_access_no_dhcp.html["Acceda al motor de implementación de NetApp en entornos sin DHCP"] Para acceder al motor de implementación de NetApp.
+
+.Pasos
+. Los nodos tardan varios minutos en solicitar las direcciones IP.
+. Elija un nodo de almacenamiento e inserte un stick USB en el nodo. Déjelo insertado durante al menos cinco segundos.
+. Retire el stick USB e insértelo en el equipo.
+. Abra el `readme.html` archivo. Esto lo llevará hasta la interfaz de usuario del motor de implementación de NetApp.
+
+
+[discrete]
+== Obtenga más información
+
+* link:firmware_driver_versions.html["Versiones de firmware y controlador ESXi compatibles para las versiones de NetApp HCI y firmware para los nodos de almacenamiento NetApp HCI"]
+

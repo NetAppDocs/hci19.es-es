@@ -1,0 +1,293 @@
+---
+sidebar: sidebar 
+permalink: docs/task_upgrade_compute_prechecks.html 
+summary: Como parte de una actualización del sistema NetApp HCI, debe ejecutar comprobaciones del estado del nodo de computación antes de ejecutar las actualizaciones a firwamre. 
+keywords: netapp, compute prechecks, compute node upgrade, netapp hci 
+---
+= Ejecute comprobaciones de estado del nodo de computación antes de actualizar el firmware de computación
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Debe ejecutar comprobaciones de estado antes de actualizar el firmware de computación para garantizar que todos los nodos de computación del clúster estén listos para la actualización. Las comprobaciones de estado de los nodos de computación solo se pueden ejecutar en clústeres de computación de uno o más nodos de computación de NetApp HCI gestionados.
+
+.Lo que necesitará
+* *Servicios de administración*: Ha actualizado el último paquete de servicios de administración (2.11 o posterior).
+* *Nodo de gestión*: Está ejecutando el nodo de gestión 11.3 o posterior.
+* *Software Element*: El clúster de almacenamiento ejecuta el software NetApp Element 11.3 o posterior.
+* *Contrato de licencia para el usuario final (CLUF)*: A partir de los servicios de gestión 2.20.69, debe aceptar y guardar el CLUF antes de utilizar la IU o API de control de cloud híbrido de NetApp para ejecutar comprobaciones de estado de los nodos de computación:
++
+.. Abra la dirección IP del nodo de gestión en un navegador web:
++
+[listing]
+----
+https://<ManagementNodeIP>
+----
+.. Inicie sesión en Hybrid Cloud Control de NetApp proporcionando las credenciales de administrador del clúster de almacenamiento.
+.. Seleccione *Actualizar* cerca de la parte superior derecha de la interfaz.
+.. Aparece el EULA. Desplácese hacia abajo, seleccione *Acepto para actualizaciones actuales y futuras* y seleccione *Guardar*.
++
+
+NOTE: Cuando acepta el CLUF, se registra para todas las actualizaciones futuras y se habilita la función de descarga automática. Recibirá actualizaciones sobre las actualizaciones y renovaciones del software de NetApp, que puede instalar cuando le convenga y si así lo desea. Es posible deshabilitar la función de descarga automática si se deshabilita la conectividad de red en el repositorio de software en línea de NetApp.
+
+
+
+
+
+.Opciones de comprobación del estado
+Puede realizar comprobaciones del estado con la interfaz de usuario de control del cloud híbrido de NetApp o la API de control del cloud híbrido de NetApp:
+
+* <<Utilice control de cloud híbrido de NetApp para ejecutar comprobaciones de estado del nodo de computación antes de actualizar el firmware>> (Método preferido)
+* <<Utilice API para ejecutar comprobaciones del estado del nodo de computación antes de actualizar el firmware>>
+
+
+También puede obtener más información acerca de las comprobaciones de estado de los nodos de computación que ejecuta el servicio:
+
+* <<El servicio de computación realiza las comprobaciones de estado del nodo>>
+
+
+
+
+== Utilice control de cloud híbrido de NetApp para ejecutar comprobaciones de estado del nodo de computación antes de actualizar el firmware
+
+Con Hybrid Cloud Control de NetApp, puede verificar que un nodo de computación esté listo para la actualización del firmware.
+
+
+NOTE: Si tiene varias configuraciones de clústeres de almacenamiento de dos nodos, cada una dentro de su propia instancia de vCenter, es posible que las comprobaciones del estado de los nodos de testigos no informen de forma precisa. Por lo tanto, cuando esté listo para actualizar hosts ESXi, solo debe apagar el nodo de testigo en el host ESXi que se está actualizando. Debe asegurarse de tener siempre un nodo testigo en ejecución en la instalación de NetApp HCI apagando los nodos testigo de forma alternativa.
+
+.Pasos
+. Abra la dirección IP del nodo de gestión en un navegador web:
++
+[listing]
+----
+https://<ManagementNodeIP>/hcc
+----
+. Inicie sesión en Hybrid Cloud Control de NetApp proporcionando las credenciales de administrador del clúster de almacenamiento.
+. Seleccione *Actualizar* cerca de la parte superior derecha de la interfaz.
+. En la página *actualizaciones*, seleccione la ficha *firmware de computación*.
+. Seleccione la comprobación del estado image:hcc_healthcheck_icon.png["."] para el clúster que desea comprobar si está listo para la actualización.
+. En la página *Compute Health Check*, seleccione *Run Health Check*.
+. Si hay problemas, la página proporciona un informe. Haga lo siguiente:
++
+.. Vaya al artículo de la base de conocimientos específico indicado para cada problema o realice la solución especificada.
+.. Si se especifica un KB, complete el proceso descrito en el artículo de la base de conocimientos correspondiente.
+.. Después de resolver los problemas del clúster, seleccione *Volver a ejecutar comprobación del estado*.
+
+
+
+
+Cuando la comprobación del estado se completa sin errores, los nodos de computación del clúster están listos para actualizar. Consulte link:task_hcc_upgrade_compute_node_firmware.html["Actualice el firmware del nodo de computación"] para continuar.
+
+
+
+== Utilice API para ejecutar comprobaciones del estado del nodo de computación antes de actualizar el firmware
+
+Es posible usar la API DE REST para verificar que los nodos de computación de un clúster estén listos para actualizarse. La comprobación del estado verifica que no haya obstáculos para la actualización, como problemas del host ESXi u otros problemas de vSphere. Tendrá que ejecutar comprobaciones del estado de los nodos de computación para cada clúster de computación del entorno.
+
+.Pasos
+. Busque el ID de controladora y el ID de clúster:
++
+.. Abra la interfaz de usuario de la API DE REST del servicio de inventario en el nodo de gestión:
++
+[listing]
+----
+https://<ManagementNodeIP>/inventory/1/
+----
+.. Seleccione *autorizar* y complete lo siguiente:
++
+... Introduzca el nombre de usuario y la contraseña del clúster.
+... Introduzca el ID de cliente as `mnode-client` si el valor no se ha rellenado todavía.
+... Seleccione *autorizar* para iniciar una sesión.
+
+
+.. En la interfaz de usuario DE LA API DE REST, seleccione *GET ​/Installations*.
+.. Seleccione *probar*.
+.. Seleccione *Ejecutar*.
+.. Del cuerpo de respuesta del código 200, copie el `"id"` para la instalación que tiene previsto utilizar para las comprobaciones de estado.
+.. En la interfaz de usuario DE LA API DE REST, seleccione *GET ​/installations​/{id}*.
+.. Seleccione *probar*.
+.. Introduzca el ID de instalación.
+.. Seleccione *Ejecutar*.
+.. Desde el cuerpo de respuesta del código 200, copie los ID de cada una de las siguientes opciones:
++
+... El ID del clúster (`"clusterID"`)
+... Un ID de controladora (`"controllerId"`)
++
+[listing]
+----
+{
+  "_links": {
+    "collection": "https://10.117.187.199/inventory/1/installations",
+    "self": "https://10.117.187.199/inventory/1/installations/xx94f6f0-12a6-412f-8b5e-4cf2z58329x0"
+  },
+  "compute": {
+    "errors": [],
+    "inventory": {
+      "clusters": [
+        {
+          "clusterId": "domain-1",
+          "controllerId": "abc12c3a-aa87-4e33-9f94-xx588c2cdcf6",
+          "datacenterName": "NetApp-HCI-Datacenter-01",
+          "installationId": "xx94f6f0-12a6-412f-8b5e-4cf2z58329x0",
+          "installationName": "test-nde-mnode",
+          "inventoryType": "managed",
+          "name": "NetApp-HCI-Cluster-01",
+          "summary": {
+            "nodeCount": 2,
+            "virtualMachineCount": 2
+          }
+        }
+      ],
+----
+
+
+
+
+. Ejecute comprobaciones del estado de los nodos de computación en el clúster:
++
+.. Abra la interfaz de usuario de API DE REST de servicio de computación en el nodo de gestión:
++
+[listing]
+----
+https://<ManagementNodeIP>/vcenter/1/
+----
+.. Seleccione *autorizar* y complete lo siguiente:
++
+... Introduzca el nombre de usuario y la contraseña del clúster.
+... Introduzca el ID de cliente as `mnode-client` si el valor no se ha rellenado todavía.
+... Seleccione *autorizar* para iniciar una sesión.
+
+
+.. Seleccione *POST /compute​/{CONTROLLER_ID}​/health-checks*.
+.. Seleccione *probar*.
+.. Introduzca el `"controllerId"` Ha copiado desde el paso anterior en el campo de parámetro *Controller_ID*.
+.. En la carga útil, introduzca el `"clusterId"` que ha copiado del paso anterior como `"cluster"` y elimine el `"nodes"` parámetro.
++
+[listing]
+----
+{
+  "cluster": "domain-1"
+}
+----
+.. Seleccione *Ejecutar* para ejecutar una comprobación del estado en el clúster.
++
+La respuesta del código 200 da un `"resourceLink"` Se añade la URL con el ID de tarea que se necesita para confirmar los resultados de la comprobación del estado.
+
++
+[listing]
+----
+{
+  "resourceLink": "https://10.117.150.84/vcenter/1/compute/tasks/[This is the task ID for health check task results]",
+  "serviceName": "vcenter-v2-svc",
+  "taskId": "ab12c345-06f7-42d7-b87c-7x64x56x321x",
+  "taskName": "VCenter service health checks"
+}
+----
+.. Copie la parte ID de tarea de `"resourceLink"` URL para verificar el resultado de la tarea.
+
+
+. Compruebe el resultado de las comprobaciones del estado:
++
+.. Volver a la interfaz de usuario de API DE REST de servicio de computación en el nodo de gestión:
++
+[listing]
+----
+https://<ManagementNodeIP>/vcenter/1/
+----
+.. Seleccione *GET /compute​/tases/{task_id}*.
+.. Seleccione *probar*.
+.. Introduzca la parte ID de tarea de `"resourceLink"` URL de la respuesta * POST /compute​/{CONTROLLER_ID}​/health-checks* code 200 en la `task_id` campo de parámetros.
+.. Seleccione *Ejecutar*.
+.. Si la `status` devuelto indica que se han producido problemas relacionados con el estado del nodo de computación, realice lo siguiente:
++
+... Vaya al artículo específico de la KB (`KbLink`) en la lista de cada problema o realice la solución especificada.
+... Si se especifica un KB, complete el proceso descrito en el artículo de la base de conocimientos correspondiente.
+... Después de resolver los problemas del clúster, vuelva a ejecutar *POST /compute​/{CONTROLLER_ID}​/health-checks* (consulte el paso 2).
+
+
+
+
+
+
+Si las comprobaciones de estado se completan sin problemas, el código de respuesta 200 indica un resultado satisfactorio.
+
+
+
+== El servicio de computación realiza las comprobaciones de estado del nodo
+
+Las comprobaciones del estado de computación, ya sea realizadas por los métodos de control del cloud híbrido de NetApp o API, realizan las siguientes comprobaciones por nodo. En función del entorno, es posible que se omitan algunas de estas comprobaciones. Debe volver a ejecutar las comprobaciones del estado después de resolver los problemas detectados.
+
+|===
+| Compruebe la descripción | Nodo/clúster | Acción necesaria para resolver | Artículo de la base de conocimientos con procedimiento 
+
+
+| ¿Está DRS habilitado y totalmente automatizado? | Clúster | Active DRS y asegúrese de que está totalmente automatizado. | link:https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Software/Virtual_Storage_Console_for_VMware_vSphere/How_to_enable_DRS_in_vSphere["Consulte esta base de conocimientos"^]. NOTA: Si tiene licencia estándar, ponga el host ESXi en modo de mantenimiento y ignore esta advertencia de fallo de comprobación de estado. 
+
+
+| ¿DPM está deshabilitado en vSphere? | Clúster | Desactive Administración de energía distribuida. | link:https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Software/Element_Plug-in_for_vCenter_server/How_to_disable_DPM_in_VMware_vCenter["Consulte esta base de conocimientos"^]. 
+
+
+| ¿Está deshabilitado el control de admisión de alta disponibilidad en vSphere? | Clúster | Desactive el control de admisión de alta disponibilidad. | link:https://kb.netapp.com/Advice_and_Troubleshooting/Hybrid_Cloud_Infrastructure/NetApp_HCI/How_to_control_enable_HA_admission_in_vSphere["Consulte esta base de conocimientos"^]. 
+
+
+| ¿ESTÁ HABILITADO FT para una máquina virtual en un host del clúster? | Nodo | Suspender tolerancia a fallos en cualquier máquina virtual afectada. | link:https://kb.netapp.com/Advice_and_Troubleshooting/Hybrid_Cloud_Infrastructure/NetApp_HCI/How_to_suspend_fault_tolerance_on_virtual_machines_in_a_vSphere_cluster["Consulte esta base de conocimientos"^]. 
+
+
+| ¿Hay alarmas críticas en vCenter para el clúster? | Clúster | Inicie vSphere y resuelva y/o reconozca todas las alertas antes de continuar. | No se necesitan KB para resolver el problema. 
+
+
+| ¿Hay alertas informativas generales/globales en vCenter? | Clúster | Inicie vSphere y resuelva y/o reconozca todas las alertas antes de continuar. | No se necesitan KB para resolver el problema. 
+
+
+| ¿Están actualizados los servicios de gestión? | Sistema HCI de NetApp | Es necesario actualizar los servicios de gestión antes de realizar una actualización o ejecutar comprobaciones del estado previas a la actualización. | No se necesitan KB para resolver el problema. Consulte link:task_hcc_update_management_services.html["este artículo"] si quiere más información. 
+
+
+| ¿Hay errores en el nodo ESXi actual en vSphere? | Nodo | Inicie vSphere y resuelva y/o reconozca todas las alertas antes de continuar. | No se necesitan KB para resolver el problema. 
+
+
+| ¿Hay soportes virtuales montados en un equipo virtual en un host del clúster? | Nodo | Desmonte todos los discos de medios virtuales (CD/DVD/floppy) de las máquinas virtuales. | No se necesitan KB para resolver el problema. 
+
+
+| ¿Es la versión de BMC la versión mínima requerida que tiene soporte de redfish? | Nodo | Actualice manualmente el firmware del BMC. | No se necesitan KB para resolver el problema. 
+
+
+| ¿El host ESXi está en funcionamiento? | Nodo | Inicie el host ESXi. | No se necesitan KB para resolver el problema. 
+
+
+| ¿Residen máquinas virtuales en el almacenamiento ESXi local? | Nodo/máquina virtual | Quite o migre almacenamiento local conectado a máquinas virtuales. | No se necesitan KB para resolver el problema. 
+
+
+| ¿Está BMC en funcionamiento? | Nodo | Encienda su BMC y asegúrese de que está conectado a una red a la que puede llegar este nodo de gestión. | No se necesitan KB para resolver el problema. 
+
+
+| ¿Hay hosts ESXi de partners disponibles? | Nodo | Hacer que uno o más hosts ESXi del clúster estén disponibles (no en modo de mantenimiento) para migrar máquinas virtuales. | No se necesitan KB para resolver el problema. 
+
+
+| ¿Puede conectarse con BMC a través del protocolo IPMI? | Nodo | Habilite el protocolo IPMI en la controladora de gestión de placa base (BMC). | No se necesitan KB para resolver el problema. 
+
+
+| ¿El host ESXi se asigna correctamente al host de hardware (BMC)? | Nodo | El host ESXi no está asignado correctamente a la controladora de gestión de placa base (BMC). Corrija la asignación entre el host ESXi y el host hardware. | No se necesitan KB para resolver el problema. Consulte link:task_hcc_edit_bmc_info.html["este artículo"] si quiere más información. 
+
+
+| ¿Cuál es el estado de los nodos testigos en el clúster? Ninguno de los nodos de testigos identificados está en funcionamiento. | Nodo | Un nodo de testigo no funciona en un host ESXi alternativo. Encienda el nodo testigo en un host ESXi alternativo y vuelva a ejecutar la comprobación del estado. *Un nodo testigo debe estar en ejecución en la instalación de HCI en todo momento*. | https://kb.netapp.com/Advice_and_Troubleshooting/Hybrid_Cloud_Infrastructure/NetApp_HCI/How_to_resolve_witness_node_issues_prior_to_upgrading_compute_nodes["Consulte esta base de conocimientos"^] 
+
+
+| ¿Cuál es el estado de los nodos testigos en el clúster? El nodo de observación está activo y en ejecución en este host ESXi, y el nodo de observación alternativo no está en funcionamiento. | Nodo | Un nodo de testigo no funciona en un host ESXi alternativo. Encienda el nodo de testigo en un host ESXi alternativo. Cuando esté listo para actualizar este host ESXi, apague el nodo testigo que se ejecute en este host ESXi y vuelva a ejecutar la comprobación del estado. *Un nodo testigo debe estar en ejecución en la instalación de HCI en todo momento*. | https://kb.netapp.com/Advice_and_Troubleshooting/Hybrid_Cloud_Infrastructure/NetApp_HCI/How_to_resolve_witness_node_issues_prior_to_upgrading_compute_nodes["Consulte esta base de conocimientos"^] 
+
+
+| ¿Cuál es el estado de los nodos testigos en el clúster? El nodo testigo está activo y en ejecución en este host ESXi y el nodo alternativo está en funcionamiento, pero se ejecuta en el mismo host ESXi. | Nodo | Los dos nodos testigos se ejecutan en este host ESXi. Reubique un nodo de testigo en un host ESXi alternativo. Cuando esté listo para actualizar este host ESXi, apague el nodo de testigo que queda en este host ESXi y vuelva a ejecutar la comprobación del estado. *Un nodo testigo debe estar en ejecución en la instalación de HCI en todo momento*. | https://kb.netapp.com/Advice_and_Troubleshooting/Hybrid_Cloud_Infrastructure/NetApp_HCI/How_to_resolve_witness_node_issues_prior_to_upgrading_compute_nodes["Consulte esta base de conocimientos"^] 
+
+
+| ¿Cuál es el estado de los nodos testigos en el clúster? El nodo de testigo está activo y en ejecución en este host ESXi y el nodo de observación alternativo está en funcionamiento en otro host ESXi. | Nodo | Un nodo de testigo se ejecuta localmente en este host ESXi. Cuando esté listo para actualizar este host ESXi, apague el nodo testigo solo en este host ESXi y vuelva a ejecutar la comprobación del estado. *Un nodo testigo debe estar en ejecución en la instalación de HCI en todo momento*. | https://kb.netapp.com/Advice_and_Troubleshooting/Hybrid_Cloud_Infrastructure/NetApp_HCI/How_to_resolve_witness_node_issues_prior_to_upgrading_compute_nodes["Consulte esta base de conocimientos"^] 
+|===
+[discrete]
+== Obtenga más información
+
+* https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Página de recursos de NetApp HCI"^]
+

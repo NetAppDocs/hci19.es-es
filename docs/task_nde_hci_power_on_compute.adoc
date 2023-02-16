@@ -1,0 +1,46 @@
+---
+sidebar: sidebar 
+permalink: docs/task_nde_hci_power_on_compute.html 
+summary: Aprenda a encender los nodos de computación de NetApp HCI. 
+keywords: netapp, hci, netapp deployment engine, deployment, vsphere 
+---
+= Encienda los recursos informáticos para un sistema NetApp HCI
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+:keywords: netapp, hci, netapp deployment engine, deployment, vsphere
+
+
+[role="lead"]
+Una vez finalizada la interrupción programada, puede encender los recursos de computación para un sistema NetApp HCI.
+
+.Pasos
+. Encienda los nodos de computación con los mismos pasos que realizó para encender los nodos de almacenamiento.
+. Cuando todos los nodos de computación estén operativos, inicie sesión en el host ESXi que ejecutaba vcsa.
+. Inicie sesión en el host de computación y compruebe que ve todos los almacenes de datos NetApp HCI. Para un sistema NetApp HCI típico, debe ver todos los almacenes de datos locales ESXi y, al menos, los siguientes almacenes de datos compartidos:
+
+
+[listing]
+----
+NetApp-HCI-Datastore-[01,02]
+----
+. Suponiendo que se pueda acceder a todo el almacenamiento, encienda la instancia de vcsa y cualquier otra máquina virtual necesaria de la siguiente forma:
++
+.. Seleccione las máquinas virtuales del navegador, seleccione todas las máquinas virtuales que desee encender y haga clic en el botón *encendido*.
+
+
+. Después de encender las máquinas virtuales, espere aproximadamente 5 minutos y luego utilice un explorador web para acceder a la dirección IP o el FQDN de la aplicación vcsa.
++
+Si no espera lo suficiente, aparece un mensaje que indica que el servidor web de vSphere Client se está inicializando.
+
+. Una vez que se inicializa vSphere Client, inicie sesión y verifique que todos los hosts ESXi y las máquinas virtuales estén en línea.
+
+
+[discrete]
+== Obtenga más información
+
+* link:firmware_driver_versions.html["Versiones de firmware y controlador ESXi compatibles para las versiones de NetApp HCI y firmware para los nodos de almacenamiento NetApp HCI"]
+

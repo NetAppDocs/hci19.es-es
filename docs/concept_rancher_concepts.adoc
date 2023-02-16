@@ -1,0 +1,51 @@
+---
+sidebar: sidebar 
+permalink: docs/concept_rancher_concepts.html 
+summary: Obtenga información acerca de las tareas que debe realizar después de instalar Rancher en NetApp HCI. 
+keywords: netapp, hci, rancher, control plane, catalog, cluster, kubernetes 
+---
+= Francher en conceptos de NetApp HCI
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Conozca los conceptos básicos relacionados con Rancher en NetApp HCI.
+
+* *Rancher Server* o *plano de control*: El plano de control Rancher, a veces llamado el _Rancher Server_, aprovisiona, administra y supervisa clústeres Kubernetes utilizados por los equipos de Desarrollo y Operaciones.
+* *Catálogos*: Los catálogos son repositorios de GitHub o repositorios de Helm Chart llenos de aplicaciones listas para su implementación. Rancher proporciona la capacidad de utilizar un catálogo de gráficos Helm que facilitan la implementación de aplicaciones repetidas veces. Rancher incluye dos tipos de catálogos: Catálogos globales incorporados y catálogos personalizados. Trident se pone en marcha como catálogo. Consulte https://rancher.com/docs/rancher/v2.x/en/helm-charts/legacy-catalogs/["Documentación de rancher sobre catálogos"^].
+* *Clúster de gestión*: Rancher en NetApp HCI implementa tres máquinas virtuales en el clúster de gestión de Rancher, que puede ver mediante Rancher, Control de cloud híbrido y el complemento vCenter. Las máquinas virtuales del clúster de gestión alojan el servidor Rancher, el motor Rancher Kubernetes Engine (RKE) y el sistema operativo Linux.
+* *Clústeres de usuario*: Estos clústeres de Kubernetes de flujo descendente ejecutan sus aplicaciones y servicios. En las instalaciones de Kubernetes de Rancher, el clúster de gestión debe estar separado de los clústeres de usuarios. Cualquier clúster que un usuario de Rancher implemente desde Rancher, o que importe a Rancher, se considera un clúster de usuarios.
+* *Plantilla de nodo de Rancher*: Hybrid Cloud Control utiliza una plantilla de nodo de Rancher para simplificar la implementación.
++
+Consulte  https://rancher.com/docs/rancher/v2.x/en/user-settings/node-templates/["Documentación de rancher sobre las plantillas de nodos"^].
+
+
+
+
+
+== El software Trident y los conceptos de almacenamiento persistente
+
+Trident, en sí misma una aplicación nativa de Kubernetes, se ejecuta directamente en un clúster de Kubernetes. Con Trident, los usuarios de Kubernetes (como desarrolladores, científicos de datos y administradores de Kubernetes) pueden crear, gestionar e interactuar con volúmenes de almacenamiento persistentes en el formato Kubernetes estándar, con el que ya están familiarizados. Con Trident, las soluciones de NetApp pueden satisfacer las demandas de volumen persistente que realizan los clústeres de Kubernetes.
+
+Con Rancher, puede usar un volumen persistente, un volumen que existe independientemente de un pod específico y, por tanto, durante su propia vida útil. El uso de Trident para gestionar reclamaciones de volúmenes persistentes (RVP) aísla a los desarrolladores con pods a partir de los detalles de implementación de nivel inferior del almacenamiento al que acceden.
+
+Cuando una aplicación en contenedor emite una solicitud de reclamación de volumen persistente (RVP), Trident aprovisiona de forma dinámica el almacenamiento según los parámetros solicitados desde la capa de almacenamiento del software NetApp Element en NetApp HCI.
+
+Hay un catálogo de Trident disponible para Rancher en NetApp HCI y se ejecuta en los clústeres de usuarios. Como parte de la implementación de Rancher en NetApp HCI, hay un instalador de Trident disponible en el catálogo Rancher de forma predeterminada. La inclusión de este catálogo simplifica la puesta en marcha de Trident en los clústeres de usuarios.
+
+Consulte link:task_rancher_trident.html["Instale Trident con Rancher en NetApp HCI"].
+
+Si desea obtener más información, visite la https://netapp-trident.readthedocs.io/en/stable-v20.10/introduction.html["Documentación de Trident"^].
+
+[discrete]
+== Obtenga más información
+
+* https://rancher.com/docs/rancher/v2.x/en/overview/architecture/["Documentación de rancher sobre arquitectura"^]
+* https://rancher.com/docs/rancher/v2.x/en/overview/concepts/["Terminología de Kubernetes para Rancher"^]
+* https://www.netapp.com/us/documentation/hci.aspx["Recursos de NetApp HCI"^]
+

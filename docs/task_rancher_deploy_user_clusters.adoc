@@ -1,0 +1,44 @@
+---
+sidebar: sidebar 
+permalink: docs/task_rancher_deploy_user_clusters.html 
+summary: Después de implementar Rancher en NetApp HCI, puede configurar clústeres de usuarios y agregar aplicaciones a dichos clústeres. 
+keywords: netapp, hci, rancher, deploy, cluster, kubernetes, control plane,  user cluster, workload 
+---
+= Poner en marcha aplicaciones y clústeres de usuarios
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Después de implementar Rancher en NetApp HCI, puede configurar clústeres de usuarios y agregar aplicaciones a dichos clústeres.
+
+
+
+== Ponga en marcha clústeres de usuario
+
+Después de la implementación, los equipos de Dev y OPS pueden poner en marcha sus clústeres de usuarios de Kubernetes, de forma similar a cualquier puesta en marcha de Rancher en la que puedan poner en marcha aplicaciones.
+
+. Acceda a la interfaz de usuario de Rancher utilizando la dirección URL que se le proporcionó al final de la implementación de Rancher.
+. Cree clústeres de usuarios. Consulte la documentación de Rancher acerca de https://rancher.com/docs/rancher/v2.x/en/quick-start-guide/workload/["poner en marcha cargas de trabajo"^].
+. Aprovisionar los clústeres de usuarios en Rancher en NetApp HCI. Consulte la documentación de Rancher acerca de https://rancher.com/docs/rancher/v2.x/en/cluster-provisioning/["Configuración de clústeres de Kubernetes en Rancher"^].
+
+
+
+
+== Poner en marcha aplicaciones en clústeres de usuarios
+
+Al igual que cualquier puesta en marcha de Rancher, se añaden aplicaciones en los clústeres de Kubernetes.
+
+Consulte la documentación de Rancher acerca de https://rancher.com/docs/rancher/v2.x/en/deploy-across-clusters/["implementar aplicaciones en los clústeres"^].
+
+[discrete]
+== Obtenga más información
+
+* https://rancher.com/docs/rancher/v2.x/en/overview/architecture/["Documentación de rancher sobre arquitectura"^]
+* https://rancher.com/docs/rancher/v2.x/en/overview/concepts/["Terminología de Kubernetes para Rancher"^]
+* https://www.netapp.com/us/documentation/hci.aspx["Recursos de NetApp HCI"^]
+

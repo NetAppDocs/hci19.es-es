@@ -1,0 +1,51 @@
+---
+sidebar: sidebar 
+permalink: docs/task_nde_join_existing_vsphere.html 
+summary: Descubra cómo configurar VMware vSphere durante la implementación de NetApp HCI. 
+keywords: netapp, hci, netapp deployment engine, deployment, vsphere 
+---
+= Únase a una puesta en marcha de VMware vSphere existente
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+:keywords: netapp, hci, netapp deployment engine, deployment, vsphere
+
+
+[role="lead"]
+Puede configurar NetApp HCI para aprovechar la puesta en marcha de vSphere existente proporcionando la información de red de vCenter Server y las credenciales.
+
+.Lo que necesitará
+* Si se une a una puesta en marcha existente de vSphere 6.7, asegúrese de que vCenter Server ejecute la versión 6.7 Update 1.
+* Si se une a una puesta en marcha existente de vSphere 6.5, asegúrese de que vCenter Server ejecute la versión 6.5 Update 2 o una versión posterior.
+* Obtenga los detalles de la red y las credenciales de administrador para la implementación existente de vSphere.
+* Si el plugin de NetApp Element para vCenter Server está registrado en la instancia existente de vCenter, tendrá que hacerlo https://docs.netapp.com/us-en/vcp/task_vcp_unregister.html["cancele el registro"^] antes de continuar. El plugin se vuelve a registrar una vez completada la implementación de NetApp HCI.
+
+
+.Acerca de esta tarea
+Si se unen varios sistemas de vCenter Server conectados mediante vCenter Linked Mode, NetApp HCI solo reconoce uno de los sistemas de vCenter Server.
+
+[NOTE]
+====
+* A partir del plugin de Element para vCenter Server 5.0, se debe usar https://docs.netapp.com/us-en/vcp/vcp_concept_linkedmode.html["VCenter Linked Mode"^], Se registra el plugin de Element desde un nodo de gestión independiente para cada instancia de vCenter Server que administra los clústeres de almacenamiento de SolidFire de NetApp (recomendado).
+* Usar el plugin de Element para vCenter Server 4.10 y versiones anteriores para gestionar recursos de clúster desde otras instancias de vCenter Server mediante https://docs.netapp.com/us-en/vcp/vcp_concept_linkedmode.html["VCenter Linked Mode"^] solo se limita a clústeres de almacenamiento local.
+
+
+====
+.Pasos
+. Haga clic en *Join and extend an existing vSphere deployment*.
+. Introduzca el nombre de dominio o la dirección IP en el campo *vCenter Server Domain Name or IP address*. Si introduce un nombre de dominio, también debe introducir la dirección IP de un servidor DNS activo en el campo *Dirección IP del servidor DNS* que aparece.
+. Introduzca las credenciales de un administrador de vSphere en los campos *User Name y Password*.
+. Haga clic en *continuar*.
+
+
+
+NOTE: Si el plugin de NetApp Element para vCenter Server se registró durante este paso, se muestra un mensaje de error que indica que el usuario https://docs.netapp.com/us-en/vcp/task_vcp_unregister.html["cancele el registro"^] el plugin. Antes de continuar con la implementación de NetApp HCI. El plugin se vuelve a registrar una vez completada la implementación.
+
+[discrete]
+== Obtenga más información
+
+* link:firmware_driver_versions.html["Versiones de firmware y controlador ESXi compatibles para las versiones de NetApp HCI y firmware para los nodos de almacenamiento NetApp HCI"]
+

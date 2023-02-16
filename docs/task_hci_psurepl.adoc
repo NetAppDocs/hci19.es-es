@@ -1,0 +1,105 @@
+---
+sidebar: sidebar 
+permalink: docs/task_hci_psurepl.html 
+summary: Si una unidad de fuente de alimentación está defectuosa, debe sustituirla Lo antes posible. para garantizar que el chasis dispone de una fuente de alimentación redundante. 
+keywords: netapp, hci, psu, replace power supply, H410S, H610S, H410C, H610C, H615C 
+---
+= Sustituya las unidades de alimentación
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Cada chasis incluye dos unidades de alimentación para redundancia de alimentación. Si una unidad de fuente de alimentación está defectuosa, debe sustituirla Lo antes posible. para garantizar que el chasis dispone de una fuente de alimentación redundante.
+
+.Lo que necesitará
+* Ha determinado que la unidad de alimentación está defectuosa.
+* Tiene una unidad de suministro de alimentación de repuesto.
+* Ha comprobado que la segunda unidad de alimentación está en funcionamiento.
+* Usted tiene una muñequera de descarga electrostática (ESD), o usted ha tomado otras precauciones antiestáticas.
+
+
+.Acerca de esta tarea
+El procedimiento de sustitución se aplica a los siguientes modelos de nodo:
+
+* Chasis NetApp HCI de cuatro nodos y unidad rack doble (2U)
+* Chasis de computación 2U H610C
+* Una unidad de rack (1U) chasis de computación H615C
+* Chasis de almacenamiento H610S de 1U
++
+
+NOTE: En el caso de H610C, H615C y H610S, los términos "nodo" y "chasis" se utilizan indistintamente porque el nodo y el chasis no son componentes separados, a diferencia de lo que sucede en el chasis 2U de cuatro nodos.
+
+
+
+Las alarmas en VMware vSphere Web Client proporcionan información sobre la unidad de suministro de alimentación con fallos, para referirla como PS1 o PS2. En un chasis NetApp HCI 2U de cuatro nodos, PS1 hace referencia a la unidad de la fila superior del chasis y PS2 hace referencia a la unidad de la fila inferior del chasis. Puede sustituir la unidad de fuente de alimentación defectuosa mientras el chasis está encendido y en funcionamiento, siempre que la unidad de fuente de alimentación redundante esté funcionando.
+
+.Pasos
+. Localice la unidad de alimentación defectuosa en el chasis. El indicador LED de la unidad defectuosa se ilumina en ámbar.
++
+
+NOTE: Las unidades de suministro de alimentación se encuentran de forma diferente según el tipo de chasis.
+
++
+Consulte las siguientes imágenes para conocer las ubicaciones de las unidades de alimentación:
+
++
+[cols="2*"]
+|===
+| Modelo | Ubicación de las unidades de alimentación 
+
+
+| Chasis de almacenamiento NetApp HCI 2U de cuatro nodos  a| 
+image::storage_chassis_psu.png[La muestra las unidades de suministro de alimentación en un 2U]
+
+
+NOTE: Los nodos del chasis pueden parecer diferentes según el tipo de nodos (almacenamiento o computación) que tenga.
+
+
+
+| Chasis H610C  a| 
+image::h610c_psu.png[Muestra las unidades de suministro de alimentación en un chasis H610C.]
+
+
+
+| Chasis H615C  a| 
+image::h615c_psu.png[Muestra las unidades de alimentación en un chasis H615C.]
+
+
+
+| Chasis H610S  a| 
+image::h610s_psu.png[Muestra las unidades de suministro de alimentación en un chasis H610S.]
+
+|===
+. Desconecte el cable de alimentación de la unidad de alimentación.
+. Levante el asa de la leva y presione el pestillo azul para sacar la unidad de alimentación.
++
+image::psu-remove.gif[La muestra el asa de leva que se está levantando y la unidad de alimentación que se está deslizando fuera del chasis.]
+
++
+
+NOTE: La ilustración es un ejemplo. La ubicación de la fuente de alimentación en el chasis y el color del botón de liberación varían según el tipo de chasis que tenga.
+
++
+
+IMPORTANT: Asegúrese de utilizar ambas manos para soportar el peso de la unidad de alimentación.
+
+. Con ambas manos, alinee los bordes de la unidad de alimentación con la abertura del chasis, empuje suavemente la unidad hacia el chasis con el asa de leva hasta que encaje en su sitio y vuelva a colocar el mango de leva en la posición vertical.
++
+image::psu-install.gif[La muestra la unidad de fuente de alimentación que se está instalando en el chasis.]
+
+. Enchufe el cable de alimentación.
+. Devuelva la unidad defectuosa a NetApp siguiendo las instrucciones de la caja que le ha enviado.
+
+
+
+
+== Obtenga más información
+
+* https://www.netapp.com/us/documentation/hci.aspx["Recursos de NetApp HCI"^]
+* http://docs.netapp.com/sfe-122/index.jsp["Centro de documentación de SolidFire y el software Element"^]
+

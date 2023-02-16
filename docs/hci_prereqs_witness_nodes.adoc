@@ -1,0 +1,51 @@
+---
+sidebar: sidebar 
+permalink: docs/hci_prereqs_witness_nodes.html 
+summary: Obtenga información acerca de los requisitos del nodo de testimonio de NetApp HCI. 
+keywords: netapp, hci, element, Witness Node 
+---
+= Requisitos de recursos de nodo de observación para clústeres de almacenamiento de dos nodos
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+:keywords: netapp, hci, element, Witness Node
+
+
+[role="lead"]
+NetApp HCI admite un tamaño de instalación mínimo de dos nodos de almacenamiento y dos nodos de computación. Al instalar NetApp HCI mediante un clúster de almacenamiento de dos o tres nodos, debe tener en cuenta los requisitos de los nodos de testigos de NetApp HCI y sus recursos de máquinas virtuales (VM).
+
+Cuando un clúster de almacenamiento utiliza dos o tres nodos, también pone en marcha un par de nodos testigos junto a cada clúster de almacenamiento. Los nodos de observación tienen los siguientes requisitos de recursos de máquina virtual:
+
+|===
+| Recurso | Requisito 
+
+
+| VCPU | 4 
+
+
+| Memoria | 12 GB 
+
+
+| Tamaño de disco | 67 GB 
+|===
+NetApp HCI solo admite determinados modelos de nodo de almacenamiento en clústeres de almacenamiento de dos o de tres nodos. Para obtener más información, consulte las notas de la versión de su versión de NetApp HCI.
+
+|===
+
+
+ a| 
+*Mejor práctica:* Configurar las VM del nodo testigo para utilizar el almacén de datos local del nodo de computación (establecido por NDE de forma predeterminada), no configurarlas en el almacenamiento compartido, como los volúmenes de almacenamiento SolidFire. Para evitar la migración automática de los equipos virtuales, establezca el nivel de automatización del planificador de recursos distribuidos (DRS) del nodo testigo en *Desactivado*. De este modo, se evita que ambos nodos testigos se ejecuten en el mismo nodo de computación y se cree una configuración de parejas que no sea de alta disponibilidad (ha).
+
+|===
+
+NOTE: Cuando el proceso de instalación de NetApp HCI instala nodos testigo, se almacena una plantilla de máquina virtual en VMware vCenter que puede utilizar para volver a poner en marcha un nodo de testigo en caso de que se elimine, se pierda o se dañe por accidente. También puede utilizar la plantilla para volver a poner en marcha un nodo de testigo si necesita sustituir un nodo de computación con errores que alojaba el nodo de testigo. Para obtener instrucciones, consulte la sección *nodos de testigo de nueva puesta en marcha para clústeres de almacenamiento de dos y tres nodos* link:task_hci_h410crepl.html["aquí"^].
+
+[discrete]
+== Obtenga más información
+
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Recursos de NetApp HCI"^]
+* https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
+

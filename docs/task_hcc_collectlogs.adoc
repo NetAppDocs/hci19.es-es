@@ -1,0 +1,174 @@
+---
+sidebar: sidebar 
+permalink: docs/task_hcc_collectlogs.html 
+summary: Puede usar el control de cloud híbrido de NetApp para recopilar registros de la instalación de NetApp HCI o Element para facilitar la solución de problemas. 
+keywords: netapp, hci, logs, collection, troubleshooting, monitor 
+---
+= Recopile registros para solucionar problemas
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Si tiene problemas con la instalación de su almacenamiento all-flash de NetApp HCI o SolidFire, puede recopilar registros para enviar al soporte de NetApp que le ayuden en el diagnóstico. Es posible usar el control de cloud híbrido de NetApp o la API DE REST para recoger registros en sistemas NetApp HCI o Element.
+
+.Lo que necesitará
+* Asegúrese de que la versión del clúster de almacenamiento ejecute la versión 11.3 o posterior del software NetApp Element.
+* Asegúrese de haber implementado un nodo de gestión que ejecuta la versión 11.3 o una versión posterior.
+
+
+.Opciones de recopilación de registros
+Seleccione una de las siguientes opciones:
+
+* <<Utilice el control del cloud híbrido de NetApp para recopilar registros>>
+* <<Use la API DE REST para recoger registros>>
+
+
+
+
+== Utilice el control del cloud híbrido de NetApp para recopilar registros
+
+Puede acceder al área de recogida de registros desde la consola de Cloud Control híbrido de NetApp.
+
+.Pasos
+. Abra la dirección IP del nodo de gestión en un navegador web. Por ejemplo:
++
+[listing]
+----
+https://<ManagementNodeIP>
+----
+. Inicie sesión en NetApp Hybrid Cloud Control proporcionando las credenciales de administrador del clúster de almacenamiento de NetApp HCI o Element.
+. En el panel de control, haga clic en el menú de la parte superior derecha.
+. Seleccione *recopilar registros*.
++
+Aparecerá la página *registros de recopilación*. Si recogió los registros antes, puede descargar el paquete de registros existente o iniciar una nueva recopilación de registros.
+
+. Seleccione un intervalo de fechas en el menú desplegable *intervalo de fechas* para especificar las fechas que deben incluir los registros.
++
+Si especifica una fecha de inicio personalizada, puede seleccionar la fecha para comenzar el rango de fechas. Los registros se recogerán a partir de esa fecha hasta la hora actual.
+
+. En la sección *Log Collection*, seleccione los tipos de archivos de registro que debe incluir el paquete de registro.
++
+Para los registros de computación y de almacenamiento, puede ampliar la lista de nodos de computación o de almacenamiento, y seleccionar nodos individuales para recoger registros (o de todos los nodos de la lista).
+
+. Haga clic en *recopilar registros* para iniciar la recopilación de registros.
++
+La recogida de registros se ejecuta en segundo plano y la página muestra el progreso.
+
++
+
+NOTE: Dependiendo de los registros que recoja, la barra de progreso puede permanecer en un porcentaje determinado durante varios minutos o avanzar muy lentamente en algunos puntos.
+
+. Haga clic en *Descargar registros* para descargar el paquete de registro.
++
+Este paquete de registro está en un formato de archivo .tgz comprimido.
+
+
+
+
+
+== Use la API DE REST para recoger registros
+
+Es posible usar la API DE REST para recoger registros de NetApp HCI o Element.
+
+.Pasos
+. Busque el ID del clúster de almacenamiento:
++
+.. Abra la interfaz de usuario de LA API DE REST del nodo de gestión en el nodo de gestión:
++
+[listing]
+----
+https://<ManagementNodeIP>/logs/1/
+----
+.. Haga clic en *autorizar* y complete lo siguiente:
++
+... Introduzca el nombre de usuario y la contraseña del clúster.
+... Introduzca el ID de cliente as `mnode-client` si el valor no se ha rellenado todavía.
+... Haga clic en *autorizar* para iniciar una sesión.
+
+
+
+
+. Recopile registros de NetApp HCI o Element:
++
+.. Haga clic en *POST /paquete*.
+.. Haga clic en *probar*.
+.. Cambie los valores de los siguientes parámetros en el campo *cuerpo de la solicitud* dependiendo del tipo de registros que necesite recopilar y del intervalo de tiempo:
++
+|===
+| Parámetro | Tipo | Descripción 
+
+
+| `modifiedSince` | Cadena de fecha | Solo incluya los registros modificados después de esta fecha y hora. Por ejemplo, el valor "2020-07-14T20:19:00.000Z" define una fecha de inicio del 14 de julio de 2020 a las 20:19 UTC. 
+
+
+| `computeLogs` | Booleano | Configure este parámetro en `true` para incluir los registros del nodo de computación. 
+
+
+| `computeIds` | Cabina de UUID | Si `computeLogs` se establece en `true`, Rellene este parámetro con los Id. De activo de nodo de gestión de los nodos de computación para limitar la colección de registros a esos nodos de computación específicos. Utilice la `GET https://<ManagementNodeIP>/logs/1/bundle/options` Extremo para ver todos los posibles ID de nodo que puede utilizar. 
+
+
+| `mnodeLogs` | Booleano | Configure este parámetro en `true` para incluir los registros del nodo de gestión. 
+
+
+| `storageCrashDumps` | Booleano | Configure este parámetro en `true` para incluir los registros de depuración de fallos del nodo de almacenamiento. 
+
+
+| `storageLogs` | Booleano | Configure este parámetro en `true` para incluir los registros del nodo de almacenamiento. 
+
+
+| `storageNodeIds` | Cabina de UUID | Si `storageLogs` se establece en `true`, Rellene este parámetro con los Id. De nodo del clúster de almacenamiento para limitar la colección de registros a esos nodos de almacenamiento específicos. Utilice la `GET https://<ManagementNodeIP>/logs/1/bundle/options` Extremo para ver todos los posibles ID de nodo que puede utilizar. 
+|===
+.. Haga clic en *Ejecutar* para iniciar la recopilación de registros. La respuesta debe devolver una respuesta similar a la siguiente:
++
+[listing]
+----
+{
+  "_links": {
+    "self": "https://10.1.1.5/logs/1/bundle"
+  },
+  "taskId": "4157881b-z889-45ce-adb4-92b1843c53ee",
+  "taskLink": "https://10.1.1.5/logs/1/bundle"
+}
+----
+
+
+. Compruebe el estado de la tarea de recopilación de registros:
++
+.. Haga clic en *GET /Bundle*.
+.. Haga clic en *probar*.
+.. Haga clic en *Ejecutar* para devolver un estado de la tarea de recopilación.
+.. Desplácese hasta la parte inferior del cuerpo de respuesta.
++
+Debería ver un `percentComplete` atributo que detalla el progreso de la colección. Si la colección está completa, el `downloadLink` atributo contiene el enlace de descarga completo, incluido el nombre de archivo del paquete de registro.
+
+.. Copie el nombre del archivo al final del `downloadLink` atributo.
+
+
+. Descargue el paquete de registro recopilado:
++
+.. Haga clic en *GET /Bundle/{filename}*.
+.. Haga clic en *probar*.
+.. Pegue el nombre de archivo que copió anteriormente en la `filename` campo de texto de parámetros.
+.. Haga clic en *Ejecutar*.
++
+Después de la ejecución, aparece un enlace de descarga en el área del cuerpo de respuesta.
+
+.. Haga clic en *Descargar archivo* y guarde el archivo resultante en el equipo.
++
+Este paquete de registro está en un formato de archivo .tgz comprimido.
+
+
+
+
+
+[discrete]
+== Obtenga más información
+
+* https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Página de recursos de NetApp HCI"^]
+

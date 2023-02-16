@@ -1,0 +1,35 @@
+---
+sidebar: sidebar 
+permalink: docs/concept_nde_post_deployment_overview.html 
+summary: Obtenga más información sobre las tareas posteriores a la implementación de NetApp HCI. 
+keywords: netapp, hci, deployment, review, deploy 
+---
+= Tareas posteriores a la implementación
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Según las opciones que elija durante el proceso de implementación, debe completar algunas tareas finales antes de que el sistema NetApp HCI esté listo para su uso en producción, como la actualización del firmware y los controladores, y la realización de los cambios finales de configuración necesarios.
+
+* link:task_nde_supported_net_changes.html["Cambios de red admitidos"]
+* link:task_nde_disable_smartd.html["Deshabilite el servicio smartd en los nodos de computación de NetApp HCI"]
+* link:task_nde_disable_lacp_individual.html["Deshabilite el comando "lacp-individual" en los switches configurados"]
+* link:task_mnode_create_netapp_hcc_role_vcenter.html["Cree una función HCC de NetApp en vCenter"]
+* link:task_nde_update_vsphere.html["Mantenga actualizado VMware vSphere"]
+* link:task_nde_install_GPU_drivers.html["Instale los controladores de GPU para los nodos de computación habilitados para GPU"]
+* link:task_nde_access_hcc.html["Acceda a Control del cloud híbrido de NetApp"]
+* link:task_reduce_boot_media_wear.html["Reduzca el desgaste de los medios de arranque en un nodo de computación NetApp HCI"]
+
+
+
+
+== Obtenga más información
+
+* https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
+* https://www.netapp.com/us/documentation/hci.aspx["Recursos de NetApp HCI"^]
+

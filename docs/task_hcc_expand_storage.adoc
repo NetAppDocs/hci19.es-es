@@ -1,0 +1,93 @@
+---
+sidebar: sidebar 
+permalink: docs/task_hcc_expand_storage.html 
+summary: Después de terminar la implementación de NetApp HCI, puede ampliar y configurar recursos de almacenamiento NetApp HCI mediante el control de cloud híbrido de NetApp. 
+keywords: netapp, hci, on premise, expand, storage, cluster 
+---
+= Amplíe los recursos de almacenamiento de NetApp HCI
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Después de terminar la implementación de NetApp HCI, puede ampliar y configurar recursos de almacenamiento NetApp HCI mediante el control de cloud híbrido de NetApp.
+
+.Antes de empezar
+* Asegúrese de tener direcciones IPv4 gratuitas y sin usar en el mismo segmento de red que los nodos existentes (cada nodo nuevo debe instalarse en la misma red que los nodos existentes de su tipo).
+* Asegúrese de tener uno de los siguientes tipos de cuentas de clúster de almacenamiento de SolidFire:
++
+** La cuenta de administrador nativa que se creó durante la implementación inicial
+** Una cuenta de usuario personalizada con permisos de administración de dominios, unidades, volúmenes y nodos
+
+
+* Asegúrese de haber realizado las siguientes acciones con cada nodo nuevo:
++
+** Instaló el nodo nuevo en el chasis NetApp HCI siguiendo el link:task_hci_installhw.html["instrucciones de instalación"].
+** Cableó y encendió el nodo nuevo
+
+
+* Asegúrese de tener la dirección IPv4 de gestión de un nodo de almacenamiento ya instalado. Puede encontrar la dirección IP en la pestaña *Administración de NetApp Element* > *clúster* > *nodos* del plugin de NetApp Element para vCenter Server.
+* Asegúrese de que cada nodo nuevo utilice la misma topología y el mismo cableado de red que los clústeres de computación o almacenamiento existentes.
+
+
+
+TIP: Al ampliar los recursos de almacenamiento, la capacidad de almacenamiento debe dividirse de manera uniforme en todo el chasis para una mayor fiabilidad.
+
+.Pasos
+. Abra la dirección IP del nodo de gestión en un navegador web. Por ejemplo:
++
+[listing]
+----
+https://<ManagementNodeIP>
+----
+. Inicie sesión en NetApp Hybrid Cloud Control proporcionando las credenciales de administrador del clúster de almacenamiento de NetApp HCI.
+. Haga clic en *expandir* en la esquina superior derecha de la interfaz.
++
+El explorador abre el motor de implementación de NetApp.
+
+. Inicie sesión en el motor de implementación de NetApp. Para ello, proporcione las credenciales de administrador del clúster de almacenamiento de NetApp HCI.
+. En la página *Bienvenido*, haga clic en *no* y haga clic en *continuar*.
+. En la página *Inventario disponible*, seleccione los nodos de almacenamiento que desea agregar y haga clic en *continuar*.
+. En la página *Configuración de red*, se ha detectado parte de la información de red desde la implementación inicial. Cada nodo de almacenamiento nuevo se enumera por número de serie, y es necesario asignarle la información de red nueva. Complete los siguientes pasos para cada nodo de almacenamiento nuevo:
++
+.. *Nombre de host*: Si NetApp HCI detectó un prefijo de nomenclatura, cópielo desde el campo prefijo de nomenclatura detectado e insértelo como prefijo para el nuevo nombre de host único que agregue en el campo Nombre de host.
+.. *Dirección de administración*: Introduzca una dirección IP de administración para el nuevo nodo de almacenamiento que se encuentra dentro de la subred de la red de administración.
+.. *Dirección IP de almacenamiento (iSCSI)*: Introduzca una dirección IP iSCSI para el nuevo nodo de almacenamiento que se encuentra en la subred de la red iSCSI.
+.. Haga clic en *continuar*.
++
+
+NOTE: La NetApp HCI puede tardar algún tiempo en validar las direcciones IP especificadas. El botón continuar estará disponible cuando finalice la validación de la dirección IP.
+
+
+
+. En la página *Review* de la sección Network Settings (Configuración de red), los nodos nuevos se muestran en el texto en negrita. Para hacer cambios en cualquier sección, haga lo siguiente:
++
+.. Haga clic en *Editar* para esa sección.
+.. Después de terminar, haga clic en *continuar* en cualquier página posterior para volver a la página Revisión.
+
+
+. *Opcional*: Si no desea enviar estadísticas del clúster ni información de soporte a los servidores Active IQ alojados de NetApp, desactive la casilla de comprobación final.
++
+Esta acción deshabilita la supervisión de diagnóstico y estado en tiempo real para NetApp HCI. Al deshabilitar esta función, se elimina la habilidad de NetApp para admitir y supervisar NetApp HCI de forma anticipada a fin de detectar y resolver problemas antes de que la producción se vea afectada.
+
+. Haga clic en *Agregar nodos*.
++
+Puede supervisar el progreso mientras NetApp HCI añade y configura los recursos.
+
+. *Opcional*: Verifique que haya nodos de almacenamiento nuevos visibles en el plugin de Element para vCenter Server.
++
+
+NOTE: Si expandió un clúster de almacenamiento de dos nodos a cuatro nodos o más, la pareja de nodos testigo que anteriormente utilizaba el clúster de almacenamiento seguirá visible como máquinas virtuales en espera en vSphere. El clúster de almacenamiento recién ampliado no los utiliza; si desea recuperar recursos de equipos virtuales, puede hacerlo link:task_hci_removewn.html["quitar manualmente"] Las máquinas virtuales del nodo de testigo.
+
+
+
+[discrete]
+== Obtenga más información
+
+* https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Página de recursos de NetApp HCI"^]
+

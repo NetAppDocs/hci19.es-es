@@ -1,0 +1,45 @@
+---
+sidebar: sidebar 
+permalink: docs/task_nde_hci_power_off_compute.html 
+summary: Aprenda a apagar los nodos de computación de NetApp HCI. 
+keywords: netapp, hci, netapp deployment engine, deployment, vsphere 
+---
+= Apague los recursos informáticos de un sistema NetApp HCI
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+:keywords: netapp, hci, netapp deployment engine, deployment, vsphere
+
+
+[role="lead"]
+Para apagar los recursos de computación de NetApp HCI, debe apagar hosts VMware ESXi individuales, así como el dispositivo de VMware vCenter Server en un orden determinado.
+
+.Pasos
+. Inicie sesión en la instancia de vCenter que controla el sistema NetApp HCI y determine la máquina ESXi donde se aloja la instancia de vCenter Server Virtual Appliance (vcsa).
+. Después de determinar el host ESXi que ejecuta vcsa, apague todas las demás máquinas virtuales que no sean la instancia de vcsa de la siguiente manera:
++
+.. Seleccione una máquina virtual.
+.. Haga clic con el botón derecho del ratón y seleccione *Alimentación > Apagar sistema operativo invitado*.
+
+
+. Apague todos los hosts ESXi que no sean el host ESXi que ejecute la instancia de vcsa.
+. Apague la instancia de vcsa.
++
+Esto provocará que la sesión de vCenter finalice porque la instancia de vcsa se desconecta durante el proceso de apagado. Todas las máquinas virtuales ahora deben apagarse con solo un host ESXi encendido.
+
+. Inicie sesión en el host ESXi que ejecuta.
+. Verifique que todas las máquinas virtuales del host estén apagadas.
+. Apague el host ESXi.
++
+Esto desconectará todas las sesiones iSCSI abiertas en el clúster de almacenamiento de NetApp HCI.
+
+
+
+[discrete]
+== Obtenga más información
+
+* link:firmware_driver_versions.html["Versiones de firmware y controlador ESXi compatibles para las versiones de NetApp HCI y firmware para los nodos de almacenamiento NetApp HCI"]
+

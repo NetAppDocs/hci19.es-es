@@ -1,0 +1,57 @@
+---
+sidebar: sidebar 
+permalink: docs/task_hci_2noderepl.html 
+summary: 'Antes de sustituir un nodo que forma parte de un clúster de dos nodos, debería añadir primero un tercer nodo de almacenamiento (que requiere un nuevo conjunto de direcciones IP), permitir la sincronización completar y eliminar el nodo defectuoso. clúster de cuatro nodos. Se requiere MIP y SIP adicionales.' 
+keywords: netapp, hci, H610C, H615C, chassis replacement, node replacement 
+---
+= Sustituya el nodo de almacenamiento en un clúster de dos nodos
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Antes de sustituir un nodo de almacenamiento que forma parte de un clúster de dos nodos, debería añadir primero un tercer nodo de almacenamiento (que requiere un nuevo conjunto de direcciones IP), permitir la sincronización completar y eliminar el nodo defectuoso. El clúster permanece en el estado degradado hasta que un nodo de reemplazo se une al clúster.
+
+.Lo que necesitará
+* Tiene nuevas direcciones IP de gestión y de almacenamiento.
+* Verificó que el clúster muestra el `ClusterCannotSync` alerta después de que el nodo se desconecta. De este modo se garantiza que el clúster realice una resincronización completa cuando el nuevo nodo se vuelve a añadir al clúster. Esta alerta se muestra aproximadamente seis minutos después de que el nodo de almacenamiento se desconecta.
+* Se ha puesto en contacto con el soporte de NetApp. Si solicita una sustitución, debe tener un caso abierto con el soporte de NetApp.
+* Ha obtenido el nodo de sustitución.
+* Usted tiene una muñequera de descarga electrostática (ESD), o usted ha tomado otra protección antiestática.
+
+
+.Acerca de esta tarea
+Las alarmas en VMware vSphere Web Client alertan de un fallo en un host. Debe coincidir con el número de serie del host con el error desde VMware vSphere Web Client con el número de serie en la etiqueta adhesiva que aparece en la parte posterior del nodo.
+
+.Pasos
+. Quite físicamente el nodo defectuoso del rack. Los pasos dependen del tipo de nodo de almacenamiento que tenga. Consulte link:task_hci_h410srepl.html["Sustituya los nodos H410S"] y.. link:task_hci_h610srepl.html["Sustituya los nodos H610S"].
++
+
+NOTE: No quite el nodo del clúster en este momento.
+
+. Instale el nodo de repuesto en la misma ranura.
+. Cablee el nodo.
+. Encienda el nodo.
+. Conecte un teclado y un monitor al nodo.
+. Realice los pasos de configuración:
++
+.. Configure la dirección IP de IPMI/BMC.
+.. Configure el nodo nuevo con las direcciones IP de gestión y las direcciones IP de almacenamiento nuevas, y el nombre del clúster.
+
+
+. Una vez que el nodo se añade al clúster, añada las unidades.
+. Una vez finalizada la sincronización, quite las unidades con errores y el nodo con errores del clúster.
+. Utilice el control de cloud híbrido de NetApp para configurar el nodo de almacenamiento nuevo que ha añadido. Consulte link:task_hcc_expand_storage.html["Amplíe los recursos de almacenamiento de NetApp HCI"].
+
+
+
+
+== Obtenga más información
+
+* http://docs.netapp.com/hci/index.jsp["Centro de documentación de NetApp HCI"^]
+* http://docs.netapp.com/sfe-122/index.jsp["Centro de documentación de SolidFire y el software Element"^]
+

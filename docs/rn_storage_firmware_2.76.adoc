@@ -1,0 +1,184 @@
+---
+sidebar: sidebar 
+permalink: docs/rn_storage_firmware_2.76.html 
+summary: Obtenga enlaces a las notas de la versión para los paquetes de firmware que puede descargar y aplicar a nodos NetApp HCI. 
+keywords: netapp, hci, storage firmware 
+---
+= Notas de la versión del paquete de firmware de almacenamiento 2.76
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+:keywords: hci, release notes, vcp, element, management services, firmware
+
+
+[role="lead"]
+A partir de Element 12.0 y la versión 2.14 de los servicios de gestión, puede realizar actualizaciones solo de firmware en los nodos de almacenamiento mediante la interfaz de usuario de Cloud Control de NetApp híbrido y la API DE REST. Este procedimiento no actualiza el software Element y permite actualizar el firmware de almacenamiento fuera de una versión de Element principal.
+
+
+
+== Novedades
+
+El paquete de firmware de almacenamiento versión 2.76 contiene diversas correcciones de errores y nuevas funciones, incluidas las correcciones de vulnerabilidades de seguridad. El firmware de almacenamiento se puede actualizar con las instrucciones que se indican en link:task_hcc_upgrade_storage_firmware.html["Actualizar el firmware de almacenamiento"].
+
+
+
+=== Componentes de firmware actualizados
+
+Este paquete de firmware contiene las siguientes versiones de firmware para componentes de hardware, con las versiones actualizadas en negrita:
+
+|===
+| Componente | SF-Series de SolidFire | H410S | H610S 
+
+
+| BIOS | N.A. | NA2.1 | *3B06* 
+
+
+| BMC | N.A. | 6.84.00 | *3.86.07* 
+
+
+| NIC / Mellanox | - | *14.25.1020* | *14.25.1020* 
+
+
+| RMS200 | a3b8cc | a3b8cc | - 
+
+
+| RMS300 | 7d8422bc | 7d8422bc | - 
+
+
+| NVDIMM, inteligente | - | - | 3.1 
+
+
+| LPM, inteligente | - | - | 2.16 
+
+
+| NVDIMM, Micron Gen1 | - | - | 26.2c 
+
+
+| NVDIMM, Micron Gen2 | - | - | 25.3c 
+
+
+| PGEM, Micron | - | - | 1.40 
+
+
+| PM863, SED | GXT5404Q | GXT5404Q | - 
+
+
+| PM863, NSED | GXT5103Q | GXT5103Q | - 
+
+
+| PM883, SED | *HXT7904Q* | *HXT7904Q* | - 
+
+
+| Hawk-4, SED | 8ENP7101 | 8ENP7101 | - 
+
+
+| Hawk-4, NSED | 8EN6101 | 8EN6101 | - 
+
+
+| PM963, SED | - | - | CXV8202Q 
+
+
+| PM963, NSED | - | - | CXV8501Q 
+
+
+| PM983, SED | - | - | *EDA5402Q* 
+
+
+| PM983, NSED | - | - | *EDA5700Q* 
+
+
+| CD5, SED | - | - | *0109* 
+
+
+| CD5, NSED | - | - | *0109* 
+
+
+| CD5, FIPS | - | - | 0108 
+|===
+
+
+== Cambios en los componentes del firmware de almacenamiento
+
+|===
+
+
+| Componente | Mejora/Cambio 
+
+
+| BIOS H610S 3B06  a| 
+* Tratamiento mejorado de los fallos de memoria
+* Versión de microcódigo actualizada a MCU x6906
+
+
+
+
+| H610S BMC 3.86.07  a| 
+* Se ha agregado el análisis del registro de eventos PPR del BIOS en BMC SEL
+* Evite el sobrecalentamiento del sistema cuando el BMC se cuelgue
+* Ha cambiado la longitud del dominio de grupo de LDAP de 64 a 128 caracteres
+
+
+
+
+| NIC MELLANOX/H610S, 14.25.1020 | N.A. 
+
+
+| Diversas actualizaciones de firmware de la unidad | N.A. 
+|===
+
+
+== Problemas conocidos y resueltos
+
+Consulte https://mysupport.netapp.com/site/bugs-online/product["Herramienta bugs Online"^] para obtener detalles sobre los problemas que se han resuelto y sobre cualquier problema nuevo.
+
+
+
+=== Acceso a la herramienta Bol
+
+. Desplácese hasta la  https://mysupport.netapp.com/site/bugs-online/product["Herramienta BOL"^] Y seleccione *Element Software* en la lista desplegable:
++
+image::bol_dashboard.png[Notas de la versión del paquete del firmware de almacenamiento]
+
+. En el campo de búsqueda por palabra clave, escriba “paquete de firmware de almacenamiento” y haga clic en *Nueva búsqueda*:
++
+image::storage_firmware_bundle_choice.png[Notas de la versión del paquete del firmware de almacenamiento]
+
+. Se muestra una lista de errores resueltos o abiertos. Puede afinar los resultados como se muestra:
++
+image::bol_list_bugs_found.png[Notas de la versión del paquete del firmware de almacenamiento]
+
+
+
+
+
+== Vulnerabilidades de seguridad resueltas
+
+Las siguientes son vulnerabilidades de seguridad que se han resuelto en esta versión:
+
+
+
+=== BMC H410S 6.84.00
+
+* CVE-2020-0542, CVE-2020-0532, CVE-2020-0538, CVE-2020-0534, CVE-2020-0541, CVE-2020-0533, CVE-2020-0537, CVE-2020-0531
+* CVE-2020-0535, CVE-2020-0536, CVE-2020-0545, CVE-2020-0540, CVE-2020-0566, CVE-2020-0539, CVE-2020-0586, CVE-2020-0594
+* CVE-2020-0595, CVE-2020-0596, CVE-2020-8674, CVE-2020-0597 CVE-2020-0543 CVE-2020-0548, CVE-2020-0549
+
+
+
+
+=== H610S BMC 3.86.07
+
+* CVE-2019-20636
+* CVE-2019-11599, CVE-2020-12826, CVE-2020-12464, CVE-2020-12114
+* CVE-2016-3706, CVE-2011-5320, CVE-2015-8984, CVE-2015-8983, CVE-2015-8982, CVE-2006-7254, CVE-2005-3590
+
+
+[discrete]
+== Obtenga más información
+
+* https://docs.netapp.com/hci/index.jsp["Centro de documentación de NetApp HCI"^]
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Página de recursos de NetApp HCI"^]
+

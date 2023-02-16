@@ -1,0 +1,27 @@
+---
+sidebar: sidebar 
+permalink: docs/task_mnode_work_overview_UI.html 
+summary: 'Con la interfaz de usuario del nodo de gestión (https://<mNodeIP>:442)[], puede realizar cambios en la configuración de red y clúster, ejecutar pruebas del sistema o utilizar utilidades del sistema.' 
+keywords: 'netapp, management node ui, mnode ui, :442, element' 
+---
+= Información general de la interfaz de usuario del nodo de gestión
+:allow-uri-read: 
+
+
+[role="lead"]
+Con la interfaz de usuario del nodo de gestión (`https://<mNodeIP>:442`), puede realizar cambios en la configuración de la red y del clúster, ejecutar pruebas del sistema o utilizar utilidades del sistema.
+
+Tareas que se pueden realizar con la interfaz de usuario del nodo de gestión:
+
+* link:task_mnode_enable_alerts.html["Configure la supervisión de alertas en NetApp HCI"]
+* link:task_mnode_settings.html["Modifique y pruebe la red, el clúster y la configuración del sistema de los nodos de gestión"]
+* link:task_mnode_run_system_utilities.html["Ejecute las utilidades del sistema desde el nodo de gestión"]
+
+
+[discrete]
+== Obtenga más información
+
+* link:task_mnode_access_ui.html["Acceda al nodo de gestión"]
+* https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
+* https://www.netapp.com/hybrid-cloud/hci-documentation/["Página de recursos de NetApp HCI"^]
+
