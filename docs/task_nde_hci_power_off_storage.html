@@ -79,11 +79,17 @@
 
   <!-- Used for Product Family Page Sidebar Visibility --><!-- Used to import Promise for IE. Required for SearchKit -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.3.5/bluebird.min.js"></script><script src='/es-es/hci19/js/na-search.js'></script><script src='/es-es/hci19/js/na-pagenav.js'></script><script src='/es-es/hci19/js/na-utility.js'></script>
+ <!--  
+  <link rel='stylesheet' href='/es-es/hci19/css/prism.css' type='text/css'>
+  <link rel='stylesheet' href='/es-es/hci19/css/prism-netapp.css' type='text/css'>
+ -->
+
+  <!-- <script src='/es-es/hci19/js/na-utility.js'></script> -->
   <script src='/es-es/hci19/js/clouddocs.js'></script>
   <script src='/es-es/hci19/js/jquery.navgoco.min.js'></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-  <script src='/es-es/hci19/js/toc.js'></script>
-  <script src='/es-es/hci19/js/customscripts.js'></script><script>
+  <!-- <script src='/es-es/hci19/js/toc.js'></script> -->
+  <!-- <script src='/es-es/hci19/js/customscripts.js'></script> --><script>
       $(document).ready(function() {
           
           var collapseOnInit = true;
@@ -148,7 +154,7 @@
   <script src='/es-es/hci19/js/FileSaver.min.js'></script>
   <script src='/es-es/hci19/js/jszip-utils.min.js'></script>
   <script src='/es-es/hci19/js/jszip.min.js'></script>
-  <script src='/es-es/hci19/js/pdf-ux.js'></script>
+  <!-- <script src='/es-es/hci19/js/pdf-ux.js'></script> -->
 </head>
 
 
@@ -221,7 +227,7 @@
           <span class="n-property-bar__menu-toggle-text">Menu</span>
           <svg class="n-icon-bars n-property-bar__menu-toggle-icon" aria-labelledby="title">
             <title>bars</title>
-            <use xlink:href="/es-es/hci19/common/svg/sprite.svg#bars"></use>
+            <use xlink:href="/es-es/hci19/images/sprite.svg#bars"></use>
           </svg>
         </a>
       </div>
@@ -230,11 +236,11 @@
           <div class="n-property-bar__logo">
             <svg class="n-icon-netapp-mark n-icon-netapp-mark n-property-bar__netapp-mark-icon" aria-labelledby="title">
               <title>netapp-mark</title>
-              <use xlink:href="/es-es/hci19/common/svg/sprite.svg#netapp-mark"></use>
+              <use xlink:href="/es-es/hci19/images/sprite.svg#netapp-mark"></use>
             </svg>
             <svg class="n-icon-netapp-logo n-property-bar__logo-svg" aria-labelledby="title">
               <title>netapp-logo</title>
-              <use xlink:href="/es-es/hci19/common/svg/sprite.svg#netapp-logo"></use>
+              <use xlink:href="/es-es/hci19/images/sprite.svg#netapp-logo"></use>
             </svg>
           </div>
         </a>
@@ -260,7 +266,7 @@
           <button class="n-property-bar__search-toggle-button" type="button">
             <svg class="n-icon-search n-property-bar__search-toggle-button-icon" aria-labelledby="title">
               <title>search</title>
-              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/es-es/hci19/common/svg/sprite.svg#search"></use>
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/es-es/hci19/images/sprite.svg#search"></use>
             </svg>
           </button>
         </div>
@@ -274,7 +280,7 @@
       <span class="lang-name">Español</span>
           <svg class="n-globe__icon" aria-labelledby="title">
             <title>globe</title>
-            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/es-es/hci19/common/svg/sprite.svg#globe"></use>
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/es-es/hci19/images/sprite.svg#globe"></use>
           </svg>
         </button>
       </div>
@@ -2617,7 +2623,7 @@
     <div class="ie-nmt-disclaimer-container">
       <div class="ie-nmt-disclaimer-icon">
         <svg class="luci-icon" aria-hidden="true">
-          <use xlink:href="/es-es/hci19/common/svg/sprite.svg#circle-info">
+          <use xlink:href="/es-es/hci19/images/sprite.svg#circle-info">
         </svg>
       </div>
       <div class="ie-nmt-disclaimer-content">
@@ -2634,7 +2640,7 @@
 <p class="page-details">
   
     
-    <time datetime="2023-02-20 18:43:46 +0000">02/20/2023</time>
+    <time datetime="2023-03-03 14:37:10 +0000">03/03/2023</time>
     
   
 
@@ -2644,6 +2650,8 @@
 
 </p>
 
+<div id="preamble">
+<div class="sectionbody">
 <div class="paragraph lead">
 <p>Al apagar los recursos de almacenamiento de NetApp HCI, debe utilizar el <code>Shutdown</code> El método API Element para detener correctamente los nodos de almacenamiento.</p>
 </div>
@@ -2657,17 +2665,45 @@
 <p>Inicie sesión en el clúster de almacenamiento y compruebe que está conectado a la MVIP correcta.</p>
 </li>
 <li>
+<p>(Opcional) verifique que todas las operaciones de I/o de los hosts se hayan detenido:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Desactive la actividad de I/o en el lado del host mediante los comandos adecuados para uno o más hipervisores que se utilizan.</p>
+</li>
+<li>
+<p>En la interfaz de usuario del clúster, seleccione <strong>Reporting</strong> &gt; <strong>Overview</strong>. No debe haber ninguna actividad en el gráfico "Cluster Input/Output".</p>
+</li>
+<li>
+<p>Una vez que se hayan detenido todas las operaciones de I/o, espere 20 minutos antes de apagar el clúster.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
 <p>Compruebe que el número de sesiones iSCSI sea cero.</p>
 </li>
 <li>
 <p>Vaya a <strong>Cluster &gt; Nodes &gt; Active</strong> y registre los identificadores de nodo de todos los nodos activos del clúster.</p>
 </li>
 <li>
-<p>Para apagar el clúster de almacenamiento de NetApp HCI, abra un explorador web y utilice la siguiente URL para invocar el procedimiento de apagado y detención, donde <code>{MVIP}</code> Es la dirección IP de administración del sistema de almacenamiento NetApp HCI y del <code>nodes=[]</code> La matriz incluye los ID de nodo que registró en el paso 2. Por ejemplo:</p>
+<p>Para apagar el clúster de almacenamiento de NetApp HCI, abra un explorador web y utilice la siguiente URL para invocar el procedimiento de apagado y detención, donde <code>{MVIP}</code> Es la dirección IP de administración del sistema de almacenamiento NetApp HCI y del <code>nodes=[]</code> La matriz incluye los ID de nodo que registró en el paso 4. Por ejemplo:</p>
 <div class="listingblock">
 <div class="content">
 <pre>https://{MVIP}/json-rpc/1.0?method=Shutdown&amp;nodes=[1,2,3,4]&amp;option=halt</pre>
 </div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/hci19/images/note.svg" alt="Nota">
+</td>
+<td class="content">
+Puede ejecutar el comando en una ventana de incógnito para evitar ejecutarlo de nuevo en una fase posterior desde la URL guardada.
+</td>
+</tr>
+</table>
 </div>
 </li>
 <li>
@@ -2679,15 +2715,54 @@
 <p>Apagó correctamente todos los nodos de almacenamiento NetApp HCI.</p>
 </div>
 </li>
+<li>
+<p>Cierre el explorador o la pestaña para evitar seleccionar el botón "atrás" y repetir la llamada a la API.</p>
+</li>
 </ol>
 </div>
-<h2 id="obtenga-más-información" class="discrete">Obtenga más información</h2>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/hci19/images/note.svg" alt="Nota">
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Cuando reinicia el clúster, debe seguir algunos pasos para verificar que todos los nodos entran en línea:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Compruebe que todas las gravedad crítica y. <code>volumesOffline</code> se resolvieron errores del clúster.</p>
+</li>
+<li>
+<p>Espere de 10 a 15 minutos para que el clúster se asiente.</p>
+</li>
+<li>
+<p>Empiece a poner los hosts a acceder a los datos.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Si desea permitir más tiempo al encender los nodos y verificar que su estado sea después del mantenimiento, póngase en contacto con el soporte técnico para obtener ayuda con la demora de la sincronización de datos para evitar la sincronización innecesaria de bandejas.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="obtenga-más-información">Obtenga más información</h2>
+<div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
 <p><a href="firmware_driver_versions.html">"Versiones de firmware y controlador ESXi compatibles para las versiones de NetApp HCI y firmware para los nodos de almacenamiento NetApp HCI"</a></p>
 </li>
 </ul>
+</div>
+</div>
 </div>
 
     </article>
@@ -2739,7 +2814,7 @@
                 <svg class="n-icon-blog n-footer__social-link-icon" aria-labelledby="title">
                   <title>blog@</title>
                   <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                    xlink:href="/es-es/hci19/common/svg/sprite.svg#blog"></use>
+                    xlink:href="/es-es/hci19/images/sprite.svg#blog"></use>
                 </svg>
               </a>
             </li>
@@ -2750,7 +2825,7 @@
                 <svg class="n-icon-community n-footer__social-link-icon" aria-labelledby="title">
                   <title>community@</title>
                   <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                    xlink:href="/es-es/hci19/common/svg/sprite.svg#comments"></use>
+                    xlink:href="/es-es/hci19/images/sprite.svg#comments"></use>
                 </svg>
               </a>
             </li>
@@ -2761,7 +2836,7 @@
                 <svg class="n-icon-twitter n-footer__social-link-icon" aria-labelledby="title">
                   <title>twitter@</title>
                   <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                    xlink:href="/es-es/hci19/common/svg/sprite.svg#twitter"></use>
+                    xlink:href="/es-es/hci19/images/sprite.svg#twitter"></use>
                 </svg>
               </a>
             </li>
@@ -2772,7 +2847,7 @@
                 <svg class="n-icon-facebook n-footer__social-link-icon" aria-labelledby="title">
                   <title>facebook@</title>
                   <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                    xlink:href="/es-es/hci19/common/svg/sprite.svg#facebook"></use>
+                    xlink:href="/es-es/hci19/images/sprite.svg#facebook"></use>
                 </svg>
               </a>
             </li>
@@ -2783,7 +2858,7 @@
                 <svg class="n-icon-linkedin n-footer__social-link-icon" aria-labelledby="title">
                   <title>linkedin@</title>
                   <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                    xlink:href="/es-es/hci19/common/svg/sprite.svg#linkedin"></use>
+                    xlink:href="/es-es/hci19/images/sprite.svg#linkedin"></use>
                 </svg>
               </a>
             </li>
@@ -2794,7 +2869,7 @@
                 <svg class="n-icon-youtube n-footer__social-link-icon" aria-labelledby="title">
                   <title>youtube@</title>
                   <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                    xlink:href="/es-es/hci19/common/svg/sprite.svg#youtube"></use>
+                    xlink:href="/es-es/hci19/images/sprite.svg#youtube"></use>
                 </svg>
               </a>
             </li>
@@ -2805,7 +2880,7 @@
                 <svg class="n-icon-slideshare n-footer__social-link-icon" aria-labelledby="title">
                   <title>slideshare@</title>
                   <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                    xlink:href="/es-es/hci19/common/svg/sprite.svg#slideshare"></use>
+                    xlink:href="/es-es/hci19/images/sprite.svg#slideshare"></use>
                 </svg>
               </a>
             </li>
@@ -2829,7 +2904,6 @@
       cookieLaw.euCountry = "US";
       cookieLaw.invoke = function(){return false;}
     </script>
-    <script src='/es-es/hci19/js/www-ntap.js'></script>
     <script src='/es-es/hci19/js/tabbed-blocks.js'></script>
     <script src='/es-es/hci19/js/sidebar.js'></script>
   </body></html>
