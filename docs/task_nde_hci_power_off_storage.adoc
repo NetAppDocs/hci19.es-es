@@ -21,22 +21,47 @@ Al apagar los recursos de almacenamiento de NetApp HCI, debe utilizar el `Shutdo
 Después de apagar los recursos de computación, utilice un explorador web para apagar todos los nodos del clúster de almacenamiento de NetApp HCI.
 
 . Inicie sesión en el clúster de almacenamiento y compruebe que está conectado a la MVIP correcta.
+. (Opcional) verifique que todas las operaciones de I/o de los hosts se hayan detenido:
++
+.. Desactive la actividad de I/o en el lado del host mediante los comandos adecuados para uno o más hipervisores que se utilizan.
+.. En la interfaz de usuario del clúster, seleccione *Reporting* > *Overview*. No debe haber ninguna actividad en el gráfico "Cluster Input/Output".
+.. Una vez que se hayan detenido todas las operaciones de I/o, espere 20 minutos antes de apagar el clúster.
+
+
 . Compruebe que el número de sesiones iSCSI sea cero.
 . Vaya a *Cluster > Nodes > Active* y registre los identificadores de nodo de todos los nodos activos del clúster.
-. Para apagar el clúster de almacenamiento de NetApp HCI, abra un explorador web y utilice la siguiente URL para invocar el procedimiento de apagado y detención, donde `{MVIP}` Es la dirección IP de administración del sistema de almacenamiento NetApp HCI y del `nodes=[]` La matriz incluye los ID de nodo que registró en el paso 2. Por ejemplo:
+. Para apagar el clúster de almacenamiento de NetApp HCI, abra un explorador web y utilice la siguiente URL para invocar el procedimiento de apagado y detención, donde `{MVIP}` Es la dirección IP de administración del sistema de almacenamiento NetApp HCI y del `nodes=[]` La matriz incluye los ID de nodo que registró en el paso 4. Por ejemplo:
 +
 [listing]
 ----
 https://{MVIP}/json-rpc/1.0?method=Shutdown&nodes=[1,2,3,4]&option=halt
 ----
++
+
+NOTE: Puede ejecutar el comando en una ventana de incógnito para evitar ejecutarlo de nuevo en una fase posterior desde la URL guardada.
+
 . Introduzca el nombre de usuario y la contraseña de administrador del clúster.
 . Compruebe que la llamada API se devolvió correctamente verificando que todos los nodos del clúster de almacenamiento están incluidos en la `successful` Del resultado de la API.
 +
 Apagó correctamente todos los nodos de almacenamiento NetApp HCI.
 
+. Cierre el explorador o la pestaña para evitar seleccionar el botón "atrás" y repetir la llamada a la API.
 
 
-[discrete]
+[NOTE]
+====
+Cuando reinicia el clúster, debe seguir algunos pasos para verificar que todos los nodos entran en línea:
+
+. Compruebe que todas las gravedad crítica y. `volumesOffline` se resolvieron errores del clúster.
+. Espere de 10 a 15 minutos para que el clúster se asiente.
+. Empiece a poner los hosts a acceder a los datos.
+
+
+Si desea permitir más tiempo al encender los nodos y verificar que su estado sea después del mantenimiento, póngase en contacto con el soporte técnico para obtener ayuda con la demora de la sincronización de datos para evitar la sincronización innecesaria de bandejas.
+
+====
+
+
 == Obtenga más información
 
 * link:firmware_driver_versions.html["Versiones de firmware y controlador ESXi compatibles para las versiones de NetApp HCI y firmware para los nodos de almacenamiento NetApp HCI"]

@@ -2962,7 +2962,6 @@
   <block id="58a52fbda63276026c2618b0f43d5bfe" category="list-text">Inicie sesión en el clúster de almacenamiento y compruebe que está conectado a la MVIP correcta.</block>
   <block id="5893e9a018c1b1a1d512a0185ce81928" category="list-text">Compruebe que el número de sesiones iSCSI sea cero.</block>
   <block id="3f1291e4a033df94b729b1b4f2f98180" category="list-text">Vaya a *Cluster &gt; Nodes &gt; Active* y registre los identificadores de nodo de todos los nodos activos del clúster.</block>
-  <block id="4946afec1638f740d391cce22ca9d383" category="list-text">Para apagar el clúster de almacenamiento de NetApp HCI, abra un explorador web y utilice la siguiente URL para invocar el procedimiento de apagado y detención, donde<block ref="00aa3917f94a85909099442cdf1f914c" prefix=" " category="inline-code"></block> Es la dirección IP de administración del sistema de almacenamiento NetApp HCI y del<block ref="f5058d08365e441f6806289968bdd801" prefix=" " category="inline-code"></block> La matriz incluye los ID de nodo que registró en el paso 2. Por ejemplo:</block>
   <block id="c221d53c4bd8e82dbb6d5c729ae18dec" category="list-text">Introduzca el nombre de usuario y la contraseña de administrador del clúster.</block>
   <block id="df2a4b92aa65e89d6a69ac777d6e1966" category="list-text">Compruebe que la llamada API se devolvió correctamente verificando que todos los nodos del clúster de almacenamiento están incluidos en la<block ref="802024b279b2158800d75b4725bc77ba" prefix=" " category="inline-code"></block> Del resultado de la API.</block>
   <block id="0329cdf242b826758b5f146f803697de" category="paragraph">Apagó correctamente todos los nodos de almacenamiento NetApp HCI.</block>
@@ -6551,4 +6550,16 @@
   <block id="a310588c148d934b9b30c31802d4a30b" category="sidebar">Comunidad de NetApp</block>
   <block id="213686afc3803be7caa09348765467fe" category="sidebar">Dónde obtener ayuda</block>
   <block id="389672366ff11f72a82c5c495b9b5159" category="sidebar">Documentación de NetApp HCI 1.8</block>
+  <block id="811c3e17cdcbc0d2918ccd135b702fad" category="list-text">(Opcional) verifique que todas las operaciones de I/o de los hosts se hayan detenido:</block>
+  <block id="49fd465e6accbc44477708b2756a0289" category="list-text">Desactive la actividad de I/o en el lado del host mediante los comandos adecuados para uno o más hipervisores que se utilizan.</block>
+  <block id="47aa9240e90a7b94289f8a7cf08853f9" category="list-text">En la interfaz de usuario del clúster, seleccione *Reporting* &gt; *Overview*. No debe haber ninguna actividad en el gráfico "Cluster Input/Output".</block>
+  <block id="b024a0dfe5c2df4ef82fcfbd2177b6b1" category="list-text">Una vez que se hayan detenido todas las operaciones de I/o, espere 20 minutos antes de apagar el clúster.</block>
+  <block id="c8561c42a30e6fcda84bba58a5dbb84c" category="list-text">Para apagar el clúster de almacenamiento de NetApp HCI, abra un explorador web y utilice la siguiente URL para invocar el procedimiento de apagado y detención, donde<block ref="00aa3917f94a85909099442cdf1f914c" prefix=" " category="inline-code"></block> Es la dirección IP de administración del sistema de almacenamiento NetApp HCI y del<block ref="f5058d08365e441f6806289968bdd801" prefix=" " category="inline-code"></block> La matriz incluye los ID de nodo que registró en el paso 4. Por ejemplo:</block>
+  <block id="84238b2d8b7319262b2e3d61a903e693" category="admonition">Puede ejecutar el comando en una ventana de incógnito para evitar ejecutarlo de nuevo en una fase posterior desde la URL guardada.</block>
+  <block id="6eb2aff6a3f188fb6f4a2e9fa0f75cdb" category="list-text">Cierre el explorador o la pestaña para evitar seleccionar el botón "atrás" y repetir la llamada a la API.</block>
+  <block id="391aec42faef3b52d4eaaefa153733b2" category="paragraph">Cuando reinicia el clúster, debe seguir algunos pasos para verificar que todos los nodos entran en línea:</block>
+  <block id="56312700a2d03ce6cacae049f3294807" category="list-text">Compruebe que todas las gravedad crítica y.<block ref="945c53fff9195b4e69a31c30b6a268c6" prefix=" " category="inline-code"></block> se resolvieron errores del clúster.</block>
+  <block id="6331b65d2bb9f0f39b6e8331e5b2c669" category="list-text">Espere de 10 a 15 minutos para que el clúster se asiente.</block>
+  <block id="301bf6ea727a40a8d5cc8608cc0c41d7" category="list-text">Empiece a poner los hosts a acceder a los datos.</block>
+  <block id="c192e3c2dbd374233d4685406db01520" category="paragraph">Si desea permitir más tiempo al encender los nodos y verificar que su estado sea después del mantenimiento, póngase en contacto con el soporte técnico para obtener ayuda con la demora de la sincronización de datos para evitar la sincronización innecesaria de bandejas.</block>
 </blocks>
