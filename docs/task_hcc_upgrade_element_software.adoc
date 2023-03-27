@@ -41,10 +41,6 @@ https://<ManagementNodeIP>
 .. Inicie sesión en Hybrid Cloud Control de NetApp proporcionando las credenciales de administrador del clúster de almacenamiento.
 .. Seleccione *Actualizar* cerca de la parte superior derecha de la interfaz.
 .. Aparece el EULA. Desplácese hacia abajo, seleccione *Acepto para actualizaciones actuales y futuras* y seleccione *Guardar*.
-+
-
-NOTE: Cuando acepta el CLUF, se registra para todas las actualizaciones futuras y se habilita la función de descarga automática. Recibirá actualizaciones sobre las actualizaciones y renovaciones del software de NetApp, que puede instalar cuando le convenga y si así lo desea. Es posible deshabilitar la función de descarga automática si se deshabilita la conectividad de red en el repositorio de software en línea de NetApp.
-
 
 
 
@@ -66,9 +62,6 @@ IMPORTANT: Si va a actualizar un nodo serie H610S a Element 12.3.x y el nodo eje
 == Utilice la IU de control de cloud híbrido de NetApp para actualizar el almacenamiento de Element
 
 Con la interfaz de usuario de Cloud Control de NetApp, puede actualizar un clúster de almacenamiento.
-
-.Lo que necesitará
-Si el nodo de gestión no está conectado a Internet, ha descargado el https://mysupport.netapp.com/site/products/all/details/netapp-hci/downloads-tab["Paquete de software NetApp HCI para clústeres de almacenamiento de NetApp HCI"^].
 
 
 CAUTION: Para obtener problemas potenciales al actualizar los clústeres de almacenamiento con NetApp Hybrid Cloud Control y sus soluciones alternativas, consulte https://kb.netapp.com/Advice_and_Troubleshooting/Hybrid_Cloud_Infrastructure/NetApp_HCI/Potential_issues_and_workarounds_when_running_storage_upgrades_using_NetApp_Hybrid_Cloud_Control["Artículo de base de conocimientos"^].
@@ -96,30 +89,29 @@ La ficha *almacenamiento* muestra los clústeres de almacenamiento que forman pa
 | Opción | Pasos 
 
 
-| El nodo de gestión tiene conectividad externa.  a| 
-.. Seleccione la flecha desplegable situada junto al clúster que va a actualizar y seleccione una de las versiones de actualización disponibles en la ficha *Element*.
-.. Seleccione *Iniciar actualización*.
-
-
-
-TIP: *Estado de actualización* cambia durante la actualización para reflejar el estado del proceso. También cambia en respuesta a las acciones que realice, como la pausa de la actualización o si la actualización devuelve un error. Consulte <<Cambios de estado de actualización>>.
-
-
-NOTE: Mientras la actualización está en curso, puede salir de la página y volver a ella más tarde para continuar supervisando el progreso. La página no actualiza el estado ni la versión actual de forma dinámica si la fila del clúster está contraída. La fila del clúster debe estar ampliada para actualizar la tabla, o bien se puede actualizar la página.
-
-Es posible descargar registros una vez completada la actualización.
-
-
-
-| El nodo de gestión se encuentra en un sitio oscuro sin conectividad externa.  a| 
+| Todos los clústeres que ejecutan Element 11.8 y versiones posteriores  a| 
 .. Seleccione *examinar* para cargar el paquete de actualización que ha descargado.
 .. Espere a que finalice la carga. Una barra de progreso muestra el estado de la carga.
-
-
++
 
 CAUTION: La carga del archivo se perderá si se desplaza fuera de la ventana del explorador.
 
++
 Se muestra un mensaje en pantalla después de que el archivo se haya cargado y validado correctamente. La validación puede tardar varios minutos. Si se aleja de la ventana del explorador en este momento, se conserva la carga del archivo.
+
+.. Seleccione *Iniciar actualización*.
++
+
+TIP: *Estado de actualización* cambia durante la actualización para reflejar el estado del proceso. También cambia en respuesta a las acciones que realice, como la pausa de la actualización o si la actualización devuelve un error. Consulte <<Cambios de estado de actualización>>.
+
++
+
+NOTE: Mientras la actualización está en curso, puede salir de la página y volver a ella más tarde para continuar supervisando el progreso. La página no actualiza el estado ni la versión actual de forma dinámica si la fila del clúster está contraída. La fila del clúster debe estar ampliada para actualizar la tabla, o bien se puede actualizar la página.
+
++
+Es posible descargar registros una vez completada la actualización.
+
+
 
 
 
@@ -163,9 +155,6 @@ Estos son los diferentes estados que muestra la columna *Estado de actualizació
 | Error | Se produjo un error durante la actualización. Puede descargar el registro de errores y enviarlo al soporte de NetApp. Después de resolver el error, puede volver a la página y seleccionar *Reanudar*. Al reanudar la actualización, la barra de progreso se retrocede durante unos minutos mientras el sistema ejecuta la comprobación del estado y comprueba el estado actual de la actualización. 
 
 
-| No se puede detectar | El control de cloud híbrido de NetApp muestra este estado en lugar de *versiones disponibles* cuando no tiene conectividad externa para llegar al repositorio de software en línea. Si tiene conectividad externa pero sigue viendo este mensaje, compruebe el link:task_mnode_configure_proxy_server.html["configuración de proxy"]. 
-
-
 | Completo con seguimiento | Solo para actualizar los nodos H610S desde una versión de Element anterior a 11.8. Una vez completada la fase 1 del proceso de actualización, este estado le pedirá que realice la fase 2 de la actualización (consulte la https://kb.netapp.com/Advice_and_Troubleshooting/Hybrid_Cloud_Infrastructure/H_Series/NetApp_H610S_storage_node_power_off_and_on_procedure["Artículo de base de conocimientos"^]). Después de completar la fase 2 y confirmar que la ha completado, el estado cambia a *hasta la fecha*. 
 |===
 
@@ -175,87 +164,41 @@ Estos son los diferentes estados que muestra la columna *Estado de actualizació
 Puede utilizar las API para actualizar los nodos de almacenamiento de un clúster a la versión más reciente del software Element. Puede utilizar una herramienta de automatización que prefiera para ejecutar las API. El flujo de trabajo de API que se documenta aquí, utiliza la interfaz de usuario de API DE REST disponible en el nodo de gestión como ejemplo.
 
 .Pasos
-. Realice una de las siguientes acciones según la conexión:
+. Descargue el paquete de actualización de almacenamiento en un dispositivo al que se pueda acceder el nodo de gestión; vaya al software NetApp HCI https://mysupport.netapp.com/site/products/all/details/netapp-hci/downloads-tab["descargas"^] y descargue la imagen del nodo de almacenamiento más reciente.
+. Cargue el paquete de actualización de almacenamiento en el nodo de gestión:
 +
-[cols="2*"]
-|===
-| Opción | Pasos 
-
-
-| El nodo de gestión tiene conectividad externa.  a| 
-.. Compruebe la conexión del repositorio:
-+
-... Abra la interfaz de usuario de LA API DE REST del nodo de gestión en el nodo de gestión:
+.. Abra la interfaz de usuario de LA API DE REST del nodo de gestión en el nodo de gestión:
 +
 [listing]
 ----
 https://<ManagementNodeIP>/package-repository/1/
 ----
-... Seleccione *autorizar* y complete lo siguiente:
+.. Seleccione *autorizar* y complete lo siguiente:
 +
-.... Introduzca el nombre de usuario y la contraseña del clúster.
-.... Introduzca el ID de cliente as `mnode-client`.
-.... Seleccione *autorizar* para iniciar una sesión.
-.... Cierre la ventana de autorización.
+... Introduzca el nombre de usuario y la contraseña del clúster.
+... Introduzca el ID de cliente as `mnode-client`.
+... Seleccione *autorizar* para iniciar una sesión.
+... Cierre la ventana de autorización.
 
 
-... En la interfaz de usuario DE LA API DE REST, seleccione *GET ​/packages​/remote-repository​/connection*.
-... Seleccione *probar*.
-... Seleccione *Ejecutar*.
-... Si se devuelve el código 200, pasar al siguiente paso. Si no hay conexión con el repositorio remoto, establezca la conexión o utilice la opción de sitio oscuro.
+.. En la interfaz de usuario DE LA API DE REST, seleccione *POST /packages*.
+.. Seleccione *probar*.
+.. Seleccione *Browse* y seleccione el paquete de actualización.
+.. Seleccione *Ejecutar* para iniciar la carga.
+.. Desde la respuesta, copie y guarde el ID del paquete (`"id"`) para usar en un paso posterior.
 
 
-.. Busque el ID del paquete de actualización:
+. Compruebe el estado de la carga.
 +
-... En la interfaz de usuario DE LA API DE REST, seleccione *GET /packages*.
-... Seleccione *probar*.
-... Seleccione *Ejecutar*.
-... En la respuesta, copie y guarde el ID de paquete para utilizarlo en un paso posterior.
-
-
-
-
-
-
-| El nodo de gestión se encuentra en un sitio oscuro sin conectividad externa.  a| 
-.. Descargue el paquete de actualización de almacenamiento en un dispositivo al que se pueda acceder el nodo de gestión; vaya al software NetApp HCI https://mysupport.netapp.com/site/products/all/details/netapp-hci/downloads-tab["descargas"^] y descargue la imagen del nodo de almacenamiento más reciente.
-.. Cargue el paquete de actualización de almacenamiento en el nodo de gestión:
-+
-... Abra la interfaz de usuario de LA API DE REST del nodo de gestión en el nodo de gestión:
-+
-[listing]
-----
-https://<ManagementNodeIP>/package-repository/1/
-----
-... Seleccione *autorizar* y complete lo siguiente:
-+
-.... Introduzca el nombre de usuario y la contraseña del clúster.
-.... Introduzca el ID de cliente as `mnode-client`.
-.... Seleccione *autorizar* para iniciar una sesión.
-.... Cierre la ventana de autorización.
-
-
-... En la interfaz de usuario DE LA API DE REST, seleccione *POST /packages*.
-... Seleccione *probar*.
-... Seleccione *Browse* y seleccione el paquete de actualización.
-... Seleccione *Ejecutar* para iniciar la carga.
-... Desde la respuesta, copie y guarde el ID del paquete (`"id"`) para usar en un paso posterior.
-
-
-.. Compruebe el estado de la carga.
-+
-... En la interfaz de usuario de la API DE REST, seleccione *GET​ /packages​/{id}​/status*.
-... Seleccione *probar*.
-... Introduzca el ID de paquete que ha copiado en el paso anterior en *id*.
-... Seleccione *Ejecutar* para iniciar la solicitud de estado.
+.. En la interfaz de usuario de la API DE REST, seleccione *GET​ /packages​/{id}​/status*.
+.. Seleccione *probar*.
+.. Introduzca el ID de paquete que ha copiado en el paso anterior en *id*.
+.. Seleccione *Ejecutar* para iniciar la solicitud de estado.
 +
 La respuesta indica `state` como `SUCCESS` cuando finalice.
 
 
 
-
-
-|===
 . Busque el ID del clúster de almacenamiento:
 +
 .. Abra la interfaz de usuario de LA API DE REST del nodo de gestión en el nodo de gestión:

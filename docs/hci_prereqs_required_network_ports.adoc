@@ -17,22 +17,6 @@ keywords: netapp, hci, ports, tcp, udp
 [role="lead"]
 Es posible que deba permitir los siguientes puertos a través del firewall perimetral del centro de datos para poder gestionar el sistema de forma remota, permitir que los clientes fuera del centro de datos se conecten a los recursos y garantizar que los servicios internos funcionen correctamente. En función de la forma en la que se utilice el sistema, es posible que no sean necesarios algunos puertos, direcciones URL o direcciones IP. A menos que se indique lo contrario, todos los puertos son TCP.
 
-[NOTE]
-====
-Los paquetes de software de descarga de API e IU web de Hybrid Cloud Control de NetApp desde el repositorio de software en línea de NetApp. Por este motivo, algunas URL o direcciones IP pueden resolverse en otras direcciones URL o IP en función de la red de entrega de contenido. Si es posible, debe trabajar con un ingeniero de red para agregar estas direcciones URL o direcciones IP a las reglas de firewall, siguiendo los pasos generales siguientes:
-
-.Pasos
-. Use las utilidades wget o curl para acceder a una URL (support-sg-nawest.netapp.com, por ejemplo).
-. Compruebe si hay conectividad, como se muestra en el siguiente ejemplo:
-+
-image::network_ports.PNG[Comprobar la conectividad de los puertos]
-
-. Recibir un fallo al acceder a la URL (diferente de support-sg-nawest.netapp.com).
-. Edite las reglas del firewall para permitir la nueva URL.
-. Repita los pasos anteriores hasta que el intento de acceso se realice correctamente.
-
-
-====
 En la tabla se emplean las siguientes abreviaturas:
 
 * MIP: Dirección IP de gestión, una dirección por nodo
@@ -99,21 +83,6 @@ Todos los puertos de la tabla son TCP a menos que se especifique lo contrario.
 
 
 | Nodo de gestión | `monitoring.solidfire.com` | 443 | Informes del clúster de almacenamiento a Active IQ 
-
-
-| Nodo de gestión  a| 
-Notificación de la nueva versión:
-
-* `https://support.netapp.com/aods/`
-
-
-Descarga de software:
-
-* `https://support-sg-emea.netapp.com`
-* `https://support-sg-naeast.netapp.com`
-* `https://support-sg-nawest.netapp.com`
-
-| 443 | Actualizaciones del servicio del nodo de gestión 
 
 
 | Nodo de gestión | MVIP de clúster de almacenamiento | 443 | Acceso de interfaz de usuario y de API al nodo de almacenamiento y actualizaciones del software Element 

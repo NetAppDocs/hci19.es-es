@@ -51,10 +51,6 @@ https://<ManagementNodeIP>
 .. Inicie sesión en Hybrid Cloud Control de NetApp proporcionando las credenciales de administrador del clúster de almacenamiento.
 .. Seleccione *Actualizar* cerca de la parte superior derecha de la interfaz.
 .. Aparece el EULA. Desplácese hacia abajo, seleccione *Acepto para actualizaciones actuales y futuras* y seleccione *Guardar*.
-+
-
-NOTE: Cuando acepta el CLUF, se registra para todas las actualizaciones futuras y se habilita la función de descarga automática. Recibirá actualizaciones sobre las actualizaciones y renovaciones del software de NetApp, que puede instalar cuando le convenga y si así lo desea. Es posible deshabilitar la función de descarga automática si se deshabilita la conectividad de red en el repositorio de software en línea de NetApp.
-
 
 
 
@@ -92,44 +88,39 @@ https://<ManagementNodeIP>
 . Seleccione *Actualizar* cerca de la parte superior derecha de la interfaz.
 . En la página *actualizaciones*, seleccione *almacenamiento*.
 +
+[NOTE]
+====
+La ficha *almacenamiento* muestra los clústeres de almacenamiento que forman parte de la instalación. Si el control de cloud híbrido de NetApp no permite acceder a un clúster, no se mostrará en la página *actualizaciones*. Si los clústeres ejecutan Element 12.0 o una versión posterior, se mostrará la versión actual del paquete de firmware indicado para estos clústeres. Si los nodos de un solo clúster tienen diferentes versiones de firmware en ellos o mientras la actualización progresa, verá *multiple* en la columna *Versión del paquete de firmware actual*. Puede seleccionar *Multiple* para desplazarse a la página *Nodes* para comparar las versiones de firmware. Si todos los clústeres ejecutan versiones de Element anteriores a 12.0, no se mostrará ninguna información sobre los números de versión del bundle de firmware. Esta información también está disponible en la página *Nodes*. Consulte link:task_hcc_nodes.html["Ver el inventario"].
 
-NOTE: La ficha *almacenamiento* muestra los clústeres de almacenamiento que forman parte de la instalación. Si el control de cloud híbrido de NetApp no permite acceder a un clúster, no se mostrará en la página *actualizaciones*. Si los clústeres ejecutan Element 12.0 o una versión posterior, se mostrará la versión actual del paquete de firmware indicado para estos clústeres. Si los nodos de un solo clúster tienen diferentes versiones de firmware en ellos o mientras la actualización progresa, verá *multiple* en la columna *Versión del paquete de firmware actual*. Puede seleccionar *Multiple* para desplazarse a la página *Nodes* para comparar las versiones de firmware. Si todos los clústeres ejecutan versiones de Element anteriores a 12.0, no se mostrará ninguna información sobre los números de versión del bundle de firmware. Esta información también está disponible en la página *Nodes*. Consulte link:task_hcc_nodes.html["Ver el inventario"]. Si el clúster está actualizado y/o no hay paquetes de actualización disponibles, no se muestran las pestañas *Element* y *sólo firmware*. Estas pestañas también no se muestran cuando hay una actualización en curso. Si se muestra la ficha *elemento*, pero no la ficha *sólo firmware*, no hay paquetes de firmware disponibles.
+Si el clúster está actualizado y/o no hay paquetes de actualización disponibles, no se muestran las pestañas *Element* y *sólo firmware*. Estas pestañas también no se muestran cuando hay una actualización en curso. Si se muestra la ficha *elemento*, pero no la ficha *sólo firmware*, no hay paquetes de firmware disponibles.
 
-. Elija una de las siguientes opciones y realice el conjunto de pasos que se aplican a su clúster:
+====
+. Seleccione la flecha desplegable junto al clúster que va a actualizar.
+. Seleccione *examinar* para cargar el paquete de actualización que ha descargado.
+. Espere a que finalice la carga. Una barra de progreso muestra el estado de la carga.
+. Seleccione la flecha desplegable junto al clúster que va a actualizar.
+. Seleccione *examinar* para cargar el paquete de actualización que ha descargado.
+. Espere a que finalice la carga. Una barra de progreso muestra el estado de la carga.
 +
-[cols="2*"]
-|===
-| Opción | Pasos 
-
-
-| El nodo de gestión tiene conectividad externa.  a| 
-.. Seleccione la flecha desplegable junto al clúster que va a actualizar.
-.. Seleccione *sólo firmware* y seleccione una de las versiones de actualización disponibles.
-.. Seleccione *Iniciar actualización*.
-
-
-
-TIP: *Estado de actualización* cambia durante la actualización para reflejar el estado del proceso. También cambia en respuesta a las acciones que realice, como la pausa de la actualización o si la actualización devuelve un error. Consulte <<Cambios de estado de actualización>>.
-
-
-NOTE: Mientras la actualización está en curso, puede salir de la página y volver a ella más tarde para continuar supervisando el progreso. La página no actualiza el estado ni la versión actual de forma dinámica si la fila del clúster está contraída. La fila del clúster debe estar ampliada para actualizar la tabla, o bien se puede actualizar la página.
-
-Es posible descargar registros una vez completada la actualización.
-
-
-
-| El nodo de gestión se encuentra en un sitio oscuro sin conectividad externa.  a| 
-.. Seleccione la flecha desplegable junto al clúster que va a actualizar.
-.. Seleccione *examinar* para cargar el paquete de actualización que ha descargado.
-.. Espere a que finalice la carga. Una barra de progreso muestra el estado de la carga.
-
-
 
 CAUTION: La carga del archivo se perderá si se desplaza fuera de la ventana del explorador.
 
-Se muestra un mensaje en pantalla después de que el archivo se haya cargado y validado correctamente. La validación puede tardar varios minutos. Si se aleja de la ventana del explorador en este momento, se conserva la carga del archivo. Es posible descargar registros una vez completada la actualización. Para obtener más información sobre los distintos cambios de estado de actualización, consulte <<Cambios de estado de actualización>>.
++
+Se muestra un mensaje en pantalla después de que el archivo se haya cargado y validado correctamente. La validación puede tardar varios minutos. Si se aleja de la ventana del explorador en este momento, se conserva la carga del archivo.
 
-|===
+. Seleccione *sólo firmware* y seleccione una de las versiones de actualización disponibles.
+. Seleccione *Iniciar actualización*.
++
+
+TIP: *Estado de actualización* cambia durante la actualización para reflejar el estado del proceso. También cambia en respuesta a las acciones que realice, como la pausa de la actualización o si la actualización devuelve un error. Consulte <<Cambios de estado de actualización>>.
+
++
+
+NOTE: Mientras la actualización está en curso, puede salir de la página y volver a ella más tarde para continuar supervisando el progreso. La página no actualiza el estado ni la versión actual de forma dinámica si la fila del clúster está contraída. La fila del clúster debe estar ampliada para actualizar la tabla, o bien se puede actualizar la página.
+
++
+Es posible descargar registros una vez completada la actualización.
+
 
 
 
@@ -146,7 +137,7 @@ Estos son los diferentes estados que muestra la columna *Estado de actualizació
 | Actualizado | El clúster se actualizó a la versión más reciente disponible de Element o el firmware se actualizó a la versión más reciente. 
 
 
-| No se puede detectar | El control de cloud híbrido de NetApp muestra este estado en lugar de *versiones disponibles* cuando no tiene conectividad externa para llegar al repositorio de software en línea. Este estado también se muestra cuando la API del servicio de almacenamiento devuelve un estado de actualización que no está en la lista enumerada de posibles Estados de actualización. 
+| No se puede detectar | Este estado se muestra cuando la API del servicio de almacenamiento devuelve un estado de actualización que no está en la lista enumerada de posibles Estados de actualización. 
 
 
 | Versiones disponibles | Hay disponibles versiones más recientes del firmware de almacenamiento o Element para su actualización. 
@@ -186,87 +177,41 @@ CAUTION: Si se cancela la actualización del clúster mientras se actualiza un n
 Puede utilizar las API para actualizar los nodos de almacenamiento de un clúster a la versión más reciente del software Element. Puede utilizar una herramienta de automatización que prefiera para ejecutar las API. El flujo de trabajo de API que se documenta aquí, utiliza la interfaz de usuario de API DE REST disponible en el nodo de gestión como ejemplo.
 
 .Pasos
-. Realice una de las siguientes acciones según la conexión:
+. Descargue el paquete de actualización de firmware de almacenamiento más reciente en un dispositivo al que se pueda acceder el nodo de gestión; vaya al https://mysupport.netapp.com/site/products/all/details/element-software/downloads-tab/download/62654/Storage_Firmware_Bundle["Página del paquete de firmware de almacenamiento del software Element"^] y descargue la imagen del firmware de almacenamiento más reciente.
+. Cargue el paquete de actualización del firmware de almacenamiento en el nodo de gestión:
 +
-[cols="2*"]
-|===
-| Opción | Pasos 
-
-
-| El nodo de gestión tiene conectividad externa.  a| 
-.. Compruebe la conexión del repositorio:
-+
-... Abra la interfaz de usuario de LA API DE REST del nodo de gestión en el nodo de gestión:
+.. Abra la interfaz de usuario de LA API DE REST del nodo de gestión en el nodo de gestión:
 +
 [listing]
 ----
 https://<ManagementNodeIP>/package-repository/1/
 ----
-... Seleccione *autorizar* y complete lo siguiente:
+.. Seleccione *autorizar* y complete lo siguiente:
 +
-.... Introduzca el nombre de usuario y la contraseña del clúster.
-.... Introduzca el ID de cliente as `mnode-client`.
-.... Seleccione *autorizar* para iniciar una sesión.
-.... Cierre la ventana de autorización.
+... Introduzca el nombre de usuario y la contraseña del clúster.
+... Introduzca el ID de cliente as `mnode-client`.
+... Seleccione *autorizar* para iniciar una sesión.
+... Cierre la ventana de autorización.
 
 
-... En la interfaz de usuario DE LA API DE REST, seleccione *GET ​/packages​/remote-repository​/connection*.
-... Seleccione *probar*.
-... Seleccione *Ejecutar*.
-... Si se devuelve el código 200, pasar al siguiente paso. Si no hay conexión con el repositorio remoto, establezca la conexión o utilice la opción de sitio oscuro.
+.. En la interfaz de usuario DE LA API DE REST, seleccione *POST /packages*.
+.. Seleccione *probar*.
+.. Seleccione *Browse* y seleccione el paquete de actualización.
+.. Seleccione *Ejecutar* para iniciar la carga.
+.. Desde la respuesta, copie y guarde el ID del paquete (`"id"`) para usar en un paso posterior.
 
 
-.. Busque el ID del paquete de actualización:
+. Compruebe el estado de la carga.
 +
-... En la interfaz de usuario DE LA API DE REST, seleccione *GET /packages*.
-... Seleccione *probar*.
-... Seleccione *Ejecutar*.
-... Desde la respuesta, copie y guarde el ID del paquete de firmware para utilizarlo en un paso posterior.
-
-
-
-
-
-
-| El nodo de gestión se encuentra en un sitio oscuro sin conectividad externa.  a| 
-.. Descargue el paquete de actualización de firmware de almacenamiento más reciente en un dispositivo al que se pueda acceder el nodo de gestión; vaya al https://mysupport.netapp.com/site/products/all/details/element-software/downloads-tab/download/62654/Storage_Firmware_Bundle["Página del paquete de firmware de almacenamiento del software Element"^] y descargue la imagen del firmware de almacenamiento más reciente.
-.. Cargue el paquete de actualización del firmware de almacenamiento en el nodo de gestión:
-+
-... Abra la interfaz de usuario de LA API DE REST del nodo de gestión en el nodo de gestión:
-+
-[listing]
-----
-https://<ManagementNodeIP>/package-repository/1/
-----
-... Seleccione *autorizar* y complete lo siguiente:
-+
-.... Introduzca el nombre de usuario y la contraseña del clúster.
-.... Introduzca el ID de cliente as `mnode-client`.
-.... Seleccione *autorizar* para iniciar una sesión.
-.... Cierre la ventana de autorización.
-
-
-... En la interfaz de usuario DE LA API DE REST, seleccione *POST /packages*.
-... Seleccione *probar*.
-... Seleccione *Browse* y seleccione el paquete de actualización.
-... Seleccione *Ejecutar* para iniciar la carga.
-... Desde la respuesta, copie y guarde el ID del paquete (`"id"`) para usar en un paso posterior.
-
-
-.. Compruebe el estado de la carga.
-+
-... En la interfaz de usuario de la API DE REST, seleccione *GET​ /packages​/{id}​/status*.
-... Seleccione *probar*.
-... Introduzca el ID del paquete de firmware que ha copiado en el paso anterior en *id*.
-... Seleccione *Ejecutar* para iniciar la solicitud de estado.
+.. En la interfaz de usuario de la API DE REST, seleccione *GET​ /packages​/{id}​/status*.
+.. Seleccione *probar*.
+.. Introduzca el ID del paquete de firmware que ha copiado en el paso anterior en *id*.
+.. Seleccione *Ejecutar* para iniciar la solicitud de estado.
 +
 La respuesta indica `state` como `SUCCESS` cuando finalice.
 
 
 
-
-
-|===
 . Busque el ID de activo de instalación:
 +
 .. Abra la interfaz de usuario de LA API DE REST del nodo de gestión en el nodo de gestión:

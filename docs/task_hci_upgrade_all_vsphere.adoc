@@ -23,7 +23,7 @@ Al actualizar los componentes de VMware vSphere de la instalación de NetApp HCI
 +
 [IMPORTANT]
 ====
-Debe actualizar al plugin de NetApp Element para vCenter Server 5.0 a fin de ofrecer la capacidad de implementar el plugin con VMware vCenter 7.0 Update 3 sin tener que aplicar una solución alternativa.
+Debe actualizar al plugin de NetApp Element para vCenter Server 5.0 o una versión posterior para otorgar la capacidad de implementar el plugin con VMware vCenter 7.0 Update 3 sin tener que aplicar una solución alternativa.
 
 Con el plugin de Element para vCenter Server 4.x, cuando se actualiza a VMware vCenter Server 7.0 Update 3, el plugin 4.x no puede implementar. Para resolver este problema con Spring Framework 4, consulte https://kb.netapp.com/Advice_and_Troubleshooting/Hybrid_Cloud_Infrastructure/NetApp_HCI/vCenter_plug-in_deployment_fails_after_upgrading_vCenter_to_version_7.0_U3["Este artículo de la base de conocimientos"^].
 

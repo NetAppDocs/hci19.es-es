@@ -62,10 +62,6 @@ https://<ManagementNodeIP>
 .. Inicie sesión en Hybrid Cloud Control de NetApp proporcionando las credenciales de administrador del clúster de almacenamiento.
 .. Seleccione *Actualizar* cerca de la parte superior derecha de la interfaz.
 .. Aparece el EULA. Desplácese hacia abajo, seleccione *Acepto para actualizaciones actuales y futuras* y seleccione *Guardar*.
-+
-
-NOTE: Cuando acepta el CLUF, se registra para todas las actualizaciones futuras y se habilita la función de descarga automática. Recibirá actualizaciones sobre las actualizaciones y renovaciones del software de NetApp, que puede instalar cuando le convenga y si así lo desea. Es posible deshabilitar la función de descarga automática si se deshabilita la conectividad de red en el repositorio de software en línea de NetApp.
-
 
 
 
@@ -100,9 +96,6 @@ A partir de los servicios de gestión 2.14, es posible actualizar un nodo de com
 TIP: Para una actualización correcta, compruebe que la comprobación del estado del clúster de vSphere se haya realizado correctamente.
 
 
-TIP: Para las actualizaciones de sitios oscuros, puede reducir el tiempo de carga si el paquete de firmware de computación y el nodo de gestión son locales.
-
-
 NOTE: Actualizar el NIC, el BIOS y el BMC pueden tardar aproximadamente 60 minutos por nodo en función de la velocidad de la conectividad de red entre el nodo de gestión y el host BMC.
 
 
@@ -126,20 +119,21 @@ https://<ManagementNodeIP>
 . Inicie sesión en Hybrid Cloud Control de NetApp proporcionando las credenciales de administrador del clúster de almacenamiento.
 . Seleccione *Actualizar* cerca de la parte superior derecha de la interfaz.
 . En la página *actualizaciones*, seleccione *firmware de computación*.
-. Elija una de las siguientes opciones y realice el conjunto de pasos que se aplican a su clúster:
-+
-[cols="2*"]
-|===
-| Opción | Pasos 
-
-
-| El nodo de gestión tiene conectividad externa.  a| 
-.. Seleccione el clúster que desea actualizar.
+. Seleccione el clúster que desea actualizar.
 +
 Verá los nodos del clúster junto con las versiones de firmware actuales y las versiones más recientes, si están disponibles para su actualización.
 
-.. Seleccione el bundle de firmware de computación.
-.. Seleccione *Iniciar actualización*.
+. Seleccione *examinar* para cargar el paquete de firmware de computación que descargó de https://mysupport.netapp.com/site/products/all/details/netapp-hci/downloads-tab["Sitio de soporte de NetApp"^].
+. Espere a que finalice la carga. Una barra de progreso muestra el estado de la carga.
++
+
+TIP: La carga del archivo se realizará en segundo plano si se desplaza fuera de la ventana del explorador.
+
++
+Se muestra un mensaje en pantalla después de que el archivo se haya cargado y validado correctamente. La validación puede tardar varios minutos.
+
+. Seleccione el bundle de firmware de computación.
+. Seleccione *Iniciar actualización*.
 +
 Después de seleccionar *Iniciar actualización*, la ventana muestra comprobaciones de estado fallidas, si las hay.
 
@@ -147,31 +141,18 @@ Después de seleccionar *Iniciar actualización*, la ventana muestra comprobacio
 
 CAUTION: La actualización no se puede pausar una vez que se inicia. El firmware se actualizará secuencialmente en el siguiente orden: NIC, BIOS y BMC. No inicie sesión en la interfaz de usuario del BMC durante la actualización. Al iniciar sesión en el BMC se finaliza la sesión de control de nube híbrida en serie en LAN (sol) que supervisa el proceso de actualización.
 
-.. Si las comprobaciones de estado del clúster o del nodo pasan con advertencias, pero sin fallos críticos, verá *preparado para actualizarse*. Seleccione *Actualizar nodo*.
-
-
+. Si las comprobaciones de estado del clúster o del nodo pasan con advertencias, pero sin fallos críticos, verá *preparado para actualizarse*. Seleccione *Actualizar nodo*.
++
 
 NOTE: Mientras la actualización está en curso, puede salir de la página y volver a ella más tarde para continuar supervisando el progreso. Durante la actualización, la interfaz de usuario muestra varios mensajes acerca del estado de la actualización.
 
++
 
 CAUTION: Al actualizar el firmware en los nodos de computación H610C y H615C, no abra la consola de serie en LAN (sol) a través de la interfaz de usuario web de BMC. Esto puede provocar un error en la actualización.
 
-La interfaz de usuario muestra un mensaje una vez completada la actualización. Es posible descargar registros una vez completada la actualización.
++
+La interfaz de usuario muestra un mensaje una vez completada la actualización. Es posible descargar registros una vez completada la actualización. Para obtener más información sobre los distintos cambios de estado de actualización, consulte <<Cambios de estado de actualización>>.
 
-
-
-| El nodo de gestión se encuentra en un sitio oscuro sin conectividad externa.  a| 
-.. Seleccione el clúster que desea actualizar.
-.. Seleccione *examinar* para cargar el paquete de firmware de computación que descargó dehttps://mysupport.netapp.com/site/products/all/details/netapp-hci/downloads-tab["Sitio de soporte de NetApp"^].
-.. Espere a que finalice la carga. Una barra de progreso muestra el estado de la carga.
-
-
-
-TIP: La carga del archivo se realizará en segundo plano si se desplaza fuera de la ventana del explorador.
-
-Se muestra un mensaje en pantalla después de que el archivo se haya cargado y validado correctamente. La validación puede tardar varios minutos. Es posible descargar registros una vez completada la actualización. Para obtener más información sobre los distintos cambios de estado de actualización, consulte <<Cambios de estado de actualización>>.
-
-|===
 
 
 
@@ -194,7 +175,7 @@ A continuación, se muestran los distintos estados que la interfaz de usuario mu
 | Error | Se produjo un error durante la actualización. Puede descargar el registro de errores y enviarlo al soporte de NetApp. 
 
 
-| No se puede detectar | El control del cloud híbrido de NetApp no cuenta con conectividad externa para llegar al repositorio de software en línea. Este estado también se muestra si el control de cloud híbrido de NetApp no puede consultar el nodo de computación cuando el activo del nodo de computación no tiene la etiqueta de hardware. 
+| No se puede detectar | Este estado se muestra si el control de cloud híbrido de NetApp no puede consultar el nodo de computación cuando el activo de nodo de computación no tiene la etiqueta de hardware. 
 
 
 | Listo para actualizarse. | Todas las comprobaciones de estado se han pasado correctamente y el nodo está listo para actualizarse. 
@@ -218,92 +199,42 @@ NOTE: Ya no se admite el uso de la interfaz de usuario de NetApp Hybrid Cloud Co
 Los activos de nodos de computación, incluidos los activos de hardware y vCenter, deben conocer los activos de los nodos de gestión. Puede usar las API del servicio de inventario para verificar activos (`https://<ManagementNodeIP>/inventory/1/`).
 
 .Pasos
-. Realice una de las siguientes acciones según la conexión:
+. Vaya al software NetApp HCI https://mysupport.netapp.com/site/products/all/details/netapp-hci/downloads-tab/download/62542/Compute_Firmware_Bundle["descargue la página"^] y descargue el paquete de firmware de computación más reciente en un dispositivo al que se pueda acceder el nodo de gestión.
+. Cargue el paquete de firmware de computación en el nodo de gestión:
 +
-[cols="2*"]
-|===
-| Opción | Pasos 
-
-
-| El nodo de gestión tiene conectividad externa.  a| 
-.. Compruebe la conexión del repositorio:
-+
-... Abra la interfaz de usuario de la API DE REST de un paquete en el nodo de gestión:
+.. Abra la interfaz de usuario de LA API DE REST del nodo de gestión en el nodo de gestión:
 +
 [listing]
 ----
 https://<ManagementNodeIP>/package-repository/1/
 ----
-... Seleccione *autorizar* y complete lo siguiente:
+.. Seleccione *autorizar* y complete lo siguiente:
 +
-.... Introduzca el nombre de usuario y la contraseña del clúster.
-.... Introduzca el ID de cliente as `mnode-client`.
-.... Seleccione *autorizar* para iniciar una sesión.
-.... Cierre la ventana de autorización.
+... Introduzca el nombre de usuario y la contraseña del clúster.
+... Introduzca el ID de cliente as `mnode-client`.
+... Seleccione *autorizar* para iniciar una sesión.
+... Cierre la ventana de autorización.
 
 
-... En la interfaz de usuario DE LA API DE REST, seleccione *GET ​/packages​/remote-repository​/connection*.
-... Seleccione *probar*.
-... Seleccione *Ejecutar*.
-... Si se devuelve el código 200, pasar al siguiente paso. Si no hay conexión con el repositorio remoto, establezca la conexión o utilice la opción de sitio oscuro.
+.. En la interfaz de usuario DE LA API DE REST, seleccione *POST /packages*.
+.. Seleccione *probar*.
+.. Seleccione *Browse* y seleccione el paquete de firmware de computación.
+.. Seleccione *Ejecutar* para iniciar la carga.
+.. En la respuesta, copie y guarde el ID de bundle de firmware de computación (`"id"`) para usar en un paso posterior.
 
 
-.. Busque el ID de bundle de firmware de computación:
+. Compruebe el estado de la carga.
 +
-... En la interfaz de usuario DE LA API DE REST, seleccione *GET /packages*.
-... Seleccione *probar*.
-... Seleccione *Ejecutar*.
-... En la respuesta, copie y guarde el nombre de paquete de firmware de computación (`"packageName"`) y la versión (`"packageVersion"`) para usar en un paso posterior.
-
-
-
-
-
-
-| El nodo de gestión se encuentra en un sitio oscuro sin conectividad externa.  a| 
-.. Vaya al software NetApp HCI https://mysupport.netapp.com/site/products/all/details/netapp-hci/downloads-tab/download/62542/Compute_Firmware_Bundle["descargue la página"^] y descargue el paquete de firmware de computación más reciente en un dispositivo al que se pueda acceder el nodo de gestión.
-+
-
-TIP: Para las actualizaciones de sitios oscuros, puede reducir el tiempo de carga si el paquete de firmware de computación y el nodo de gestión son locales.
-
-.. Cargue el paquete de firmware de computación en el nodo de gestión:
-+
-... Abra la interfaz de usuario de LA API DE REST del nodo de gestión en el nodo de gestión:
-+
-[listing]
-----
-https://<ManagementNodeIP>/package-repository/1/
-----
-... Seleccione *autorizar* y complete lo siguiente:
-+
-.... Introduzca el nombre de usuario y la contraseña del clúster.
-.... Introduzca el ID de cliente as `mnode-client`.
-.... Seleccione *autorizar* para iniciar una sesión.
-.... Cierre la ventana de autorización.
-
-
-... En la interfaz de usuario DE LA API DE REST, seleccione *POST /packages*.
-... Seleccione *probar*.
-... Seleccione *Browse* y seleccione el paquete de firmware de computación.
-... Seleccione *Ejecutar* para iniciar la carga.
-... En la respuesta, copie y guarde el ID de bundle de firmware de computación (`"id"`) para usar en un paso posterior.
-
-
-.. Compruebe el estado de la carga.
-+
-... En la interfaz de usuario de la API DE REST, seleccione *GET​ /packages​/{id}​/status*.
-... Seleccione *probar*.
-... Introduzca el ID de paquete que ha copiado en el paso anterior en *id*.
-... Seleccione *Ejecutar* para iniciar la solicitud de estado.
+.. En la interfaz de usuario de la API DE REST, seleccione *GET​ /packages​/{id}​/status*.
+.. Seleccione *probar*.
+.. Introduzca el ID de paquete que ha copiado en el paso anterior en *id*.
+.. Seleccione *Ejecutar* para iniciar la solicitud de estado.
 +
 La respuesta indica `state` como `SUCCESS` cuando finalice.
 
-... En la respuesta, copie y guarde el nombre de paquete de firmware de computación (`"name"`) y la versión (`"version"`) para usar en un paso posterior.
+.. En la respuesta, copie y guarde el nombre de paquete de firmware de computación (`"name"`) y la versión (`"version"`) para usar en un paso posterior.
 
 
-
-
-|===
 . Busque el ID de controladora de computación y el ID de hardware de nodos para el nodo que planea actualizar:
 +
 .. Abra la interfaz de usuario de la API DE REST del servicio de inventario en el nodo de gestión:
@@ -632,7 +563,8 @@ CAUTION: Durante el proceso de encendido, durante aproximadamente cinco minutos,
 . En vCenter, con el nombre de host seleccionado, configure y verifique la versión de BIOS.
 
 
-[discrete]
+
+
 == Obtenga más información
 
 * https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]

@@ -35,10 +35,6 @@ https://<ManagementNodeIP>
 .. Inicie sesión en Hybrid Cloud Control de NetApp proporcionando las credenciales de administrador del clúster de almacenamiento.
 .. Seleccione *Actualizar* cerca de la parte superior derecha de la interfaz.
 .. Aparece el EULA. Desplácese hacia abajo, seleccione *Acepto para actualizaciones actuales y futuras* y seleccione *Guardar*.
-+
-
-NOTE: Cuando acepta el CLUF, se registra para todas las actualizaciones futuras y se habilita la función de descarga automática. Recibirá actualizaciones sobre las actualizaciones y renovaciones del software de NetApp, que puede instalar cuando le convenga y si así lo desea. Es posible deshabilitar la función de descarga automática si se deshabilita la conectividad de red en el repositorio de software en línea de NetApp.
-
 
 
 
