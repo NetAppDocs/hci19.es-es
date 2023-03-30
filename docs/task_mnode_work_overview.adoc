@@ -32,6 +32,11 @@ Acceda al nodo de gestión:
 * link:task_mnode_access_ui.html["Acceder al nodo de gestión (interfaz de usuario o API de REST)"]
 
 
+Cambie el certificado SSL predeterminado:
+
+* link:reference_change_mnode_default_ssl_certificate.html["Cambie el certificado SSL predeterminado del nodo de gestión"]
+
+
 Realice tareas con la interfaz de usuario del nodo de gestión:
 
 * link:task_mnode_work_overview_UI.html["Información general de la interfaz de usuario del nodo de gestión"]
