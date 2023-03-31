@@ -18,8 +18,6 @@ Para los entornos de vSphere existentes con un plugin de NetApp Element registra
 
 Es posible actualizar el registro del plugin en vCenter Server Virtual Appliance (vcsa) o Windows desde la utilidad de registro. Debe cambiar el registro del plugin de vCenter en cada instancia de vCenter Server donde necesite usar el plugin.
 
-Este procedimiento de actualización cubre los siguientes escenarios de actualización.
-
 
 NOTE: Los servicios de gestión 2.22.7 incluyen el plugin de Element para vCenter Server 5.0, que contiene el plugin remoto. Si usa el plugin de Element, debe actualizar a los servicios de gestión 2.22.7 o una versión posterior para cumplir con la directiva de VMware que elimina la compatibilidad con los plugins locales. https://kb.vmware.com/s/article/87880["Leer más"^].
 

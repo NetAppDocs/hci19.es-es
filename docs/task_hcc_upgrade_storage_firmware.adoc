@@ -98,9 +98,6 @@ Si el clúster está actualizado y/o no hay paquetes de actualización disponibl
 . Seleccione la flecha desplegable junto al clúster que va a actualizar.
 . Seleccione *examinar* para cargar el paquete de actualización que ha descargado.
 . Espere a que finalice la carga. Una barra de progreso muestra el estado de la carga.
-. Seleccione la flecha desplegable junto al clúster que va a actualizar.
-. Seleccione *examinar* para cargar el paquete de actualización que ha descargado.
-. Espere a que finalice la carga. Una barra de progreso muestra el estado de la carga.
 +
 
 CAUTION: La carga del archivo se perderá si se desplaza fuera de la ventana del explorador.
