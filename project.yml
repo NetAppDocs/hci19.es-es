@@ -202,7 +202,7 @@ sidebar:
       - title: Acceda al nodo de gestión
         url: "/docs/task_mnode_access_ui.html"
       - title: Cambie el certificado SSL predeterminado del nodo de gestión
-        url: "/mnode/reference_change_mnode_default_ssl_certificate.html"
+        url: "/docs/reference_change_mnode_default_ssl_certificate.html"
       - title: Trabaje con la interfaz de usuario del nodo de gestión
         entries:
         - title: Información general de la interfaz de usuario del nodo de gestión
