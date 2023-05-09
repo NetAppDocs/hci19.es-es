@@ -278,6 +278,6 @@ Aparece la interfaz de control del cloud híbrido de NetApp.
 * link:../media/hseries-isi.pdf["Instrucciones de instalación y configuración de NetApp HCI"^]
 * https://www.netapp.com/us/media/tr-4820.pdf["TR-4820: Guía para la planificación rápida de redes de NetApp HCI"^]
 * https://docs.netapp.com/us-en/vcp/index.html["Documentación del plugin de NetApp Element para vCenter Server"^]
-* https://mysupport-beta.netapp.com/site/tools/tool-eula/5ddb829ebd393e00015179b2["Asesor de configuración de NetApp"^] 5.8.1 o posterior herramienta de validación de red
+* https://mysupport.netapp.com/site/tools/tool-eula/5ddb829ebd393e00015179b2["Asesor de configuración de NetApp"^] 5.8.1 o posterior herramienta de validación de red
 * https://docs.netapp.com/us-en/solidfire-active-iq/index.html["Documentación de SolidFire Active IQ de NetApp"^]
 

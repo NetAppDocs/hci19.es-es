@@ -51,7 +51,7 @@ Tareas que se pueden realizar con API de REST:
 [discrete]
 == Obtenga más información
 
-* link:task_mnode_access.html["Acceda al nodo de gestión"]
+* link:task_mnode_access_ui.html["Acceda al nodo de gestión"]
 * https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
 * https://www.netapp.com/hybrid-cloud/hci-documentation/["Página de recursos de NetApp HCI"^]
 

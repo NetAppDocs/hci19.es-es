@@ -79,5 +79,5 @@ NOTE: Ya no se necesita actualizar el sistema operativo del nodo de gestión par
 
 * https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
 * https://www.netapp.com/hybrid-cloud/hci-documentation/["Página de recursos de NetApp HCI"^]
-* https://docs.netapp.com/us-en/element-software/upgrade/task_sf_upgrade_all.html["Actualice un sistema de almacenamiento all-flash SolidFire de NetApp"^]
+* https://docs.netapp.com/us-en/element-software/upgrade/concept_element_upgrade_overview.html["Actualice un sistema de almacenamiento all-flash SolidFire de NetApp"^]
 

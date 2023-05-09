@@ -36,4 +36,4 @@ Póngase en contacto con el soporte de NetApp para obtener más información sob
 
 == Obtenga más información
 
-link:api/index.html["Gestione el almacenamiento con la API de Element"]
+https://docs.netapp.com/us-en/element-software/api/index.html["Gestione el almacenamiento con la API de Element"^]

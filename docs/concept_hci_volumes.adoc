@@ -37,7 +37,7 @@ NOTE: Los volúmenes persistentes asociados con servicios de gestión se crean y
 
 == Obtenga más información
 
-* link:hci_task_manage_vol_management.html["Gestione los volúmenes"]
+* link:task_hcc_manage_vol_management.html["Gestione los volúmenes"]
 * https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
 * http://docs.netapp.com/sfe-122/index.jsp["Centro de documentación de SolidFire y el software Element"^]
 
