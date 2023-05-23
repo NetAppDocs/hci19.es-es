@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar 
 permalink: docs/task_mnode_work_overview_UI.html 
-summary: 'Con la interfaz de usuario del nodo de gestión (https://<mNodeIP>:442)[], puede realizar cambios en la configuración de red y clúster, ejecutar pruebas del sistema o utilizar utilidades del sistema.' 
+summary: Con la interfaz de usuario del nodo de gestión , puede realizar cambios en la configuración de red y clúster, ejecutar pruebas del sistema o utilizar utilidades del sistema. 
 keywords: 'netapp, management node ui, mnode ui, :442, element' 
 ---
 = Información general de la interfaz de usuario del nodo de gestión
