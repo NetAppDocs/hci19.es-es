@@ -404,10 +404,198 @@ NOTE: La contraseña debe coincidir con la configuración en el motor de impleme
 .. Seleccione *Sí* para aplicar los cambios.
 
 
-. Añada el nodo (host) al clúster y configure la red para que el nodo esté sincronizado con los otros nodos del clúster de la siguiente forma:
+. Configure la red de modo que el nodo se sincronice con los otros nodos del clúster de la siguiente manera:
 +
+[role="tabbed-block"]
+====
+.Plugin de Element para vCenter 5.0 y versiones posteriores
+--
+A partir del plugin de Element para vCenter 5,0, añada el nodo (host) al centro de datos.
+
+.. En VMware vSphere Web Client, seleccione *Inventario > Hosts and Clusters*.
+.. Haga clic con el botón derecho en el centro de datos y seleccione *Agregar host*.
++
+El asistente le guiará a través de la adición del host.
+
++
+
+NOTE: Cuando se le solicite introducir el nombre de usuario y la contraseña, utilice las siguientes credenciales: Nombre de usuario: Root Password: La contraseña que configuró en el motor de implementación de NetApp al configurar NetApp HCI
+
++
+Es posible que el nodo tarde unos minutos en añadirse al clúster. Una vez completado el proceso, el nodo que se acaba de añadir se muestra en el clúster.
+
+.. Seleccione el nodo y, a continuación, seleccione *Configurar > Redes > Conmutadores virtuales* y realice los siguientes pasos:
++
+... Expandir *vSwitch0*.
+... En el gráfico que se muestra, seleccione la red de VM image:three_horizontal_dots.PNG["icono de menú"] Icono seguido de *Eliminar*.
++
+image::h410c-esxi-vm.PNG[Muestra la pantalla para eliminar la máquina virtual.]
+
+... Confirme la acción.
+... Seleccione *EDIT* en el encabezado vSwitch0.
+... En la ventana vSwitch0 - Editar configuración, seleccione *Teaming y failover*.
+... Compruebe que vmnic3 aparece en Adaptadores en espera y seleccione *OK*.
+
+
+.. En el gráfico que se muestra, seleccione la red de administración image:three_horizontal_dots.PNG["icono de menú"] Icono seguido de *Editar configuración*.
++
+image::h410c-esxi-mgmt-network.PNG[Muestra la pantalla para editar la red de gestión.]
+
++
+... En la ventana Management Network - Edit settings (Editar configuración), seleccione *Teaming y failover*.
+... Compruebe que vmnic3 aparece en Adaptadores en espera y seleccione *OK*.
+
+
+.. Seleccione *Agregar red* en el encabezado vSwitch0 e introduzca los siguientes detalles en la ventana que se muestra:
++
+... Para el tipo de conexión, seleccione *Grupo de puertos de máquina virtual para un conmutador estándar* y seleccione *Siguiente*.
+... Para el dispositivo de destino, seleccione *Nuevo interruptor estándar* y seleccione *Siguiente*.
+... En Crear un conmutador estándar, mueva vmnic0 y vmnic4 a Adaptadores activos y seleccione *Siguiente*.
+... En Configuración de conexión, compruebe que VM Network es la etiqueta de red y, si es necesario, introduzca el ID de VLAN.
+... Seleccione *Siguiente*.
+... Revise la pantalla Listo para completar y seleccione *Finalizar*.
+
+
+.. Expanda vSwitch1 y seleccione *EDIT* para editar la configuración de la siguiente manera:
++
+... En Propiedades, establezca MTU en 9000 y seleccione *Aceptar*.
+
+
+.. En el gráfico que se muestra, seleccione la red de VM image:three_horizontal_dots.PNG["icono de menú"] Icono seguido de *Editar*.
++
+... Seleccione *Seguridad* y realice las siguientes selecciones:
++
+image::vswitch1_vcp_50.PNG[Muestra las selecciones de seguridad que se deben realizar en la red de la máquina virtual.]
+
+... Seleccione *Teaming y failover* y seleccione la casilla de verificación *Override*.
+... Mueva vmnic0 a Adaptadores en espera.
+... Seleccione *OK*.
+
+
+.. Seleccione *ADD NETWORKING* en el encabezado vSwitch1 e introduzca los siguientes detalles en la ventana Add Networking:
++
+... Para el tipo de conexión, seleccione *adaptador de red de VMkernel* y seleccione *Siguiente*.
+... Para el dispositivo de destino, seleccione la opción de utilizar un conmutador estándar existente, vaya a vSwitch1 y seleccione *Siguiente*.
+... En Crear un conmutador estándar, mueva vmnic1 y vmnic5 a Adaptadores activos y seleccione *Siguiente*.
+... En Propiedades de puerto, cambie la etiqueta de red a vMotion, seleccione la casilla de verificación para el tráfico de vMotion en Habilitar servicios y seleccione *Siguiente*.
+... En Configuración de IPv4, proporcione la información de IPv4 y seleccione *Siguiente*.
+... Si está listo para continuar, seleccione *Finalizar*.
+
+
+.. En el gráfico que se muestra, seleccione vMotion image:three_horizontal_dots.PNG["icono de menú"] Icono seguido de *Editar*.
++
+... Seleccione *Seguridad* y realice las siguientes selecciones:
++
+image::vmotion_vcp_50.PNG[Muestra las selecciones de seguridad para vMotion.]
+
+... Seleccione *Teaming y failover* y seleccione la casilla de verificación *Override*.
+... Mueva vmnic4 a Adaptadores en espera.
+... Seleccione *OK*.
+
+
+.. Seleccione *ADD NETWORKING* en el encabezado vSwitch1 e introduzca los siguientes detalles en la ventana Add Networking:
++
+... Para el tipo de conexión, seleccione *adaptador de red de VMkernel* y seleccione *Siguiente*.
+... Para el dispositivo de destino, seleccione *Nuevo interruptor estándar* y seleccione *Siguiente*.
+... En Crear un conmutador estándar, mueva vmnic1 y vmnic5 a Adaptadores activos y seleccione *Siguiente*.
+... En Propiedades de puerto, cambie la etiqueta de red a iSCSI-B y seleccione *Siguiente*.
+... En Configuración de IPv4, proporcione la información de IPv4 y seleccione *Siguiente*.
+... Si está listo para continuar, seleccione *Finalizar*.
+
+
+.. Expanda *vSwitch2* y seleccione *EDIT*:
++
+... En Propiedades, establezca MTU en 9000 y seleccione *Aceptar*.
+
+
+.. En el gráfico que se muestra, seleccione iSCSI-B. image:three_horizontal_dots.PNG["icono de menú"] Icono seguido de *Editar*.
++
+... Seleccione *Seguridad* y realice las siguientes selecciones:
++
+image::iscsi-b-vcp-50.PNG[Muestra las selecciones de seguridad de la red iSCSI-B.]
+
+... Seleccione *Teaming y failover* y seleccione la casilla de verificación *Override*.
+... Mueva vmnic1 a adaptadores no utilizados.
+... Seleccione *OK*.
+
+
+.. Seleccione *ADD NETWORKING* en el encabezado vSwitch1 e introduzca los siguientes detalles en la ventana Add Networking:
++
+... Para el tipo de conexión, seleccione *adaptador de red de VMkernel* y seleccione *Siguiente*.
+... Para el dispositivo de destino, seleccione la opción de utilizar un conmutador estándar existente, vaya a vSwitch2 y seleccione *Siguiente*.
+... En Propiedades de puerto, cambie la etiqueta de red a iSCSI-A y seleccione *Siguiente*.
+... En Configuración de IPv4, proporcione la información de IPv4 y seleccione *Siguiente*.
+... Si está listo para continuar, seleccione *Finalizar*.
+
+
+.. En el gráfico que se muestra, seleccione iSCSI-A. image:three_horizontal_dots.PNG["icono de menú"] Icono seguido de *Editar*.
++
+... Seleccione *Seguridad* y realice las siguientes selecciones:
++
+image::iscsi-a-vcp-50.PNG[Muestra las selecciones de seguridad para la red iSCSI-A.]
+
+... Seleccione *Teaming y failover* y seleccione la casilla de verificación *Override*.
+... Mueva vmnic5 a los adaptadores no utilizados mediante el icono de flecha.
+... Seleccione *OK*.
+
+
+.. Con el nodo recién agregado seleccionado y la pestaña Configurar abierta, seleccione *Almacenamiento > Adaptadores de almacenamiento* y realice los siguientes pasos:
++
+... Seleccione la lista *ADD SOFTWARE ADAPTER*.
+... Seleccione *Añadir adaptador iSCSI* y seleccione *OK*.
+... En Adaptadores de almacenamiento, seleccione el adaptador iSCSI
+... En Propiedades > General, copie el nombre iSCSI.
++
+image::iscsi-adapter-name-vcp-50.PNG[Muestra la cadena IQN del adaptador iSCSI.]
+
++
+
+NOTE: Necesita el nombre de iSCSI cuando se crea el iniciador.
+
+
+
+.. Realice los siguientes pasos en el complemento vCenter para SolidFire de NetApp:
++
+... Seleccione la instancia de destino.
+... Selecciona *Gestión*.
+... Seleccione el clúster de destino.
+... Selecciona *Administración > Iniciadores*.
+... Seleccione *Crear iniciador*.
+... Introduzca la dirección de IQN que copió anteriormente en el campo IQN/WWPN.
+... Seleccione *OK*.
+... Seleccione el nuevo iniciador.
+... Selecciona *Lista de acciones > Acciones masivas* y selecciona *Agregar al grupo de acceso*.
+... Seleccione el grupo de acceso de destino y seleccione *Agregar*.
+
+
+.. En VMware vSphere Web Client, en Storage Adapters, seleccione el adaptador iSCSI y realice los pasos siguientes:
++
+... Selecciona *Descubrimiento dinámico > Agregar*.
+... Introduzca la dirección IP de SVIP en el campo iSCSI Server.
++
+
+NOTE: Para obtener la dirección IP de SVIP, seleccione *Administración de NetApp Element* y copie la dirección IP de SVIP. Deje el número de puerto predeterminado tal cual. Debería ser 3260.
+
+... Seleccione *OK*.
+... Selecciona *Enlace de puerto de red* y selecciona *ADD*.
+... Seleccione iSCSI-A e iSCSI-B y seleccione *OK*
+... Seleccione *RESCAN ADAPTADOR*.
+... Selecciona *VOLVER A ESCANEAR ALMACENAMIENTO*. Busque nuevos volúmenes VMFS y seleccione *OK*.
+... Una vez finalizada la repetición de la exploración, compruebe si los volúmenes del clúster y los almacenes de datos están visibles en el nuevo nodo de computación (host).
+
+
+
+
+--
+.Plugin de Element para vCenter 4.10 y versiones anteriores
+--
+Para el plugin de Element para vCenter 4,10 y versiones anteriores, añada el nodo (host) al clúster.
+
 .. En VMware vSphere Web Client, seleccione *hosts and Clusters*.
-.. Haga clic con el botón derecho del ratón en el clúster al que desea agregar el nodo y seleccione *Agregar host*. El asistente le guiará a través de la adición del host.
+.. Haga clic con el botón derecho del ratón en el clúster al que desea agregar el nodo y seleccione *Agregar host*.
++
+El asistente le guiará a través de la adición del host.
+
 +
 
 NOTE: Cuando se le solicite introducir el nombre de usuario y la contraseña, utilice las siguientes credenciales: Nombre de usuario: Root Password: La contraseña que configuró en el motor de implementación de NetApp al configurar NetApp HCI
@@ -572,6 +760,8 @@ image::rescan.gif[Muestra el icono de nueva búsqueda de los adaptadores de alma
 
 
 
+--
+====
 
 
 
