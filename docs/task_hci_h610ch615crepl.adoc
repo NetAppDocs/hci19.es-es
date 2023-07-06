@@ -39,10 +39,7 @@ A continuación se ofrece una descripción general de los pasos de este procedim
 
 == Prepare para sustituir el nodo
 
-Antes de reemplazar el nodo, debe migrar las máquinas virtuales (VM) alojadas en el nodo a un host disponible y quitar el nodo del clúster. Debe obtener detalles sobre el nodo, como el número de serie y la información de red.
-
-
-NOTE: En el caso de fallos de componentes donde el nodo sigue conectado y funcionando, por ejemplo, un fallo de un módulo de memoria en línea doble (DIMM), debe quitar las unidades del clúster antes de quitar el nodo con errores.
+Antes de reemplazar el nodo, debe migrar las máquinas virtuales (VM) alojadas en el nodo a un host disponible y quitar el nodo del clúster. Debe registrar detalles sobre el nodo, como el número de serie y la información de redes. La migración de las máquinas virtuales y el registro de los detalles del nodo también se aplica en caso de errores de componentes donde el nodo sigue conectado y funcionando; por ejemplo, un fallo de un módulo de memoria en línea doble (DIMM).
 
 .Pasos
 . En VMware vSphere Web Client, realice los pasos necesarios para migrar las máquinas virtuales a otro host disponible.
