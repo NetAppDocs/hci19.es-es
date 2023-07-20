@@ -116,7 +116,11 @@ https://<ManagementNodeIP>
 ----
 . Inicie sesión en NetApp Hybrid Cloud Control proporcionando las credenciales de administrador del clúster de almacenamiento de NetApp HCI.
 . En el panel expandir instalación, seleccione *expandir*. El explorador abre el motor de implementación de NetApp.
-. Inicie sesión en el motor de implementación de NetApp. Para ello, proporcione las credenciales de administrador del clúster de almacenamiento de NetApp HCI.
+. Inicie sesión en el motor de implementación de NetApp. Para ello, proporcione las credenciales de administrador del clúster de almacenamiento de NetApp HCI locales.
++
+
+NOTE: No se puede iniciar sesión con las credenciales de protocolo ligero de acceso a directorios.
+
 . En la página de bienvenida, seleccione *Sí*.
 . En la página End User License, realice las siguientes acciones:
 +

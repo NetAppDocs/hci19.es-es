@@ -99,7 +99,6 @@
   <block id="4d41fb1211aa5ce58e5235fb983f1a15" category="list-text">Inicie sesión en NetApp Hybrid Cloud Control proporcionando las credenciales de administrador del clúster de almacenamiento de NetApp HCI.</block>
   <block id="9b6c54a62f57f89342aae003cf762345" category="list-text">Haga clic en *expandir* en la esquina superior derecha de la interfaz.</block>
   <block id="c279fa7b9df4852c4e23caa58f534561" category="paragraph">El explorador abre el motor de implementación de NetApp.</block>
-  <block id="053ab309f18a77ef5149424304d1c86d" category="list-text">Inicie sesión en el motor de implementación de NetApp. Para ello, proporcione las credenciales de administrador del clúster de almacenamiento de NetApp HCI.</block>
   <block id="9c949590f3665d51de542591b1677bea" category="list-text">En la página *Bienvenido*, haga clic en *Sí* y haga clic en *continuar*.</block>
   <block id="81ca71999d078ea8378ca36814ab29e3" category="list-text">En la página *Licencia de usuario final*, lea el Contrato de licencia de usuario final de VMware y haga clic en *Acepto* para aceptar los términos y haga clic en *continuar*.</block>
   <block id="736a8559e93194c56ffc906d359a1fcc" category="list-text">En la página *vCenter*, complete los siguientes pasos:</block>
@@ -2183,9 +2182,7 @@
   <block id="a61d8a4fcaa8b59b1d8f1d63aada7783" category="summary">Versiones de firmware y controlador compatibles con el software NetApp HCI y NetApp Element.</block>
   <block id="6563446976572a0b32d68f15a2be569f" category="paragraph">Versiones de firmware y controlador ESXi compatibles para las versiones de NetApp HCI y firmware para los nodos de almacenamiento NetApp HCI.</block>
   <block id="136c07ee64e1881b929de11861c01b0f" category="inline-link-macro">Nodos de almacenamiento</block>
-  <block id="bf44a0123ec45362af49b3862557cdd8" category="paragraph"><block ref="f4e8c07388940da9080e74e50960909d" category="inline-link-macro-rx"></block>* H610S * H410S</block>
   <block id="0a90ae9733f3b799ab6f5203099a1799" category="inline-link-macro">Nodos de computación</block>
-  <block id="a82f3d9d22bfe1382d03945f3377eb65" category="paragraph"><block ref="4fe99558e9030b1914f3007a88f2f74d" category="inline-link-macro-rx"></block>* H615C * H610C * H410C * H300E/H500E/H700E</block>
   <block id="ebfb815303c6dcd5863912baec2c3408" category="summary">Aprenda a acceder al motor de implementación de NetApp asignando manualmente las direcciones IP a los nodos NetApp HCI.</block>
   <block id="02e5232b9b52bafba284dc9c33914a13" category="paragraph">Es posible asignar manualmente direcciones IPv4 estáticas a las interfaces Bond1G y Bond10G de todos los nodos NetApp HCI para acceder al motor de implementación de NetApp e implementar NetApp HCI. No debe utilizar este método a menos que la red tenga requisitos especiales.</block>
   <block id="c8e003c61610ae54bff17cc191088740" category="list-text">Usted o el administrador de red completaron las tareas del documento instrucciones de instalación y configuración.</block>
@@ -4312,12 +4309,9 @@
   <block id="5cfd33f46dd1f74b29ddee43372c8c66" category="cell">Conducir Samsung PM9A3 (SED)</block>
   <block id="6df3968cc040ad2cb904b1a6ba10ad7b" category="cell">Accionamiento SK Hynix PE8010 (SED)</block>
   <block id="80dddcfece551adcfa2c64f7d0c7e904" category="cell">Accionamiento SK Hynix PE8010 (N-SED)</block>
-  <block id="2ee8e09999beeee54d2bd467af8fa223" category="cell">*Paquete de firmware de almacenamiento 2.164.0*</block>
-  <block id="d4b212557e55b6e6583c0d02ccccd6eb" category="cell">10/20/2022</block>
   <block id="9671fe0cd1cee15ffc6e623894e0c90c" category="cell">3B11</block>
   <block id="d7d76e22f94a7f97f91de8b48bb8e450" category="cell">3.94.07</block>
   <block id="a0a080f42e6f13b3a2df133f073095dd" category="cell">122</block>
-  <block id="51de44f160b8b55c4e5d2ce02998d259" category="cell">16.32.1010</block>
   <block id="b90192b2aeb39444852ac0e41788ae24" category="cell">26,2C</block>
   <block id="2d079c532c696d6fea892213dcc69907" category="cell">1.30</block>
   <block id="89769faf6029849ab91bac0aeb7f672f" category="cell">25,3C</block>
@@ -4325,14 +4319,9 @@
   <block id="bca66716b9ca2d13a4c28be69b276777" category="cell">3.3</block>
   <block id="0150391f6be250d4938acbe27c8a6334" category="cell">EDA5602Q</block>
   <block id="d2a3d6fbce3a3051dfc130e0011c1e3f" category="cell">EDA5900Q</block>
-  <block id="b480fd4504480e5139a20c8cc66fcf79" category="cell">GDC5602Q</block>
   <block id="37ac0290be70b74cc8f652c94b244484" category="cell">11092A10</block>
   <block id="223b1fa9e807b6e3241516bda5bf6d35" category="cell">110B2A10</block>
-  <block id="68ed34bb8a8f8b7d7a0942f7a94cd4f2" category="cell">*Paquete de firmware de almacenamiento 2.164.0 a NetApp Element 12.7*</block>
-  <block id="76b32d0df4efa424b2efa6728e2b5da7" category="cell">*Paquete de firmware de almacenamiento 2.150.4*</block>
-  <block id="b0c9867bdf153402438ba4d694d73ada" category="cell">06/08/2022</block>
   <block id="f9eaf28d7f6afbf4436dc40e7bcd160d" category="cell">GDC5502Q</block>
-  <block id="096d3b928cb77d0fdc812bee8c099ba0" category="cell">*Paquete de firmware de almacenamiento 2.150.4 a NetApp Element 12.5*</block>
   <block id="c46a08345b2035ee8ab756b20e94f710" category="cell">*Paquete de firmware de almacenamiento 2.146.2*</block>
   <block id="31fcef57c9af10cef3b1dc2e7bd7361b" category="cell">02/22/2022</block>
   <block id="a631cac3230223bc3f32cb5e4546a73f" category="cell">*Paquete de firmware de almacenamiento 2.99.4 a NetApp Element 12.3.2*</block>
@@ -4702,14 +4691,8 @@
   <block id="a04ab49fbc99800499a31fd6daad50d7" category="cell">Versión del controlador VMware ESXi 6.5</block>
   <block id="92dad43acf6caddcef6a11187ef43de4" category="cell">Versión del controlador VMware ESXi 6.7</block>
   <block id="ebc7b9bd5df46748a021059450c652a9" category="cell">Versión del controlador VMware ESXi 7.0</block>
-  <block id="bea2aab7715bd285e6448fdfd2c9ef64" category="cell">*Paquete de firmware de computación 2.154.4*</block>
   <block id="aba28e7740c0a5dcdb98b111eea839a8" category="cell">3B12.CO</block>
   <block id="b37301451c2b79b500bfd38628f1abeb" category="cell">4.72.07</block>
-  <block id="0ff7b002ad8e0963d8e5de5fcdef1b8e" category="cell">14.29.1016</block>
-  <block id="989bedd4e408d8af19987dfefb57c8ba" category="cell">4.16.71.1</block>
-  <block id="e11215e9a3c962ba326e4f7d5b37ab83" category="cell">4.17.71.1</block>
-  <block id="47b51736fc613e938e34cf9279aa080a" category="cell">4.21.71.1</block>
-  <block id="f92b215e1551241f1b580bdc46d3b4a2" category="cell">*Paquete de firmware de almacenamiento 2.150.4 a NetApp HCI 1.10*</block>
   <block id="0dcc10c5a615de87d1a63982b57968cb" category="cell">4.16.13.5</block>
   <block id="9274ed8f3da729fa3ccb9501aabe7b1e" category="cell">4.17.16.15</block>
   <block id="732cd0edb5feb318c74c28ce5a757d94" category="cell">02/022/2022</block>
@@ -4766,7 +4749,6 @@
   <block id="005dfb275b378d65280cf215810f8dbd" category="cell">Dispositivo de arranque MTFDDAV240TCB1AR</block>
   <block id="5b1d1e4dbc8cd8e4ec110c7e700e056f" category="section-title">H300E/H500E/H700E</block>
   <block id="f0f15f2c98a9ba8013c265fbf2b1874f" category="paragraph">*Número de modelo (porción de familia):* H300E/H500E/H700E</block>
-  <block id="22e88e4089c8681eb3fe26ebca3e4cc5" category="cell">*Paquete de firmware de computación 2.150.4 a NetApp HCI 1.10*</block>
   <block id="a6bbe5a2ef47a653214029cd4a762104" category="cell">*Paquete de firmware de computación 2.146.2*</block>
   <block id="1a80c7326dcac3edcbf6df1858b7004a" category="doc">Configuración de VMware vSphere</block>
   <block id="a21cbe55670db918524ded9ce39d6ee2" category="paragraph">NetApp HCI utiliza los componentes de vCenter Server y ESXi de VMware vSphere. VCenter Server se utiliza para gestionar y supervisar el hipervisor ESXi de VMware instalado en cada nodo de computación. Puede instalar y configurar una nueva puesta en marcha de vSphere, que también instala el plugin de NetApp Element para vCenter Server, o bien puede unir y ampliar una puesta en marcha de vSphere existente.</block>
@@ -6525,9 +6507,6 @@
   <block id="e3b4df69e2fe4e8545e5e0240eada6a2" category="list-text"><block ref="e3b4df69e2fe4e8545e5e0240eada6a2" category="inline-link-rx"></block></block>
   <block id="631923a687ff82d68973d99b95597b47" category="inline-link">Página SolidFire y Element Resources</block>
   <block id="238c5b123e3473c57e2925edccb205c2" category="list-text"><block ref="238c5b123e3473c57e2925edccb205c2" category="inline-link-rx"></block></block>
-  <block id="bc2a79198b157bed1c1eaa43da985e00" category="cell">*Compute Firmware Bundle 2.174.0*</block>
-  <block id="def5f641ad1584ffe19a578902c863ee" category="cell">04 PB/12/2023</block>
-  <block id="0b67b64b71fa04f23305e691b81ba252" category="cell">07.02.00</block>
   <block id="ba3433b658d56109d8826f49ee0a8064" category="list-text"><block ref="ba3433b658d56109d8826f49ee0a8064" category="inline-link-rx"></block></block>
   <block id="d5147898f653b5500d1ba07c4204c743" category="list-text"><block ref="9d6606ad3ff5278801234da0e6746362" category="inline-link-rx"></block> 5.8.1 o posterior herramienta de validación de red</block>
   <block id="c411aac8cf32395c454762934e85315b" category="list-text"><block ref="c411aac8cf32395c454762934e85315b" category="inline-link-macro-rx"></block></block>
@@ -6586,4 +6565,8 @@
   <block id="f096b63658cb95d8f43a07e2d68c70b3" category="paragraph">Para el plugin de Element para vCenter 4,10 y versiones anteriores, añada el nodo (host) al clúster.</block>
   <block id="fc4dbbaeabdf5700f373a65d12b45108" category="list-text">Haga clic con el botón derecho del ratón en el clúster al que desea agregar el nodo y seleccione *Agregar host*.</block>
   <block id="a4b367d6a2f57fe52d770b2264b7d2d8" category="paragraph">Antes de reemplazar el nodo, debe migrar las máquinas virtuales (VM) alojadas en el nodo a un host disponible y quitar el nodo del clúster. Debe registrar detalles sobre el nodo, como el número de serie y la información de redes. La migración de las máquinas virtuales y el registro de los detalles del nodo también se aplica en caso de errores de componentes donde el nodo sigue conectado y funcionando; por ejemplo, un fallo de un módulo de memoria en línea doble (DIMM).</block>
+  <block id="f4e8c07388940da9080e74e50960909d" category="paragraph"><block ref="f4e8c07388940da9080e74e50960909d" category="inline-link-macro-rx"></block></block>
+  <block id="4fe99558e9030b1914f3007a88f2f74d" category="paragraph"><block ref="4fe99558e9030b1914f3007a88f2f74d" category="inline-link-macro-rx"></block></block>
+  <block id="d44403a904c0446f29d8bc5c2ed4770e" category="list-text">Inicie sesión en el motor de implementación de NetApp. Para ello, proporcione las credenciales de administrador del clúster de almacenamiento de NetApp HCI locales.</block>
+  <block id="60099f97c4a82ba2ee2d4a4d593b844b" category="admonition">No se puede iniciar sesión con las credenciales de protocolo ligero de acceso a directorios.</block>
 </blocks>

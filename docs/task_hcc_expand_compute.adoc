@@ -42,7 +42,11 @@ https://<ManagementNodeIP>
 +
 El explorador abre el motor de implementación de NetApp.
 
-. Inicie sesión en el motor de implementación de NetApp. Para ello, proporcione las credenciales de administrador del clúster de almacenamiento de NetApp HCI.
+. Inicie sesión en el motor de implementación de NetApp. Para ello, proporcione las credenciales de administrador del clúster de almacenamiento de NetApp HCI locales.
++
+
+NOTE: No se puede iniciar sesión con las credenciales de protocolo ligero de acceso a directorios.
+
 . En la página *Bienvenido*, haga clic en *Sí* y haga clic en *continuar*.
 . En la página *Licencia de usuario final*, lea el Contrato de licencia de usuario final de VMware y haga clic en *Acepto* para aceptar los términos y haga clic en *continuar*.
 . En la página *vCenter*, complete los siguientes pasos:

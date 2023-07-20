@@ -198,7 +198,11 @@ https://<ManagementNodeIP>
 ----
 . Inicie sesión en NetApp Hybrid Cloud Control proporcionando las credenciales de administrador del clúster de almacenamiento de NetApp HCI.
 . En el panel expandir instalación, seleccione *expandir*.
-. Inicie sesión en el motor de implementación de NetApp. Para ello, proporcione las credenciales de administrador del clúster de almacenamiento de NetApp HCI.
+. Inicie sesión en el motor de implementación de NetApp. Para ello, proporcione las credenciales de administrador del clúster de almacenamiento de NetApp HCI locales.
++
+
+NOTE: No se puede iniciar sesión con las credenciales de protocolo ligero de acceso a directorios.
+
 . En la página de bienvenida, seleccione *Sí*.
 . En la página End User License, realice las siguientes acciones:
 +
@@ -276,7 +280,11 @@ Si la instalación de NetApp HCI ejecuta la versión 1.4P2, 1.4 o 1.3, puede usa
 .Pasos
 . Vaya a la dirección IP de gestión de uno de los nodos de almacenamiento existentes:
 `http://<storage_node_management_IP_address>/`
-. Inicie sesión en el motor de implementación de NetApp. Para ello, proporcione las credenciales de administrador del clúster de almacenamiento de NetApp HCI.
+. Inicie sesión en el motor de implementación de NetApp. Para ello, proporcione las credenciales de administrador del clúster de almacenamiento de NetApp HCI locales.
++
+
+NOTE: No se puede iniciar sesión con las credenciales de protocolo ligero de acceso a directorios.
+
 . Seleccione *amplíe su instalación*.
 . En la página de bienvenida, seleccione *Sí*.
 . En la página End User License, realice las siguientes acciones:

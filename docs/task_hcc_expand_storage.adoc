@@ -49,7 +49,11 @@ https://<ManagementNodeIP>
 +
 El explorador abre el motor de implementación de NetApp.
 
-. Inicie sesión en el motor de implementación de NetApp. Para ello, proporcione las credenciales de administrador del clúster de almacenamiento de NetApp HCI.
+. Inicie sesión en el motor de implementación de NetApp. Para ello, proporcione las credenciales de administrador del clúster de almacenamiento de NetApp HCI locales.
++
+
+NOTE: No se puede iniciar sesión con las credenciales de protocolo ligero de acceso a directorios.
+
 . En la página *Bienvenido*, haga clic en *no* y haga clic en *continuar*.
 . En la página *Inventario disponible*, seleccione los nodos de almacenamiento que desea agregar y haga clic en *continuar*.
 . En la página *Configuración de red*, se ha detectado parte de la información de red desde la implementación inicial. Cada nodo de almacenamiento nuevo se enumera por número de serie, y es necesario asignarle la información de red nueva. Complete los siguientes pasos para cada nodo de almacenamiento nuevo:

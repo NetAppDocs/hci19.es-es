@@ -17,6 +17,16 @@ summary: Versiones de firmware y controlador compatibles con el software NetApp 
 [role="lead"]
 Versiones de firmware y controlador ESXi compatibles para las versiones de NetApp HCI y firmware para los nodos de almacenamiento NetApp HCI.
 
-link:fw_storage_nodes.html["Nodos de almacenamiento"]* H610S * H410S
+link:fw_storage_nodes.html["Nodos de almacenamiento"]
 
-link:fw_compute_nodes.html["Nodos de computación"]* H615C * H610C * H410C * H300E/H500E/H700E
+* H610S
+* H410S
+
+
+link:fw_compute_nodes.html["Nodos de computación"]
+
+* H615C
+* H610C
+* H410C
+* H300E/H500E/H700E
+
