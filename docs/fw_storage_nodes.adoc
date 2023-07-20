@@ -235,9 +235,6 @@ NOTE: Un guión (*-*) en la tabla siguiente indica que el componente de hardware
 | Soltar el vehículo | Fecha de lanzamiento | NIC | NVDIMM RMS200 (RMS200) DE CACHÉ | NVDIMM RMS200 (RMS300) DE CACHÉ | Conducir Samsung PM863 (SED) | Conducir Samsung PM863 (N-SED) | Conduzca Toshiba Hawk-4 (SED) | Conduzca Toshiba Hawk-4 (N-SED) | Accionamiento Samsung PM883 (SED) 
 
 
-| *Paquete de firmware de almacenamiento 2.164.0* | 10/20/2022 | 7.10.18 | a3b8cc | 7d8422bc | GXT5404Q | GXT5103Q | 8ENP7101 | 8EN6101 | HXT7A04Q 
-
-
 | *Paquete de firmware de almacenamiento 2.146.2* | 02/22/2022 | 7.10.18 | a3b8cc | 7d8422bc | GXT5404Q | GXT5103Q | 8ENP7101 | 8EN6101 | HXT7A04Q 
 
 
