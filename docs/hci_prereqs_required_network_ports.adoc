@@ -15,7 +15,9 @@ keywords: netapp, hci, ports, tcp, udp
 
 
 [role="lead"]
-Es posible que deba permitir los siguientes puertos a través del firewall perimetral del centro de datos para poder gestionar el sistema de forma remota, permitir que los clientes fuera del centro de datos se conecten a los recursos y garantizar que los servicios internos funcionen correctamente. En función de la forma en la que se utilice el sistema, es posible que no sean necesarios algunos puertos, direcciones URL o direcciones IP. A menos que se indique lo contrario, todos los puertos son TCP.
+Es posible que deba permitir los siguientes puertos a través del firewall perimetral del centro de datos para poder gestionar el sistema de forma remota, permitir que los clientes fuera del centro de datos se conecten a los recursos y asegurarse de que los servicios internos funcionen correctamente. En función de la forma en la que se utilice el sistema, es posible que no sean necesarios algunos puertos, direcciones URL o direcciones IP.
+
+Todos los puertos son TCP a menos que se especifique lo contrario, y todos los puertos TCP deben admitir la comunicación de apretón de manos tripartito entre el servidor de soporte de NetApp, el nodo de gestión y los nodos que ejecutan el software Element. Por ejemplo, el host de un origen del nodo de gestión se comunica con el host en un destino de MVIP del clúster de almacenamiento a través del puerto TCP 443, y el host de destino se vuelve a comunicar al host de origen a través de cualquier puerto.
 
 En la tabla se emplean las siguientes abreviaturas:
 
@@ -24,8 +26,6 @@ En la tabla se emplean las siguientes abreviaturas:
 * MVIP: Dirección IP virtual de gestión
 * SVIP: Dirección IP virtual de almacenamiento
 
-
-Todos los puertos de la tabla son TCP a menos que se especifique lo contrario.
 
 |===
 | Origen | Destino | Puerto | Descripción 
