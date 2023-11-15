@@ -704,16 +704,7 @@
   <block id="51345fe1ab5e7f7efb63a32d183cdda9" category="paragraph">Cuando se reemplaza un nodo de computación H410C, se debe tener en cuenta lo siguiente:</block>
   <block id="5d6b6b077cfdeafcbe028bddcb655d4d" category="list-text">El nodo de computación H410C solo funciona con tensión de línea alta (200-240 V CA). Debe asegurarse de que se cumplan los requisitos de alimentación cuando añada nodos H410C a un sistema NetApp HCI existente.</block>
   <block id="625cc9b8ccc34496dc2b3fcffb7e384a" category="paragraph-title">Descripción general de los pasos</block>
-  <block id="9726e8dc43a3741dbccc204feb2a9dda" category="paragraph">A continuación se ofrece una descripción general de los pasos de este procedimiento:<block ref="417a9ef94ddd6fb6079bf181e8da50c6" category="inline-xref-macro-rx"></block>
-<block ref="450dee795ede92f968238358045ee72c" category="inline-xref-macro-rx"></block>
-<block ref="302025b37ed9a655d26cb02c1523b2a4" category="inline-xref-macro-rx"></block>
-<block ref="133c0f35bcfb7bec627508ed13eaf913" category="inline-xref-macro-rx"></block>
-<block ref="3e9667909114056c0816cabcad3091ec" category="inline-xref-macro-rx"></block></block>
   <block id="cd4a531fb438950b1b12718c24e3a003" category="inline-link-macro">Quite nodos de testigos para liberar recursos informáticos</block>
-  <block id="693ac156676e30f319b9cd3e020727f7" category="paragraph">A continuación se indican algunas tareas adicionales que puede que deba realizar si su sistema tiene las condiciones específicas a las que se aplican:<block ref="6f2e0dd9461f023001b32f634a66ca39" category="inline-link-macro-rx"></block>
-<block ref="96458e97c135f9cdca1845fd2743e79f" category="inline-xref-macro-rx"></block>
-<block ref="d095c71c5d51f56f74c0c624a25acdfc" category="inline-xref-macro-rx"></block></block>
-  <block id="bdf21dc543b5ab0b0d4037a3b86f500e" category="section-title">Prepare para sustituir el nodo de computación</block>
   <block id="49de3917417cb7a9d4c88a097084490f" category="paragraph">Debe migrar las máquinas virtuales (VM) alojadas en el nodo a un host disponible, y quitar el nodo con errores del clúster. Debería obtener detalles sobre el nodo con errores, como el número de serie y la información de red.</block>
   <block id="d8d7c90a9eba54aa51121a64132d7c53" category="list-text">En VMware vSphere Web Client, realice los pasos necesarios para migrar las máquinas virtuales a otro host disponible.</block>
   <block id="e2477b6b77307705f07f9d4a9bce00f5" category="admonition">Consulte la documentación de VMware para conocer los pasos de migración.</block>
@@ -729,7 +720,6 @@
   <block id="030be96a2580787247ec3061b2771b9c" category="list-text">Haga clic con el botón derecho del ratón en el nodo y seleccione *Quitar del inventario*.</block>
   <block id="99795f9ed04c0bb6ca3b66f13bde3f1d" category="list-text">Tenga en cuenta el número de serie del nodo 0, que es el número de serie del nodo con errores. Esto le ayuda a identificar el nodo del chasis haciendo que coincida con el número de serie de la pegatina que hay en la parte posterior del nodo con el número de serie que ha indicado.</block>
   <block id="7a323f53d4e64c45f636ac4a7040e243" category="list-text">Con el nodo que ha fallado seleccionado, seleccione *Administrar &gt; redes &gt; adaptadores de VMkernel* y copie las cuatro direcciones IP que aparecen en la lista. Esta información se puede reutilizar cuando se realizan los pasos de configuración de red inicial en VMware ESXi.</block>
-  <block id="c4aee125828819cff98e36e2ce8cb1a1" category="section-title">Reemplace el nodo de computación en el chasis</block>
   <block id="cf9dd3afde945016d53ec0a6ee2b2237" category="paragraph">Después de quitar el nodo con errores del clúster, puede quitar el nodo del chasis e instalar el nodo de reemplazo.</block>
   <block id="a48a58fb7b047fe3c92a6b8ef8c8b880" category="admonition">Asegúrese de tener protección antiestática antes de realizar los pasos aquí.</block>
   <block id="a300fbfd884ff458fb7de4f74e2cc07c" category="list-text">Póngase protección antiestática.</block>
@@ -749,7 +739,6 @@
   <block id="3913668fe99dfd5c0efac354d1dd57e7" category="list-text">Vuelva a conectar los cables a los puertos desde los que se desconectaron originalmente. Las etiquetas que había conectado a los cables cuando los desconectó le ayudarán a guiar.</block>
   <block id="2425222ca6c04a8497599ba50e5b39b1" category="admonition">Si la apertura de flujo de aire de la parte trasera del chasis está bloqueada con cables o etiquetas, puede provocar fallos prematuros en los componentes debido al sobrecalentamiento. No fuerce los cables hacia los puertos, podría dañar los cables, los puertos o ambos.</block>
   <block id="4274645a2e2667daa5122269fa953970" category="admonition">Asegúrese de que el nodo de reemplazo esté cableado de la misma manera que los otros nodos del chasis.</block>
-  <block id="3611828f40bf631c043f2a1f9b7d8d80" category="section-title">Quite el activo del nodo de computación en NetApp HCI 1.7 y versiones posteriores</block>
   <block id="fd3ac6bf15d6190cc923c4eac0662f3a" category="paragraph">En NetApp HCI 1.7 y versiones posteriores, después de reemplazar físicamente el nodo, debe quitar el activo del nodo de computación mediante las API del nodo de gestión. Para utilizar API DE REST, su clúster de almacenamiento debe ejecutar el software NetApp Element 11.5 o una versión posterior y debe haber implementado un nodo de gestión que ejecute la versión 11.5 o posterior.</block>
   <block id="65a4d29cbb5e1c44baa414f5cf2dc489" category="list-text">Introduzca la dirección IP del nodo de gestión seguida de /mnode:<block ref="11c432671376fce97dca37986bfc6be6" prefix=" " category="inline-code"></block></block>
   <block id="49de61ab68074de5da296d48ffde4acb" category="list-text">Seleccione *autorizar* o cualquier icono de bloqueo e introduzca las credenciales de administración del clúster para los permisos de uso de las API.</block>
@@ -761,7 +750,6 @@
   <block id="b9bc6e4f464a0c8b1538f9995b92a895" category="list-text">Seleccione *Ejecutar*. Desplácese hacia abajo en el cuerpo de respuesta a la sección Compute y copie los valores primario e ID para el nodo de computación fallido.</block>
   <block id="149ab1533be009942aca64f58c4e6d19" category="list-text">Seleccione *DELETE/assets/{Asset_id}/Compute-Nodes/{Compute_id}*.</block>
   <block id="79ec8a7988ef4e63af167fe84122742f" category="list-text">Seleccione *probar*. Introduzca los valores padre e id que obtuvo en el paso 7.</block>
-  <block id="4cf099434af6b1eb3de3a02c4d7343f4" category="section-title">Añada el nodo de computación al clúster</block>
   <block id="39b2525fb75e02c64814c90f2cbf3407" category="paragraph">Debe volver a añadir el nodo de computación al clúster. Los pasos varían en función de la versión de NetApp HCI que esté ejecutando.</block>
   <block id="870bd874847cca4294c93fdb50347662" category="section-title">NetApp HCI 1.6P1 y posteriores</block>
   <block id="80fe8777d7b15097b7f93768f900d2f0" category="paragraph">Puede utilizar el control del cloud híbrido de NetApp solo si se ejecuta su instalación de NetApp HCI en la versión 1.6P1 o posterior.</block>
@@ -925,7 +913,6 @@
   <block id="2d7b1bce570cfad61bcea75e56445e4c" category="list-text">En Detalles del adaptador, seleccione *enlace del puerto de red* y seleccione *+*.</block>
   <block id="09814996c945834d0173335b143561ec" category="list-text">Active las casillas de verificación de iSCSI-B e iSCSI-A y haga clic en OK. Se muestra un mensaje que recomienda volver a analizar el adaptador de almacenamiento.</block>
   <block id="aeffbcab16d409629a6f42a11f66bf51" category="list-text">Seleccione el icono de reexploración. Una vez que haya finalizado la detección, verifique si los volúmenes del clúster están visibles en el nodo de computación nuevo (host).</block>
-  <block id="9c9a41bc801502e6500c79ea7586ba95" category="section-title">Vuelva a poner en marcha nodos de testigos para clústeres de almacenamiento de dos y tres nodos</block>
   <block id="cec682e94e3f77f9a4e97bcc8d93f2c4" category="paragraph">Después de reemplazar físicamente el nodo de computación con fallos, debe volver a poner en marcha la máquina virtual del nodo de testimonio de NetApp HCI si el nodo de computación con errores alojaba el nodo de testigo. Estas instrucciones solo se aplican a nodos de computación que forman parte de una instalación de NetApp HCI con clústeres de almacenamiento de dos o tres nodos.</block>
   <block id="284dc6d1de61ec5c2a96db8bc40dd3ab" category="list-text">Recopile la siguiente información:</block>
   <block id="0b579df7695c3410f10a561f05959978" category="list-text">El nombre del clúster del clúster de almacenamiento</block>
@@ -2815,16 +2802,10 @@
   <block id="7dc71fc1ba8b3b46bc5aa180659fd0c4" category="list-text">Usted tiene una muñequera de descarga electrostática (ESD), o usted ha tomado otra protección antiestática.</block>
   <block id="4177894d92f9956a6f7250cb8b52d834" category="list-text">Ha etiquetado cada cable conectado al chasis.</block>
   <block id="af230ec2183265faedfc900d2b43745d" category="paragraph">Las alarmas en VMware vSphere Web Client alertan de un fallo en un host. Debe coincidir con el número de serie del host con el error desde VMware vSphere Web Client con el número de serie en la etiqueta adhesiva que aparece en la parte posterior del nodo.</block>
-  <block id="b1579568b723cfa21964d9882eb934fb" category="paragraph">A continuación se ofrece una descripción general de los pasos de este procedimiento:<block ref="8b400d38091051616c1c5cc1808de640" category="inline-xref-macro-rx"></block>
-<block ref="3bbd6094cc077cc68f8084464864b066" category="inline-xref-macro-rx"></block>
-<block ref="85d7ff8f1e3fd6efa440dcd74d3d3e02" category="inline-xref-macro-rx"></block>
-<block ref="74302f10271a48c9df46742d43d08db8" category="inline-xref-macro-rx"></block></block>
-  <block id="d7f6ba0367c50b236e879580284dfabe" category="section-title">Prepare para sustituir el nodo</block>
   <block id="b3cead0e8121cac5eaa77199cb96bf4b" category="list-text">Anote el número de serie del nodo con errores. La siguiente captura de pantalla es sólo un ejemplo:</block>
   <block id="c52f4f387b86885b3321d0184a872a28" category="image-alt">Muestra el número de serie del nodo con errores en VMware vSphere Web Client.</block>
   <block id="c2073896d66c7bb59af743cabc382009" category="paragraph">Necesita el número de serie para identificar el chasis emparejando el número que ha indicado con el número de serie de la etiqueta en la parte posterior del nodo.</block>
   <block id="7ab682c31b3906d62159c2f9d858b798" category="list-text">Haga clic en *Sí* para confirmar la acción.</block>
-  <block id="4bf11adaae89a783a7925f82b81963ee" category="section-title">Sustituya el nodo</block>
   <block id="0284c3c24e20ba25bd655bfa5902da86" category="paragraph">Después de quitar el nodo con errores del clúster, puede quitar el chasis con errores e instalar el chasis de reemplazo.</block>
   <block id="ef3f79bdcf9f4d42d419e2b9c45d5393" category="list-text">Desembale el nuevo chasis y configúrelo en una superficie nivelada. Conserve el material de empaque durante el momento en que devuelve el chasis fallido a NetApp.</block>
   <block id="bfc31a5b7c0c06e46b597db93cca8594" category="list-text">Etiquete cada cable que esté insertado en la parte posterior del chasis que va a quitar. Después de instalar el nuevo chasis, debe insertar los cables nuevamente en los puertos originales.</block>
@@ -2837,13 +2818,11 @@
   <block id="8daca91d830ace0c305c774cb41e9ecd" category="list-text">Quite las dos unidades de suministro de alimentación de cada lado del chasis con errores e insértelas en el chasis de reemplazo.</block>
   <block id="48609f85b6f3b162f84d5b7d5d7677ae" category="list-text">Vuelva a conectar los cables a los puertos desde los que se desconectaron originalmente. Las etiquetas que había añadido a los cables cuando los desconectó le ayudarán a guiar.</block>
   <block id="8d0dad879dbd06ad1f5f1f5acf51f28b" category="list-text">Encienda el chasis.</block>
-  <block id="ff29627b32e07511ae92253ec85e9e61" category="section-title">Añada el nodo al clúster</block>
   <block id="1f2c6dfe21555b473dc802e5b22a343a" category="paragraph">Debe configurar NetApp HCI para usar el nodo de computación nuevo.</block>
   <block id="c056c0bf5b425a395761cd37de9ac4e3" category="list-text">La instancia de vSphere que utiliza NetApp HCI tiene licencia vSphere Enterprise Plus si va a añadir el nodo a una implementación con switches virtuales distribuidos.</block>
   <block id="d57d6d6a586f9c13fbd97a299e3dfe3a" category="list-text">Ninguna de las instancias de vCenter o vSphere que se utilizan con NetApp HCI tiene licencias caducadas.</block>
   <block id="9a0e16aaba5fc23029c3fe1684661ae2" category="list-text">Tiene direcciones IPv4 gratuitas y sin usar en el mismo segmento de red que los nodos existentes (el nuevo nodo debe instalarse en la misma red que los nodos existentes de su tipo).</block>
   <block id="94220c63d490d69862d0b6bd8c55bc36" category="list-text">Tiene listas las credenciales de cuenta de administrador de vCenter.</block>
-  <block id="81dc4810c71d7b8507b965d26011ef81" category="list-text">En el panel expandir instalación, seleccione *expandir*. El explorador abre el motor de implementación de NetApp.</block>
   <block id="1dbe43ca80d44abbf871801ea5aefb93" category="list-text">Haga clic en Continue.</block>
   <block id="ac9c7e2c5fd81b24c59b07707afae5c5" category="list-text">Seleccione un centro de datos de vSphere existente al cual añadir nodos de computación nuevos o seleccione Create New Datacenter para añadir los nodos de computación nuevos a un centro de datos nuevo.</block>
   <block id="923d755bd18c8099d341640f86f5615e" category="admonition">Si NetApp HCI no puede reconocer la configuración de red del clúster que seleccionó para la ampliación, asegúrese de que la asignación vmkernel y vmnic para las redes de gestión, almacenamiento y vMotion se establezcan con los valores predeterminados de puesta en marcha.</block>
@@ -2851,7 +2830,6 @@
   <block id="b8439da1d3bc0c45b81136dd3a07533a" category="list-text">En la página Network Settings, se ha detectado parte de la información de red desde la implementación inicial. Cada nodo de computación nuevo se enumera por número de serie, y es necesario asignarle información de red nueva. Para cada nodo de computación nuevo, realice los siguientes pasos:</block>
   <block id="bdbca9155105fa70b02878fe37dcd59d" category="list-text">En la página Review de la sección Network Settings, el nodo nuevo se muestra en texto en negrita. Si necesita hacer cambios en la información de alguna sección, realice los pasos siguientes:</block>
   <block id="e8972e60e4ed1d76df0feffb68866e46" category="list-text">Opcional: Verifique que haya nodos de computación nuevos visibles en vCenter.</block>
-  <block id="e8ddb30cd234af505251fddfe210e770" category="section-title">Instale los controladores de la GPU</block>
   <block id="34a9fb6a8c162efa753bd66e9b87e554" category="paragraph">Los nodos de computación con unidades de procesamiento de gráficos (GPU) de NVIDIA, al igual que el nodo H610C, necesitan los controladores de software de NVIDIA instalados en VMware ESXi para poder aprovechar la potencia de procesamiento aumentada. Para instalar las controladoras de GPU, el nodo de computación debe tener una tarjeta GPU.</block>
   <block id="d7dc44e401260dbcb4fba3e3f12c02e3" category="list-text">Abra un explorador y vaya al portal de licencias de NVIDIA en la siguiente URL:<block ref="03481d49de4b71271c82055400407083" prefix=" " category="inline-code"></block></block>
   <block id="b2103fba1bd5328076195ac35de4dfcd" category="list-text">Descargue uno de los siguientes paquetes de controladores en su equipo, dependiendo de su entorno:</block>
@@ -2864,7 +2842,6 @@
   <block id="b35c238fed123f6afd6b2567bdb9cb83" category="cell">VSphere 6.7</block>
   <block id="ba2a9a549d747a47e02e9b887742d185" category="paragraph">NVIDIA-GRID-vSphere-6.7-410.92-410.91-412.16.zip</block>
   <block id="b9e90fd8805746049212e3a607805ca8" category="list-text">Extraiga el paquete de controladores del ordenador. El archivo .VIB resultante es el archivo de controlador sin comprimir.</block>
-  <block id="69e7c0efe52761dba85359c9648bc4c6" category="list-text">Copie el archivo del controlador .VIB del equipo en ESXi que se ejecuta en el nodo de computación. Los siguientes comandos de ejemplo para cada versión suponen que el controlador se encuentra en el directorio $HOME/NVIDIA/ESX6.x/ del host de administración. La utilidad SCP está disponible en la mayoría de distribuciones de Linux, o está disponible como una utilidad descargable para todas las versiones de Windows:</block>
   <block id="2b66f3a1e27f17f479018be59a0cc7d7" category="cell">ESXi 6.0</block>
   <block id="f0d858488904d8587f0a9f9286dceb97" category="paragraph">scp $HOME/NVIDIA/ESX6.0/NVIDIA**.vib root@&lt;ESXi_IP_ADDR&gt;:/.</block>
   <block id="7eaf1c8bbd4a508edbc15f2e4461c0e0" category="cell">ESXi 6.5</block>
@@ -6491,8 +6468,6 @@
   <block id="9e08f10312f3eaa134087c34ad076d92" category="paragraph">Este<block ref="f76e21c4f97e9ef2eb0114383d271ddf" category="inline-link-rx"></block> Quita el certificado SSL y la clave privada instalados actualmente. A continuación, el clúster genera un nuevo certificado autofirmado y una clave privada.</block>
   <block id="f056eadecebc58790da8eb91b5211492" category="inline-link">¿Cuáles son los requisitos para configurar certificados SSL personalizados en el software Element?</block>
   <block id="e3b4df69e2fe4e8545e5e0240eada6a2" category="list-text"><block ref="e3b4df69e2fe4e8545e5e0240eada6a2" category="inline-link-rx"></block></block>
-  <block id="631923a687ff82d68973d99b95597b47" category="inline-link">Página SolidFire y Element Resources</block>
-  <block id="238c5b123e3473c57e2925edccb205c2" category="list-text"><block ref="238c5b123e3473c57e2925edccb205c2" category="inline-link-rx"></block></block>
   <block id="ba3433b658d56109d8826f49ee0a8064" category="list-text"><block ref="ba3433b658d56109d8826f49ee0a8064" category="inline-link-rx"></block></block>
   <block id="d5147898f653b5500d1ba07c4204c743" category="list-text"><block ref="9d6606ad3ff5278801234da0e6746362" category="inline-link-rx"></block> 5.8.1 o posterior herramienta de validación de red</block>
   <block id="c411aac8cf32395c454762934e85315b" category="list-text"><block ref="c411aac8cf32395c454762934e85315b" category="inline-link-macro-rx"></block></block>
@@ -6575,4 +6550,29 @@
   <block id="732713df3c4c58fb19fab37e747f6f0d" category="list-text"><block ref="732713df3c4c58fb19fab37e747f6f0d" category="inline-link-macro-rx"></block></block>
   <block id="7149d03eb62017e7cc5192a67ff56c1c" category="paragraph">Es posible que deba permitir los siguientes puertos a través del firewall perimetral del centro de datos para poder gestionar el sistema de forma remota, permitir que los clientes fuera del centro de datos se conecten a los recursos y asegurarse de que los servicios internos funcionen correctamente. En función de la forma en la que se utilice el sistema, es posible que no sean necesarios algunos puertos, direcciones URL o direcciones IP.</block>
   <block id="331d6d490990c63b2cee0dc04fe2589b" category="paragraph">Todos los puertos son TCP a menos que se especifique lo contrario, y todos los puertos TCP deben admitir la comunicación de apretón de manos tripartito entre el servidor de soporte de NetApp, el nodo de gestión y los nodos que ejecutan el software Element. Por ejemplo, el host de un origen del nodo de gestión se comunica con el host en un destino de MVIP del clúster de almacenamiento a través del puerto TCP 443, y el host de destino se vuelve a comunicar al host de origen a través de cualquier puerto.</block>
+  <block id="b0c85ded726a3c8e46cbaafa60707f98" category="inline-link">Cómo instalar ESXi en el nodo de computación NetApp HCI manualmente</block>
+  <block id="280e8a9497f3d56d4812b7ef2ce31fc6" category="paragraph">NetApp recomienda el uso del motor de implementación de NetApp para añadir un nodo de computación de reemplazo. Si no puede continuar con la instalación del motor de puesta en marcha de NetApp para ESXi, consulte el artículo de la base de conocimientos de NetApp<block ref="d673ea2f9a1bf5256cf7dd0779becf21" category="inline-link-rx"></block>.</block>
+  <block id="4e5f0133d50930ab8acffdd21544c950" category="section-title">Paso 1: Prepárese para sustituir el nodo</block>
+  <block id="9385a8fdfdd5ec6a7a983c13d83b5d55" category="section-title">Paso 2: Reemplace el nodo</block>
+  <block id="bf96948cb523bea2d786273b1d9e3726" category="section-title">Paso 3: Agregar el nodo al clúster</block>
+  <block id="667494acc646db65248acfcbfe2a10ab" category="section-title">Paso 4: Instale los controladores de GPU</block>
+  <block id="524202cb16f1d9b45d55ae3cf01846a9" category="list-text">Descargue la versión del paquete de controladores en su equipo, según su entorno.</block>
+  <block id="cdf9b80a781028cfcd33975c9b549a66" category="paragraph">En el siguiente ejemplo, se muestra la versión del paquete del controlador para vSphere 6,0, 6,5 y 6,7:</block>
+  <block id="42531de91f94d49640c00256e0aa3ceb" category="list-text">Copie el archivo del controlador .VIB del equipo en ESXi que se ejecuta en el nodo de computación. La utilidad Protocolo de copia segura (SCP) está disponible en la mayoría de las distribuciones de Linux, o está disponible como una utilidad descargable para todas las versiones de Windows.</block>
+  <block id="7a144dd231d33708e9980e0a26cb3083" category="paragraph">El ejemplo siguiente muestra los comandos de ESXi 6,0, 6,5 y 6,7. Los comandos asumen que el controlador está ubicado en el directorio $HOME/nvidia/ESX6.x/ del host de gestión:</block>
+  <block id="d908683c495cc5cc655f7cd09695c523" category="paragraph">A continuación se ofrece una descripción general de los pasos de este procedimiento:
+<block ref="b3fddefb8533cc7fc260062e1b11797b" category="inline-xref-macro-rx"></block>
+<block ref="7fbd89059403f3c320101b5b73d264e9" category="inline-xref-macro-rx"></block>
+<block ref="a1a1a48df94086d036719fc33e283f5e" category="inline-xref-macro-rx"></block>
+<block ref="e2315890dcab7fdfd216149d3ebc535d" category="inline-xref-macro-rx"></block>
+<block ref="f15458d9685a9671cd038c3a408d2679" category="inline-xref-macro-rx"></block></block>
+  <block id="6a1419cffec796a0cf9688c584b108e5" category="paragraph">A continuación se indican algunas tareas adicionales que puede que deba realizar si su sistema tiene las condiciones específicas a las que se aplican:</block>
+  <block id="6f2e0dd9461f023001b32f634a66ca39" category="list-text"><block ref="6f2e0dd9461f023001b32f634a66ca39" category="inline-link-macro-rx"></block></block>
+  <block id="d5e0ed137993fa47f6c52eaba475f986" category="list-text"><block ref="96458e97c135f9cdca1845fd2743e79f" category="inline-xref-macro-rx"></block></block>
+  <block id="27e4d3a5ce33dd22d6512ac546804968" category="list-text"><block ref="d095c71c5d51f56f74c0c624a25acdfc" category="inline-xref-macro-rx"></block></block>
+  <block id="fefc802a17eb78beb3791d194d57c778" category="section-title">Paso 1: Prepárese para reemplazar el nodo de computación</block>
+  <block id="c5fe75a9a5a9f7b0e4279644ad5bba34" category="section-title">Paso 2: Reemplace el nodo de computación en el chasis</block>
+  <block id="527e6719cbc58f7527999477eaac0dd2" category="section-title">Paso 3: Quite el activo de nodo de computación en NetApp HCI 1,7 y versiones posteriores</block>
+  <block id="714f787cf5a78abe3413cd3fa33c6c6b" category="section-title">Paso 4: Añada el nodo de computación al clúster</block>
+  <block id="4b07d1c342b03364f7120990720b53ef" category="section-title">Paso 5: Vuelva a poner en marcha nodos testigos para clústeres de almacenamiento de dos y tres nodos</block>
 </blocks>

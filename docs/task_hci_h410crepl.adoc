@@ -16,9 +16,13 @@ keywords: netapp, hci, H410C nodes, replacement, node replacement
 [role="lead"]
 Debe sustituir un nodo de computación en caso de que se produzca un fallo de CPU, otros problemas de la placa base o si no se enciende. Las instrucciones se aplican a los nodos H410C. Si tiene un nodo de computación H410C que ejecuta la versión 1.6P1 de Bootstrap OS de NetApp HCI o posterior, no tiene que sustituir el nodo si falla el DIMM de memoria; debe sustituir solo el DIMM con errores. Si los DIMM del nodo no han dado error, puede usarlos en el nodo de reemplazo.
 
+[NOTE]
+====
+El nodo de reemplazo debe tener la misma versión de NetApp HCI Bootstrap OS que el resto de los nodos de computación de la instalación de NetApp HCI.
 
-NOTE: El nodo de reemplazo debe tener la misma versión de NetApp HCI Bootstrap OS que el resto de los nodos de computación de la instalación de NetApp HCI.
+NetApp recomienda el uso del motor de implementación de NetApp para añadir un nodo de computación de reemplazo. Si no puede continuar con la instalación del motor de puesta en marcha de NetApp para ESXi, consulte el artículo de la base de conocimientos de NetApp https://kb.netapp.com/Legacy/NetApp_HCI/OS/How_to_install_ESXi_on_NetApp_HCI_compute_node_manually["Cómo instalar ESXi en el nodo de computación NetApp HCI manualmente"^].
 
+====
 .Lo que necesitará
 * Determinó que el nodo de computación debe sustituirse.
 * Tiene un nodo de computación de reemplazo. Para solicitar un nodo de sustitución, debe comunicarse con el soporte de NetApp. El nodo de computación se le envía con el Bootstrap OS instalado. Los nodos se envían de fábrica con la última versión de Bootstrap OS. Es posible que necesite realizar el proceso de retorno a la imagen de fábrica (RTFI) en el nodo en las siguientes situaciones:
@@ -41,19 +45,23 @@ Cuando se reemplaza un nodo de computación H410C, se debe tener en cuenta lo si
 
 
 .Descripción general de los pasos
-A continuación se ofrece una descripción general de los pasos de este procedimiento:<<Prepare para sustituir el nodo de computación>>
-<<Reemplace el nodo de computación en el chasis>>
-<<Quite el activo del nodo de computación en NetApp HCI 1.7 y versiones posteriores>>
-<<Añada el nodo de computación al clúster>>
-<<Vuelva a poner en marcha nodos de testigos para clústeres de almacenamiento de dos y tres nodos>>
+A continuación se ofrece una descripción general de los pasos de este procedimiento:
+<<Paso 1: Prepárese para reemplazar el nodo de computación>>
+<<Paso 2: Reemplace el nodo de computación en el chasis>>
+<<Paso 3: Quite el activo de nodo de computación en NetApp HCI 1,7 y versiones posteriores>>
+<<Paso 4: Añada el nodo de computación al clúster>>
+<<Paso 5: Vuelva a poner en marcha nodos testigos para clústeres de almacenamiento de dos y tres nodos>>
 
-A continuación se indican algunas tareas adicionales que puede que deba realizar si su sistema tiene las condiciones específicas a las que se aplican:link:task_hci_removewn.html["Quite nodos de testigos para liberar recursos informáticos"]
-<<Cambie la contraseña si ha recibido un nodo de repuesto con una contraseña BMC no estándar>>
-<<Actualice el firmware del BMC en el nodo>>
+A continuación se indican algunas tareas adicionales que puede que deba realizar si su sistema tiene las condiciones específicas a las que se aplican:
+
+* link:task_hci_removewn.html["Quite nodos de testigos para liberar recursos informáticos"]
+* <<Cambie la contraseña si ha recibido un nodo de repuesto con una contraseña BMC no estándar>>
+* <<Actualice el firmware del BMC en el nodo>>
 
 
 
-== Prepare para sustituir el nodo de computación
+
+== Paso 1: Prepárese para reemplazar el nodo de computación
 
 Debe migrar las máquinas virtuales (VM) alojadas en el nodo a un host disponible, y quitar el nodo con errores del clúster. Debería obtener detalles sobre el nodo con errores, como el número de serie y la información de red.
 
@@ -93,7 +101,7 @@ NOTE: Consulte la documentación de VMware para conocer los pasos de migración.
 
 
 
-== Reemplace el nodo de computación en el chasis
+== Paso 2: Reemplace el nodo de computación en el chasis
 
 Después de quitar el nodo con errores del clúster, puede quitar el nodo del chasis e instalar el nodo de reemplazo.
 
@@ -140,7 +148,7 @@ TIP: Asegúrese de que el nodo de reemplazo esté cableado de la misma manera qu
 
 
 
-== Quite el activo del nodo de computación en NetApp HCI 1.7 y versiones posteriores
+== Paso 3: Quite el activo de nodo de computación en NetApp HCI 1,7 y versiones posteriores
 
 En NetApp HCI 1.7 y versiones posteriores, después de reemplazar físicamente el nodo, debe quitar el activo del nodo de computación mediante las API del nodo de gestión. Para utilizar API DE REST, su clúster de almacenamiento debe ejecutar el software NetApp Element 11.5 o una versión posterior y debe haber implementado un nodo de gestión que ejecute la versión 11.5 o posterior.
 
@@ -170,7 +178,7 @@ NOTE: Si usted consigue el `Auth Error TypeError: Failed to fetch` Mensaje de er
 
 
 
-== Añada el nodo de computación al clúster
+== Paso 4: Añada el nodo de computación al clúster
 
 Debe volver a añadir el nodo de computación al clúster. Los pasos varían en función de la versión de NetApp HCI que esté ejecutando.
 
@@ -774,7 +782,7 @@ image::rescan.gif[Muestra el icono de nueva búsqueda de los adaptadores de alma
 
 
 
-== Vuelva a poner en marcha nodos de testigos para clústeres de almacenamiento de dos y tres nodos
+== Paso 5: Vuelva a poner en marcha nodos testigos para clústeres de almacenamiento de dos y tres nodos
 
 Después de reemplazar físicamente el nodo de computación con fallos, debe volver a poner en marcha la máquina virtual del nodo de testimonio de NetApp HCI si el nodo de computación con errores alojaba el nodo de testigo. Estas instrucciones solo se aplican a nodos de computación que forman parte de una instalación de NetApp HCI con clústeres de almacenamiento de dos o tres nodos.
 
