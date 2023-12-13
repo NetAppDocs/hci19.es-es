@@ -6575,4 +6575,6 @@
   <block id="527e6719cbc58f7527999477eaac0dd2" category="section-title">Paso 3: Quite el activo de nodo de computación en NetApp HCI 1,7 y versiones posteriores</block>
   <block id="714f787cf5a78abe3413cd3fa33c6c6b" category="section-title">Paso 4: Añada el nodo de computación al clúster</block>
   <block id="4b07d1c342b03364f7120990720b53ef" category="section-title">Paso 5: Vuelva a poner en marcha nodos testigos para clústeres de almacenamiento de dos y tres nodos</block>
+  <block id="df0f8acf74958be223bdd3dabcce5038" category="inline-link">No se pueden iniciar las actualizaciones de SolidFire y HCI debido a un error de carga del paquete de actualización</block>
+  <block id="b9bbae8efe5c0f15ffba3f05d619b861" category="admonition">A partir del 2023 de noviembre, no puede iniciar una actualización de componente con control de nube híbrida de NetApp o API de REST porque los certificados de clave de firma (privados y públicos) caducaron el 5 de noviembre de 2023. Puede resolver este problema siguiendo la solución que se explica en el artículo de la base de conocimientos<block ref="43e83b9864cac922c7475bad0e74a40f" category="inline-link-rx"></block>.</block>
 </blocks>
