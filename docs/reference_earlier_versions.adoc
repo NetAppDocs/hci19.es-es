@@ -11,7 +11,6 @@ summary: La documentación de versiones anteriores de NetApp HCI está disponibl
 :icons: font
 :linkattrs: 
 :imagesdir: ../media/
-:keywords: hci, earlier, documentation, versions
 
 
 [role="lead"]
