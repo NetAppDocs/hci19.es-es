@@ -1,0 +1,4737 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head class="at-element-marker">
+  <title>Actualizar el firmware del nodo de computación</title>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1">
+  <meta http-equiv="language" content="en">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:title" content="Actualizar el firmware del nodo de computación" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://docs.netapp.com/es-es/hci19/docs/task_hcc_upgrade_compute_node_firmware.html" />
+	<meta property="og:description" content="Como parte de la actualización del sistema NetApp HCI, se actualiza el firmware del nodo de computación." />
+  <meta property="og:image" content="https://docs.netapp.com/es-es/hci19/images/logo-tophat-social.png" />
+  <meta property="og:image:alt" content="NetApp Logo" />
+  <meta name="format-detection" content="telephone=no">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="encoding" content="utf-8">
+  <meta http-equiv="nss-type" content="Product Documentation"/>
+  <meta http-equiv="nss-subtype" content="User Guide"/><meta name="description" content="Como parte de la actualización del sistema NetApp HCI, se actualiza el firmware del nodo de computación.">
+  <meta name="keywords" content=" netapp, hci, on premise, cluster, element, compute node, vmware, upgrade firmware"><!-- Icons -->
+  <link rel="icon" href="/es-es/hci19/images/favicon.ico" type="image/x-icon">
+
+  <!-- RSS Feed --><!-- CSS Definitions: NetApp CSS should be defined after generic css -->
+
+
+  <!-- Combined CSS -->
+  <link rel="stylesheet" type="text/css" href="/es-es/hci19/css/ie-netappdocs.css">
+
+  
+  <link rel="stylesheet" href="/es-es/hci19/css/ie-landing-page.css" type="text/css">
+  <link rel="stylesheet" href="/es-es/hci19/css/ie-tabbed-blocks.css" type="text/css">
+  <!-- Canonical url -->
+  <link rel="canonical" href="https://docs.netapp.com/es-es/hci19/docs/task_hcc_upgrade_compute_node_firmware.html" />
+  <link rel="alternate" hreflang="x-default" href="https://docs.netapp.com/us-en/hci19/docs/task_hcc_upgrade_compute_node_firmware.html" />
+  <link rel="alternate" hreflang="es" href="https://docs.netapp.com/es-es/hci19/docs/task_hcc_upgrade_compute_node_firmware.html" />
+  <link rel="alternate" hreflang="en" href="https://docs.netapp.com/us-en/hci19/docs/task_hcc_upgrade_compute_node_firmware.html" />
+  <link rel="alternate" hreflang="ja" href="https://docs.netapp.com/ja-jp/hci19/docs/task_hcc_upgrade_compute_node_firmware.html" />
+  <link rel="alternate" hreflang="ko" href="https://docs.netapp.com/ko-kr/hci19/docs/task_hcc_upgrade_compute_node_firmware.html" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://docs.netapp.com/zh-cn/hci19/docs/task_hcc_upgrade_compute_node_firmware.html" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://docs.netapp.com/zh-tw/hci19/docs/task_hcc_upgrade_compute_node_firmware.html" />
+  <link rel="alternate" hreflang="de" href="https://docs.netapp.com/de-de/hci19/docs/task_hcc_upgrade_compute_node_firmware.html" />
+  <link rel="alternate" hreflang="fr" href="https://docs.netapp.com/fr-fr/hci19/docs/task_hcc_upgrade_compute_node_firmware.html" />
+  <link rel="alternate" hreflang="it" href="https://docs.netapp.com/it-it/hci19/docs/task_hcc_upgrade_compute_node_firmware.html" />
+  <!-- Top level site integrations -->
+<script type="text/javascript" src="https://cdn.cookielaw.org/consent/72570c5c-fe30-465f-b0e0-b77f7fb4ae34/OtAutoBlock.js"></script>
+    <script type="text/javascript" src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" charset="UTF-8" data-document-language="true" data-domain-script="72570c5c-fe30-465f-b0e0-b77f7fb4ae34"></script>
+    <script type="text/javascript">function OptanonWrapper() { }</script>
+    <script type="text/plain" class="optanon-category-C0002" src="https://assets.adobedtm.com/60287eadf1ee/c284da483c83/launch-e9ff3acac59f.min.js"></script>
+    <script class="optanon-category-C0001">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.setAttributeNode(d.createAttribute('data-ot-ignore'));j.setAttribute('class','optanon-category-C0001');j.async=true;
+        j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl+'';f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-MD73T9M');</script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  
+  <script>
+    $(document).ready(function() {
+      const MASTHEAD_OFFSET = 65;
+      const SECTIONS = $("main h2, main h3");
+      // PAGE NAV - Init
+      if (SECTIONS.length == 0) {
+        // remove if there is no elements
+        /*
+        $("#ie-right-navbar").remove();
+        $("#ie-right-navbar-collapse").remove();
+        */
+      } else {
+        $(".page-nav-title").css('display', 'block');
+        for (var i = 0; i < SECTIONS.length; i++) {
+          var sectionId = $(SECTIONS[i]).attr('id');
+          var sectionName = $(SECTIONS[i]).text();
+          var subClass = $(SECTIONS[i]).is("h3") ? ' page-nav__sublink' : '';
+          $("#page-menu").append('<li class="page-nav-item"><a href="#' + sectionId + '" class="page-nav__link' + subClass + '">' + sectionName + '</a></li>');
+        }
+      }
+    });
+  </script>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+  <!-- Used for Product Family Page Sidebar Visibility --><!-- Used to import Promise for IE. Required for SearchKit -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.3.5/bluebird.min.js"></script><script src='/es-es/hci19/js/na-search.js'></script><script src='/es-es/hci19/js/ie-clouddocs.js'></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><script>
+    /*
+      $(document).ready(function() {
+          $("#tg-sb-link").click(function() {
+              $("#tg-sb-sidebar").toggle();
+              $("#tg-sb-content").toggleClass('col-md-9');
+              $("#tg-sb-content").toggleClass('col-md-12');
+              $("#tg-sb-icon").toggleClass('fa-toggle-on');
+              $("#tg-sb-icon").toggleClass('fa-toggle-off');
+          });
+      });
+      */
+  </script>
+  <script src='/es-es/hci19/js/custom-dropdown.js'></script>
+  <script src='/es-es/hci19/js/FileSaver.min.js'></script>
+  <script src='/es-es/hci19/js/jszip-utils.min.js'></script>
+  <script src='/es-es/hci19/js/jszip.min.js'></script><script src='/es-es/hci19/js/ie-pdf-ux.js'></script></head>
+
+
+  <body class role="document" data-flavor="">
+    <div class="skip-to-main">
+      <a href="#main" >Skip to main content</a>
+    </div><noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MD73T9M"
+      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript><div id="page" class="">
+      <div id="ie-phone-menu" class=""></div>
+      <div id="ie-content-wrap" class="">
+        <nav id="ie-new-header">
+    <ul>
+        <li id="ie-phone-menu-button">
+            <a href="#">
+                <image id="" src="/es-es/hci19/images/hamburger.svg" alt="menu" />
+            </a>
+        </li>
+
+        <li>
+            <a href="https://www.netapp.com/es/">
+                <image id="ie-header-logo" src="/es-es/hci19/images/netapp_logo.svg" alt="netapp" />
+            </a>
+        </li>
+        <li id="ie-header-docs">
+            <a href="https://www.netapp.com/es/support-and-training/documentation/">Documentos</a>
+        </li>
+
+        <!-- Empty container to push header left with or without lang selector -->
+        <li id="empty-container" style="margin-left: auto">
+        </li>
+        <!-- Start Language Selector --><li id="ie-language-dropdown">
+            <div id="language-dropdown" class="custom-dropdown custom-dropdown-lang">
+                <div class="custom-dropdown-select custom-dropdown-select-lang">
+                    <img src="/es-es/hci19/images/language_white_24dp.svg" class="n-globe__icon" />
+                    <span class="lang-name">Español</span>
+                    <img src="/es-es/hci19/images/dropdown-arrow.svg" alt="" class="custom-icon chevrondown header invisible" />
+                    <img src="/es-es/hci19/images/dropdown-arrow.svg" alt="" class="custom-icon chevronup header" />
+                    </button>
+                </div>
+
+                <ul class="custom-dropdown-menu"><li>
+                        <a href="https://docs.netapp.com/es-es/hci19/docs/task_hcc_upgrade_compute_node_firmware.html"
+                            target="_self"><span translate="no" class="notranslate">Español</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/us-en/hci19/docs/task_hcc_upgrade_compute_node_firmware.html"
+                            target="_self"><span translate="no" class="notranslate">English</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/ja-jp/hci19/docs/task_hcc_upgrade_compute_node_firmware.html"
+                            target="_self"><span translate="no" class="notranslate">日本語</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/ko-kr/hci19/docs/task_hcc_upgrade_compute_node_firmware.html"
+                            target="_self"><span translate="no" class="notranslate">한국어</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/zh-cn/hci19/docs/task_hcc_upgrade_compute_node_firmware.html"
+                            target="_self"><span translate="no" class="notranslate">简体中文</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/zh-tw/hci19/docs/task_hcc_upgrade_compute_node_firmware.html"
+                            target="_self"><span translate="no" class="notranslate">繁體中文</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/de-de/hci19/docs/task_hcc_upgrade_compute_node_firmware.html"
+                            target="_self"><span translate="no" class="notranslate">Deutsch</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/fr-fr/hci19/docs/task_hcc_upgrade_compute_node_firmware.html"
+                            target="_self"><span translate="no" class="notranslate">Français</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/it-it/hci19/docs/task_hcc_upgrade_compute_node_firmware.html"
+                            target="_self"><span translate="no" class="notranslate">Italiano</span></a>
+                    </li></ul>
+            </div>
+            </li>
+        <!-- End Language Selector -->
+
+
+        <li id="ie-allnetapp">
+            <div id="allnetapp-dropdown" class="custom-dropdown custom-dropdown-allnetapp">
+                <div class="custom-dropdown-select custom-dropdown-select-allnetapp">
+                    <img src="/es-es/hci19/images/apps_white_24dp.svg" alt="" class="allnetapp-icon" />
+                    <span class="allnetapp-name">Todo NetApp</span>
+                    <img src="/es-es/hci19/images/dropdown-arrow.svg" alt="" class="custom-icon chevrondown header invisible" />
+                    <img src="/es-es/hci19/images/dropdown-arrow.svg" alt="" class="custom-icon chevronup header" />
+                    </button>
+                </div>
+
+                <ul class="custom-dropdown-menu allnetapp-dropdown">
+                    <li>
+                        <a href="https://bluexp.netapp.com/es/"
+                            target="_self"><span translate="no" class="notranslate">BlueXP</span></a>
+                    </li>
+                    <li>
+                        <a href="https://mysupport.netapp.com/site/"
+                            target="_self"><span translate="no" class="notranslate">Soporte</span></a>
+                    </li>
+                    <li>
+                        <a href="https://kb.netapp.com/"
+                            target="_self"><span translate="no" class="notranslate">Base de conocimientos</span></a>
+                    </li>
+                    <li>
+                        <a href="https://www.netapp.com/es/support-and-training/netapp-learning-services/"
+                            target="_self"><span translate="no" class="notranslate">Formación</span></a>
+                    </li>
+                </ul>
+            </div>
+
+        </li>
+
+    </ul>
+</nav>
+
+        <main id="n-main-content" class="n-main-content">
+          <!-- Start Documentation Content -->
+<div class="ie-main">
+
+<div id="ie-new-sidebar-collapse" style="display: none">
+    <img id="sidebar-expand" class="ie-searchbox-icon" src="/es-es/hci19/images/double_arrow.svg" alt="" />
+</div>
+<div id="ie-new-sidebar">
+    <div id="ie-product-identity-lockup">
+        <div id="sidebar-collapse" class="">
+            <img src="/es-es/hci19/images/double_arrow.svg" alt="" />
+        </div>
+        <div id="ie-breadcrumb" class="">
+  <ul class="ie-breadcrumb">
+    <li class="">
+      <a href="https://docs.netapp.com">Todos los documentos</a>
+    </li>
+    
+    
+
+    
+  </ul>
+  
+  <div class="ie-product-name" >
+    <!--<a href="/es-es/hci19/">-->
+      HCI
+    <!--</a>-->
+  </div>
+</div>
+
+            
+<div id="ie-selectors"><div id="version-dropdown-new" class="custom-dropdown" >
+  <div class="custom-dropdown-select unselected" title=" 1.9">
+    <label>Versión</label>
+    <span translate="no" class="notranslate">1.9</span>
+    <img src="/es-es/hci19/images/dropdown-arrow.svg" alt="" class="custom-icon chevrondown version invisible" />
+    <img src="/es-es/hci19/images/dropdown-arrow.svg" alt="" class="custom-icon chevronup version" />
+  </div>
+
+  <ul class="custom-dropdown-menu"><li>
+      
+      <a href="https://docs.netapp.com/es-es/hci19/docs/task_hcc_upgrade_compute_node_firmware.html" target="_self">
+        <span translate="no" class="notranslate"><span class="version"> 1.9</span></span>
+      </a>
+                     
+    </li>
+    <li>
+      
+      <a href="https://docs.netapp.com/es-es/hci/docs/task_hcc_upgrade_compute_node_firmware.html" target="_self">
+        <span translate="no" class="notranslate"><span class="version"> 1.10</span></span>
+      </a>
+                     
+    </li>
+    <li>
+      
+      <a href="https://docs.netapp.com/es-es/hci18/docs/task_hcc_upgrade_compute_node_firmware.html" target="_self">
+        <span translate="no" class="notranslate"><span class="version"> 1.8</span></span>
+      </a>
+                     
+    </li>
+    
+  </ul>
+</div></div>
+        
+        
+
+<div id="ie-searchbox" class="ie-searchbox-sidebar ">
+    <img class="ie-searchbox-icon" src="/es-es/hci19/images/loupe.svg" alt=""/>
+    <div id="react-search" 
+        data-search-html="/es-es/hci19/search.html" 
+        data-type="widget"
+        data-placeholder="Buscar documentación"
+        data-no-results-found="No se han encontrado resultados para {query}"
+        data-did-you-mean="Busca {suggestion}."
+        data-no-results-found-did-you-mean="No se ha encontrado ningún resultado para {query}. ¿Querías decir {suggestion}?"
+        data-results-found="{hitCount} resultados encontrados"
+        data-error-message="Se ha producido un error. Por favor, inténtalo de nuevo."
+        data-error-reset="Restablecer búsqueda"
+        data-sk-es-pf-indexes="" 
+        data-flavor="">
+    </div>
+</div>
+        
+    </div>
+    <div id="ie-new-toc"><script>
+  let sidebarAccordion = true;
+
+  /* specific css rules for Mac */
+  if(navigator.platform.match('Mac') !== null) {
+    document.body.setAttribute('class', 'OSX');
+  }
+
+</script>
+
+<div id="ie-sidebar-container">
+  <ul id="ie-sidebar-list" ><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Documentación de NetApp HCI"
+      data-li-level="1#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/index.html" 
+    ><a class="ie-sidebar-menuitem-1 " href="/es-es/hci19/index.html">
+        Documentación de NetApp HCI
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Soluciones NetApp HCI"
+      data-li-level="1#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/hci_solutions_index.html" 
+    ><a class="ie-sidebar-menuitem-1 " href="/es-es/hci19/docs/hci_solutions_index.html">
+        Soluciones NetApp HCI
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Notas de la versión"
+      data-li-level="1" 
+      class=" sidebar-folder    "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-1  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/es-es/hci19/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/es-es/hci19/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Notas de la versión</div>-->
+         Notas de la versión
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Novedades en NetApp HCI"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/rn_whatsnew.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/hci19/docs/rn_whatsnew.html">
+        Novedades en NetApp HCI
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Información adicional sobre la versión"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/rn_relatedrn.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/hci19/docs/rn_relatedrn.html">
+        Información adicional sobre la versión
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Conceptos"
+      data-li-level="1" 
+      class=" sidebar-folder    "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-1  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/es-es/hci19/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/es-es/hci19/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Conceptos</div>-->
+         Conceptos
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Información general del producto"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/concept_hci_product_overview.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/hci19/docs/concept_hci_product_overview.html">
+        Información general del producto
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Cuentas"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/concept_cg_hci_accounts.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/hci19/docs/concept_cg_hci_accounts.html">
+        Cuentas
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Protección de datos"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/concept_hci_dataprotection.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/hci19/docs/concept_hci_dataprotection.html">
+        Protección de datos
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="De clúster"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/concept_hci_clusters.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/hci19/docs/concept_hci_clusters.html">
+        De clúster
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Nodos"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/concept_hci_nodes.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/hci19/docs/concept_hci_nodes.html">
+        Nodos
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Reducida"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/es-es/hci19/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/es-es/hci19/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Reducida</div>-->
+         Reducida
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Modo de mantenimiento"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/concept_hci_storage_maintenance_mode.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/es-es/hci19/docs/concept_hci_storage_maintenance_mode.html">
+        Modo de mantenimiento
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Volúmenes"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/concept_hci_volumes.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/es-es/hci19/docs/concept_hci_volumes.html">
+        Volúmenes
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Los grupos de acceso de volúmenes"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/concept_hci_volume_access_groups.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/es-es/hci19/docs/concept_hci_volume_access_groups.html">
+        Los grupos de acceso de volúmenes
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Iniciadores"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/concept_hci_initiators.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/es-es/hci19/docs/concept_hci_initiators.html">
+        Iniciadores
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Dominios de protección personalizados"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/concept_hcc_custom_protection_domains.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/es-es/hci19/docs/concept_hcc_custom_protection_domains.html">
+        Dominios de protección personalizados
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Licencia"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/concept_cg_hci_licensing.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/hci19/docs/concept_cg_hci_licensing.html">
+        Licencia
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Máximos de configuración del control del cloud híbrido de NetApp"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/reference_hcc_config_maximums.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/hci19/docs/reference_hcc_config_maximums.html">
+        Máximos de configuración del control del cloud híbrido de NetApp
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Seguridad"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/concept_cg_hci_security.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/hci19/docs/concept_cg_hci_security.html">
+        Seguridad
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Rendimiento"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/concept_hci_performance.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/hci19/docs/concept_hci_performance.html">
+        Rendimiento
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Requisitos y tareas previas a la implementación"
+      data-li-level="1" 
+      class=" sidebar-folder    "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-1  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/es-es/hci19/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/es-es/hci19/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Requisitos y tareas previas a la implementación</div>-->
+         Requisitos y tareas previas a la implementación
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Requisitos para la instalación de NetApp HCI"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/hci_prereqs_overview.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/hci19/docs/hci_prereqs_overview.html">
+        Requisitos para la instalación de NetApp HCI
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Requisitos del nodo de gestión"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/hci_prereqs_management_node.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/hci19/docs/hci_prereqs_management_node.html">
+        Requisitos del nodo de gestión
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Requisitos de puerto de red"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/hci_prereqs_required_network_ports.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/hci19/docs/hci_prereqs_required_network_ports.html">
+        Requisitos de puerto de red
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Requisitos de switch y red"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/hci_prereqs_network_switch.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/hci19/docs/hci_prereqs_network_switch.html">
+        Requisitos de switch y red
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Requisitos de cables de red"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/hci_prereqs_network_cables.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/hci19/docs/hci_prereqs_network_cables.html">
+        Requisitos de cables de red
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Requisitos de dirección IP"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/hci_prereqs_ip_address.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/hci19/docs/hci_prereqs_ip_address.html">
+        Requisitos de dirección IP
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Configuración de red"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/es-es/hci19/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/es-es/hci19/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Configuración de red</div>-->
+         Configuración de red
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Información general sobre las opciones de configuración de red"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/hci_prereqs_network_configuration.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/es-es/hci19/docs/hci_prereqs_network_configuration.html">
+        Información general sobre las opciones de configuración de red
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Opción de configuración de red A"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/hci_prereqs_network_configuration_option_A.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/es-es/hci19/docs/hci_prereqs_network_configuration_option_A.html">
+        Opción de configuración de red A
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Opción de configuración de red B"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/hci_prereqs_network_configuration_option_B.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/es-es/hci19/docs/hci_prereqs_network_configuration_option_B.html">
+        Opción de configuración de red B
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Opción de configuración de red C"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/hci_prereqs_network_configuration_option_C.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/es-es/hci19/docs/hci_prereqs_network_configuration_option_C.html">
+        Opción de configuración de red C
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Requisitos de DNS y de control del tiempo"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/hci_prereqs_timekeeping.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/hci19/docs/hci_prereqs_timekeeping.html">
+        Requisitos de DNS y de control del tiempo
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Requisitos ambientales"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/hci_prereqs_environmental.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/hci19/docs/hci_prereqs_environmental.html">
+        Requisitos ambientales
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Dominios de protección"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/hci_prereqs_protection_domains.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/hci19/docs/hci_prereqs_protection_domains.html">
+        Dominios de protección
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Requisitos de recursos de nodo de observación para clústeres de almacenamiento de dos nodos"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/hci_prereqs_witness_nodes.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/hci19/docs/hci_prereqs_witness_nodes.html">
+        Requisitos de recursos de nodo de observación para clústeres de almacenamiento de dos nodos
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Empiece a usar NetApp HCI"
+      data-li-level="1" 
+      class=" sidebar-folder    "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-1  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/es-es/hci19/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/es-es/hci19/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Empiece a usar NetApp HCI</div>-->
+         Empiece a usar NetApp HCI
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Información general sobre la instalación y la puesta en marcha de NetApp HCI"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_hci_getstarted.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/hci19/docs/task_hci_getstarted.html">
+        Información general sobre la instalación y la puesta en marcha de NetApp HCI
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Instale el hardware H-Series"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_hci_installhw.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/hci19/docs/task_hci_installhw.html">
+        Instale el hardware H-Series
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Configure LACP para alcanzar un rendimiento de almacenamiento óptimo"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/hci_prereqs_LACP_configuration.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/hci19/docs/hci_prereqs_LACP_configuration.html">
+        Configure LACP para alcanzar un rendimiento de almacenamiento óptimo
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Validar su entorno con Active IQ Config Advisor"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/hci_prereqs_task_validate_config_advisor.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/hci19/docs/hci_prereqs_task_validate_config_advisor.html">
+        Validar su entorno con Active IQ Config Advisor
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Configure IPMI para cada nodo"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/hci_prereqs_final_prep.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/hci19/docs/hci_prereqs_final_prep.html">
+        Configure IPMI para cada nodo
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Ponga en marcha NetApp HCI"
+      data-li-level="1" 
+      class=" sidebar-folder    "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-1  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/es-es/hci19/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/es-es/hci19/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Ponga en marcha NetApp HCI</div>-->
+         Ponga en marcha NetApp HCI
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Acceda al motor de implementación de NetApp"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/es-es/hci19/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/es-es/hci19/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Acceda al motor de implementación de NetApp</div>-->
+         Acceda al motor de implementación de NetApp
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Información general de las opciones de acceso del motor de implementación de NetApp"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/concept_nde_access_overview.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/es-es/hci19/docs/concept_nde_access_overview.html">
+        Información general de las opciones de acceso del motor de implementación de NetApp
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Acceda al motor de implementación de NetApp en entornos sin DHCP"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_nde_access_no_dhcp.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/es-es/hci19/docs/task_nde_access_no_dhcp.html">
+        Acceda al motor de implementación de NetApp en entornos sin DHCP
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Acceda al motor de implementación de NetApp en entornos con DHCP"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_nde_access_dhcp.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/es-es/hci19/docs/task_nde_access_dhcp.html">
+        Acceda al motor de implementación de NetApp en entornos con DHCP
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Asignar manualmente todas las direcciones IP para acceder al motor de implementación de NetApp"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_nde_access_manual_ip.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/es-es/hci19/docs/task_nde_access_manual_ip.html">
+        Asignar manualmente todas las direcciones IP para acceder al motor de implementación de NetApp
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Inicie la implementación"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_nde_start_deployment.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/hci19/docs/task_nde_start_deployment.html">
+        Inicie la implementación
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Importe un perfil de instalación"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_nde_import_installation_profile.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/hci19/docs/task_nde_import_installation_profile.html">
+        Importe un perfil de instalación
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Configure VMware vSphere"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/es-es/hci19/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/es-es/hci19/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Configure VMware vSphere</div>-->
+         Configure VMware vSphere
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Información general de la configuración de vSphere"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/concept_nde_config_vsphere_overview.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/es-es/hci19/docs/concept_nde_config_vsphere_overview.html">
+        Información general de la configuración de vSphere
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Configurar un nuevo entorno de VMware vSphere"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_nde_configure_new_vsphere.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/es-es/hci19/docs/task_nde_configure_new_vsphere.html">
+        Configurar un nuevo entorno de VMware vSphere
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Únase a una puesta en marcha de VMware vSphere existente"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_nde_join_existing_vsphere.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/es-es/hci19/docs/task_nde_join_existing_vsphere.html">
+        Únase a una puesta en marcha de VMware vSphere existente
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Configure las credenciales de NetApp HCI"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_nde_configure_credentials.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/hci19/docs/task_nde_configure_credentials.html">
+        Configure las credenciales de NetApp HCI
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Seleccione una topología de red"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_nde_select_net_topology.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/hci19/docs/task_nde_select_net_topology.html">
+        Seleccione una topología de red
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Selección de inventario"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/es-es/hci19/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/es-es/hci19/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Selección de inventario</div>-->
+         Selección de inventario
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Selección de inventario y compatibilidad de nodos"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/concept_nde_node_compatibility.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/es-es/hci19/docs/concept_nde_node_compatibility.html">
+        Selección de inventario y compatibilidad de nodos
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Seleccione un inventario"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_nde_select_inventory.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/es-es/hci19/docs/task_nde_select_inventory.html">
+        Seleccione un inventario
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Configure los ajustes de red"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_nde_configure_net_settings.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/hci19/docs/task_nde_configure_net_settings.html">
+        Configure los ajustes de red
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Revisión e implementación"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_nde_review_deploy.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/hci19/docs/task_nde_review_deploy.html">
+        Revisión e implementación
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Tareas posteriores a la implementación"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/es-es/hci19/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/es-es/hci19/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Tareas posteriores a la implementación</div>-->
+         Tareas posteriores a la implementación
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Información general de las tareas posteriores a la implementación"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/concept_nde_post_deployment_overview.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/es-es/hci19/docs/concept_nde_post_deployment_overview.html">
+        Información general de las tareas posteriores a la implementación
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Cambios de red admitidos"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_nde_supported_net_changes.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/es-es/hci19/docs/task_nde_supported_net_changes.html">
+        Cambios de red admitidos
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Deshabilite el servicio smartd en los nodos de computación de NetApp HCI"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_nde_disable_smartd.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/es-es/hci19/docs/task_nde_disable_smartd.html">
+        Deshabilite el servicio smartd en los nodos de computación de NetApp HCI
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Deshabilite el comando "lacp-individual" en los switches configurados"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_nde_disable_lacp_individual.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/es-es/hci19/docs/task_nde_disable_lacp_individual.html">
+        Deshabilite el comando "lacp-individual" en los switches configurados
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Cree una función HCC de NetApp en vCenter"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_mnode_create_netapp_hcc_role_vcenter.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/es-es/hci19/docs/task_mnode_create_netapp_hcc_role_vcenter.html">
+        Cree una función HCC de NetApp en vCenter
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Mantenga actualizado VMware vSphere"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_nde_update_vsphere.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/es-es/hci19/docs/task_nde_update_vsphere.html">
+        Mantenga actualizado VMware vSphere
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Instale los controladores de GPU para los nodos de computación habilitados para GPU"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_nde_install_GPU_drivers.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/es-es/hci19/docs/task_nde_install_GPU_drivers.html">
+        Instale los controladores de GPU para los nodos de computación habilitados para GPU
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Acceda a Control del cloud híbrido de NetApp"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_nde_access_hcc.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/es-es/hci19/docs/task_nde_access_hcc.html">
+        Acceda a Control del cloud híbrido de NetApp
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Reduzca el desgaste de los medios de arranque en un nodo de computación NetApp HCI"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_reduce_boot_media_wear.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/es-es/hci19/docs/task_reduce_boot_media_wear.html">
+        Reduzca el desgaste de los medios de arranque en un nodo de computación NetApp HCI
+      </a></li></ul></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gestione NetApp HCI"
+      data-li-level="1" 
+      class=" sidebar-folder    "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-1  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/es-es/hci19/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/es-es/hci19/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Gestione NetApp HCI</div>-->
+         Gestione NetApp HCI
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Información general sobre Manage NetApp HCI"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_hci_manage_overview.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/hci19/docs/task_hci_manage_overview.html">
+        Información general sobre Manage NetApp HCI
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Configure el acceso completo a la interfaz de usuario web de Nombre de dominio"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_nde_access_ui_fqdn.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/hci19/docs/task_nde_access_ui_fqdn.html">
+        Configure el acceso completo a la interfaz de usuario web de Nombre de dominio
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Cambiar las credenciales en NetApp HCI"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_post_deploy_credentials.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/hci19/docs/task_post_deploy_credentials.html">
+        Cambiar las credenciales en NetApp HCI
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Actualice las credenciales de vCenter y ESXi"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_hci_credentials_vcenter_esxi.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/hci19/docs/task_hci_credentials_vcenter_esxi.html">
+        Actualice las credenciales de vCenter y ESXi
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gestione el almacenamiento NetApp HCI"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/es-es/hci19/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/es-es/hci19/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Gestione el almacenamiento NetApp HCI</div>-->
+         Gestione el almacenamiento NetApp HCI
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Información general del almacenamiento de Manage NetApp HCI"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_hcc_manage_storage_overview.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/es-es/hci19/docs/task_hcc_manage_storage_overview.html">
+        Información general del almacenamiento de Manage NetApp HCI
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Crear y administrar cuentas de usuario"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_hcc_manage_accounts.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/es-es/hci19/docs/task_hcc_manage_accounts.html">
+        Crear y administrar cuentas de usuario
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Añadir y gestionar clústeres de almacenamiento"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_hcc_manage_storage_clusters.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/es-es/hci19/docs/task_hcc_manage_storage_clusters.html">
+        Añadir y gestionar clústeres de almacenamiento
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Cree y gestione volúmenes"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_hcc_manage_vol_management.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/es-es/hci19/docs/task_hcc_manage_vol_management.html">
+        Cree y gestione volúmenes
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Permite crear y gestionar grupos de acceso de volúmenes"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_hcc_manage_vol_access_groups.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/es-es/hci19/docs/task_hcc_manage_vol_access_groups.html">
+        Permite crear y gestionar grupos de acceso de volúmenes
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Cree y gestione iniciadores"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_hcc_manage_initiators.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/es-es/hci19/docs/task_hcc_manage_initiators.html">
+        Cree y gestione iniciadores
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Cree y gestione políticas de calidad de servicio de volúmenes"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_hcc_qos_policies.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/es-es/hci19/docs/task_hcc_qos_policies.html">
+        Cree y gestione políticas de calidad de servicio de volúmenes
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Trabaje con el nodo de gestión"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/es-es/hci19/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/es-es/hci19/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Trabaje con el nodo de gestión</div>-->
+         Trabaje con el nodo de gestión
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Información general sobre los nodos de gestión"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_mnode_work_overview.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/es-es/hci19/docs/task_mnode_work_overview.html">
+        Información general sobre los nodos de gestión
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Instale o recupere un nodo de gestión"
+      data-li-level="3" 
+      class=" sidebar-folder    "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-3  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/es-es/hci19/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/es-es/hci19/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Instale o recupere un nodo de gestión</div>-->
+         Instale o recupere un nodo de gestión
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Instale un nodo de gestión"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_mnode_install.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/es-es/hci19/docs/task_mnode_install.html">
+        Instale un nodo de gestión
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Configurar una controladora de interfaz de red (NIC) de almacenamiento"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_mnode_install_add_storage_NIC.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/es-es/hci19/docs/task_mnode_install_add_storage_NIC.html">
+        Configurar una controladora de interfaz de red (NIC) de almacenamiento
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Recupere un nodo de gestión"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_mnode_recover.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/es-es/hci19/docs/task_mnode_recover.html">
+        Recupere un nodo de gestión
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Acceda al nodo de gestión"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_mnode_access_ui.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/es-es/hci19/docs/task_mnode_access_ui.html">
+        Acceda al nodo de gestión
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Cambie el certificado SSL predeterminado del nodo de gestión"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/reference_change_mnode_default_ssl_certificate.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/es-es/hci19/docs/reference_change_mnode_default_ssl_certificate.html">
+        Cambie el certificado SSL predeterminado del nodo de gestión
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Trabaje con la interfaz de usuario del nodo de gestión"
+      data-li-level="3" 
+      class=" sidebar-folder    "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-3  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/es-es/hci19/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/es-es/hci19/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Trabaje con la interfaz de usuario del nodo de gestión</div>-->
+         Trabaje con la interfaz de usuario del nodo de gestión
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Información general de la interfaz de usuario del nodo de gestión"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_mnode_work_overview_UI.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/es-es/hci19/docs/task_mnode_work_overview_UI.html">
+        Información general de la interfaz de usuario del nodo de gestión
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Configure la supervisión de alertas en NetApp HCI"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_mnode_enable_alerts.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/es-es/hci19/docs/task_mnode_enable_alerts.html">
+        Configure la supervisión de alertas en NetApp HCI
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Modifique y pruebe la red, el clúster y la configuración del sistema de los nodos de gestión"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_mnode_settings.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/es-es/hci19/docs/task_mnode_settings.html">
+        Modifique y pruebe la red, el clúster y la configuración del sistema de los nodos de gestión
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Ejecute las utilidades del sistema desde el nodo de gestión"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_mnode_run_system_utilities.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/es-es/hci19/docs/task_mnode_run_system_utilities.html">
+        Ejecute las utilidades del sistema desde el nodo de gestión
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Trabaje con la API DE REST del nodo de gestión"
+      data-li-level="3" 
+      class=" sidebar-folder    "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-3  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/es-es/hci19/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/es-es/hci19/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Trabaje con la API DE REST del nodo de gestión</div>-->
+         Trabaje con la API DE REST del nodo de gestión
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Información general de la interfaz de usuario de la API DE REST del nodo de"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_mnode_work_overview_API.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/es-es/hci19/docs/task_mnode_work_overview_API.html">
+        Información general de la interfaz de usuario de la API DE REST del nodo de
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Obtenga autorización para utilizar las API de REST"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_mnode_api_get_authorizationtouse.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/es-es/hci19/docs/task_mnode_api_get_authorizationtouse.html">
+        Obtenga autorización para utilizar las API de REST
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Habilite la supervisión de Active IQ y NetApp HCI"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_mnode_enable_activeIQ.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/es-es/hci19/docs/task_mnode_enable_activeIQ.html">
+        Habilite la supervisión de Active IQ y NetApp HCI
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Configure Cloud Control de NetApp híbrido para varias instancias de vCenter"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_mnode_multi_vcenter_config.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/es-es/hci19/docs/task_mnode_multi_vcenter_config.html">
+        Configure Cloud Control de NetApp híbrido para varias instancias de vCenter
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Añada activos de computación y de controladora al nodo de gestión"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_mnode_add_assets.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/es-es/hci19/docs/task_mnode_add_assets.html">
+        Añada activos de computación y de controladora al nodo de gestión
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Cómo localizar una etiqueta de hardware para un nodo de computación"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_mnode_locate_hardware_tag.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/es-es/hci19/docs/task_mnode_locate_hardware_tag.html">
+        Cómo localizar una etiqueta de hardware para un nodo de computación
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Crear y gestionar activos de clúster de almacenamiento"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_mnode_manage_storage_cluster_assets.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/es-es/hci19/docs/task_mnode_manage_storage_cluster_assets.html">
+        Crear y gestionar activos de clúster de almacenamiento
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Ver o editar activos de controladora existentes"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_mnode_edit_vcenter_assets.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/es-es/hci19/docs/task_mnode_edit_vcenter_assets.html">
+        Ver o editar activos de controladora existentes
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Quite un activo del nodo de gestión"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_mnode_remove_assets.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/es-es/hci19/docs/task_mnode_remove_assets.html">
+        Quite un activo del nodo de gestión
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Configure un servidor proxy para el nodo de gestión"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_mnode_configure_proxy_server.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/es-es/hci19/docs/task_mnode_configure_proxy_server.html">
+        Configure un servidor proxy para el nodo de gestión
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Verifique el sistema operativo del nodo de gestión y las versiones de servicios"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_mnode_api_find_mgmt_svcs_version.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/es-es/hci19/docs/task_mnode_api_find_mgmt_svcs_version.html">
+        Verifique el sistema operativo del nodo de gestión y las versiones de servicios
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Obtener registros de los servicios de gestión"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_mnode_logs.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/es-es/hci19/docs/task_mnode_logs.html">
+        Obtener registros de los servicios de gestión
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gestión de conexiones de soporte"
+      data-li-level="3" 
+      class=" sidebar-folder    "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-3  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/es-es/hci19/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/es-es/hci19/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Gestión de conexiones de soporte</div>-->
+         Gestión de conexiones de soporte
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Inicie una sesión de soporte remota de NetApp"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_mnode_enable_remote_support_connections.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/es-es/hci19/docs/task_mnode_enable_remote_support_connections.html">
+        Inicie una sesión de soporte remota de NetApp
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gestione la funcionalidad SSH en el nodo de gestión"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_mnode_ssh_management.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/es-es/hci19/docs/task_mnode_ssh_management.html">
+        Gestione la funcionalidad SSH en el nodo de gestión
+      </a></li></ul></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Apaga o enciende el sistema NetApp HCI"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/es-es/hci19/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/es-es/hci19/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Apaga o enciende el sistema NetApp HCI</div>-->
+         Apaga o enciende el sistema NetApp HCI
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Descripción general de la alimentación de NetApp HCI"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/concept_nde_hci_power_off_on.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/es-es/hci19/docs/concept_nde_hci_power_off_on.html">
+        Descripción general de la alimentación de NetApp HCI
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Apague los recursos informáticos de un sistema NetApp HCI"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_nde_hci_power_off_compute.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/es-es/hci19/docs/task_nde_hci_power_off_compute.html">
+        Apague los recursos informáticos de un sistema NetApp HCI
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Apague los recursos de almacenamiento de un sistema NetApp HCI"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_nde_hci_power_off_storage.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/es-es/hci19/docs/task_nde_hci_power_off_storage.html">
+        Apague los recursos de almacenamiento de un sistema NetApp HCI
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Activar recursos de almacenamiento para un sistema NetApp HCI"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_nde_hci_power_on_storage.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/es-es/hci19/docs/task_nde_hci_power_on_storage.html">
+        Activar recursos de almacenamiento para un sistema NetApp HCI
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Encienda los recursos informáticos para un sistema NetApp HCI"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_nde_hci_power_on_compute.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/es-es/hci19/docs/task_nde_hci_power_on_compute.html">
+        Encienda los recursos informáticos para un sistema NetApp HCI
+      </a></li></ul></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Supervise su sistema NetApp HCI con el control del cloud híbrido de NetApp"
+      data-li-level="1" 
+      class=" sidebar-folder    "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-1  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/es-es/hci19/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/es-es/hci19/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Supervise su sistema NetApp HCI con el control del cloud híbrido de NetApp</div>-->
+         Supervise su sistema NetApp HCI con el control del cloud híbrido de NetApp
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Consulte los recursos en la consola de control del cloud híbrido de NetApp"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_hcc_dashboard.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/hci19/docs/task_hcc_dashboard.html">
+        Consulte los recursos en la consola de control del cloud híbrido de NetApp
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Consulte su inventario en la página Nodes de NetApp Hybrid Cloud Control"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_hcc_nodes.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/hci19/docs/task_hcc_nodes.html">
+        Consulte su inventario en la página Nodes de NetApp Hybrid Cloud Control
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Edite la información de conexión de BMC con NetApp Hybrid Cloud Control"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_hcc_edit_bmc_info.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/hci19/docs/task_hcc_edit_bmc_info.html">
+        Edite la información de conexión de BMC con NetApp Hybrid Cloud Control
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Supervise los volúmenes en su clúster de almacenamiento con Hybrid Cloud Control de NetApp"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_hcc_volumes.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/hci19/docs/task_hcc_volumes.html">
+        Supervise los volúmenes en su clúster de almacenamiento con Hybrid Cloud Control de NetApp
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Supervise el rendimiento, la capacidad y el estado del clúster con las conexiones de Cloud Control de NetApp híbrido a Active IQ"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_hcc_activeiq.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/hci19/docs/task_hcc_activeiq.html">
+        Supervise el rendimiento, la capacidad y el estado del clúster con las conexiones de Cloud Control de NetApp híbrido a Active IQ
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Recopile registros para solucionar problemas"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_hcc_collectlogs.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/hci19/docs/task_hcc_collectlogs.html">
+        Recopile registros para solucionar problemas
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Actualice su sistema NetApp HCI versión 1.9 o 1.9P1"
+      data-li-level="1" 
+      class=" sidebar-folder    "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-1  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/es-es/hci19/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/es-es/hci19/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Actualice su sistema NetApp HCI versión 1.9 o 1.9P1</div>-->
+         Actualice su sistema NetApp HCI versión 1.9 o 1.9P1
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Información general sobre la secuencia de actualización"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/concept_hci_upgrade_overview.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/hci19/docs/concept_hci_upgrade_overview.html">
+        Información general sobre la secuencia de actualización
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Procedimientos de actualización del sistema"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/es-es/hci19/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/es-es/hci19/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Procedimientos de actualización del sistema</div>-->
+         Procedimientos de actualización del sistema
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Actualice los servicios de gestión"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_hcc_update_management_services.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/es-es/hci19/docs/task_hcc_update_management_services.html">
+        Actualice los servicios de gestión
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Actualice a la versión más reciente de HealthTools"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_upgrade_element_latest_healthtools.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/es-es/hci19/docs/task_upgrade_element_latest_healthtools.html">
+        Actualice a la versión más reciente de HealthTools
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Ejecute comprobaciones del estado del almacenamiento de Element antes de actualizar el almacenamiento"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_hcc_upgrade_element_prechecks.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/es-es/hci19/docs/task_hcc_upgrade_element_prechecks.html">
+        Ejecute comprobaciones del estado del almacenamiento de Element antes de actualizar el almacenamiento
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Actualice el software Element"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_hcc_upgrade_element_software.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/es-es/hci19/docs/task_hcc_upgrade_element_software.html">
+        Actualice el software Element
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Actualizar el firmware de almacenamiento"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_hcc_upgrade_storage_firmware.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/es-es/hci19/docs/task_hcc_upgrade_storage_firmware.html">
+        Actualizar el firmware de almacenamiento
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Actualice un nodo de gestión"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_hcc_upgrade_management_node.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/es-es/hci19/docs/task_hcc_upgrade_management_node.html">
+        Actualice un nodo de gestión
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Actualice el plugin de NetApp Element para vCenter Server"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_vcp_upgrade_plugin.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/es-es/hci19/docs/task_vcp_upgrade_plugin.html">
+        Actualice el plugin de NetApp Element para vCenter Server
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Ejecute comprobaciones de estado del nodo de computación antes de actualizar el firmware de computación"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_upgrade_compute_prechecks.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/es-es/hci19/docs/task_upgrade_compute_prechecks.html">
+        Ejecute comprobaciones de estado del nodo de computación antes de actualizar el firmware de computación
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Actualice las controladoras del nodo de computación"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_hcc_upgrade_compute_node_drivers.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/es-es/hci19/docs/task_hcc_upgrade_compute_node_drivers.html">
+        Actualice las controladoras del nodo de computación
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Actualizar el firmware del nodo de computación"
+      data-li-level="3#" 
+      class="  ie-sidebar-selected    "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/es-es/hci19/docs/task_hcc_upgrade_compute_node_firmware.html">
+        Actualizar el firmware del nodo de computación
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Automatice las actualizaciones de firmware de los nodos de computación con Ansible"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_hcc_upgrade_compute_firmware_ansible.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/es-es/hci19/docs/task_hcc_upgrade_compute_firmware_ansible.html">
+        Automatice las actualizaciones de firmware de los nodos de computación con Ansible
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Actualice los componentes de vSphere para un sistema NetApp HCI con el plugin de Element para vCenter Server"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_hci_upgrade_all_vsphere.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/hci19/docs/task_hci_upgrade_all_vsphere.html">
+        Actualice los componentes de vSphere para un sistema NetApp HCI con el plugin de Element para vCenter Server
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Amplíe su sistema NetApp HCI"
+      data-li-level="1" 
+      class=" sidebar-folder    "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-1  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/es-es/hci19/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/es-es/hci19/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Amplíe su sistema NetApp HCI</div>-->
+         Amplíe su sistema NetApp HCI
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Expandir información general"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/concept_hcc_expandoverview.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/hci19/docs/concept_hcc_expandoverview.html">
+        Expandir información general
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Amplíe los recursos de almacenamiento de NetApp HCI"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_hcc_expand_storage.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/hci19/docs/task_hcc_expand_storage.html">
+        Amplíe los recursos de almacenamiento de NetApp HCI
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Amplíe los recursos de computación de NetApp HCI"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_hcc_expand_compute.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/hci19/docs/task_hcc_expand_compute.html">
+        Amplíe los recursos de computación de NetApp HCI
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Amplíe los recursos informáticos y de almacenamiento de NetApp"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_hcc_expand_compute_and_storage.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/hci19/docs/task_hcc_expand_compute_and_storage.html">
+        Amplíe los recursos informáticos y de almacenamiento de NetApp
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Quite nodos de testigos después de expandir el clúster"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_hci_removewn.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/hci19/docs/task_hci_removewn.html">
+        Quite nodos de testigos después de expandir el clúster
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Use Rancher en NetApp HCI"
+      data-li-level="1" 
+      class=" sidebar-folder    "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-1  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/es-es/hci19/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/es-es/hci19/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Use Rancher en NetApp HCI</div>-->
+         Use Rancher en NetApp HCI
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Descripción general de rancher on NetApp HCI"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/concept_rancher_product_overview.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/hci19/docs/concept_rancher_product_overview.html">
+        Descripción general de rancher on NetApp HCI
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Conceptos"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/concept_rancher_concepts.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/hci19/docs/concept_rancher_concepts.html">
+        Conceptos
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Requisitos para Rancher en NetApp HCI"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/rancher_prereqs_overview.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/hci19/docs/rancher_prereqs_overview.html">
+        Requisitos para Rancher en NetApp HCI
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Ponga en marcha Rancher en NetApp HCI"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_rancher_deploy.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/hci19/docs/task_rancher_deploy.html">
+        Ponga en marcha Rancher en NetApp HCI
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Tareas posteriores a la implementación"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/es-es/hci19/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/es-es/hci19/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Tareas posteriores a la implementación</div>-->
+         Tareas posteriores a la implementación
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Información general de las tareas posteriores a la implementación"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/concept_rancher_post_deployment_overview.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/es-es/hci19/docs/concept_rancher_post_deployment_overview.html">
+        Información general de las tareas posteriores a la implementación
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Asegúrese de que la paridad sea compatible con Rancher"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_rancher_ensure_rancher_support_parity.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/es-es/hci19/docs/task_rancher_ensure_rancher_support_parity.html">
+        Asegúrese de que la paridad sea compatible con Rancher
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Mejore la resiliencia de los equipos virtuales Rancher"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_rancher_config_anti_affinity.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/es-es/hci19/docs/task_rancher_config_anti_affinity.html">
+        Mejore la resiliencia de los equipos virtuales Rancher
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Configurar la supervisión"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_rancher_enable_monitoring.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/es-es/hci19/docs/task_rancher_enable_monitoring.html">
+        Configurar la supervisión
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Instale Trident"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_rancher_trident.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/es-es/hci19/docs/task_rancher_trident.html">
+        Instale Trident
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Habilite la compatibilidad de Trident para clústeres de usuarios"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_trident_configure_networking.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/es-es/hci19/docs/task_trident_configure_networking.html">
+        Habilite la compatibilidad de Trident para clústeres de usuarios
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Poner en marcha aplicaciones y clústeres de usuarios"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_rancher_deploy_user_clusters.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/hci19/docs/task_rancher_deploy_user_clusters.html">
+        Poner en marcha aplicaciones y clústeres de usuarios
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Administrar Rancher en NetApp HCI"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_rancher_manage.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/hci19/docs/task_rancher_manage.html">
+        Administrar Rancher en NetApp HCI
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Monitor Rancher en NetApp HCI"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_rancher_monitor.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/hci19/docs/task_rancher_monitor.html">
+        Monitor Rancher en NetApp HCI
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Actualice Rancher en NetApp HCI"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_rancher_upgrades.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/hci19/docs/task_rancher_upgrades.html">
+        Actualice Rancher en NetApp HCI
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Retire una instalación de Rancher en NetApp HCI"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_rancher_remove_deployment.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/hci19/docs/task_rancher_remove_deployment.html">
+        Retire una instalación de Rancher en NetApp HCI
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Mantenimiento de hardware H-Series"
+      data-li-level="1" 
+      class=" sidebar-folder    "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-1  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/es-es/hci19/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/es-es/hci19/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Mantenimiento de hardware H-Series</div>-->
+         Mantenimiento de hardware H-Series
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Descripción general del mantenimiento de hardware H-Series"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_hci_hwmainoverview.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/hci19/docs/task_hci_hwmainoverview.html">
+        Descripción general del mantenimiento de hardware H-Series
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Sustituya el chasis 2U de la serie H"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_hci_hserieschassisrepl.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/hci19/docs/task_hci_hserieschassisrepl.html">
+        Sustituya el chasis 2U de la serie H
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Sustituya las unidades de alimentación CC en los nodos H615C y H610S"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_hci_dcpsurepl.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/hci19/docs/task_hci_dcpsurepl.html">
+        Sustituya las unidades de alimentación CC en los nodos H615C y H610S
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Reemplace los DIMM en los nodos de computación"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_hci_dimmcomputerepl.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/hci19/docs/task_hci_dimmcomputerepl.html">
+        Reemplace los DIMM en los nodos de computación
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Sustituya las unidades para los nodos de almacenamiento"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_hci_driverepl.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/hci19/docs/task_hci_driverepl.html">
+        Sustituya las unidades para los nodos de almacenamiento
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Sustituya los nodos H410C"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_hci_h410crepl.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/hci19/docs/task_hci_h410crepl.html">
+        Sustituya los nodos H410C
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Sustituya los nodos H410S"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_hci_h410srepl.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/hci19/docs/task_hci_h410srepl.html">
+        Sustituya los nodos H410S
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Reemplace los nodos H610C y H615C"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_hci_h610ch615crepl.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/hci19/docs/task_hci_h610ch615crepl.html">
+        Reemplace los nodos H610C y H615C
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Sustituya los nodos H610S"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_hci_h610srepl.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/hci19/docs/task_hci_h610srepl.html">
+        Sustituya los nodos H610S
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Sustituya las unidades de alimentación"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_hci_psurepl.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/hci19/docs/task_hci_psurepl.html">
+        Sustituya las unidades de alimentación
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Sustituir los interruptores SN2010, SN2100 y SN2700"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_hci_snswitches.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/hci19/docs/task_hci_snswitches.html">
+        Sustituir los interruptores SN2010, SN2100 y SN2700
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Sustituya el nodo de almacenamiento en un clúster de dos nodos"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/task_hci_2noderepl.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/es-es/hci19/docs/task_hci_2noderepl.html">
+        Sustituya el nodo de almacenamiento en un clúster de dos nodos
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Versiones anteriores"
+      data-li-level="1#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/reference_earlier_versions.html" 
+    ><a class="ie-sidebar-menuitem-1 " href="/es-es/hci19/docs/reference_earlier_versions.html">
+        Versiones anteriores
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Avisos legales"
+      data-li-level="1#" 
+      class="   "
+      dale-page-url="/docs/task_hcc_upgrade_compute_node_firmware.html" 
+      dale-entry-url="/docs/reference_notices_hci.html" 
+    ><a class="ie-sidebar-menuitem-1 " href="/es-es/hci19/docs/reference_notices_hci.html">
+        Avisos legales
+      </a></li></ul>
+</div>
+<script>
+
+  $(".ie-sidebar-button").click(function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    expandedLI = $('li.ie-sidebar-expand')
+
+    const li = $(this).closest("li");
+
+    const parentsLI = $(li).parents('li');
+
+    expandedLI.map(element => {
+      if (sidebarAccordion && !li.hasClass('ie-sidebar-expand') && jQuery.inArray(expandedLI[element], parentsLI) == -1) {
+        $(expandedLI[element]).toggleClass('ie-sidebar-expand');
+        $(expandedLI[element]).children("ul").animate({ height: 'toggle' }, 400, function () {
+          $(li).children("ul").toggleClass('ie-sidebar-open');
+
+        })
+      }
+
+    })
+
+    $(li).toggleClass('ie-sidebar-expand');
+    $(li).children("ul").animate({ height: 'toggle' }, 400, function () {
+      $(li).children("ul").toggleClass('ie-sidebar-open');
+    })
+  });
+
+
+  
+    $("li.ie-sidebar-selected").parents('ul').toggleClass("ie-sidebar-open");
+    $("li.ie-sidebar-selected").toggleClass("ie-sidebar-expand")
+    $("ul.ie-sidebar-open").parent().toggleClass("ie-sidebar-expand");
+    $("li.ie-sidebar-selected").children('ul').toggleClass("ie-sidebar-open")
+  
+  
+</script>
+    </div>
+</div>
+<script>
+
+    
+    let sidebarScrollTopPosition = 0;
+    $("#ie-new-toc").on("scroll", function () {
+        if (sidebarScrollTopPosition == 0) {
+            $.cookie("sidebarScroll", $("#ie-new-toc").scrollTop(), {
+                path: "/es-es/hci19"
+            });
+        }
+
+        if ($("#ie-new-toc").scrollTop() > 0) {
+            $('#ie-product-identity-lockup').addClass('ie-addShadow');
+        } else {
+            $('#ie-product-identity-lockup').removeClass('ie-addShadow');
+        }
+    });
+
+    $(function () {
+        if ($.cookie("sidebarScroll")) {
+            $("#ie-new-toc").scrollTop($.cookie("sidebarScroll"));
+        }
+    });
+
+    function setSidebarBottom() {
+        const footerGap = PXinViewport($(".n-footer"));
+        document.getElementById("ie-new-sidebar").style.bottom = Math.max(0, footerGap) + "px";
+    }
+
+    window.onscroll = () => {
+        setSidebarBottom();
+    };
+
+    $("#sidebar-collapse").click(function (e) {
+        const sidebarWidth = $("#ie-new-sidebar").width() - $("#ie-new-sidebar-collapse").width();
+        e.preventDefault();
+        const width = $(".ie-content-pane").width();
+        const marginLeft = parseInt($(".ie-content-pane").css('marginLeft'));
+
+        if ($.cookie("sidebarScroll")) {
+            sidebarScrollTopPosition = $.cookie("sidebarScroll");
+        }
+
+        $("#ie-new-sidebar").animate({ width: 'toggle' }, 350, function () {
+            $("#ie-new-sidebar-collapse").show();
+            $("#ie-new-sidebar").removeClass("open")
+            $("#ie-new-sidebar").addClass("close")
+            $("#ie-new-sidebar").removeAttr("style")
+        });
+        $(".ie-content-pane").animate({ width: (width + sidebarWidth), marginLeft: (marginLeft - sidebarWidth) }, 350, function () {
+            resizeContent()
+        })
+
+    });
+    $("#sidebar-expand").click(function (e) {
+        const sidebarWidth = $("#ie-new-sidebar").width() - $("#ie-new-sidebar-collapse").width();
+        e.preventDefault();
+        const width = $(".ie-content-pane").width();
+        const marginLeft = parseInt($(".ie-content-pane").css('marginLeft'));
+
+        $("#ie-new-sidebar").animate({ width: 'toggle' }, 250, function () {
+            $('#ie-new-sidebar').css('display', 'flex');
+            $("#ie-new-sidebar-collapse").hide();
+            $("#ie-new-sidebar").removeClass("close")
+            $("#ie-new-sidebar").addClass("open")
+            setSidebarBottom();
+
+            if (sidebarScrollTopPosition != 0) {
+                $.cookie("sidebarScroll", sidebarScrollTopPosition, {
+                    path: "/es-es/hci19"
+                })
+                $("#ie-new-toc").scrollTop(sidebarScrollTopPosition);
+                sidebarScrollTopPosition = 0;
+            }
+        });
+        $(".ie-content-pane").animate({ width: (width - sidebarWidth), 'marginLeft': (marginLeft + sidebarWidth) }, 250, function () {
+            resizeContent()
+        })
+    });
+    function resizeContent() {
+        const sidebarWidth = $("#ie-new-sidebar").width() - $("#ie-new-sidebar-collapse").width();
+        const rightNavbarVisible =  $("#ie-right-navbar").css('display') && $("#ie-right-navbar").css('display') != 'none';
+        const sidebarVisible = $("#ie-new-sidebar").css('display') != 'none';
+        const rightNavbarWidth = $("#ie-right-navbar").width();
+        const rightNavbarCollapseWidth = $("#ie-right-navbar-collapse").width();
+        const rightNavbarCollapseVisible = $("#ie-right-navbar-collapse").css('display') && $("#ie-right-navbar-collapse").css('display') != 'none';
+        
+        if (rightNavbarVisible && sidebarVisible) {
+            $(".ie-content-pane").width(`calc(100% - ${sidebarWidth + rightNavbarWidth}px)`)
+            $(".ie-content-pane").css('marginLeft', `${sidebarWidth}px`)
+        } else if (sidebarVisible) {
+            $(".ie-content-pane").css('marginLeft', `${sidebarWidth}px`)
+            if (rightNavbarCollapseVisible) {
+                $(".ie-content-pane").width(`calc(100% - ${sidebarWidth + rightNavbarCollapseWidth}px)`)
+            } else {
+                $(".ie-content-pane").width(`calc(100% - ${$("#ie-new-sidebar").width()}px)`)
+            }
+
+        } else if (rightNavbarVisible) {
+            $(".ie-content-pane").css('marginLeft', `${$("#ie-new-sidebar-collapse").width()}px`)
+            $(".ie-content-pane").width(`calc(100% - ${rightNavbarWidth}px)`)
+        } else {
+            $(".ie-content-pane").css('marginLeft', `${$("#ie-new-sidebar-collapse").width()}px`)
+            if (rightNavbarCollapseVisible) {
+                $(".ie-content-pane").width(`calc(100% - ${rightNavbarCollapseWidth}px)`);
+            } else {
+                $(".ie-content-pane").width(`calc(100% - ${$("#ie-new-sidebar-collapse").width()}px) `);
+            }
+            
+        }
+    }
+    $(window).on("resize load", function () {
+        setSidebarBottom();
+        resizeContent()
+    });
+
+
+</script>
+
+<div class="ie-content-pane ie-component-detail-content ie-component-detail-content--show-code">
+    <!-- Begin of page container --><article class="page-content" id="main">
+      <!-- include utility.html -->
+      
+  <div class="ie-info-disclaimer" id="downlevel-banner">
+    <span>
+      <div class="ie-info-disclaimer-container">
+        <div class="ie-info-disclaimer-icon">
+          <img src="/es-es/hci19/images/notification-icons.svg" class="luci-icon" alt="" />
+        </div>
+        <div class="ie-info-disclaimer-content">
+          <span>Hay disponible una nueva versión de este producto.</span><br>
+        </div>
+        <div style="clear:both;"></div>
+      </div>
+    </span>
+  </div>
+<div class="ie-info-disclaimer">
+    <span>
+      <div class="ie-info-disclaimer-container">
+        <div class="ie-info-disclaimer-icon">
+          <img src="/es-es/hci19/images/notification-icons.svg" class="luci-icon" alt="" />
+        </div>
+        <div class="ie-info-disclaimer-content">
+          <span> Se proporciona el idioma español mediante traducción automática para su comodidad. En caso de alguna inconsistencia, el inglés precede al español. </span>
+        </div>
+        <div style="clear:both;"></div>
+      </div>
+    </span>
+  </div><div class="ie-component-detail-heading-wrap">
+  <h1 class="ie-component-detail-heading">Actualizar el firmware del nodo de computación</h1>
+</div>
+
+<div id="ie-byline">
+  
+<div class="page-details">
+    
+        
+            <time datetime="2023-03-27 18:43:17 +0000">03/27/2023</time>
+        
+    
+    
+        <span>Colaboradores
+        </span>
+    
+    
+</div>
+<div class="page-controls">
+    <div id="contribute-dropdown" class="custom-dropdown custom-dropdown-contrib" >
+        <div class="custom-dropdown-select custom-dropdown-select-contrib">
+        <span class="contrib-name"><img src="/es-es/hci19/images/discuss-sm.svg" alt="" class="github-icon" />Sugerir cambios</span>
+        <img src="/es-es/hci19/images/dropdown-arrow.svg" alt="" class="custom-icon chevrondown invisible" />
+        <img src="/es-es/hci19/images/dropdown-arrow.svg" alt="" class="custom-icon chevronup" />
+        </div>
+        <ul class="custom-dropdown-menu suggested-changes-dropdown"><li>
+                <a target="_blank" href="https://github.com/NetAppDocs/hci19.es-es/issues/new?template=new-from-page.yml&page-url=https://docs.netapp.com/es-es/hci19/docs/task_hcc_upgrade_compute_node_firmware.html&page-title=Actualizar el firmware del nodo de computación" class="page-nav-contribute-link" role="button">Solicitar cambios en el documento</a>
+            </li><li> 
+                <a target="_blank" href="https://github.com/NetAppDocs/hci19/blob/main/docs/task_hcc_upgrade_compute_node_firmware.adoc" class="page-nav-contribute-link" role="button">Editar esta página</a>
+            </li><li><a target="_blank" href="https://docs.netapp.com/us-en/contribute/" class="page-nav-contribute-link"  >Descubre cómo colaborar</a></li>
+        </ul>
+    </div>
+    <div id="pdf-control-container">
+        <div class="n-pdf-header">
+            <a id="toggleButtonPdf" class="n-pdf-button" type="button">
+                <img class="adobe-icon" src="/es-es/hci19/images/pdf-icon.png" alt="" width="16" height="16"/>PDF<img src="/es-es/hci19/images/dropdown-arrow.svg" class="custom-icon" alt="" />
+            </a>
+        </div>
+        <div class="n-pdf-body-container">
+            <ul id="toggleContainerPdf" class="n-pdf-body" style="display:none;"><li class="pdf-ux-container">
+                    
+                    
+                    
+                    <a target="_blank" class="pdf-download-link" href="/es-es/hci19/pdfs/fullsite-sidebar/Documentación_de_NetApp_HCI.pdf" >
+                    <img src="/es-es/hci19/images/pdf-icon.png" alt="" width="16" height="16"/>PDF de este sitio de documentos</a>
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/es-es/hci19/pdfs/sidebar/Notas_de_la_versión.pdf" 
+            
+          >
+            <img src="/es-es/hci19/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Notas de la versión
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/es-es/hci19/pdfs/sidebar/Conceptos.pdf" 
+            
+          >
+            <img src="/es-es/hci19/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Conceptos
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/es-es/hci19/pdfs/sidebar/Reducida.pdf" 
+            
+          >
+            <img src="/es-es/hci19/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Reducida
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/es-es/hci19/pdfs/sidebar/Requisitos_y_tareas_previas_a_la_implementación.pdf" 
+            
+          >
+            <img src="/es-es/hci19/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Requisitos y tareas previas a la implementación
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/es-es/hci19/pdfs/sidebar/Configuración_de_red.pdf" 
+            
+          >
+            <img src="/es-es/hci19/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Configuración de red
+          </a>
+          
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/es-es/hci19/pdfs/sidebar/Empiece_a_usar_NetApp_HCI.pdf" 
+            
+          >
+            <img src="/es-es/hci19/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Empiece a usar NetApp HCI
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/es-es/hci19/pdfs/sidebar/Ponga_en_marcha_NetApp_HCI.pdf" 
+            
+          >
+            <img src="/es-es/hci19/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Ponga en marcha NetApp HCI
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/es-es/hci19/pdfs/sidebar/Acceda_al_motor_de_implementación_de_NetApp.pdf" 
+            
+          >
+            <img src="/es-es/hci19/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Acceda al motor de implementación de NetApp
+          </a>
+          
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/es-es/hci19/pdfs/sidebar/Configure_VMware_vSphere.pdf" 
+            
+          >
+            <img src="/es-es/hci19/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Configure VMware vSphere
+          </a>
+          
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/es-es/hci19/pdfs/sidebar/Selección_de_inventario.pdf" 
+            
+          >
+            <img src="/es-es/hci19/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Selección de inventario
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/es-es/hci19/pdfs/sidebar/Tareas_posteriores_a_la_implementación.pdf" 
+            
+          >
+            <img src="/es-es/hci19/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Tareas posteriores a la implementación
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/es-es/hci19/pdfs/sidebar/Gestione_NetApp_HCI.pdf" 
+            
+          >
+            <img src="/es-es/hci19/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Gestione NetApp HCI
+          </a>
+          
+
+
+
+
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/es-es/hci19/pdfs/sidebar/Gestione_el_almacenamiento_NetApp_HCI.pdf" 
+            
+          >
+            <img src="/es-es/hci19/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Gestione el almacenamiento NetApp HCI
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/es-es/hci19/pdfs/sidebar/Trabaje_con_el_nodo_de_gestión.pdf" 
+            
+          >
+            <img src="/es-es/hci19/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Trabaje con el nodo de gestión
+          </a>
+          
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/es-es/hci19/pdfs/sidebar/Instale_o_recupere_un_nodo_de_gestión.pdf" 
+            
+          >
+            <img src="/es-es/hci19/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Instale o recupere un nodo de gestión
+          </a>
+          
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/es-es/hci19/pdfs/sidebar/Trabaje_con_la_interfaz_de_usuario_del_nodo_de_gestión.pdf" 
+            
+          >
+            <img src="/es-es/hci19/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Trabaje con la interfaz de usuario del nodo de gestión
+          </a>
+          
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/es-es/hci19/pdfs/sidebar/Trabaje_con_la_API_DE_REST_del_nodo_de_gestión.pdf" 
+            
+          >
+            <img src="/es-es/hci19/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Trabaje con la API DE REST del nodo de gestión
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/es-es/hci19/pdfs/sidebar/Gestión_de_conexiones_de_soporte.pdf" 
+            
+          >
+            <img src="/es-es/hci19/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Gestión de conexiones de soporte
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/es-es/hci19/pdfs/sidebar/Apaga_o_enciende_el_sistema_NetApp_HCI.pdf" 
+            
+          >
+            <img src="/es-es/hci19/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Apaga o enciende el sistema NetApp HCI
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/es-es/hci19/pdfs/sidebar/Supervise_su_sistema_NetApp_HCI_con_el_control_del_cloud_híbrido_de_NetApp.pdf" 
+            
+          >
+            <img src="/es-es/hci19/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Supervise su sistema NetApp HCI con el control del cloud híbrido de NetApp
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/es-es/hci19/pdfs/sidebar/Actualice_su_sistema_NetApp_HCI_versión_1_9_o_1_9P1.pdf" 
+            
+          >
+            <img src="/es-es/hci19/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Actualice su sistema NetApp HCI versión 1.9 o 1.9P1
+          </a>
+          
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/es-es/hci19/pdfs/sidebar/Procedimientos_de_actualización_del_sistema.pdf" 
+            
+          >
+            <img src="/es-es/hci19/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Procedimientos de actualización del sistema
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <ul class="subfolders" id="pdf-remove" style="display:none;"><li class="active"></li></ul>
+  
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/es-es/hci19/pdfs/sidebar/Amplíe_su_sistema_NetApp_HCI.pdf" 
+            
+          >
+            <img src="/es-es/hci19/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Amplíe su sistema NetApp HCI
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/es-es/hci19/pdfs/sidebar/Use_Rancher_en_NetApp_HCI.pdf" 
+            
+          >
+            <img src="/es-es/hci19/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Use Rancher en NetApp HCI
+          </a>
+          
+
+
+
+
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/es-es/hci19/pdfs/sidebar/Tareas_posteriores_a_la_implementación.pdf" 
+            
+          >
+            <img src="/es-es/hci19/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Tareas posteriores a la implementación
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/es-es/hci19/pdfs/sidebar/Mantenimiento_de_hardware_H_Series.pdf" 
+            
+          >
+            <img src="/es-es/hci19/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Mantenimiento de hardware H-Series
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+</li></ul>
+            <div class="zip-pdf-link-container" style="display: none;">   
+                <a href="#" id="zipPdf">
+                <img src="/es-es/hci19/images/pdf-zip.png" alt="" width="16" height="16"/>
+                <pre>Recopilación de documentos PDF independientes<span class="zip-size"></span></pre>
+                </a><div id="zip-link-popup" class="hide">
+    <div class="inner-modal">
+        <div class="downloading-progress">
+            <div class="spinner"></div>
+            <h1>Creating your file...</h1>
+            <div>This may take a few minutes. Thanks for your patience.</div>
+            <button class="cancel-download-btn" type="button">Cancel</button>
+        </div>
+        <div class="download-complete hide">
+            <div class="done-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>
+            </div>
+            <div>Your file is ready</div>
+            <button class="cancel-download-btn" type="button">OK</button>
+        </div>
+    </div>
+</div>
+<script>
+    $(".cancel-download-btn").click(function(){
+        $("#zip-link-popup").addClass("hide");
+        $("#zip-link-popup .downloading-progress").removeClass("hide");
+        $("#zip-link-popup .download-complete").addClass("hide");
+    });
+</script></div>
+        </div>
+    </div>        
+<script>
+$("#toggleContainerPdf li.active:last-child").parents('ul.subfolders').toggle('display');
+$("#toggleButtonPdf").on('click', function(e){ 
+    e.stopPropagation();
+    $("#toggleContainerPdf").toggle('display');
+    $(".n-pdf-body-container .zip-pdf-link-container").toggle('display');
+});
+
+//hide is by clicking outside pdfcontainer
+$(document).on('click', function (e) {
+    if ($('#toggleContainerPdf').is(':visible') && !$('.n-pdf-body-container').is(e.target) && !$('.n-pdf-body-container').has(e.target).length)  {
+        
+        $("#toggleContainerPdf").toggle('display');
+        $(".n-pdf-body-container .zip-pdf-link-container").toggle('display');
+        $("#toggleButtonPdf").removeClass("active");
+    }
+});
+</script>
+<script>
+    function getPdfLocation() {
+        const pdfLocation = window.scrollX + document.querySelector('#pdf-control-container').getBoundingClientRect().left
+        if (pdfLocation < 450) {
+            $(".n-pdf-body-container").addClass("block")
+        } else {
+            $(".n-pdf-body-container").removeClass("block")
+        }
+    
+    }
+    $( window ).on( "resize", function() {
+        getPdfLocation()
+} );
+</script>
+<script>
+    const pdfButtonWidth =  $(".n-pdf-header").width();
+    const pdfMenuWidth = $(".n-pdf-body-container").width();
+    $(".n-pdf-body-container").css('margin-left', `calc(${pdfButtonWidth - pdfMenuWidth}px)`);
+</script>
+</div>
+
+    
+
+</div>
+
+
+
+
+<div class="content-to-index">
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph lead">
+<p>Para los nodos de computación H-Series, puede actualizar el firmware para componentes de hardware como BMC, BIOS y NIC. Para actualizar el firmware de los nodos de computación, se puede usar la interfaz de usuario de control de cloud híbrido de NetApp, la API de REST, una unidad USB con la imagen de firmware más reciente o la interfaz de usuario de BMC.</p>
+</div>
+<div class="paragraph">
+<p>Después de la actualización, el nodo de computación arranca en ESXi y funciona como antes, y se conserva la configuración.</p>
+</div>
+<div class="ulist">
+<div class="title">Lo que necesitará</div>
+<ul>
+<li>
+<p><strong>Controladores de computación</strong>: Ha actualizado los controladores de nodo de computación. Si los controladores del nodo de computación no son compatibles con el nuevo firmware, la actualización no se iniciará. Consulte <a href="https://mysupport.netapp.com/matrix" target="_blank" rel="noopener">"Herramienta de matriz de interoperabilidad (IMT)"</a> para obtener información sobre compatibilidad de controladores y firmware, y compruebe la última <a href="rn_relatedrn.html">"notas de la versión del firmware del nodo de computación"</a> para obtener información importante sobre el controlador y el firmware de última hora.</p>
+</li>
+<li>
+<p><strong>Privilegios de administrador</strong>: Dispone de permisos de administrador de clúster y administrador de BMC para realizar la actualización.</p>
+</li>
+<li>
+<p><strong>Puertos del sistema</strong>: Si utiliza NetApp Hybrid Cloud Control para actualizaciones, se ha asegurado de que los puertos necesarios están abiertos. Consulte <a href="hci_prereqs_required_network_ports.html">"Puertos de red"</a> si quiere más información.</p>
+</li>
+<li>
+<p><strong>Versiones mínimas de BMC y BIOS</strong>: El nodo que pretende actualizar mediante el control del cloud híbrido de NetApp cumple con los siguientes requisitos mínimos:</p>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Modelo</th>
+<th class="tableblock halign-left valign-top">Versión mínima del BMC</th>
+<th class="tableblock halign-left valign-top">Versión mínima del BIOS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">H410C​</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Todas las versiones compatibles (no se requiere actualización)​</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Todas las versiones compatibles (no se requiere actualización)​</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">H610C​</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3.96.07​</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3B01</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">H615C​</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4.68.07</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3B08.CO ​ ​</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/hci19/images/note.svg" alt="Nota">
+</td>
+<td class="content">
+Los nodos de computación H615C deben actualizar el firmware de BMC a la versión 4.68 mediante el <a href="rn_compute_firmware_2.27.html">"paquete de firmware de computación 2.27"</a> Hacer que el control del cloud híbrido de NetApp pueda realizar futuras actualizaciones de firmware.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/hci19/images/note.svg" alt="Nota">
+</td>
+<td class="content">
+Para obtener una matriz completa de firmware y firmware de controlador para su hardware, consulte <a href="firmware_driver_versions.html">"Versiones de firmware y controlador ESXi compatibles"</a>.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p><strong>Orden de inicio del BIOS</strong>: Cambie manualmente el orden de inicio en la configuración del BIOS para que cada nodo se asegure <code>USB CD/DVD</code> aparece en la lista de arranque. Vea esto <a href="https://kb.netapp.com/Advice_and_Troubleshooting/Hybrid_Cloud_Infrastructure/NetApp_HCI/Known_issues_and_workarounds_for_Compute_Node_upgrades#BootOrder" target="_blank" rel="noopener">"artículo"</a> si quiere más información.</p>
+</li>
+<li>
+<p><strong>Credenciales de BMC</strong>: Actualice las credenciales que NetApp Hybrid Cloud Control utiliza para conectarse al nodo de computación BMC. Puede hacerlo utilizando el control del cloud híbrido de NetApp <a href="task_hcc_edit_bmc_info.html#use-netapp-hybrid-cloud-control-to-edit-bmc-information">"UI"</a> o. <a href="task_hcc_edit_bmc_info.html#use-the-rest-api-to-edit-bmc-information">"API"</a>. La actualización de la información de BMC antes de actualizar el inventario y garantiza que los servicios de los nodos de gestión conozcan todos los parámetros de hardware necesarios para completar la actualización.</p>
+</li>
+<li>
+<p><strong>Medios conectados</strong>: Desconecte cualquier USB físico o ISO antes de iniciar una actualización del nodo de computación.</p>
+</li>
+<li>
+<p><strong>Consola KVM ESXi</strong>: Cierre todas las sesiones abiertas Serial-over-LAN (sol) y las sesiones activas KVM en la interfaz de usuario de BMC antes de iniciar una actualización de nodo de computación.</p>
+</li>
+<li>
+<p><strong>Requisitos del nodo testigo</strong>: En clústeres de almacenamiento de dos y tres nodos, uno <a href="concept_hci_nodes.html">"Nodo de testimonio"</a> Debe ejecutarse en todo momento en la instalación de NetApp HCI.</p>
+</li>
+<li>
+<p><strong>Verificación del estado del nodo de computación</strong>: Ha comprobado que el nodo está listo para actualizarse. Consulte <a href="task_upgrade_compute_prechecks.html">"Ejecute comprobaciones de estado del nodo de computación antes de actualizar el firmware de computación"</a>.</p>
+</li>
+<li>
+<p><strong>Contrato de licencia para el usuario final (CLUF)</strong>: A partir de los servicios de administración 2.20.69, debe aceptar y guardar el CLUF antes de utilizar la UI o API de control de cloud híbrido de NetApp para actualizar el firmware del nodo de computación:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Abra la dirección IP del nodo de gestión en un navegador web:</p>
+<div class="listingblock">
+<div class="content">
+<pre>https://&lt;ManagementNodeIP&gt;</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Inicie sesión en Hybrid Cloud Control de NetApp proporcionando las credenciales de administrador del clúster de almacenamiento.</p>
+</li>
+<li>
+<p>Seleccione <strong>Actualizar</strong> cerca de la parte superior derecha de la interfaz.</p>
+</li>
+<li>
+<p>Aparece el EULA. Desplácese hacia abajo, seleccione <strong>Acepto para actualizaciones actuales y futuras</strong> y seleccione <strong>Guardar</strong>.</p>
+</li>
+</ol>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<div class="title">Acerca de esta tarea</div>
+<p>En los entornos de producción, actualice el firmware en un nodo de computación a la vez.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/hci19/images/note.svg" alt="Nota">
+</td>
+<td class="content">
+El host ESXi debe estar fuera de modo de bloqueo antes de ejecutar una comprobación de estado y continuar con la actualización del firmware. Consulte <a href="https://kb.netapp.com/Advice_and_Troubleshooting/Hybrid_Cloud_Infrastructure/NetApp_HCI/How_to_disable_lockdown_mode_on_ESXi_host" target="_blank" rel="noopener">"Cómo deshabilitar el modo de bloqueo en un host ESXi"</a> y.. <a href="https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.security.doc/GUID-F8F105F7-CF93-46DF-9319-F8991839D265.html" target="_blank" rel="noopener">"Comportamiento del modo de bloqueo de VMware"</a> si quiere más información.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Para actualizaciones de la API o la interfaz de usuario de control de cloud híbrido de NetApp, el host ESXi se colocará automáticamente en modo de mantenimiento durante el proceso de actualización si tiene la función DRS y la licencia necesaria. El nodo se reiniciará y una vez que finalice el proceso de actualización, el host ESXi se despondrá del modo de mantenimiento. Para las opciones de interfaz de usuario de USB y BMC, deberá colocar el host ESXi en modo de mantenimiento manualmente, tal y como se describe en cada procedimiento.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/hci19/images/note.svg" alt="Nota">
+</td>
+<td class="content">
+Antes de la actualización, compruebe la versión actual del controlador ESXi. Si el conductor no está actualizado, actualice primero el controlador. A continuación, actualice el firmware de computación para los nodos de computación.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<div class="title">Opciones de actualización</div>
+<p>Elija la opción que sea relevante para su situación de actualización:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#utilice-la-interfaz-de-usuario-de-cloud-control-de-netapp-para-actualizar-un-nodo-de-computación">Utilice la interfaz de usuario de Cloud Control de NetApp para actualizar un nodo de computación</a> (Recomendado)</p>
+</li>
+<li>
+<p><a href="#utilice-la-api-de-control-de-cloud-híbrido-de-netapp-para-actualizar-un-nodo-de-computación">Utilice la API de control de cloud híbrido de NetApp para actualizar un nodo de computación</a></p>
+</li>
+<li>
+<p><a href="#utilice-una-unidad-usb-expuesta-con-el-paquete-de-firmware-de-computación-más-reciente">Utilice una unidad USB expuesta con el paquete de firmware de computación más reciente</a></p>
+</li>
+<li>
+<p><a href="#usar-la-interfaz-de-usuario-ui-de-la-controladora-de-gestión-de-placa-base-bmc">Usar la interfaz de usuario (UI) de la controladora de gestión de placa base (BMC)</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="utilice-la-interfaz-de-usuario-de-cloud-control-de-netapp-para-actualizar-un-nodo-de-computación">Utilice la interfaz de usuario de Cloud Control de NetApp para actualizar un nodo de computación</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A partir de los servicios de gestión 2.14, es posible actualizar un nodo de computación mediante la interfaz de usuario de control de cloud híbrido de NetApp. En la lista de nodos, debe seleccionar el nodo que desea actualizar. La ficha <strong>versiones actuales</strong> muestra las versiones actuales del firmware y la ficha <strong>versiones propuestas</strong> muestra las versiones de actualización disponibles, si las hay.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/hci19/images/tip.svg" alt="Consejo">
+</td>
+<td class="content">
+Para una actualización correcta, compruebe que la comprobación del estado del clúster de vSphere se haya realizado correctamente.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/hci19/images/note.svg" alt="Nota">
+</td>
+<td class="content">
+Actualizar el NIC, el BIOS y el BMC pueden tardar aproximadamente 60 minutos por nodo en función de la velocidad de la conectividad de red entre el nodo de gestión y el host BMC.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/hci19/images/note.svg" alt="Nota">
+</td>
+<td class="content">
+Ya no se admite el uso de la interfaz de usuario de NetApp Hybrid Cloud Control para actualizar el firmware de computación en los nodos de computación H300E/H500E/H700E. Para actualizar, use un <a href="#manual_method_USB">Unidad USB</a> o la <a href="#manual_method_BMC">IU DE BMC</a> para montar el bundle de firmware de computación.
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<div class="title">Lo que necesitará</div>
+<ul>
+<li>
+<p>Si el nodo de gestión no está conectado a Internet, se descargó el paquete de firmware de computación del <a href="https://mysupport.netapp.com/site/products/all/details/netapp-hci/downloads-tab/download/62542/Compute_Firmware_Bundle" target="_blank" rel="noopener">"Sitio de soporte de NetApp"</a>.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/hci19/images/note.svg" alt="Nota">
+</td>
+<td class="content">
+Debe extraer el <code>TAR.GZ</code> archivo a <code>TAR</code> y, a continuación, extraiga el <code>TAR</code> archivo al bundle de firmware de computación.
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Pasos</div>
+<ol class="arabic">
+<li>
+<p>Abra la dirección IP del nodo de gestión en un navegador web:</p>
+<div class="listingblock">
+<div class="content">
+<pre>https://&lt;ManagementNodeIP&gt;</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Inicie sesión en Hybrid Cloud Control de NetApp proporcionando las credenciales de administrador del clúster de almacenamiento.</p>
+</li>
+<li>
+<p>Seleccione <strong>Actualizar</strong> cerca de la parte superior derecha de la interfaz.</p>
+</li>
+<li>
+<p>En la página <strong>actualizaciones</strong>, seleccione <strong>firmware de computación</strong>.</p>
+</li>
+<li>
+<p>Seleccione el clúster que desea actualizar.</p>
+<div class="paragraph">
+<p>Verá los nodos del clúster junto con las versiones de firmware actuales y las versiones más recientes, si están disponibles para su actualización.</p>
+</div>
+</li>
+<li>
+<p>Seleccione <strong>examinar</strong> para cargar el paquete de firmware de computación que descargó de <a href="https://mysupport.netapp.com/site/products/all/details/netapp-hci/downloads-tab" target="_blank" rel="noopener">"Sitio de soporte de NetApp"</a>.</p>
+</li>
+<li>
+<p>Espere a que finalice la carga. Una barra de progreso muestra el estado de la carga.</p>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/hci19/images/tip.svg" alt="Consejo">
+</td>
+<td class="content">
+La carga del archivo se realizará en segundo plano si se desplaza fuera de la ventana del explorador.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Se muestra un mensaje en pantalla después de que el archivo se haya cargado y validado correctamente. La validación puede tardar varios minutos.</p>
+</div>
+</li>
+<li>
+<p>Seleccione el bundle de firmware de computación.</p>
+</li>
+<li>
+<p>Seleccione <strong>Iniciar actualización</strong>.</p>
+<div class="paragraph">
+<p>Después de seleccionar <strong>Iniciar actualización</strong>, la ventana muestra comprobaciones de estado fallidas, si las hay.</p>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/hci19/images/caution.svg" alt="Precaución">
+</td>
+<td class="content">
+La actualización no se puede pausar una vez que se inicia. El firmware se actualizará secuencialmente en el siguiente orden: NIC, BIOS y BMC. No inicie sesión en la interfaz de usuario del BMC durante la actualización. Al iniciar sesión en el BMC se finaliza la sesión de control de nube híbrida en serie en LAN (sol) que supervisa el proceso de actualización.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Si las comprobaciones de estado del clúster o del nodo pasan con advertencias, pero sin fallos críticos, verá <strong>preparado para actualizarse</strong>. Seleccione <strong>Actualizar nodo</strong>.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/hci19/images/note.svg" alt="Nota">
+</td>
+<td class="content">
+Mientras la actualización está en curso, puede salir de la página y volver a ella más tarde para continuar supervisando el progreso. Durante la actualización, la interfaz de usuario muestra varios mensajes acerca del estado de la actualización.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/hci19/images/caution.svg" alt="Precaución">
+</td>
+<td class="content">
+Al actualizar el firmware en los nodos de computación H610C y H615C, no abra la consola de serie en LAN (sol) a través de la interfaz de usuario web de BMC. Esto puede provocar un error en la actualización.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>La interfaz de usuario muestra un mensaje una vez completada la actualización. Es posible descargar registros una vez completada la actualización. Para obtener más información sobre los distintos cambios de estado de actualización, consulte <a href="#cambios-de-estado-de-actualización">Cambios de estado de actualización</a>.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/hci19/images/tip.svg" alt="Consejo">
+</td>
+<td class="content">
+Si se produce un fallo durante la actualización, el control de cloud híbrido de NetApp reinicia el nodo, lo desconecta del modo de mantenimiento y muestra el estado del fallo con un enlace al registro de errores. Puede descargar el registro de errores, que contiene instrucciones específicas o vínculos a artículos de la base de conocimientos, para diagnosticar y corregir cualquier problema. Para obtener información adicional sobre los problemas de actualización del firmware de los nodos de computación mediante el control de cloud híbrido de NetApp, consulte este tema <a href="https://kb.netapp.com/Advice_and_Troubleshooting/Hybrid_Cloud_Infrastructure/NetApp_HCI/Known_issues_and_workarounds_for_Compute_Node_upgrades" target="_blank" rel="noopener">"KB"</a> artículo.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="cambios-de-estado-de-actualización">Cambios de estado de actualización</h3>
+<div class="paragraph">
+<p>A continuación, se muestran los distintos estados que la interfaz de usuario muestra antes, durante y después del proceso de actualización:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Estado de actualización</th>
+<th class="tableblock halign-left valign-top">Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nodo con errores una o varias comprobaciones de estado. Expanda para ver los detalles.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Error en una o más comprobaciones del estado.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Error</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Se produjo un error durante la actualización. Puede descargar el registro de errores y enviarlo al soporte de NetApp.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No se puede detectar</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Este estado se muestra si el control de cloud híbrido de NetApp no puede consultar el nodo de computación cuando el activo de nodo de computación no tiene la etiqueta de hardware.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Listo para actualizarse.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Todas las comprobaciones de estado se han pasado correctamente y el nodo está listo para actualizarse.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Se produjo un error durante la actualización.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">La actualización genera esta notificación cuando se produce un error grave. Descargue los registros seleccionando el enlace <strong>Descargar registros</strong> para ayudar a resolver el error. Puede intentar actualizar de nuevo después de resolver el error.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">La actualización del nodo está en curso.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">La actualización está en curso. Una barra de progreso muestra el estado de la actualización.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="utilice-la-api-de-control-de-cloud-híbrido-de-netapp-para-actualizar-un-nodo-de-computación">Utilice la API de control de cloud híbrido de NetApp para actualizar un nodo de computación</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Puede utilizar las API para actualizar cada nodo de computación en un clúster a la versión de firmware más reciente. Puede utilizar una herramienta de automatización que prefiera para ejecutar las API. El flujo de trabajo de API que se documenta aquí, utiliza la interfaz de usuario de API DE REST disponible en el nodo de gestión como ejemplo.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/hci19/images/note.svg" alt="Nota">
+</td>
+<td class="content">
+Ya no se admite el uso de la interfaz de usuario de NetApp Hybrid Cloud Control para actualizar el firmware de computación en los nodos de computación H300E/H500E/H700E. Para actualizar, use un <a href="#manual_method_USB">Unidad USB</a> o la <a href="#manual_method_BMC">IU DE BMC</a> para montar el bundle de firmware de computación.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<div class="title">Lo que necesitará</div>
+<p>Los activos de nodos de computación, incluidos los activos de hardware y vCenter, deben conocer los activos de los nodos de gestión. Puede usar las API del servicio de inventario para verificar activos (<code><a href="https://&lt;ManagementNodeIP&gt;/inventory/1/" class="bare">https://&lt;ManagementNodeIP&gt;/inventory/1/</a></code>).</p>
+</div>
+<div class="olist arabic">
+<div class="title">Pasos</div>
+<ol class="arabic">
+<li>
+<p>Vaya al software NetApp HCI <a href="https://mysupport.netapp.com/site/products/all/details/netapp-hci/downloads-tab/download/62542/Compute_Firmware_Bundle" target="_blank" rel="noopener">"descargue la página"</a> y descargue el paquete de firmware de computación más reciente en un dispositivo al que se pueda acceder el nodo de gestión.</p>
+</li>
+<li>
+<p>Cargue el paquete de firmware de computación en el nodo de gestión:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Abra la interfaz de usuario de LA API DE REST del nodo de gestión en el nodo de gestión:</p>
+<div class="listingblock">
+<div class="content">
+<pre>https://&lt;ManagementNodeIP&gt;/package-repository/1/</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Seleccione <strong>autorizar</strong> y complete lo siguiente:</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Introduzca el nombre de usuario y la contraseña del clúster.</p>
+</li>
+<li>
+<p>Introduzca el ID de cliente as <code>mnode-client</code>.</p>
+</li>
+<li>
+<p>Seleccione <strong>autorizar</strong> para iniciar una sesión.</p>
+</li>
+<li>
+<p>Cierre la ventana de autorización.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>En la interfaz de usuario DE LA API DE REST, seleccione <strong>POST /packages</strong>.</p>
+</li>
+<li>
+<p>Seleccione <strong>probar</strong>.</p>
+</li>
+<li>
+<p>Seleccione <strong>Browse</strong> y seleccione el paquete de firmware de computación.</p>
+</li>
+<li>
+<p>Seleccione <strong>Ejecutar</strong> para iniciar la carga.</p>
+</li>
+<li>
+<p>En la respuesta, copie y guarde el ID de bundle de firmware de computación (<code>"id"</code>) para usar en un paso posterior.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Compruebe el estado de la carga.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>En la interfaz de usuario de la API DE REST, seleccione <strong>GET​ /packages​/{id}​/status</strong>.</p>
+</li>
+<li>
+<p>Seleccione <strong>probar</strong>.</p>
+</li>
+<li>
+<p>Introduzca el ID de paquete que ha copiado en el paso anterior en <strong>id</strong>.</p>
+</li>
+<li>
+<p>Seleccione <strong>Ejecutar</strong> para iniciar la solicitud de estado.</p>
+<div class="paragraph">
+<p>La respuesta indica <code>state</code> como <code>SUCCESS</code> cuando finalice.</p>
+</div>
+</li>
+<li>
+<p>En la respuesta, copie y guarde el nombre de paquete de firmware de computación (<code>"name"</code>) y la versión (<code>"version"</code>) para usar en un paso posterior.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Busque el ID de controladora de computación y el ID de hardware de nodos para el nodo que planea actualizar:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Abra la interfaz de usuario de la API DE REST del servicio de inventario en el nodo de gestión:</p>
+<div class="listingblock">
+<div class="content">
+<pre>https://&lt;ManagementNodeIP&gt;/inventory/1/</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Seleccione <strong>autorizar</strong> y complete lo siguiente:</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Introduzca el nombre de usuario y la contraseña del clúster.</p>
+</li>
+<li>
+<p>Introduzca el ID de cliente as <code>mnode-client</code>.</p>
+</li>
+<li>
+<p>Seleccione <strong>autorizar</strong> para iniciar una sesión.</p>
+</li>
+<li>
+<p>Cierre la ventana de autorización.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>En la interfaz de usuario DE LA API DE REST, seleccione <strong>GET /Installations</strong>.</p>
+</li>
+<li>
+<p>Seleccione <strong>probar</strong>.</p>
+</li>
+<li>
+<p>Seleccione <strong>Ejecutar</strong>.</p>
+</li>
+<li>
+<p>Desde la respuesta, copie el ID del activo de instalación (<code>"id"</code>).</p>
+</li>
+<li>
+<p>En la interfaz de usuario DE LA API DE REST, seleccione <strong>GET /Installations/{id}</strong>.</p>
+</li>
+<li>
+<p>Seleccione <strong>probar</strong>.</p>
+</li>
+<li>
+<p>Pegue el ID de activo de instalación en el campo <strong>id</strong>.</p>
+</li>
+<li>
+<p>Seleccione <strong>Ejecutar</strong>.</p>
+</li>
+<li>
+<p>En la respuesta, copie y guarde el ID de controladora del clúster (<code>"controllerId"</code>)Y el ID de hardware del nodo (<code>"hardwareId"</code>) para usar en un paso posterior:</p>
+<div class="listingblock">
+<div class="content">
+<pre>"compute": {
+  "errors": [],
+  "inventory": {
+    "clusters": [
+      {
+        "clusterId": "Test-1B",
+        <strong>"controllerId": "a1b23456-c1d2-11e1-1234-a12bcdef123a",</strong></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>"nodes": [
+  {
+    "bmcDetails": {
+      "bmcAddress": "10.111.0.111",
+      "credentialsAvailable": true,
+      "credentialsValidated": true
+    },
+    "chassisSerialNumber": "111930011231",
+    "chassisSlot": "D",
+    <strong>"hardwareId": "123a4567-01b1-1243-a12b-11ab11ab0a15",</strong>
+    "hardwareTag": "00000000-0000-0000-0000-ab1c2de34f5g",
+    "id": "e1111d10-1a1a-12d7-1a23-ab1cde23456f",
+    "model": "H410C",</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Ejecute la actualización de firmware del nodo de computación:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Abra la interfaz de usuario de API DE REST del servicio de hardware en el nodo de gestión:</p>
+<div class="listingblock">
+<div class="content">
+<pre>https://&lt;ManagementNodeIP&gt;/hardware/2/</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Seleccione <strong>autorizar</strong> y complete lo siguiente:</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Introduzca el nombre de usuario y la contraseña del clúster.</p>
+</li>
+<li>
+<p>Introduzca el ID de cliente as <code>mnode-client</code>.</p>
+</li>
+<li>
+<p>Seleccione <strong>autorizar</strong> para iniciar una sesión.</p>
+</li>
+<li>
+<p>Cierre la ventana de autorización.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Seleccione <strong>POST /Nodes/{hardware_id}/upgrades</strong>.</p>
+</li>
+<li>
+<p>Seleccione <strong>probar</strong>.</p>
+</li>
+<li>
+<p>Introduzca el identificador de activo del host de hardware (<code>"hardwareId"</code> guardado de un paso anterior) en el campo parámetro.</p>
+</li>
+<li>
+<p>Haga lo siguiente con los valores de carga útil:</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Conserve los valores <code>"force": false</code> y.. <code>"maintenanceMode": true"</code> De modo que las comprobaciones de estado se realizan en el nodo y el host ESXi se establece en modo de mantenimiento.</p>
+</li>
+<li>
+<p>Introduzca el ID de controladora del clúster (<code>"controllerId"</code> guardado de un paso anterior).</p>
+</li>
+<li>
+<p>Introduzca el nombre y la versión de paquete de firmware de computación que guardó en el paso anterior.</p>
+<div class="listingblock">
+<div class="content">
+<pre>{
+  "config": {
+    "force": false,
+    "maintenanceMode": true
+  },
+  "controllerId": "a1b23456-c1d2-11e1-1234-a12bcdef123a",
+  "packageName": "compute-firmware-12.2.109",
+  "packageVersion": "12.2.109"
+}</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Seleccione <strong>Ejecutar</strong> para iniciar la actualización.</p>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/hci19/images/caution.svg" alt="Precaución">
+</td>
+<td class="content">
+La actualización no se puede pausar una vez que se inicia. El firmware se actualizará secuencialmente en el siguiente orden: NIC, BIOS y BMC. No inicie sesión en la interfaz de usuario del BMC durante la actualización. Al iniciar sesión en el BMC se finaliza la sesión de control de nube híbrida en serie en LAN (sol) que supervisa el proceso de actualización.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Copie el ID de tarea de actualización que forma parte del enlace de recurso (<code>"resourceLink"</code>) URL en la respuesta.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Verifique el progreso y los resultados de la actualización:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Seleccione <strong>GET /task/{task_id}/logs</strong>.</p>
+</li>
+<li>
+<p>Seleccione <strong>probar</strong>.</p>
+</li>
+<li>
+<p>Introduzca el ID de tarea desde el paso anterior en <strong>Task_ID</strong>.</p>
+</li>
+<li>
+<p>Seleccione <strong>Ejecutar</strong>.</p>
+</li>
+<li>
+<p>Realice una de las siguientes acciones si existen problemas o requisitos especiales durante la actualización:</p>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Opción</th>
+<th class="tableblock halign-left valign-top">Pasos</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Debe corregir los problemas de estado del clúster debido a <code>failedHealthChecks</code> mensaje en el cuerpo de respuesta.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Vaya al artículo de la base de conocimientos específico indicado para cada problema o realice la solución especificada.</p>
+</li>
+<li>
+<p>Si se especifica un KB, complete el proceso descrito en el artículo de la base de conocimientos correspondiente.</p>
+</li>
+<li>
+<p>Después de resolver los problemas del clúster, vuelva a autenticarse si es necesario y seleccione <strong>POST /Nodes/{hardware_id}/upgrades</strong>.</p>
+</li>
+<li>
+<p>Repita los pasos descritos anteriormente en el paso de actualización.</p>
+</li>
+</ol>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Error en la actualización. Los pasos de mitigación no se enumeran en el registro de actualización.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Vea esto <a href="https://kb.netapp.com/Advice_and_Troubleshooting/Hybrid_Cloud_Infrastructure/NetApp_HCI/Known_issues_and_workarounds_for_Compute_Node_upgrades" target="_blank" rel="noopener">"Artículo de base de conocimientos"</a> (se requiere inicio de sesión).</p>
+</li>
+</ol>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Ejecute la API <strong>GET ​/Task/{task_id}/logs</strong> varias veces, según sea necesario, hasta que el proceso se complete.</p>
+<div class="paragraph">
+<p>Durante la actualización, el <code>status</code> lo que indica <code>running</code> si no se encuentra ningún error. A medida que se termina cada paso, el <code>status</code> el valor cambia a. <code>completed</code>.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>La actualización ha finalizado correctamente cuando el estado de cada paso es <code>completed</code> y la <code>percentageCompleted</code> el valor es <code>100</code>.</p>
+</div>
+</li>
+<li>
+<p>(Opcional) confirme las versiones de firmware actualizadas para cada componente:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Abra la interfaz de usuario de API DE REST del servicio de hardware en el nodo de gestión:</p>
+<div class="listingblock">
+<div class="content">
+<pre>https://&lt;ManagementNodeIP&gt;/hardware/2/</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Seleccione <strong>autorizar</strong> y complete lo siguiente:</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Introduzca el nombre de usuario y la contraseña del clúster.</p>
+</li>
+<li>
+<p>Introduzca el ID de cliente as <code>mnode-client</code>.</p>
+</li>
+<li>
+<p>Seleccione <strong>autorizar</strong> para iniciar una sesión.</p>
+</li>
+<li>
+<p>Cierre la ventana de autorización.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>En la interfaz de usuario de LA API DE REST, seleccione <strong>GET ​/nodes​/{hardware_id}​/upgrades</strong>.</p>
+</li>
+<li>
+<p>(Opcional) Introduzca los parámetros de fecha y estado para filtrar los resultados.</p>
+</li>
+<li>
+<p>Introduzca el identificador de activo del host de hardware (<code>"hardwareId"</code> guardado de un paso anterior) en el campo parámetro.</p>
+</li>
+<li>
+<p>Seleccione <strong>probar</strong>.</p>
+</li>
+<li>
+<p>Seleccione <strong>Ejecutar</strong>.</p>
+</li>
+<li>
+<p>Verifique en la respuesta que el firmware de todos los componentes se ha actualizado correctamente de la versión anterior al firmware más reciente.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="utilice-una-unidad-usb-expuesta-con-el-paquete-de-firmware-de-computación-más-reciente">Utilice una unidad USB expuesta con el paquete de firmware de computación más reciente</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Puede insertar una unidad USB con el paquete de firmware de computación más reciente descargado en un puerto USB del nodo de computación. Como alternativa al uso del método de unidad de memoria USB descrito en este procedimiento, puede montar el paquete de firmware de computación en el nodo de computación utilizando la opción <strong>CD/DVD</strong> virtual en la consola virtual en la interfaz del controlador de administración de la placa base (BMC). El método BMC tarda considerablemente más que el método USB de la unidad de memoria USB. Asegúrese de que su estación de trabajo o servidor tiene el ancho de banda de red necesario y de que la sesión del explorador con el BMC no agota el tiempo de espera.</p>
+</div>
+<div class="ulist">
+<div class="title">Lo que necesitará</div>
+<ul>
+<li>
+<p>Si el nodo de gestión no está conectado a Internet, se descargó el paquete de firmware de computación del <a href="https://mysupport.netapp.com/site/products/all/details/netapp-hci/downloads-tab/download/62542/Compute_Firmware_Bundle" target="_blank" rel="noopener">"Sitio de soporte de NetApp"</a>.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/hci19/images/note.svg" alt="Nota">
+</td>
+<td class="content">
+Debe extraer el <code>TAR.GZ</code> archivo a <code>TAR</code> y, a continuación, extraiga el <code>TAR</code> archivo al bundle de firmware de computación.
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Pasos</div>
+<ol class="arabic">
+<li>
+<p>Utilice la utilidad etcher para actualizar el paquete de firmware de computación a una unidad USB.</p>
+</li>
+<li>
+<p>Coloque el nodo de computación en modo de mantenimiento mediante VMware vCenter y evacue todas las máquinas virtuales del host.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/hci19/images/note.svg" alt="Nota">
+</td>
+<td class="content">
+Si está habilitado el programador de recursos distribuidos de VMware (DRS) en el clúster (este es el valor predeterminado en las instalaciones de NetApp HCI), las máquinas virtuales se migrarán automáticamente a otros nodos del clúster.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Inserte la unidad de almacenamiento USB en un puerto USB del nodo de computación y reinicie el nodo de computación mediante VMware vCenter.</p>
+</li>
+<li>
+<p>Durante EL CICLO POSTERIOR del nodo de computación, pulse <strong>F11</strong> para abrir Boot Manager. Es posible que tenga que pulsar <strong>F11</strong> varias veces en sucesión rápida. Puede realizar esta operación conectando un vídeo/teclado o utilizando la consola de <code>BMC</code>.</p>
+</li>
+<li>
+<p>Seleccione <strong>One Shot</strong> &gt; <strong>USB Flash Drive</strong> en el menú que aparece. Si la unidad USB en miniatura no aparece en el menú, compruebe que la unidad flash USB forma parte del orden de inicio anterior del BIOS del sistema.</p>
+</li>
+<li>
+<p>Pulse <strong>Intro</strong> para iniciar el sistema desde la unidad de memoria USB. Comienza el proceso de flash del firmware.</p>
+<div class="paragraph">
+<p>Una vez que se completa la actualización del firmware y el nodo se reinicia, es posible que ESXi demore unos minutos en iniciarse.</p>
+</div>
+</li>
+<li>
+<p>Una vez completado el reinicio, salga del modo de mantenimiento en el nodo de computación actualizado mediante vCenter.</p>
+</li>
+<li>
+<p>Extraiga la unidad flash USB del nodo de computación actualizado.</p>
+</li>
+<li>
+<p>Repita esta tarea para otros nodos de computación del clúster ESXi hasta que se actualicen todos los nodos de computación.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="usar-la-interfaz-de-usuario-ui-de-la-controladora-de-gestión-de-placa-base-bmc">Usar la interfaz de usuario (UI) de la controladora de gestión de placa base (BMC)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Debe realizar los pasos secuenciales para cargar el paquete de firmware de computación y reiniciar el nodo en el bundle de firmware de computación a fin de garantizar que la actualización se realice correctamente. El paquete de firmware de computación debe estar ubicado en el sistema o la máquina virtual (VM) donde se aloja el explorador web. Verifique que se haya descargado el bundle de firmware de computación antes de iniciar el proceso.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/hci19/images/tip.svg" alt="Consejo">
+</td>
+<td class="content">
+Se recomienda tener el sistema o la máquina virtual y el nodo en la misma red.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/hci19/images/note.svg" alt="Nota">
+</td>
+<td class="content">
+La actualización a través de la interfaz de usuario de BMC tarda entre 25 y 30 minutos aproximadamente.
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#actualice-el-firmware-en-los-nodos-h410c-y-h300eh500eh700e">Actualice el firmware en los nodos H410C y H300E/H500E/H700E</a></p>
+</li>
+<li>
+<p><a href="#actualice-el-firmware-en-los-nodos-h610ch615c">Actualice el firmware en los nodos H610C/H615C</a></p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="actualice-el-firmware-en-los-nodos-h410c-y-h300eh500eh700e">Actualice el firmware en los nodos H410C y H300E/H500E/H700E</h3>
+<div class="paragraph">
+<p>Si su nodo forma parte de un clúster, debe colocar el nodo en modo de mantenimiento antes de la actualización y sacarlo del modo de mantenimiento después de la actualización.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/hci19/images/tip.svg" alt="Consejo">
+</td>
+<td class="content">
+Ignore el siguiente mensaje informativo que se muestra durante el proceso: <code>Untrusty Debug Firmware Key is used, SecureFlash is currently in Debug Mode</code>
+</td>
+</tr>
+</table>
+</div>
+<div class="olist arabic">
+<div class="title">Pasos</div>
+<ol class="arabic">
+<li>
+<p>Si su nodo forma parte de un clúster, colóquelo en el modo de mantenimiento de la manera siguiente. Si no es así, vaya al paso 2.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Inicie sesión en el cliente web de VMware vCenter.</p>
+</li>
+<li>
+<p>Haga clic con el botón derecho del ratón en el nombre del host (nodo de computación) y seleccione <strong>modo de mantenimiento &gt; Entrar en modo de mantenimiento</strong>.</p>
+</li>
+<li>
+<p>Seleccione <strong>OK</strong>. Las máquinas virtuales del host se migrarán a otro host disponible. La migración de equipos virtuales puede llevar tiempo, en función del número de equipos virtuales que se deban migrar.</p>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/hci19/images/caution.svg" alt="Precaución">
+</td>
+<td class="content">
+Asegúrese de que todas las máquinas virtuales del host estén migradas antes de continuar.
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Vaya a la interfaz de usuario del BMC, <code><a href="https://BMCIP/#login" class="bare">https://BMCIP/#login</a></code>, Donde BMCIP es la dirección IP del BMC.</p>
+</li>
+<li>
+<p>Inicie sesión con sus credenciales.</p>
+</li>
+<li>
+<p>Seleccione <strong>Control remoto &gt; Redirección de consola</strong>.</p>
+</li>
+<li>
+<p>Seleccione <strong>Iniciar consola</strong>.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/hci19/images/note.svg" alt="Nota">
+</td>
+<td class="content">
+Es posible que tenga que instalar Java o actualizarlo.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Cuando se abra la consola, seleccione <strong>Medios virtuales &gt; almacenamiento virtual</strong>.</p>
+</li>
+<li>
+<p>En la pantalla <strong>almacenamiento virtual</strong>, seleccione <strong>Tipo de unidad lógica</strong> y seleccione <strong>Archivo ISO</strong>.</p>
+<div class="paragraph">
+<p><span class="image"><img src="../media/BIOS_H410C_iso.png" alt="Muestra la ruta de navegación para seleccionar el archivo de bundle de firmware de computación."></span></p>
+</div>
+</li>
+<li>
+<p>Seleccione <strong>Abrir imagen</strong> para buscar la carpeta donde descargó el archivo del paquete de firmware de computación y seleccionar el archivo del paquete de firmware de computación.</p>
+</li>
+<li>
+<p>Seleccione <strong>Plug in</strong>.</p>
+</li>
+<li>
+<p>Cuando se muestra el estado de la conexión <code>Device#: VM Plug-in OK!!</code>, Seleccione <strong>Aceptar</strong>.</p>
+</li>
+<li>
+<p>Reinicie el nodo pulsando <strong>F12</strong> y seleccionando <strong>Reiniciar</strong> o seleccionando <strong>Control de energía &gt; Configurar reinicio de energía</strong>.</p>
+</li>
+<li>
+<p>Durante el reinicio, pulse <strong>F11</strong> para seleccionar las opciones de inicio y cargar el paquete de firmware de computación. Es posible que tenga que pulsar F11 varias veces antes de que aparezca el menú de inicio.</p>
+<div class="paragraph">
+<p>Verá la siguiente pantalla:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../media/boot_option_iso_h410c.png" alt="Muestra la pantalla a la que se inicia la ISO virtual."></span></p>
+</div>
+</li>
+<li>
+<p>En la pantalla anterior, pulse <strong>Intro</strong>. Dependiendo de la red, puede que tarde unos minutos después de pulsar <strong>Intro</strong> para que comience la actualización.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/hci19/images/note.svg" alt="Nota">
+</td>
+<td class="content">
+Algunas de las actualizaciones del firmware podrían provocar que la consola se desconectara y/o provocarán la desconexión de la sesión en el BMC. Puede volver a iniciar sesión en el BMC, sin embargo, es posible que algunos servicios, como la consola, no estén disponibles debido a las actualizaciones del firmware. Una vez que hayan completado las actualizaciones, el nodo realizará un reinicio en frío, que puede tardar aproximadamente cinco minutos.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Vuelva a iniciar sesión en la interfaz de usuario del BMC y seleccione <strong>sistema</strong> para verificar la versión del BIOS y el tiempo de compilación después de iniciar el sistema operativo. Si la actualización se completó correctamente, verá las nuevas versiones de BIOS y BMC.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/hci19/images/note.svg" alt="Nota">
+</td>
+<td class="content">
+La versión del BIOS no mostrará la versión actualizada hasta que el nodo haya terminado de arrancarse por completo.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Si el nodo forma parte de un clúster, complete los pasos a continuación. Si se trata de un nodo independiente, no se necesita realizar ninguna otra acción.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Inicie sesión en el cliente web de VMware vCenter.</p>
+</li>
+<li>
+<p>Saque el host del modo de mantenimiento. Esto podría mostrar un indicador rojo desconectado. Espere a que se borren todos los Estados.</p>
+</li>
+<li>
+<p>Encienda cualquiera de las máquinas virtuales restantes que se hayan apagado.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="actualice-el-firmware-en-los-nodos-h610ch615c">Actualice el firmware en los nodos H610C/H615C</h3>
+<div class="paragraph">
+<p>Los pasos varían en función de si el nodo es independiente o forma parte de un clúster. El procedimiento puede tardar aproximadamente 25 minutos e incluye apagar el nodo, cargar el bundle de firmware de computación, actualizar los dispositivos y volver a encender el nodo después de la actualización.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Pasos</div>
+<ol class="arabic">
+<li>
+<p>Si su nodo forma parte de un clúster, colóquelo en el modo de mantenimiento de la manera siguiente. Si no es así, vaya al paso 2.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Inicie sesión en el cliente web de VMware vCenter.</p>
+</li>
+<li>
+<p>Haga clic con el botón derecho del ratón en el nombre del host (nodo de computación) y seleccione <strong>modo de mantenimiento &gt; Entrar en modo de mantenimiento</strong>.</p>
+</li>
+<li>
+<p>Seleccione <strong>OK</strong>. Las máquinas virtuales del host se migrarán a otro host disponible. La migración de equipos virtuales puede llevar tiempo, en función del número de equipos virtuales que se deban migrar.</p>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/hci19/images/caution.svg" alt="Precaución">
+</td>
+<td class="content">
+Asegúrese de que todas las máquinas virtuales del host estén migradas antes de continuar.
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Vaya a la interfaz de usuario del BMC, <code><a href="https://BMCIP/#login" class="bare">https://BMCIP/#login</a></code>, Donde BMC IP es la dirección IP del BMC.</p>
+</li>
+<li>
+<p>Inicie sesión con sus credenciales.</p>
+</li>
+<li>
+<p>Seleccione <strong>Control remoto &gt; Iniciar KVM (Java)</strong>.</p>
+</li>
+<li>
+<p>En la ventana de la consola, seleccione <strong>Media &gt; Virtual Media Wizard</strong>.</p>
+<div class="imageblock">
+<div class="content">
+<img src="../media/bmc_wizard.gif" alt="Inicie el Asistente para medios virtuales desde la interfaz de usuario de BMC.">
+</div>
+</div>
+</li>
+<li>
+<p>Seleccione <strong>Browse</strong> y seleccione el firmware de computación <code>.iso</code> archivo.</p>
+</li>
+<li>
+<p>Seleccione <strong>conectar</strong>. Se muestra una ventana emergente que indica que se ha realizado correctamente, junto con la ruta y el dispositivo que se muestra en la parte inferior. Puede cerrar la ventana <strong>Medios virtuales</strong>.</p>
+<div class="imageblock">
+<div class="content">
+<img src="../media/virtual_med_popup.gif" alt="Ventana emergente que muestra la carga ISO correcta.">
+</div>
+</div>
+</li>
+<li>
+<p>Reinicie el nodo pulsando <strong>F12</strong> y seleccionando <strong>Reiniciar</strong> o seleccionando <strong>Control de energía &gt; Configurar reinicio de energía</strong>.</p>
+</li>
+<li>
+<p>Durante el reinicio, pulse <strong>F11</strong> para seleccionar las opciones de inicio y cargar el paquete de firmware de computación.</p>
+</li>
+<li>
+<p>Seleccione <strong>AMI Virtual CDROM</strong> de la lista que se muestra y seleccione <strong>Intro</strong>. Si no ve el CDROM virtual de AMI en la lista, vaya al BIOS y active el CDROM en la lista de inicio. El nodo se reiniciará después de guardar. Durante el reinicio, pulse <strong>F11</strong>.</p>
+<div class="imageblock">
+<div class="content">
+<img src="../media/boot_device.gif" alt="Muestra la ventana en la que puede seleccionar el dispositivo de inicio.">
+</div>
+</div>
+</li>
+<li>
+<p>En la pantalla que aparece, seleccione <strong>Intro</strong>.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/hci19/images/note.svg" alt="Nota">
+</td>
+<td class="content">
+Algunas de las actualizaciones del firmware podrían provocar que la consola se desconectara y/o provocarán la desconexión de la sesión en el BMC. Puede volver a iniciar sesión en el BMC, sin embargo, es posible que algunos servicios, como la consola, no estén disponibles debido a las actualizaciones del firmware. Una vez que hayan completado las actualizaciones, el nodo realizará un reinicio en frío, que puede tardar aproximadamente cinco minutos.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Si se desconecta de la consola, seleccione <strong>Control remoto</strong> y seleccione <strong>Iniciar KVM</strong> o <strong>Iniciar KVM (Java)</strong> para volver a conectarse y verificar cuando el nodo haya terminado de arrancar de nuevo. Es posible que necesite volver a conectar varios para verificar que el nodo se haya iniciado correctamente.</p>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/hci19/images/caution.svg" alt="Precaución">
+</td>
+<td class="content">
+Durante el proceso de encendido, durante aproximadamente cinco minutos, la consola KVM muestra <strong>sin señal</strong>.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Después de encender el nodo, seleccione <strong>Panel &gt; Información del dispositivo &gt; más información</strong> para verificar las versiones del BIOS y del BMC. Se muestran las versiones actualizadas de BIOS y BMC. No se mostrará la versión actualizada del BIOS hasta que el nodo se haya iniciado completamente.</p>
+</li>
+<li>
+<p>Si colocó el nodo en modo de mantenimiento, después de que el nodo arranca en ESXi, haga clic con el botón derecho en el nombre del host (nodo de computación) y seleccione <strong>modo de mantenimiento &gt; salir del modo de mantenimiento</strong> y migre las máquinas virtuales de nuevo al host.</p>
+</li>
+<li>
+<p>En vCenter, con el nombre de host seleccionado, configure y verifique la versión de BIOS.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="obtenga-más-información">Obtenga más información</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://docs.netapp.com/us-en/vcp/index.html" target="_blank" rel="noopener">"Plugin de NetApp Element para vCenter Server"</a></p>
+</li>
+<li>
+<p><a href="https://www.netapp.com/hybrid-cloud/hci-documentation/" target="_blank" rel="noopener">"Página de recursos de NetApp HCI"</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+    </article>
+    <!-- Page Container -->
+  </div>
+
+  
+  <!-- Start Page Toolbar -->
+<div id="ie-right-navbar-collapse" class="close">
+  <img id="navbar-expand" class="ie-searchbox-icon" src="/es-es/hci19/images/double_arrow.svg" alt="" />
+</div>
+<div id="ie-right-navbar" class="open">
+  <div id="right-navbar-collapse">
+    <img src="/es-es/hci19/images/double_arrow.svg" alt="" />
+  </div>
+  <div class="page-nav-container">
+    <nav class="page-nav-fixed">
+      <div class="page-nav-title">En esta página</div>
+      <div class="page-nav-links">
+        <ul class="page-nav-inner" id="page-menu"></ul>
+      </div>
+    </nav>
+  </div>
+</div>
+
+
+<script>
+  resizeContent();
+  function setRightBarHeight() {
+    var h = 0;
+
+    // header 1
+    h += PXinViewport($('.n-footer'));
+    h += PXinViewport($('#ie-new-header'));
+
+    if ($('#ie-right-navbar').length) {
+      $('#ie-right-navbar').css({ height: `calc(100vh - ${h}px)` });
+    }
+    if ($('.page-nav-links').length) {
+      h += 98;
+      $('.page-nav-links').css({ height: `calc(100vh - ${h}px)` });
+    }
+  }
+
+  $(document).ready(function () {
+    // PAGE NAV - Click
+    const MASTHEAD_OFFSET = 65;
+    const SECTIONS = $("main h2, main h3");
+    let calculateActiveSection = false;
+    setTimeout(() => {
+      calculateActiveSection = true;
+    }, 100)
+
+    $(".page-nav__link").click(function (event) {
+      calculateActiveSection = false;
+      $(".page-nav__link").removeClass('page-nav__link--active');
+      var target = $(event.target);
+      target.addClass('page-nav__link--active');
+      location.hash = event.target.hash;
+      setTimeout(() => {
+        calculateActiveSection = true;
+      }, 100)
+
+    });
+
+    // PAGE NAV - Scroll
+    $(window).on('resize scroll', function () {
+      if (calculateActiveSection) {
+        var activeSection = getActiveSection(SECTIONS, MASTHEAD_OFFSET);
+        if (activeSection) {
+          var activeHref = $(activeSection).attr('id');
+          $(".page-nav__link").removeClass('page-nav__link--active');
+          $("#page-menu a[href=#" + activeHref + "]").addClass('page-nav__link--active');
+          if (location.hash != "#" + activeHref) {
+            if (history.replaceState) {
+              history.replaceState(null, null, "#" + activeHref);
+            }
+          }
+        }
+      }
+    });
+
+    $(".n-pdf-button").click(function () {
+      $(this).toggleClass("active");
+    });
+
+    $.fn.isVisibleAndInViewport = function () {
+      var elementTop = $(this).offset().top;
+      var elementBottom = elementTop + $(this).outerHeight();
+
+      var viewportTop = $(window).scrollTop();
+      var viewportBottom = viewportTop + $(window).height();
+
+      return elementBottom > viewportTop && elementTop < viewportBottom && $(this).is(":visible");
+    };
+
+
+    $(window).on('resize scroll', function () {
+      setRightBarHeight();
+    });
+
+    $(window).trigger('resize');
+
+
+  });
+
+  $("#right-navbar-collapse").click(function (e) {
+    const rightNavbarWidth = $("#ie-right-navbar").width() - $("#ie-right-navbar-collapse").width();
+    e.preventDefault();
+    const width = $(".ie-content-pane").width();
+
+    $("#ie-right-navbar").animate({ width: 'toggle' }, 350, function () {
+      $("#ie-right-navbar-collapse").removeClass("close")
+      $("#ie-right-navbar-collapse").addClass("open")
+      $("#ie-right-navbar").removeClass("open")
+      $("#ie-right-navbar").addClass("close")
+    });
+    $(".ie-content-pane").animate({ width: (width + rightNavbarWidth) }, 350, function () {
+      resizeContent()
+      setSidebarBottom();
+    })
+
+  });
+  $("#navbar-expand").click(function (e) {
+    const rightNavbarWidth = $("#ie-right-navbar").width() - $("#ie-right-navbar-collapse").width();
+    e.preventDefault();
+    const width = $(".ie-content-pane").width();
+    $("#ie-right-navbar").animate({ width: 'toggle' }, 250, function () {
+      $("#ie-right-navbar-collapse").removeClass("open")
+      $("#ie-right-navbar-collapse").addClass("close")
+      $("#ie-right-navbar").removeClass("close")
+      $("#ie-right-navbar").addClass("open")
+      setRightBarHeight();
+      setSidebarBottom();
+    });
+    $(".ie-content-pane").animate({ width: (width - rightNavbarWidth) }, 250, function () {
+      resizeContent()
+    })
+  });
+
+  function navbarResize() {
+    const rightNavbarResized = $("#ie-right-navbar-collapse").hasClass('resized');
+    if (window.innerWidth < 1024) {
+      $("#ie-right-navbar").removeClass("open")
+      $("#ie-right-navbar").addClass("close")
+      $("#ie-right-navbar").removeAttr("style")
+      $("#ie-right-navbar-collapse").removeClass("close")
+      $("#ie-right-navbar-collapse").addClass("open")
+      $("#ie-right-navbar-collapse").addClass("resized")
+    } else {
+      if (rightNavbarResized) {
+        $('#ie-right-navbar').removeClass('close');
+        $('#ie-right-navbar').addClass('open');
+        $("#ie-right-navbar-collapse").removeClass("resized")
+        $("#ie-right-navbar-collapse").removeClass("open")
+        $("#ie-right-navbar-collapse").addClass("close")
+      }
+    }
+    resizeContent()
+  }
+  navbarResize();
+  $(window).on('resize load', function () {
+    navbarResize()
+  });
+
+  function getActiveSection(sections, offset) {
+    var scrollPosition = $(window).scrollTop() + offset + 5;
+    var activeSection;
+    for (var i = 0; i < sections.length; i++) {
+      var el = $(sections[i]);
+      var activePosition = el.offset().top;
+      if (activePosition > scrollPosition) {
+        break;
+      }
+
+      activeSection = sections[i];
+    }
+
+    return activeSection;
+  }
+
+  $("a[href*=#]:not([href=#])").click(function () {
+    setTimeout(() => {
+      $(window).trigger('scroll');
+    }, 105)
+  })
+
+  const hashOnLoad = location.href.split("#")[1];
+  setTimeout(function () {
+    if (hashOnLoad) {
+      $(".page-nav__link").removeClass('page-nav__link--active');
+      $("#page-menu a[href=#" + hashOnLoad + "]").addClass('page-nav__link--active');
+    }
+  }, 100)
+
+</script>
+
+
+  <div style="clear: both"></div><!-- Main needs to have height --></div>
+
+        </main>
+
+        <footer class="n-footer">
+  <div class="n-footer__bottom">
+    <div class="n-container">
+        <div class="n-footer__left">
+          <li class="n-footer__copyright-link">
+                    <a href="https://www.netapp.com/company/legal/copyright/">© 2023 NetApp, Inc.</a>
+          </li>
+        </div>
+        <div class="n-footer__center">
+          <ul class="n-footer__copyright-list">
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/terms-of-use/">Condiciones de uso</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/privacy-policy/">Política de privacidad</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/cookie-policy/">Política de cookies</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a class="ot-sdk-show-settings">Configuración de cookies</a>
+            </li>
+          </ul>
+       </div>
+        <div class="n-footer__right">
+              <li class="n-footer__copyright-link">
+                <a target="_self" href="javascript:netapp_mailto()">Enviar comentarios sobre esta página</a>
+              </li>
+        </div>
+     </div>
+  </div>
+</footer>
+
+      </div><!-- Elasticsearch JS -->
+      <script type="text/javascript" src='/es-es/hci19/js/bundle.js'></script>
+
+      <!-- Syntax Highlighting -->
+      <script type="text/javascript" src='/es-es/hci19/js/prism.js'></script>
+      <script type="text/javascript" src='/es-es/hci19/js/prism-curl.js'></script>
+    </div>
+    <script>
+      document.body.offsetWidth=1903;
+      cookieLaw = {}
+      cookieLaw.euCountry = "US";
+      cookieLaw.invoke = function(){return false;}
+    </script>
+    <script src='/es-es/hci19/js/ie-tabbed-blocks.js'></script>
+    <script src='/es-es/hci19/js/ie-sidebar.js'></script>
+  </body>
+
+</html>
