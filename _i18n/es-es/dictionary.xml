@@ -6553,4 +6553,33 @@
   <block id="976b368b923346c8ea4ccc71e72749f5" category="inline-link-macro">Aviso para servicios de gestión 2.25.42 (complemento NetApp Element para VMware vCenter Server 5,3.9)</block>
   <block id="f7e890b0a90e234e4df04fc0c6b8c6a7" category="list-text"><block ref="f7e890b0a90e234e4df04fc0c6b8c6a7" category="inline-link-macro-rx"></block></block>
   <block id="bef71f962ff7a233f3e8439eeb8dac70" category="list-text">Va a actualizar al plugin de Element para vCenter Server 5,3, 5,2, 5,1 o 5,0.</block>
+  <block id="ac58cb3a49a7142c7e9ce40e8d7f2c4d" category="sidebar">NetApp HCI es una infraestructura escalable e hiperconvergente on-premises para clouds híbridos. Obtenga más información usando la documentación de configuración y gestión de NetApp HCI e información de las soluciones de NetApp HCI. Este sitio contiene la documentación para NetApp HCI 1,9.</block>
+  <block id="be11c74c1dd7f307bb80183a90dc2067" category="sidebar">Manos a la obra</block>
+  <block id="7d0ee6fed10d3d4e5c9ee496729ab519" category="sidebar">Notas de la versión</block>
+  <block id="33871b6190a8d5adbe8b15282054766c" category="sidebar">Novedades</block>
+  <block id="01064f33f360eefba819bf9542c0486b" category="sidebar">Instale y mantenga el hardware</block>
+  <block id="147fc8b7d94adc0dceb5978ab928f776" category="sidebar">Instalación de hardware H-Series</block>
+  <block id="09af8dd99d422c917dcb27847056b045" category="sidebar">Mantenimiento de hardware H-Series</block>
+  <block id="bc2592cdeeae26af69f28b4f6a1c8ca0" category="sidebar">Instale NetApp HCI</block>
+  <block id="96e1a5a82d70a24f161f0adb6e19ac8d" category="sidebar">Información general sobre la instalación y la implementación</block>
+  <block id="8a6e336622cf399a6453e4659f2a6147" category="sidebar">Inicie la implementación con el motor de implementación de NetApp</block>
+  <block id="a54d0ac20b8277a267fb90e8c0b05032" category="sidebar">Realizar tareas posteriores a la implementación</block>
+  <block id="cfe80b2a0cabf734adc7b7c1613cfe4f" category="sidebar">Utilice NetApp HCI</block>
+  <block id="930dca22f6f735a61fd8f484808fecb3" category="sidebar">Gestione mediante el control del cloud híbrido de NetApp</block>
+  <block id="6cb5dfacb4ee1684b5483221bfcf580c" category="sidebar">Utilice el plugin de NetApp Element para vCenter Server</block>
+  <block id="4584c33b1e8065c9dccf2c31d92f9dbf" category="sidebar">Utilice Rancher</block>
+  <block id="d02b5df8c0bf5a555ea650be898817f7" category="sidebar">Amplíe NetApp HCI</block>
+  <block id="748ace58318ab9d82392d680b07e89e6" category="sidebar">Actualice NetApp HCI</block>
+  <block id="f7731734f4507319f744fe2c8158536a" category="sidebar">Solucionar problemas de NetApp HCI y Rancher</block>
+  <block id="eeabaf7c41bcd50a6a02694c070dbfb4" category="sidebar">Restablezca BMC en los nodos de computación</block>
+  <block id="166868e0f588717c1c62116a03c9b979" category="sidebar">Más artículos de la base de conocimiento</block>
+  <block id="2a9dbfa4b74c53d7304fc8b79a1874d3" category="sidebar">NetApp</block>
+  <block id="fcf140abed196b8eba71c45f21312bce" category="sidebar">Soluciones NetApp</block>
+  <block id="81a123ccab93cd947289b672b0e50348" category="sidebar">Demostraciones y tutoriales</block>
+  <block id="45a52e6c046bce2a0f9f5253cc23fbd6" category="sidebar">Biblioteca de vídeos de NetApp HCI</block>
+  <block id="9135ac6f13de11d3b4b9f2f98ff9bcb8" category="sidebar">Servicios de aprendizaje de NetApp</block>
+  <block id="813011e2103649bb71f124adedcc10ea" category="sidebar">Blogs y comunidad</block>
+  <block id="a310588c148d934b9b30c31802d4a30b" category="sidebar">Comunidad de NetApp</block>
+  <block id="213686afc3803be7caa09348765467fe" category="sidebar">Dónde obtener ayuda</block>
+  <block id="389672366ff11f72a82c5c495b9b5159" category="sidebar">Documentación de NetApp HCI 1.8</block>
 </blocks>
