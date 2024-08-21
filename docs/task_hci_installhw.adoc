@@ -423,6 +423,6 @@ Si el nodo H615C tiene GPU en él, instale los controladores de GPU en ESXi para
 
 * https://www.netapp.com/hybrid-cloud/hci-documentation/["Recursos de NetApp HCI"^]
 * https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
-* https://www.netapp.com/us/media/tr-4820.pdf["_TR-4820: Guía de planificación rápida de redes de NetApp HCI_"^]
+* https://www.netapp.com/pdf.html?item=/media/9413-tr4820pdf.pdf["_TR-4820: Guía de planificación rápida de redes de NetApp HCI_"^]
 * https://mysupport.netapp.com/site/tools["Asesor de configuración de NetApp"^] 5.8.1 o posterior herramienta de validación de red
 

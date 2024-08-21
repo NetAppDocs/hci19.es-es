@@ -30,7 +30,7 @@ Con el plugin de Element para vCenter Server 4.x, cuando se actualiza a VMware v
 ====
 +
 
-NOTE: Cuando actualice ESXi para nodos de computación de un https://www.netapp.com/us/media/tr-4823.pdf["clúster de dos nodos"^], actualice sólo un nodo de computación a la vez para que sólo un nodo testigo no esté disponible temporalmente y se pueda mantener el quórum del clúster.
+NOTE: Al actualizar ESXi para nodos de computación para un https://www.netapp.com/pdf.html?item=/media/9489-tr-4823.pdf["clúster de dos nodos"^], actualice sólo un nodo de computación a la vez para que solo un nodo testigo no esté disponible temporalmente y se pueda mantener el quórum del clúster.
 
 . https://docs.netapp.com/us-en/vcp/vcp_task_getstarted.html#register-the-plug-in-with-vcenter["Regístrese"^] El plugin de Element para vCenter Server nuevamente con vCenter.
 . https://docs.netapp.com/us-en/vcp/vcp_task_getstarted.html#add-storage-clusters-for-use-with-the-plug-in["Añadir clústeres"^] con el plugin.
@@ -44,5 +44,5 @@ NOTE: Cuando actualice ESXi para nodos de computación de un https://www.netapp.
 
 * https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
 * https://www.netapp.com/hybrid-cloud/hci-documentation/["Página de recursos de NetApp HCI"^]
-* https://www.netapp.com/us/media/tr-4823.pdf["Informe técnico de dos nodos de clúster de almacenamiento de NetApp HCI"^]
+* https://www.netapp.com/pdf.html?item=/media/9489-tr-4823.pdf["Informe técnico de dos nodos de clúster de almacenamiento de NetApp HCI"^]
 

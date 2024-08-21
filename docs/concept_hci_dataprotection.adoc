@@ -37,7 +37,7 @@ La replicación remota de datos puede adoptar las siguientes formas:
 * <<Replicación entre clústeres de Element y ONTAP mediante SnapMirror>>
 
 
-Consulte https://www.netapp.com/us/media/tr-4741.pdf["TR-4741: Replicación remota del software NetApp Element"^].
+Consulte https://www.netapp.com/pdf.html?item=/media/10607-tr4741pdf.pdf["TR-4741: Replicación remota del software NetApp Element"^].
 
 
 

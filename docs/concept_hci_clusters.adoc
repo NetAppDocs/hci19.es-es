@@ -87,7 +87,7 @@ Al ampliar de dos nodos de almacenamiento a tres nodos de almacenamiento, el cl�
 
 == Obtenga más información
 
-* https://www.netapp.com/us/media/tr-4823.pdf["Clúster de almacenamiento de dos nodos NetApp HCI | TR-4823"^]
+* https://www.netapp.com/pdf.html?item=/media/9489-tr-4823.pdf["Clúster de almacenamiento de dos nodos NetApp HCI | TR-4823"^]
 * https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
 * http://docs.netapp.com/sfe-122/index.jsp["Centro de documentación de SolidFire y el software Element"^]
 

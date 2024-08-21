@@ -17,7 +17,7 @@ keywords: netapp, hci, environment, requirements
 [role="lead"]
 Compruebe que se suministre alimentación desde los tomas de alimentación de CA al rack utilizado para instalar NetApp HCI, y que el centro de datos proporcione refrigeración adecuada para el tamaño de la instalación de NetApp HCI.
 
-Para obtener funcionalidades detalladas de cada componente de NetApp HCI, consulte la NetApp HCI http://www.netapp.com/us/media/ds-3881.pdf["ficha técnica"^].
+Para obtener capacidades detalladas de cada componente de NetApp HCI, consulte el NetApp HCI https://www.netapp.com/pdf.html?item=/media/7977-ds-3881.pdf["ficha técnica"^] .
 
 
 NOTE: El nodo de computación H410C solo funciona con tensión de línea alta (200-240 V CA). Debe asegurarse de que se cumplan los requisitos de alimentación cuando añada nodos H410C a una instalación existente de NetApp HCI.

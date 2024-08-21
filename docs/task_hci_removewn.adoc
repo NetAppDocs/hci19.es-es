@@ -41,7 +41,7 @@ image::vcp-witnessnode.gif[Muestra la página NetApp Element Management > Cluste
 
 == Obtenga más información
 
-* https://www.netapp.com/us/media/tr-4823.pdf["Clúster de almacenamiento de dos nodos NetApp HCI | TR-4823"^]
+* https://www.netapp.com/pdf.html?item=/media/9489-tr-4823.pdf["Clúster de almacenamiento de dos nodos NetApp HCI | TR-4823"^]
 * https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
 * https://www.netapp.com/us/documentation/hci.aspx["Recursos de NetApp HCI"^]
 * http://docs.netapp.com/sfe-122/index.jsp["Centro de documentación de SolidFire y el software Element"^]
