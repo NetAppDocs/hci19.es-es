@@ -6343,7 +6343,6 @@
   <block id="15a7ac526ac2837357bb06c9a85478fe" category="admonition">Si DIMM no se ha instalado correctamente, el nodo funcionará con normalidad pero con una capacidad de memoria inferior a la esperada.</block>
   <block id="b796ad77b5c2d7e3b3ded4471f3198c4" category="admonition">Después del procedimiento de reemplazo de DIMM, puede borrar las advertencias y errores en la pestaña hardware Status de vCenter. Puede hacer esto si desea borrar el historial de errores relacionados con el hardware que ha sustituido.<block ref="876b9d188a711c3c2b1fe508affe9aba" category="inline-link-rx"></block>.</block>
   <block id="db035ffffac30b1a95fd497625c55167" category="summary">Obtenga más información usando la documentación de configuración y gestión de NetApp HCI e información de las soluciones de NetApp HCI.</block>
-  <block id="ad0a505756223d68dc11afeae3459351" category="doc">Documentación de NetApp HCI</block>
   <block id="5dd03e8d039863e563e049be198c3fd3" category="sidebar">Notas de la versión</block>
   <block id="0460583622f03a52d7693094d6fa2452" category="sidebar">Conceptos</block>
   <block id="4b983fff716674f120176e09551dd445" category="sidebar">Información general del producto</block>
@@ -6582,4 +6581,5 @@
   <block id="a5f38386dcceecb027de7fd15fcc6aa4" category="list-text"><block ref="a5f38386dcceecb027de7fd15fcc6aa4" category="inline-link-rx"></block></block>
   <block id="0287de700b52d79d64e09aca72f4850b" category="admonition">Al actualizar ESXi para nodos de computación para un<block ref="d6b7667dc675e8798d67d09fb8931bb2" category="inline-link-rx"></block>, actualice sólo un nodo de computación a la vez para que solo un nodo testigo no esté disponible temporalmente y se pueda mantener el quórum del clúster.</block>
   <block id="a2f9c1250a16a7514c9d6b0865b7bf42" category="list-text"><block ref="a2f9c1250a16a7514c9d6b0865b7bf42" category="inline-link-rx"></block></block>
+  <block id="846572971d410f1d04ff53e7bfc8a84b" category="sidebar">Documentación de NetApp HCI 1,9</block>
 </blocks>
