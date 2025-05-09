@@ -31,9 +31,8 @@ A continuación encontrará los enlaces a los requisitos y las tareas previas a 
 * link:hci_prereqs_witness_nodes.html["Requisitos de recursos de nodo de observación para clústeres de almacenamiento de dos nodos"]
 
 
-[discrete]
+
+
 == Obtenga más información
 
-* https://www.netapp.com/hybrid-cloud/hci-documentation/["Recursos de NetApp HCI"^]
-* https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
-
+https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]

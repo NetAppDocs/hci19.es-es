@@ -128,11 +128,11 @@ Puede eliminar uno o varios iniciadores. Cuando se elimina un iniciador, el sist
 
 
 
-[discrete]
+
+
 == Obtenga más información
 
 * link:concept_hci_initiators.html["Obtenga más información acerca de los iniciadores"]
 * link:concept_hci_volume_access_groups.html["Obtenga información acerca de los grupos de acceso de volúmenes"]
 * https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
-* https://www.netapp.com/hybrid-cloud/hci-documentation/["Página de recursos de NetApp HCI"^]
 

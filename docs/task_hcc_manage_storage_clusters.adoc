@@ -195,6 +195,4 @@ Si se producen errores cuando se habilita o se deshabilita el modo de mantenimie
 
 == Obtenga más información
 
-* link:task_mnode_manage_storage_cluster_assets.html["Crear y gestionar activos de clúster de almacenamiento"]
-* https://www.netapp.com/hybrid-cloud/hci-documentation/["Página de recursos de NetApp HCI"^]
-
+link:task_mnode_manage_storage_cluster_assets.html["Crear y gestionar activos de clúster de almacenamiento"]

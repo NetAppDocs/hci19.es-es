@@ -73,11 +73,11 @@ Es posible quitar un grupo de acceso de volúmenes mediante NetApp Hybrid Cloud 
 . Confirme la operación de eliminación seleccionando *Sí*.
 
 
-[discrete]
+
+
 == Obtenga más información
 
 * link:concept_hci_volume_access_groups.html["Obtenga información acerca de los grupos de acceso de volúmenes"]
 * link:task_hcc_manage_initiators.html#add-initiators-to-a-volume-access-group["Añada un iniciador de a un grupo de acceso de volúmenes"]
 * https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
-* https://www.netapp.com/hybrid-cloud/hci-documentation/["Página de recursos de NetApp HCI"^]
 

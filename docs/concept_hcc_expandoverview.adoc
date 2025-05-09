@@ -36,12 +36,12 @@ En las siguientes situaciones, es posible que deba cambiar manualmente la config
 
 NOTE: Al ampliar los recursos de computación o almacenamiento de NetApp HCI en el motor de implementación de NetApp, debe conectarse a la instancia de vCenter que gestione los nodos de computación de NetApp HCI existentes.
 
-[discrete]
+
+
 == Obtenga más información
 
 * link:task_hcc_expand_compute.html["Amplíe los recursos de computación de NetApp HCI"]
 * link:task_hcc_expand_storage.html["Amplíe los recursos de almacenamiento de NetApp HCI"]
 * link:task_hcc_expand_compute_and_storage.html["Amplíe los recursos informáticos y de almacenamiento de NetApp HCI al mismo tiempo"]
-* https://www.netapp.com/hybrid-cloud/hci-documentation/["Recursos de NetApp HCI"^]
 * https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
 

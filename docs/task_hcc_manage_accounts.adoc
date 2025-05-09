@@ -193,11 +193,11 @@ NOTE: Los volúmenes persistentes asociados con servicios de gestión se asignan
 . Confirme la eliminación seleccionando *Sí*.
 
 
-[discrete]
+
+
 == Obtenga más información
 
 * link:concept_cg_hci_accounts.html["Más información acerca de las cuentas"]
 * http://docs.netapp.com/sfe-122/topic/com.netapp.doc.sfe-ug/GUID-E93D3BAF-5A60-414D-86AF-0C1F86D43F26.html["Trabajar con cuentas de usuario"^]
 * https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
-* https://www.netapp.com/hybrid-cloud/hci-documentation/["Página de recursos de NetApp HCI"^]
 

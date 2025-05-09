@@ -27,9 +27,8 @@ Para alcanzar un rendimiento óptimo en el clúster de almacenamiento de NetApp 
 . Cambie el modo de unión con LACP de todos los nodos de almacenamiento en la interfaz de usuario en el nodo (también conocida como interfaz de usuario de terminal o TUI) antes de implementar NetApp HCI.
 
 
-[discrete]
+
+
 == Obtenga más información
 
-* https://www.netapp.com/hybrid-cloud/hci-documentation/["Recursos de NetApp HCI"^]
-* https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
-
+https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]

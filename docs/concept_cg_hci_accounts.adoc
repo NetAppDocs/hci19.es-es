@@ -79,11 +79,11 @@ Las cuentas específicas de cada volumen solo son específicas del clúster de a
 
 Las cuentas de volumen se gestionan en la tabla volúmenes de control de cloud híbrido de NetApp.
 
-[discrete]
+
+
 == Obtenga más información
 
 * link:task_hcc_manage_accounts.html["Administrar cuentas de usuario"]
 * link:concept_hci_clusters.html["Obtenga información acerca de los clústeres"]
-* https://www.netapp.com/hybrid-cloud/hci-documentation/["Recursos de NetApp HCI"^]
 * https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
 

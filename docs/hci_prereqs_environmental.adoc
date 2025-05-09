@@ -11,7 +11,6 @@ keywords: netapp, hci, environment, requirements
 :icons: font
 :linkattrs: 
 :imagesdir: ../media/
-:keywords: netapp, hci, environment, requirements
 
 
 [role="lead"]
@@ -22,9 +21,8 @@ Para obtener capacidades detalladas de cada componente de NetApp HCI, consulte e
 
 NOTE: El nodo de computación H410C solo funciona con tensión de línea alta (200-240 V CA). Debe asegurarse de que se cumplan los requisitos de alimentación cuando añada nodos H410C a una instalación existente de NetApp HCI.
 
-[discrete]
+
+
 == Obtenga más información
 
-* https://www.netapp.com/hybrid-cloud/hci-documentation/["Recursos de NetApp HCI"^]
-* https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
-
+https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]

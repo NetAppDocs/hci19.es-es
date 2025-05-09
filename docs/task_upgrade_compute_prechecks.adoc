@@ -281,9 +281,8 @@ Las comprobaciones del estado de computación, ya sea realizadas por los método
 
 | ¿Cuál es el estado de los nodos testigos en el clúster? El nodo de testigo está activo y en ejecución en este host ESXi y el nodo de observación alternativo está en funcionamiento en otro host ESXi. | Nodo | Un nodo de testigo se ejecuta localmente en este host ESXi. Cuando esté listo para actualizar este host ESXi, apague el nodo testigo solo en este host ESXi y vuelva a ejecutar la comprobación del estado. *Un nodo testigo debe estar en ejecución en la instalación de HCI en todo momento*. | https://kb.netapp.com/Advice_and_Troubleshooting/Hybrid_Cloud_Infrastructure/NetApp_HCI/How_to_resolve_witness_node_issues_prior_to_upgrading_compute_nodes["Consulte esta base de conocimientos"^] 
 |===
-[discrete]
+
+
 == Obtenga más información
 
-* https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
-* https://www.netapp.com/hybrid-cloud/hci-documentation/["Página de recursos de NetApp HCI"^]
-
+https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]

@@ -61,9 +61,8 @@ El nombre de usuario del proxy, la contraseña del proxy y el puerto SSH son opc
 
 NOTE: Es posible que deba reiniciar su nodo de gestión según su entorno.
 
-[discrete]
+
+
 == Obtenga más información
 
-* https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
-* https://www.netapp.com/hybrid-cloud/hci-documentation/["Página de recursos de NetApp HCI"^]
-
+https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]

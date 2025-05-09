@@ -113,10 +113,10 @@ Puede supervisar el progreso mientras NetApp HCI añade y configura los recursos
 . *Opcional*: Verifique que los nodos de computación nuevos estén visibles en VMware vSphere Web Client.
 
 
-[discrete]
+
+
 == Obtenga más información
 
-* https://www.netapp.com/hybrid-cloud/hci-documentation/["Página de recursos de NetApp HCI"^]
 * https://library.netapp.com/ecm/ecm_download_file/ECMLP2856176["Instrucciones de instalación y configuración para nodos de almacenamiento y de computación de NetApp HCI"^]
 * https://kb.vmware.com/s/article/1003212["VMware Knowledge base: Soporte de procesador de Enhanced vMotion Compatibility (EVC)"^]
 

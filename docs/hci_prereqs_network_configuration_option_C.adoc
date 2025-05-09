@@ -102,9 +102,8 @@ Es posible usar los siguientes comandos de ejemplo a fin de configurar los puert
 
 NOTE: Algunos switches pueden requerir la inclusión de la VLAN nativa en la lista de VLAN permitidas. Consulte la documentación de su modelo de switch y versión de software específicos.
 
-[discrete]
+
+
 == Obtenga más información
 
-* https://www.netapp.com/hybrid-cloud/hci-documentation/["Recursos de NetApp HCI"^]
-* https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
-
+https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]

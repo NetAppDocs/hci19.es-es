@@ -251,10 +251,10 @@ NOTE: Puede agregar el nombre de usuario o permitir que la secuencia de comandos
 
 IMPORTANT: Funcionalidad SSH que proporciona link:task_mnode_enable_remote_support_connections.html["Acceso a la sesión del túnel de soporte remoto (RST) de NetApp Support"] está deshabilitado de forma predeterminada en los nodos de gestión que ejecutan servicios de gestión 2.18 y posteriores. Si ya había habilitado la funcionalidad SSH en el nodo de gestión, es posible que deba hacerlo link:task_mnode_ssh_management.html["Vuelva a deshabilitar SSH"] en el nodo de gestión recuperado.
 
-[discrete]
+
+
 == Obtenga más información
 
 * link:concept_hci_volumes.html#persistent-volumes["Volúmenes persistentes"]
 * https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
-* https://www.netapp.com/hybrid-cloud/hci-documentation/["Página de recursos de NetApp HCI"^]
 

@@ -37,9 +37,8 @@ Esto se debe a las siguientes razones:
 
 NOTE: En una configuración de seis cables, se reservan dos puertos para VMware ESXi y los configura y gestiona el motor de puesta en marcha de NetApp. No es posible acceder a estos puertos ESXi dedicados ni gestionarlos mediante la TUI de Element o la interfaz gráfica de usuario web de Element.
 
-[discrete]
+
+
 == Obtenga más información
 
-* https://www.netapp.com/hybrid-cloud/hci-documentation/["Recursos de NetApp HCI"^]
-* https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
-
+https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]

@@ -177,10 +177,10 @@ Carga útil de ejemplo:
 ----
 
 
-[discrete]
+
+
 == Obtenga más información
 
 * https://kb.netapp.com/Advice_and_Troubleshooting/Hybrid_Cloud_Infrastructure/NetApp_HCI/Known_issues_and_workarounds_for_Compute_Node_upgrades["Problemas conocidos y soluciones alternativas para actualizaciones de nodos de computación"^]
 * https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
-* https://www.netapp.com/hybrid-cloud/hci-documentation/["Página de recursos de NetApp HCI"^]
 

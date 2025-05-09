@@ -32,9 +32,3 @@ En un entorno de producción, debe actualizar los nodos de computación de un cl
 
 .Comience a utilizar la automatización de la actualización del firmware
 Para comenzar, navegue hasta la https://github.com/NetApp-Automation/nar_compute_firmware_upgrade["Repositorio de Ansible de NetApp en GitHub"^] y descargue el `nar_compute_nodes_firmware_upgrades` papel y documentación.
-
-[discrete]
-== Obtenga más información
-
-* https://www.netapp.com/hybrid-cloud/hci-documentation/["Página de recursos de NetApp HCI"^]
-

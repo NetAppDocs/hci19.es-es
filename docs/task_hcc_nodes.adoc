@@ -66,9 +66,8 @@ TIP: Para ver el número de recursos de almacenamiento y computación, observe l
 
 NOTE: Para gestionar un nodo de computación en NetApp Hybrid Cloud Control, debe hacerlo https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Software/Management_services_for_Element_Software_and_NetApp_HCI/How_to_set_up_compute_node_management_in_NetApp_Hybrid_Cloud_Control["Añada el nodo de computación a un clúster de hosts de vCenter"^].
 
-[discrete]
+
+
 == Obtenga más información
 
-* https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
-* https://www.netapp.com/hybrid-cloud/hci-documentation/["Página de recursos de NetApp HCI"^]
-
+https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]

@@ -11,7 +11,6 @@ keywords: netapp, hci, element, Witness Node
 :icons: font
 :linkattrs: 
 :imagesdir: ../media/
-:keywords: netapp, hci, element, Witness Node
 
 
 [role="lead"]
@@ -43,9 +42,8 @@ NetApp HCI solo admite determinados modelos de nodo de almacenamiento en clúste
 
 NOTE: Cuando el proceso de instalación de NetApp HCI instala nodos testigo, se almacena una plantilla de máquina virtual en VMware vCenter que puede utilizar para volver a poner en marcha un nodo de testigo en caso de que se elimine, se pierda o se dañe por accidente. También puede utilizar la plantilla para volver a poner en marcha un nodo de testigo si necesita sustituir un nodo de computación con errores que alojaba el nodo de testigo. Para obtener instrucciones, consulte la sección *nodos de testigo de nueva puesta en marcha para clústeres de almacenamiento de dos y tres nodos* link:task_hci_h410crepl.html["aquí"^].
 
-[discrete]
+
+
 == Obtenga más información
 
-* https://www.netapp.com/hybrid-cloud/hci-documentation/["Recursos de NetApp HCI"^]
-* https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
-
+https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]

@@ -329,9 +329,8 @@ NOTE: Para el sistema operativo del nodo, las actualizaciones sin supervisión d
 
 La actualización se completó correctamente cuando el `PercentComplete` lo que indica `100` y.. `results` indica el número de versión actualizada.
 
-[discrete]
+
+
 == Obtenga más información
 
-* https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
-* https://www.netapp.com/hybrid-cloud/hci-documentation/["Página de recursos de NetApp HCI"^]
-
+https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]

@@ -283,11 +283,11 @@ Una vez que se eliminan los volúmenes de almacenamiento, siguen disponibles dur
 . Confirme el proceso seleccionando *Sí*.
 
 
-[discrete]
+
+
 == Obtenga más información
 
 * link:concept_hci_volumes.html["Más información acerca de los volúmenes"]
 * https://docs.netapp.com/us-en/element-software/index.html["Documentación de SolidFire y el software Element"^]
 * https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
-* https://www.netapp.com/hybrid-cloud/hci-documentation/["Página de recursos de NetApp HCI"^]
 

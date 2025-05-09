@@ -43,6 +43,5 @@ NOTE: Al actualizar ESXi para nodos de computación para un https://www.netapp.c
 == Obtenga más información
 
 * https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
-* https://www.netapp.com/hybrid-cloud/hci-documentation/["Página de recursos de NetApp HCI"^]
 * https://www.netapp.com/pdf.html?item=/media/9489-tr-4823.pdf["Informe técnico de dos nodos de clúster de almacenamiento de NetApp HCI"^]
 

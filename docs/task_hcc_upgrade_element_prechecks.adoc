@@ -415,9 +415,8 @@ Las comprobaciones del estado del almacenamiento realizan las siguientes comprob
 
 | check_pending_nodes | Clúster | Verifica que no hay nodos pendientes en el clúster. 
 |===
-[discrete]
+
+
 == Obtenga más información
 
-* https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
-* https://www.netapp.com/hybrid-cloud/hci-documentation/["Página de recursos de NetApp HCI"^]
-
+https://docs.netapp.com/us-en/vcp/index.html["Plugin de NetApp Element para vCenter Server"^]
